@@ -1,0 +1,130 @@
+# Einführung Notebooks
+
+Notebooks^[Hinweis: im Folgenden beschreiben wir das Jupyter Notebook. Die Erläuterungen gelten jedoch prinzipiell auch für Google Colab, obgleich einige der Shortcuts oder Darstellungen anders sind.] sind eine **interaktive Umgebung** innerhalb der Sie 
+
+- Programmcode schreiben und ausführen können (nicht beschränkt auf Python), 
+- Ergebnisse visualisieren können, 
+- Markdown, HTML oder Latex (für mathematische Formeln) nutzen können
+
+Es handelt sich deshalb um eine Form des `Literate Computing` in der komplexe Analysen durchgeführt __UND__ erläutert werden 
+können.  Notebooks bieten sich deshalb für komplexe Datenanalyse sehr gut an und haben sich hier als "state of the art" Werkzeug durchgesetzt.^[Siehe hierzu auch einen Artikel aus [Nature](https://www.nature.com/articles/d41586-018-07196-1).] Vor der Entwicklung von Notebooks wurden Analysen in der Regel in einem Editor geschrieben und dann in einem separaten Programm ausgeführt. Das hat den Vorteil, dass die Ausführung unabhängig von der Erklärung erfolgt. Das hat aber auch den Nachteil, dass die Erklärung und die Ausführung nicht zusammengeführt werden können. 
+
+## Zellentypen
+
+Ein Notebook besteht aus einer Folge von Zellen. Jede Zelle kann einen von zwei Typen^[Hinweis: der dritten Zelltyp _raw__ ist für unsere Zwecke nicht weiter relevant]  haben: 
+
+- Code-Zelle
+- Markdown-Zelle
+
+### Code-Zelle
+
+In einer Code-Zelle können Sie Python-Code schreiben und ausführen. Die folgende Zelle ist eine Code-Zelle, die Python Code enthält (der Code ist zugegebenermaßen nicht sonderlich komplex). 
+
+```{python}
+#| output: true
+3 + 4
+```
+
+Das Ergebnis des ausgeführten Python-Code (in unserem Falle `7`) wird erst dann berechnet, wenn Sie die Zelle ausführen. Dies tun Sie, in dem Sie  die Zelle markieren und dann `STRG` + `ENTER` drücken. 
+
+Zellen werden zu Code-Zellen, wenn Sie den Typ der Zelle auf `Code` setzen. Dies können Sie mit dem Shortcut `ESC` + `Y` tun.
+
+### Markdown-Zelle
+
+In einer Markdown-Zelle können Sie Text schreiben, der ihren Code erläutert. Markdown ist eine einfache Textformatierungssprache, die es Ihnen erlaubt, Text zu formatieren. Sie können zum Beispiel Text kursiv setzen, Fettschrift verwenden, Formeln erstellen, Listen erstellen, Links setzen, Bilder einfügen, Tabellen erstellen, etc.
+
+::: {.column-margin}
+
+::: {.callout-note}
+## Hinweis
+
+Das Skript, welches Sie gerade lesen, ist ein Notebook und besteht aus einer Folge von Markdown- und Code-Zellen. 
+
+:::
+
+:::
+
+Hier ein Beispiel für den Inhalt eine Markdown-Zelle:
+
+```{markdown}
+### Eine Überschrift der Ebene 3
+
+Dies ist ein Absatz, der __fette__ und _kursive_ Schrift enthält. Außerdem ein [Link](https://www.google.com) und ein Bild:
+
+![Bild](https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Jupyter_logo.svg/100px-Jupyter_logo.svg.png)
+
+Eine Tabelle:
+
+| Spalte 1 | Spalte 2 |
+|----------|----------|
+| 1        | 2        |
+| 3        | 4        |
+
+Eine Formel:
+
+$$
+\int_0^1 x^2 \, dx = \frac{1}{3}
+$$
+
+Eine Liste:
+
+- Punkt 1
+- Punkt 2
+
+```
+
+Nach dem Ausführen der Zelle sehen Sie den Text, der in der Zelle steht. Dieser sieht dann wiefolgt aus:
+
+### Eine Überschrift der Ebene 3
+
+Dies ist ein Absatz, der __fette__ und _kursive_ Schrift enthält. Außerdem ein [Link](https://www.google.com) und ein Bild:
+
+![Bild](https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Jupyter_logo.svg/100px-Jupyter_logo.svg.png)
+
+Eine Tabelle:
+
+| Spalte 1 | Spalte 2 |
+|----------|----------|
+| 1        | 2        |
+| 3        | 4        |
+
+Eine Formel:
+
+$$
+\int_0^1 x^2 \, dx = \frac{1}{3}
+$$
+
+Eine Liste:
+
+- Punkt 1
+- Punkt 2
+
+
+Zellen werden zu Markdown-Zellen, wenn Sie den Typ der Zelle auf `Markdown` setzen. Dies können Sie mit dem Shortcut `ESC` + `M` tun.
+
+## Arbeitsablauf
+
+Sie schreiben Programme in Jupyter Notebooks, indem Sie eine Folge von Zellen erstellen. Jede Zelle enthält entweder Python-Code oder Text, der Ihren Code erläutert. Die Summe aller Zellen ist Ihr Notebook und sieht dann z.B. so aus:
+
+![Beispiel: Notebook](https://docs.jupyter.org/en/latest/_images/trynb.png)
+
+
+## Shortcuts
+
+Um die Arbeit mit Notebooks zu erleichtern, gibt es eine Reihe von Shortcuts, die Sie verwenden können. Die wichtigsten sind:
+
+- `ESC` + `Y`: Zelle zu Code-Zelle machen
+- `ESC` + `M`: Zelle zu Markdown-Zelle machen
+- `ESC` + `A`: Zelle oberhalb der aktuellen Zelle einfügen
+- `ESC` + `B`: Zelle unterhalb der aktuellen Zelle einfügen
+- `ESC` + `D` + `D`: Zelle löschen
+- `SHIFT` + `ENTER`: Zelle ausführen und Cursor i nächste Zelle springen
+- `CTRL` + `ENTER`: Zelle ausführen und Cursor in aktuelle Zelle bleiben
+
+
+## Nützliche Hilfen
+
+- `TAB`-Taste: Wenn Sie in einer Code-Zelle Python-Code schreiben, können Sie die `TAB`-Taste drücken, um eine Liste von möglichen Vervollständigungen anzuzeigen.
+
+- `SHIFT` + `TAB`: Wenn Sie in einer Code-Zelle Python-Code schreiben, können Sie die `SHIFT` + `TAB`-Tastenkombination drücken, um die Dokumentation für die Funktion anzuzeigen, die Sie gerade schreiben.
+

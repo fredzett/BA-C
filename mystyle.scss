@@ -1,0 +1,20 @@
+/*-- scss:defaults --*/
+
+$bg-color: white;
+$font-color: black;
+$highlight-color:#003d5b;
+$lowlight-color: #30638e;// 
+$code-color: #d1495b;
+$link-color: black; // #00798c;
+$highlight-color2: #edae49;
+$grey: rgb(245, 245, 245);
+
+.sidebar-item {
+    a {
+        font-size: 0.8em;
+    }
+}
+
+p { 
+    text-align: justify;
+}

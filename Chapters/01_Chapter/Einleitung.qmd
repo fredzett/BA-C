@@ -1,0 +1,11 @@
+# EINLEITUNG
+
+In diesm Kapitel beschäftigen wir uns mit drei Kernfragen:
+ 
+>   1. Was ist "Business Analytics"?  
+> 
+>   2. Welche Rolle spielt "Coding" in der Datenanalyse?
+>
+>   3. Wieso Python die geeignete Programmiersprache für unsere Zwecke ist?
+> 
+

@@ -2,22 +2,48 @@ project:
   type: book
 
 book:
-  title: "Skript"
-  author: "Jane Doe"
-  date: "12/19/2022"
+  title: "Business Analytics & Coding"
+  description: "Eine kurze Einführung für Studierende der Betriebswirtschaftslehre"
   chapters:
     - index.qmd
-    - intro.qmd
-    - summary.qmd
+    - part: Chapters/01_Chapter/Einleitung.qmd
+      chapters:
+      - Chapters/01_Chapter/Was_ist_BA.qmd
+      - Chapters/01_Chapter/Coding.qmd
+      - Chapters/01_Chapter/Warum_Python.qmd
+    - part: Chapters/02_Chapter/Getting_Ready.qmd
+      chapters:
+      - Chapters/02_Chapter/Installation.qmd
+      - Chapters/02_Chapter/Introduction_notebook.qmd
+      - Chapters/02_Chapter/Python_Basics.qmd
     - references.qmd
+  page-navigation: true
+  sidebar: 
+    downloads: [pdf, epub]
+    search: true
+    title: "BA&C"
+  page-footer: 
+    center: 
+    - text: "© 2023 by F. Zeidler"
+  
+  
 
 bibliography: references.bib
 
 format:
   html:
-    theme: cosmo
-  pdf:
-    documentclass: scrreprt
+    theme: [default, mystyle.scss]
+    lang: de
+    toc: true
+    number-sections: true
+    number-depth: 1
+    text-algin: justify
+    linestretch: 1.75
+    fig-cap-location: bottom
+    page-layout: full # Do I need this?
+    reference-location: margin
+  epub: 
+    cover-image: cover.png
 
 
 
