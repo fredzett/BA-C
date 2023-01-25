@@ -213,6 +213,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapters/03_Chapter/Business_Analytics.html" class="sidebar-item-text sidebar-link">Business Analytics</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapters/03_Chapter/Introduction_BA.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Einführende Fallstudie</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../references.html" class="sidebar-item-text sidebar-link">References</a>
@@ -227,15 +242,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Inhaltsverzeichnis</h2>
    
   <ul>
-  <li><a href="#zellentypen" id="toc-zellentypen" class="nav-link active" data-scroll-target="#zellentypen">Zellentypen</a>
+  <li><a href="#zellentypen" id="toc-zellentypen" class="nav-link active" data-scroll-target="#zellentypen"><span class="toc-section-number">5.1</span>  Zellentypen</a>
   <ul class="collapse">
   <li><a href="#code-zelle" id="toc-code-zelle" class="nav-link" data-scroll-target="#code-zelle">Code-Zelle</a></li>
   <li><a href="#markdown-zelle" id="toc-markdown-zelle" class="nav-link" data-scroll-target="#markdown-zelle">Markdown-Zelle</a></li>
   <li><a href="#eine-überschrift-der-ebene-3" id="toc-eine-überschrift-der-ebene-3" class="nav-link" data-scroll-target="#eine-überschrift-der-ebene-3">Eine Überschrift der Ebene 3</a></li>
   </ul></li>
-  <li><a href="#arbeitsablauf" id="toc-arbeitsablauf" class="nav-link" data-scroll-target="#arbeitsablauf">Arbeitsablauf</a></li>
-  <li><a href="#shortcuts" id="toc-shortcuts" class="nav-link" data-scroll-target="#shortcuts">Shortcuts</a></li>
-  <li><a href="#nützliche-hilfen" id="toc-nützliche-hilfen" class="nav-link" data-scroll-target="#nützliche-hilfen">Nützliche Hilfen</a></li>
+  <li><a href="#arbeitsablauf" id="toc-arbeitsablauf" class="nav-link" data-scroll-target="#arbeitsablauf"><span class="toc-section-number">5.2</span>  Arbeitsablauf</a></li>
+  <li><a href="#shortcuts" id="toc-shortcuts" class="nav-link" data-scroll-target="#shortcuts"><span class="toc-section-number">5.3</span>  Shortcuts</a></li>
+  <li><a href="#nützliche-hilfen" id="toc-nützliche-hilfen" class="nav-link" data-scroll-target="#nützliche-hilfen"><span class="toc-section-number">5.4</span>  Nützliche Hilfen</a></li>
   </ul>
 </nav>
     </div>
@@ -266,8 +281,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Markdown, HTML oder Latex (für mathematische Formeln) nutzen können</li>
 </ul>
 <div class="page-columns page-full"><p>Es handelt sich deshalb um eine Form des <code>Literate Computing</code> in der komplexe Analysen durchgeführt <strong>UND</strong> erläutert werden können. Notebooks bieten sich deshalb für komplexe Datenanalyse sehr gut an und haben sich hier als “state of the art” Werkzeug durchgesetzt.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Vor der Entwicklung von Notebooks wurden Analysen in der Regel in einem Editor geschrieben und dann in einem separaten Programm ausgeführt. Das hat den Vorteil, dass die Ausführung unabhängig von der Erklärung erfolgt. Das hat aber auch den Nachteil, dass die Erklärung und die Ausführung nicht zusammengeführt werden können.</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;Siehe hierzu auch einen Artikel aus <a href="https://www.nature.com/articles/d41586-018-07196-1">Nature</a>.</p></li></div></div>
-<section id="zellentypen" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="zellentypen">Zellentypen</h2>
+<section id="zellentypen" class="level2 page-columns page-full" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="zellentypen"><span class="header-section-number">5.1</span> Zellentypen</h2>
 <div class="page-columns page-full"><p>Ein Notebook besteht aus einer Folge von Zellen. Jede Zelle kann einen von zwei Typen<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> haben:</p><div class="no-row-height column-margin column-container"><li id="fn3"><p><sup>3</sup>&nbsp;Hinweis: der dritten Zelltyp _raw__ ist für unsere Zwecke nicht weiter relevant</p></li></div></div>
 <ul>
 <li>Code-Zelle</li>
@@ -278,7 +293,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In einer Code-Zelle können Sie Python-Code schreiben und ausführen. Die folgende Zelle ist eine Code-Zelle, die Python Code enthält (der Code ist zugegebenermaßen nicht sonderlich komplex).</p>
 <div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="op">+</span> <span class="dv">4</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>7</code></pre>
 </div>
 </div>
@@ -370,8 +385,8 @@ Eine Liste:
 <p>Zellen werden zu Markdown-Zellen, wenn Sie den Typ der Zelle auf <code>Markdown</code> setzen. Dies können Sie mit dem Shortcut <code>ESC</code> + <code>M</code> tun.</p>
 </section>
 </section>
-<section id="arbeitsablauf" class="level2">
-<h2 class="anchored" data-anchor-id="arbeitsablauf">Arbeitsablauf</h2>
+<section id="arbeitsablauf" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="arbeitsablauf"><span class="header-section-number">5.2</span> Arbeitsablauf</h2>
 <p>Sie schreiben Programme in Jupyter Notebooks, indem Sie eine Folge von Zellen erstellen. Jede Zelle enthält entweder Python-Code oder Text, der Ihren Code erläutert. Die Summe aller Zellen ist Ihr Notebook und sieht dann z.B. so aus:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -380,8 +395,8 @@ Eine Liste:
 </figure>
 </div>
 </section>
-<section id="shortcuts" class="level2">
-<h2 class="anchored" data-anchor-id="shortcuts">Shortcuts</h2>
+<section id="shortcuts" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="shortcuts"><span class="header-section-number">5.3</span> Shortcuts</h2>
 <p>Um die Arbeit mit Notebooks zu erleichtern, gibt es eine Reihe von Shortcuts, die Sie verwenden können. Die wichtigsten sind:</p>
 <ul>
 <li><code>ESC</code> + <code>Y</code>: Zelle zu Code-Zelle machen</li>
@@ -393,8 +408,8 @@ Eine Liste:
 <li><code>CTRL</code> + <code>ENTER</code>: Zelle ausführen und Cursor in aktuelle Zelle bleiben</li>
 </ul>
 </section>
-<section id="nützliche-hilfen" class="level2">
-<h2 class="anchored" data-anchor-id="nützliche-hilfen">Nützliche Hilfen</h2>
+<section id="nützliche-hilfen" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="nützliche-hilfen"><span class="header-section-number">5.4</span> Nützliche Hilfen</h2>
 <ul>
 <li><p><code>TAB</code>-Taste: Wenn Sie in einer Code-Zelle Python-Code schreiben, können Sie die <code>TAB</code>-Taste drücken, um eine Liste von möglichen Vervollständigungen anzuzeigen.</p></li>
 <li><p><code>SHIFT</code> + <code>TAB</code>: Wenn Sie in einer Code-Zelle Python-Code schreiben, können Sie die <code>SHIFT</code> + <code>TAB</code>-Tastenkombination drücken, um die Dokumentation für die Funktion anzuzeigen, die Sie gerade schreiben.</p></li>

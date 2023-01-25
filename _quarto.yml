@@ -16,6 +16,12 @@ book:
       - Chapters/02_Chapter/Installation.qmd
       - Chapters/02_Chapter/Introduction_notebook.qmd
       - Chapters/02_Chapter/Python_Basics.qmd
+    - part: Chapters/03_Chapter/Business_Analytics.qmd
+      chapters:
+      - Chapters/03_Chapter/Fallstudie.qmd
+      #- Chapters/03_Chapter/Descriptive_Analytics.qmd
+      #- Chapters/03_Chapter/Predictive_Analytics.qmd
+      #- Chapters/03_Chapter/Prescriptive_Analytics.qmd
     - references.qmd
   page-navigation: true
   sidebar: 
@@ -35,7 +41,8 @@ format:
     theme: [default, mystyle.scss]
     lang: de
     toc: true
-    number-sections: true
+    toc-depth: 4
+    number-sections: True
     number-depth: 1
     text-algin: justify
     linestretch: 1.75

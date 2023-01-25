@@ -168,6 +168,21 @@ div.csl-indent {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapters/03_Chapter/Business_Analytics.html" class="sidebar-item-text sidebar-link">Business Analytics</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapters/03_Chapter/Fallstudie.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Fallstudie: Business Analytics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../references.html" class="sidebar-item-text sidebar-link">References</a>
@@ -185,7 +200,7 @@ div.csl-indent {
   <li><a href="#was-ist-business-analytics" id="toc-was-ist-business-analytics" class="nav-link active" data-scroll-target="#was-ist-business-analytics">Was ist Business Analytics?</a></li>
   <li><a href="#vorteile-durch-business-analytics" id="toc-vorteile-durch-business-analytics" class="nav-link" data-scroll-target="#vorteile-durch-business-analytics">Vorteile durch Business Analytics?</a></li>
   <li><a href="#drei-arten-der-datenanalyse" id="toc-drei-arten-der-datenanalyse" class="nav-link" data-scroll-target="#drei-arten-der-datenanalyse">Drei Arten der Datenanalyse</a></li>
-  <li><a href="#der-analyseprozess" id="toc-der-analyseprozess" class="nav-link" data-scroll-target="#der-analyseprozess">Der Analyseprozess</a></li>
+  <li><a href="#sec-analyseprozess" id="toc-sec-analyseprozess" class="nav-link" data-scroll-target="#sec-analyseprozess">Der Analyseprozess</a></li>
   </ul>
 </nav>
     </div>
@@ -279,27 +294,27 @@ div.csl-indent {
 <p>Die <strong>prädiktive Analytik</strong> geht noch einen Schritt weiter und versucht, die Zukunft vorherzusagen. Sie nutzt Vergangenheitsdaten, bewährte statistische Verfahren und teilweise auch Verfahren des maschinellen Lernens, um Muster und Trends zu identifizieren und Vorhersagen für zukünftige Ereignisse zu treffen. Zum Beispiel könnte ein Unternehmen die prädiktive Analytik nutzen, um zu prognostizieren, wie sich die Nachfrage nach einem bestimmten Produkt in der Zukunft entwickeln wird, oder um Kundenverhalten vorherzusagen, um gezielte Marketingkampagnen zu erstellen.</p>
 <p>Jede dieser Arten von Business Analytics kann Unternehmen dabei helfen, bessere Entscheidungen zu treffen. Oft werden die Analyseformen auch kombiniert bzw. es wird im Rahmen einer Analyse gar nicht unterschieden, um welche Kategorie es sich handelt. Im Rahmen des Moduls werden wir uns allen drei Arten widmen und uns Schritt für Schritt auch (vermeintlich) komplexen Analysen widmen.</p>
 </section>
-<section id="der-analyseprozess" class="level2">
-<h2 class="anchored" data-anchor-id="der-analyseprozess">Der Analyseprozess</h2>
+<section id="sec-analyseprozess" class="level2">
+<h2 class="anchored" data-anchor-id="sec-analyseprozess">Der Analyseprozess</h2>
 <p>Eingangs des Kapitels haben wir Business Analytics definiert und dabei festgehalten, dass es sich um <strong>einen Prozess</strong> handelt. Lassen Sie uns an dieser Stelle den Prozess der Analyse kurz beschreiben. Denn auch wenn dieser sich im Detail bei jeder Analyse natürlich unterscheidet, sind die grundsätzlichen Analyseschritte ganz unabhängig von der Art der Analyse und dem Analysezweck immer identisch. Die wesentlichen Prozessschritte lauten:</p>
 <p>Der Datenanalyse-Prozess umfasst eine Reihe von Schritten, die dazu dienen, ein bestimmtes Analyseproblem zu lösen. Die Schritte sind in der Regel untereinander abhängig und müssen in der richtigen Reihenfolge ausgeführt werden, um zu sinnvollen Ergebnissen zu gelangen.</p>
 <ol type="1">
 <li><p><strong>Formulierung der Problemstellung</strong>: Der erste Schritt bei der Datenanalyse ist die Definition des Analyseproblems. Dabei geht es darum, die Frage oder das Problem zu formulieren, das mit der Analyse beantwortet oder gelöst werden soll. Zudem muss festgelegt werden, welche Daten dazu benötigt werden und wo diese gefunden werden können. Beispielsweise könnte das Analyseproblem lauten: “Welche Faktoren beeinflussen die Kundenzufriedenheit in unserem Unternehmen?” Um dieses Problem zu lösen, müssen Daten zu Kundenzufriedenheit und möglichen Einflussfaktoren gesammelt werden.</p></li>
 <li><p><strong>Finden und Einlesen der Daten</strong>: Nachdem das Analyseproblem definiert wurde, müssen die benötigten Daten gefunden und eingelesen werden. Diese können entweder aus internen Quellen, wie beispielsweise einer Unternehmensdatenbank, oder aus externen Quellen, wie öffentlich zugänglichen Datensätzen oder Daten, die von Kunden oder anderen Stakeholdern bereitgestellt werden, stammen. Es ist wichtig, sicherzustellen, dass die Daten korrekt und vollständig sind und dass alle relevanten Informationen enthalten sind.</p></li>
-<li><p><strong>Aufbereiten der Daten</strong>: Sobald die Daten eingelesen wurden, müssen sie aufbereitet werden. Dieser Schritt beinhaltet die Säuberung und Strukturierung der Daten, damit sie für die weitere Analyse nutzen können. Dazu gehört beispielsweise das Entfernen von fehlerhaften oder inkonsistenten Daten, das Anlegen von Kennzeichnungen oder das Aggregieren von Daten.</p></li>
-<li><p><strong>Transformieren der Daten</strong>: Nachdem die Daten aufbereitet wurden, müssen sie in eine geeignete Form gebracht werden, um sie für die Analyse nutzen zu können. Dieser Schritt beinhaltet beispielsweise das Berechnen von Kennzahlen oder das Aggregieren von Daten auf eine höhere Aggregationsebene. Zudem können die Daten kodiert werden, um sie für die Analyse nutzen zu können, beispielsweise indem Texte in Zahlen umgewandelt werden. Weitere Möglichkeiten, die Daten zu transformieren, könnten beispielsweise das Normalisieren von Daten oder das Entfernen von Ausreißern sein. Es ist wichtig, dass die Daten in einer Form vorliegen, die für die geplante Analyse geeignet ist, um zu sinnvollen Ergebnissen zu gelangen.</p></li>
+<li><p><strong>Aufbereiten der Daten</strong>: Sobald die Daten eingelesen wurden, müssen sie aufbereitet werden. Dieser Schritt beinhaltet die Säuberung und Strukturierung der Daten, damit sie für die weitere Analyse nutzen können. Dazu gehört beispielsweise das Entfernen von fehlerhaften oder inkonsistenten Daten, das Umcodieren (z.B. ja/nein zu 1/0), die Umbennung von Spalten. Kurzum: Es geht darum, die Daten so aufzubereiten, dass sie für die Analyse nutzbar sind.</p></li>
+<li><p><strong>Transformieren der Daten</strong>: Nachdem die Daten aufbereitet wurden, müssen sie in eine geeignete Form gebracht werden, um sie für die Analyse nutzen zu können. Dieser Schritt beinhaltet beispielsweise das Berechnen von Kennzahlen oder das Aggregieren und Gruppieren von Daten auf eine höhere Aggregationsebene. Auch kann das Filtern von Daten hier erfolgen. Weitere Möglichkeiten, die Daten zu transformieren, könnten beispielsweise das Normalisieren von Daten oder das Entfernen von Ausreißern sein. Es ist wichtig, dass die Daten in einer Form vorliegen, die für die geplante Analyse geeignet ist, um zu sinnvollen Ergebnissen zu gelangen.</p></li>
 <li><p><strong>Visualisieren der Daten</strong>: Nachdem die Daten transformiert wurden, können sie visualisiert werden, um Muster und Zusammenhänge zu erkennen und die Ergebnisse zu veranschaulichen. Es gibt verschiedene Möglichkeiten, Daten zu visualisieren, wie beispielsweise Tabellen, Diagramme oder Karten. Das Ziel ist es, die Daten so darzustellen, dass sie leicht verständlich und interpretierbar sind.</p></li>
 <li><p><strong>Modellieren der Daten</strong>: In diesem Schritt werden Mathematische Modelle erstellt, um die Daten zu analysieren und Vorhersagen zu treffen. Dazu können beispielsweise Regressionsanalysen oder Klassifikationsmodelle verwendet werden. Das Ziel ist es, Zusammenhänge und Muster in den Daten zu erkennen und Vorhersagen für die Zukunft zu treffen.</p></li>
 <li><p><strong>Kommunizieren der Daten</strong>: Zum Schluss müssen die Ergebnisse der Datenanalyse kommuniziert werden. Dies kann in Form von Berichten, Präsentationen oder anderen Dokumenten geschehen, die die Ergebnisse verständlich und nachvollziehbar darstellen. Das Ziel ist es, die Ergebnisse der Analyse der relevanten Stakeholder zugänglich zu machen und sie in die Entscheidungsfindung einzubeziehen.</p></li>
 </ol>
-<p>Die folgende Darstellung soll den Analyseprozess in Anlehnung an <span class="citation" data-cites="wickham_r_2016">Wickham und Grolemund (<a href="../../references.html#ref-wickham_r_2016" role="doc-biblioref">2016</a>)</span> abbilden.</p>
+<p>Die folgende Darstellung soll den Analyseprozess in Anlehnung an <span class="citation" data-cites="wickham_r_2016">Wickham und Grolemund (<a href="../../references.html#ref-wickham_r_2016" role="doc-biblioref">2016</a>)</span> abbilden. Die Schritte 4, 5 und 6 bezeichnen wir als <strong>explorative Analyse</strong>. Damit soll betont werden, dass es meist nicht um einen rein sequenziellen Prozess handelt, sondern die Schritte oft iterativ durchlaufen werden.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../../_assets/Analyse_Prozess.svg" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption">Der Analyse-Prozess</figcaption><p></p>
 </figure>
 </div>
-<p>TODO Die Abbildung verdeutlicht, dass es sich beim Analyse-Prozess um einen iterativen und teilweise explorativen Prozess handelt. Die Schritte “Transformation”, “Visualisierung” und “Modellierung” sind häufig iterative Prozessschritte, bei denen man auch explorativ vorgeht. Das bedeutet auch, man sich bewusst die Freiheit nimmt, unterschiedliche Verfahren auszuprobieren, um neue Erkenntnisse zu gewinnen oder dass man offen für neue Ideen und Ansätze bleibt und sich nicht zu früh auf eine bestimmte Vorgehensweise festlegt. Durch die iterative Durchführung dieser Schritte und das explorative Vorgehen kann man neue Erkenntnisse gewinnen und die Analyse vertiefen.</p>
+<p>Die Abbildung verdeutlicht, dass es sich beim Analyse-Prozess um einen iterativen und teilweise explorativen Prozess handelt. Die Schritte “Transformation”, “Visualisierung” und “Modellierung” sind häufig iterative Prozessschritte, bei denen man auch explorativ vorgeht. Das bedeutet auch, man sich bewusst die Freiheit nimmt, unterschiedliche Verfahren auszuprobieren, um neue Erkenntnisse zu gewinnen oder dass man offen für neue Ideen und Ansätze bleibt und sich nicht zu früh auf eine bestimmte Vorgehensweise festlegt. Durch die iterative Durchführung dieser Schritte und das explorative Vorgehen kann man neue Erkenntnisse gewinnen und die Analyse vertiefen.</p>
 <p>Zudem zeigt sich, dass die Schritte “Transformation”, “Visualisierung” und “Modellierung” im Datenanalyse-Prozess nicht unabhängig voneinander betrachtet werden können, sondern dass sie sich gegenseitig beeinflussen und bedingen. Beispielsweise könnte es bei der Transformation der Daten notwendig sein, mehrere Veränderungen an den Daten vorzunehmen, um sie für die geplante Analyse geeignet zu machen. Durch die Visualisierung der Daten kann es jedoch möglich sein, neue Muster oder Zusammenhänge zu erkennen, die dazu führen, dass die Daten anders transformiert werden müssen. Ähnlich verhält es sich bei der Modellierung der Daten. Hier können verschiedene Modelle verglichen und iterativ verbessert werden, um die besten Vorhersagen zu erhalten. Durch die Visualisierung der Ergebnisse kann es jedoch möglich sein, dass neue Erkenntnisse gewonnen werden, die dazu führen, dass das Modell anders aufgebaut werden muss. Es ist daher wichtig, dass diese Schritte nicht unabhängig voneinander betrachtet werden, sondern dass man sich bewusst die Freiheit nimmt, explorativ vorzugehen und die Schritte iterativ durchzuführen, um zu sinnvollen Ergebnissen zu gelangen.</p>
 
 

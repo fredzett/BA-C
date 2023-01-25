@@ -330,3 +330,5 @@ import pandas as pd
 ```
 
 Sie müssen sich dieser Konventionen nicht anpassen, wenn Sie nicht möchten. Jedoch ist es sinnvoll, da insbesondere Hilfen im Internet (oder auch von ChatGTP) häufig unter der Annahme, dass Sie die Module entsprechend importiert haben, geschrieben sind.
+
+
