@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Eine kurze Einführung für Studierende der Betriebswirtschaftslehre">
+
+<title>Business Analytics &amp; Coding - 2&nbsp; Werkzeug: Coding!</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../Chapters/01_Chapter/Warum_Python.html" rel="next">
+<link href="../../Chapters/01_Chapter/Was_ist_BA.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Keine Treffer",
+    "search-matching-documents-text": "Treffer",
+    "search-copy-link-title": "Link in die Suche kopieren",
+    "search-hide-matches-text": "Zusätzliche Treffer verbergen",
+    "search-more-match-text": "weitere Treffer in diesem Dokument",
+    "search-more-matches-text": "weitere Treffer in diesem Dokument",
+    "search-clear-button-title": "Zurücksetzen",
+    "search-detached-cancel-button-title": "Abbrechen",
+    "search-submit-button-title": "Abschicken"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating slimcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Werkzeug: Coding!</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">BA&amp;C</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">VORWORT</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapters/01_Chapter/Einleitung.html" class="sidebar-item-text sidebar-link">EINLEITUNG</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapters/01_Chapter/Was_ist_BA.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Business Analytics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapters/01_Chapter/Coding.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Werkzeug: Coding!</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapters/01_Chapter/Warum_Python.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Warum Python?</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapters/02_Chapter/Getting_Ready.html" class="sidebar-item-text sidebar-link">Vorbereitung</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapters/02_Chapter/Installation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Installation &amp; Setup</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapters/02_Chapter/Introduction_notebook.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Einführung Notebooks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapters/02_Chapter/Python_Basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Kurze Einführung in Python</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapters/03_Chapter/Business_Analytics.html" class="sidebar-item-text sidebar-link">Business Analytics</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapters/03_Chapter/Fallstudie.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Fallstudie: Business Analytics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+  <li><a href="#warum-programmieren-hilfreich-ist" id="toc-warum-programmieren-hilfreich-ist" class="nav-link active" data-scroll-target="#warum-programmieren-hilfreich-ist">Warum Programmieren hilfreich ist</a>
+  <ul>
+  <li><a href="#daten-effizient-aufbereiten-und-analysieren" id="toc-daten-effizient-aufbereiten-und-analysieren" class="nav-link" data-scroll-target="#daten-effizient-aufbereiten-und-analysieren">Daten effizient aufbereiten und analysieren</a></li>
+  <li><a href="#automatisierung-von-repetitiven-aufgaben" id="toc-automatisierung-von-repetitiven-aufgaben" class="nav-link" data-scroll-target="#automatisierung-von-repetitiven-aufgaben">Automatisierung von repetitiven Aufgaben</a></li>
+  <li><a href="#problemlösungsfähigkeit-verbessern" id="toc-problemlösungsfähigkeit-verbessern" class="nav-link" data-scroll-target="#problemlösungsfähigkeit-verbessern">Problemlösungsfähigkeit verbessern</a></li>
+  </ul></li>
+  <li><a href="#programmieren-software-entwicklung-vs.-coding" id="toc-programmieren-software-entwicklung-vs.-coding" class="nav-link" data-scroll-target="#programmieren-software-entwicklung-vs.-coding">Programmieren: Software-Entwicklung vs.&nbsp;Coding</a></li>
+  <li><a href="#coden-in-zeiten-von-ki-tools" id="toc-coden-in-zeiten-von-ki-tools" class="nav-link" data-scroll-target="#coden-in-zeiten-von-ki-tools">Coden in Zeiten von KI-Tools?</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full column-body" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="werkzeug-coding" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Werkzeug: Coding!</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="page-columns page-full"><p><strong>Business Analytics</strong> - so wie wir es im Rahmen dieses Moduls interpretieren - ist ein sehr angewandtes Thema. Die Analyse von Daten sollte im Rahmen dieses Kurses also nicht theoretisch und abstrakt vermittelt werden. Sie sind zukünftige Anwender*innen von Datenanalysetechniken und sollen damit konkrete Probleme bearbeiten und lösen.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Wir müssen uns also zwangsläufig die Frage nach dem richtigen <strong>Analysewerkzeug</strong> stellen, denn mit Papier und Bleistift stoßen wir bei der Datenanalyse an unsere Grenzen. Prinzipiell gibt es drei verschiedene Werkzeuge, die für die Anwendung von Datenanalysen verwendet werden können:</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Hinweis: im Bereich der Informatik oder auch Statistik ist es oft notwendigt sich auch sehr theoretisch mit Datenanalyse und Modellbildung zu beschäftigen, da in diesem Feldern die theoretischen Grundlagen erarbeitet werden, die es uns Anwendern ermöglichen Datenanalysen durchzuführen.</p></li></div></div>
+<ul>
+<li>Tabellenkalkulationsprogramme wie Excel</li>
+<li>No-Code-Tools wie Power BI</li>
+<li>Programmiersprachen wie Pytho, R oder Julia</li>
+</ul>
+<div class="page-columns page-full"><p>Wir werden in diesem Kurs die Programmiersprache Python<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> nutzen, da diese eine mächtige und flexible Programmiersprache ist, die für viele verschiedene Anwendungen verwendet werden kann. Im Vergleich dazu sind Tabellenkalkulationsprogramme wie Excel und No-Code-Tools in ihren Funktionen eingeschränkter und eignen sich daher nicht für alle Arten von Datenanalysen.</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;Hinweis: die Wahl für Python begründen wir im nächsten Kapitel</p></li></div></div>
+<p>Im folgenden möchten wir kurz erläutern, weshalb wir uns für das Werkzeug “Programmieren” entschieden haben.</p>
+<section id="warum-programmieren-hilfreich-ist" class="level2">
+<h2 class="anchored" data-anchor-id="warum-programmieren-hilfreich-ist">Warum Programmieren hilfreich ist</h2>
+<p>Wir glauben, dass die Fähigkeit zu Programmieren eine Grundlagenkompetenz ist, die jeder haben sollte. Diese Fähigkeit ist insbesondere, aber nicht nur, für die Datenanalyse hilfreich. Aus unserer Sicht gibt es drei Kernargumente für die Einführung von Programmierkenntnissen, denn Programmieren hilft:</p>
+<ol type="1">
+<li>Daten effizient für Entscheidungsunterstützung aufbereiten und analysieren zu können</li>
+<li>repetitive Aufgaben zu automatisieren</li>
+<li>Problemlösungsfähigkeiten zu verbessern</li>
+</ol>
+<p>Lassen Sie uns die drei Punkte genauer betrachten.</p>
+<section id="daten-effizient-aufbereiten-und-analysieren" class="level3">
+<h3 class="anchored" data-anchor-id="daten-effizient-aufbereiten-und-analysieren">Daten effizient aufbereiten und analysieren</h3>
+<p>Programmierkenntnisse sind bisher kein Muss für BWLer. Jedoch verändert sich der Arbeitsalltag rasant. Die Analyse von Daten und Informationen zur Entscheidungsunterstützung ist immer eine Kernaufgabe in kaufmännischen Bereichen gewesen. Diese Aufgabe verändert sich aufgrund der verfügbaren Datenmengen, die für potentielle Analysen zur Verfügung stehen. Die Fähigkeit Daten effizient aufzubereiten und zu analysieren wird deshalb wichtiger. Programmierkenntnisse helfen hier, diesen Datenaufbereitungs- und analyseprozess zu beschleunigen und teilweise überhaupt erst zu ermöglichen.</p>
+<p><strong>Warum nicht Excel?</strong></p>
+<p>Nun mag an dieser Stelle der Einwand kommen, dass es bereits ein Werkzeug dafür gibt, welches täglich von vielen genutzt wird: Excel (oder ein anderes Tabellenkalkulationsprogramm). In vielen Bereichen wir Excel seit Jahrzehnten für die Datenaufbereitung und Analyse mehr oder weniger sinnvoll eingesetzt. Warum also kein Kurs “Business Analytics mit Excel”? Der Hauptgrund ist, dass Excel nicht für die Analyse und insbesondere Aufbereitung von sehr großen Datenmengen entwickelt wurde. Große Datenmengen lassen sich wesentlich besser mit geeignetem “Skripten” bearbeiten. Zum einen, weil diese wesentlich schneller und stabiler in der Ausführung sind. Zum anderen weil durch die Programmierung eine klare Trennung zwischen Daten und Analyse gemacht wird. Diese Trennung gibt es in Excel nicht, da jede Tabelle typischerweise Daten und Analyselogik kombiniert. Dieses Vorgehen hat einen großen Vorteil - es unterstützt die explorative Analyse - jedoch erschwert es Dritten den Aufbereitungs- und Analyseprozess nachzuvollziehen. Da wir jedoch davon ausgehen, dass die meisten Leser*innen dieses Skriptes Excel beherrschen, arbeiten wir oft mit Excel-Analogien und Einführungsbeispielen.</p>
+<p><strong>Warum nicht Business Intelligence Software?</strong></p>
+<p>Für die Analyse und Aufbereitung von großen Datenmengen gibt es seit einigen Jahren gängige BI-Software (z.B. <a href="https://powerbi.microsoft.com/de-de/landing/free-account/?&amp;ef_id=CjwKCAjwm8WZBhBUEiwA178UnN17lCS3eaIvvwAnmIXMSEW99qNYfOxGMVrC0-bylKjeqFoP4SVwchoCHqgQAvD_BwE:G:s&amp;OCID=AIDcmmvl5fszm6_SEM_CjwKCAjwm8WZBhBUEiwA178UnN17lCS3eaIvvwAnmIXMSEW99qNYfOxGMVrC0-bylKjeqFoP4SVwchoCHqgQAvD_BwE:G:s&amp;gclid=CjwKCAjwm8WZBhBUEiwA178UnN17lCS3eaIvvwAnmIXMSEW99qNYfOxGMVrC0-bylKjeqFoP4SVwchoCHqgQAvD_BwE">Microsoft Power BI</a> oder <a href="https://www.tableau.com/de-de/trial/tableau-software-test?utm_campaign_id=2017049&amp;utm_campaign=Prospecting-CORE-ALL-ALL-ALL-ALL&amp;utm_medium=Paid+Search&amp;utm_source=Google+Search&amp;utm_language=DE&amp;utm_country=DACH&amp;kw=tableau&amp;adgroup=CTX-Brand-Core-DE-E&amp;adused=330729862740&amp;matchtype=e&amp;placement=&amp;d=7013y000000vYhH&amp;cq_cmp=1703258283&amp;cq_net=g&amp;cq_plac=&amp;gclid=CjwKCAjwm8WZBhBUEiwA178UnHdNT0GnKGjNYtZZwVCbHJtwcaPHqe1eBz18lygX21sVug8hJia4LBoCEKgQAvD_BwE&amp;gclsrc=aw.ds">Tableau</a>). Auch diese Tools sind gut nutzbar und potentiell hilfreich für die Datenanlyse. Dennoch glauben wir, dass es wesentliche Argumente dafür gibt, diesen Kurs zu flankieren mit einer Einführung in die Programmierung.</p>
+<p>Zum einen ist es so dass Business Intelligence Tools (BI-Tools) sich zwar wunderbar dazu eignen Visualisierungen vorzunehmen und Dashboard zu erstellen. In der Praxis ist es jedoch typischerweise so, dass wir die Daten, die visualisiert werden sollen zunächst aufbereiten müssen. Eine große Herausforderung ist es also typischerweise Daten aufzubereiten. Damit sind nicht nur die Eliminierung von Fehlern und das Angleichen von Formaten gemeint, sondern es geht insbesondere oft auch darum, eine Datenstruktur zu finden,die für eine Visualisierung geeignet ist. Natürlich sind BI-Tools in der Lage, diese Bereinigungen und Formatveränderungen vorzunehmen. In der Praxis stellt sich jedoch oft heraus, dass diese “no Code”-Lösungen teilweise nichts praktikabel bzw nicht komfortabel sind. Es ist deshalb nicht verwunderlich, dass gängige BI-Tools eine Schnittstelle zu Programmiersprachen bereitstellen, die insbesondere für Datenanalyse und Datenaufbereitung geeignet sind (also z.B Python oder R).</p>
+<p>Insofern sehen wir den Einsatz der Programmierung nicht als Alternative zu Nutzung von BI-Tools oder Excel, sondern vielmehr als sehr sinnvolle Ergänzung. Wir möchten Sie damit befähigen ein weiteres und aus unserer Sicht besser geeignetes Werkzeug zu nutzen, um Daten aufzubereiten und zu analysieren. Sie können selber entscheiden, ob Sie diese Werkzeug als sinnvolle Ergänzung zu Excel und BI-Tools nutzen.</p>
+</section>
+<section id="automatisierung-von-repetitiven-aufgaben" class="level3">
+<h3 class="anchored" data-anchor-id="automatisierung-von-repetitiven-aufgaben">Automatisierung von repetitiven Aufgaben</h3>
+<p>Die Diskrepanz zwischen technischen Möglichkeiten und unternehmerischer Realität ist oft groß. Schaut man sich Arbeitsabläufe in Unternehmen an, so stellt man fest, dass diese - trotz anderer technischer Möglichkeiten - oft durch manuelle Schnittstellenwechsel unterbrochen werden. Dateien werden manuell heruntergeladen und geöffnet und dann mit anderen Dateien zusammengeführt, bevor das Ergebnis dann per Email weitergeschickt wird, um dann wieder manuell geöffnet und mit anderen Daten verknüpft zu werden. Für diese Brüche gibt es natürlich “große” Lösungen. Diese bedingen jedoch oft den Erwerb einer neuen Standardsoftware sowie die Veränderung von unternehmensinternen Abläufen. Auch wenn diese “große” Lösung in der Theorie oft die wirtschaftlichste ist, dauert es - wenn überhaupt - Jahre bis zur Einführung, weil Investition gescheut und ein “weiter so” scheinbar einfacher ist. Die Alternative zur großen Lösung muss jedoch nicht das “weiter so” sein. Bereits geringe Programmierkenntnisse ermöglichen die (zumindest teilweise) Automatisierung der oben beschriebenen Brüche. Programmierkenntnisse helfen dabei, Potentiale für “kleine Lösungen” zu identifizieren und sogar selber zu implementieren. Letzteres ist aber gar nicht unbedingt von Nöten, da bereits das Erkennen von Automatisierungspotentialen eine Diskussion mit IT-Experten anstoßen kann, die sonst nicht geführt worden wäre. Die Identifikation von Verbesserungspotentialen in Arbeitsabläufen benötigt Experten, die diese Abläufe und Prozesse kennen (d.h. Fachexperten wie Sie) und wird typischerweise nicht von außen angestoßen.</p>
+</section>
+<section id="problemlösungsfähigkeit-verbessern" class="level3">
+<h3 class="anchored" data-anchor-id="problemlösungsfähigkeit-verbessern">Problemlösungsfähigkeit verbessern</h3>
+<p>Schließlich hilft die Fähigkeit zu programmieren, komplexe Probleme besser zu verstehen und zu lösen. Programmieren ist ein Prozess zum Erstellen von Algorithmen, bei denen es sich um eine Reihe von Anweisungen handelt, die ein Computer befolgen muss. In der Wirtschaft sind Studierende oft an komplexen Entscheidungen beteiligt, was die Fähigkeit erfordert, komplexe Probleme zu verstehen und zu lösen. Programmieren kann dabei helfen, indem es den Studierenden beibringt, wie man ein Problem in kleinere Stücke zerlegt und dann einen Schritt-für-Schritt-Plan erstellt, um es zu lösen.</p>
+</section>
+</section>
+<section id="programmieren-software-entwicklung-vs.-coding" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="programmieren-software-entwicklung-vs.-coding">Programmieren: Software-Entwicklung vs.&nbsp;Coding</h2>
+<p>Es besteht kein Zweifel daran, dass die Fähigkeit zu Programmieren wertvoll ist. Jedoch wollen wir an dieser Stelle kurz darauf eingehen, was mit “Programmieren” eigentlich konkret gemeint ist.</p>
+<div class="page-columns page-full"><p>Keines der drei genannten Argumente bedingt, dass Sie zu Softwareentwicklern werden. <code>Softwareentwicklung</code> ist ein hochspezialisiertes Gebiet, das eine jahrelange Ausbildung (ggf. auch ein Informatikstudium) und Erfahrung erfordert. Programmieren hingegen ist eine relativ einfache Fähigkeit, die innerhalb weniger Wochen erlernt werden kann.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p><div class="no-row-height column-margin column-container"><li id="fn3"><p><sup>3</sup>&nbsp;Anmerkung: jedoch bedarf es - wie bei jeder anderen Sache - auch viel Übung, um gut darin zu werden. </p></li></div></div>
+<p>Hier besteht ein weit verbreitetes Missverständnis, bei dem viele die Fähigkeit zu Programmieren mit der spezialisierten Funktion oder Aufgabe verwechseln, die normalerweise von Personen mit Informatikhintergrund übernommen werden.</p>
+<p>Eine Analogie: jeder von uns lernt in der Schule zu schreiben. Dennoch können (oder wollen) nur wenige von uns Romanautoren werden. Um Romanauthr zu werden, müssen wir schreiben können. Jedoch erwerben wir die Fähigkeit zu schreiben nicht, weil wir Romanautoren werden wollen oder sollen. Vielmehr handelt es sich beim Schreiben um eine Grundkompetenz, die wir für viele Arten der Kommunikation erwerben sollten.</p>
+<p>Wir argumentieren also, dass Ihnen eine Teilmenge einer breiten Palette von Programmierkenntnissen beigebracht werden sollte. Dabei meinen wir die Grundkompetenz - in unserem Falle - für den Anwendungszweck der Datenanalyse. Um diese Verwechslungsgefahr zu vermeiden, sprechen wir von nun an von <code>Coding</code>, wenn wir von der Untergruppe von Programmierkenntnissen sprechen, die Sie erlernen werden.</p>
+</section>
+<section id="coden-in-zeiten-von-ki-tools" class="level2">
+<h2 class="anchored" data-anchor-id="coden-in-zeiten-von-ki-tools">Coden in Zeiten von KI-Tools?</h2>
+<p>Nun mögen einige von Ihnen anmerken, dass es in Zeiten von immer besser werdenden KI-Tools (z.B. <a href="https://chat.openai.com/chat">ChatGPT</a>) keinen Bedarf mehr für die Fähigkeit zu Programmieren gibt. Dies mag in (vielleicht nicht mehr allzu) ferner Zukunft der Fall sein. Aktuell argumentieren wir jedoch, dass es <em>gerade</em> in Zeiten von KI-Tools sinnvoll ist, sich die Grundkompetenz Coden anzueignen. Es ist richtig, dass Tools wie ChatGPT in der Lage sind, Code auf Grundlage von natürlichsprachlichen Anweisungen zu schreiben.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../_assets/ChatGPT_example.svg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">ChatGPT</figcaption><p></p>
+</figure>
+</div>
+<p>Allerdings gibt es dennoch gute Gründe, warum es sinnvoll ist, Coden zu lernen, selbst wenn solche Tools zur Verfügung stehen.</p>
+<p>Es ist gerade erst für jemanden, der in der Lage ist, Code zu schreiben und zu verstehen, besonders sinnvoll, ChatGPT einzusetzen. Dies liegt daran, dass ChatGPT, wie jedes andere künstliche Intelligenz-System auch, Fehler machen kann (und auch tatsächlich macht). Wenn man jedoch in der Lage ist, Code zu lesen und zu verstehen, ist es einfacher, diese Fehler zu identifizieren und zu korrigieren und die (teilweise falschen) Lösungsvorschläge produktiv zu nutzen. ChatGPT kann außerdem dabei helfen, komplexe Programme schneller zu schreiben, indem es mögliche Lösungen vorschlägt oder Ihnen bei “logischen Blockaden” Lösungswege aufzeigt - selbt wenn diese teilweise falsch sein sollten. Auch dies funktioniert jedoch nur, wenn man bereits in der Lage ist, Code zu schreiben und seine komplexen Probleme gut in strukturierte Codeblöcke zu übersetzen, um von dieser Funktionalität profitieren zu können. Kurz gesagt, ChatGPT (und viele weitere KI-Tools) kann eine (sehr!) nützliche Unterstützung darstellen, wenn man bereits über Kenntnisse im Programmieren verfügt, während Personen ohne diese Kenntnisse wenig Nutzen aus dem Tool ziehen können.</p>
+<p>Insofern möchten wir Sie auch ermutigen und anregen, sich mit diesen KI-Tools zu beschäftigen und diese auch im Rahmen dieses Moduls für sich zu nutzen. Wir glauben, dass die Aussagen von <span class="citation" data-cites="mcafee_machine_2017">McAfee und Brynjolfsson (<a href="../../references.html#ref-mcafee_machine_2017" role="doc-biblioref">2017</a>)</span> nun tatsächlich eintreffen: KI zerstört nicht notwendigerweise Ihren Job, sondern es stellt für diejenigen ein Risiko dar, die KI für sich nicht sinnvoll einsetzen.</p>
+<p>Nutzen Sie die Ihnen zur Verfügung stehenden Mittel, um Ihre Fähigkeiten zu erweitern und zu verbessern. Seien Sie sich nur bewusst, dass KI Sie “nur” unterstützt, Ihnen aber nicht die Fähigkeit zum Programmieren ersetzen wird. Zumindest noch nicht…</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
+<div id="ref-mcafee_machine_2017" class="csl-entry" role="doc-biblioentry">
+McAfee, Andrew, und Erik Brynjolfsson. 2017. <em>Machine, platform, crowd: harnessing our digital future</em>. First edition. New York: W.W. Norton &amp; Company.
+</div>
+</div>
+</section>
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Kopiert");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Kopiert");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation column-body">
+  <div class="nav-page nav-page-previous">
+      <a href="../../Chapters/01_Chapter/Was_ist_BA.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Business Analytics</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../Chapters/01_Chapter/Warum_Python.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Warum Python?</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+      <div class="nav-footer-center">
+        <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ © 2023 by F. Zeidler
+  </li>  
+</ul>
+      </div>
+  </div>
+</footer>
+
+
+
+</body></html>
