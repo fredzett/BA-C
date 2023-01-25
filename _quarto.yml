@@ -1,5 +1,6 @@
 project:
   type: book
+  output-dir: docs
 
 book:
   title: "Business Analytics & Coding"
@@ -25,7 +26,7 @@ book:
     - references.qmd
   page-navigation: true
   sidebar: 
-    downloads: [pdf, epub]
+    #downloads: [pdf, epub]
     search: true
     title: "BA&C"
   page-footer: 
@@ -50,8 +51,6 @@ format:
     page-layout: full # Do I need this?
     reference-location: margin
     mathjax: true
-  epub: 
-    cover-image: cover.png
 
 
 
