@@ -361,7 +361,7 @@ Hinweis
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Ausgabe der ersten fünf Zeilen der Tabelle</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="73">
+<div class="cell-output cell-output-display" data-execution_count="1">
 
 <div>
 
@@ -507,7 +507,7 @@ memory usage: 547.0+ KB</code></pre>
 <div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ausgabe der ersten 5 Zeilen</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="77">
+<div class="cell-output cell-output-display" data-execution_count="5">
 
 <div>
 
@@ -591,12 +591,12 @@ memory usage: 547.0+ KB</code></pre>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Ausgabe der ersten fünf Zeilen der Tabelle</span></span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/cj/9s881x057_12d_qyp3jcmb380000gn/T/ipykernel_99559/3851467052.py:4: FutureWarning:
+<pre><code>/var/folders/cj/9s881x057_12d_qyp3jcmb380000gn/T/ipykernel_3393/3851467052.py:4: FutureWarning:
 
 Series.dt.weekofyear and Series.dt.week have been deprecated.  Please use Series.dt.isocalendar().week instead.
 </code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="78">
+<div class="cell-output cell-output-display" data-execution_count="6">
 
 <div>
 
@@ -749,7 +749,7 @@ Series.dt.weekofyear and Series.dt.week have been deprecated.  Please use Series
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Aggregieren der Preise pro Monat</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>preis_pro_monat <span class="op">=</span> df.groupby(<span class="st">"Monat"</span>).agg({<span class="st">"Preis"</span>: <span class="st">"mean"</span>})</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>preis_pro_monat</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="83">
+<div class="cell-output cell-output-display" data-execution_count="11">
 
 <div>
 
@@ -831,7 +831,7 @@ Series.dt.weekofyear and Series.dt.week have been deprecated.  Please use Series
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Aggregieren der Menge pro Monat </span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>menge_pro_monat <span class="op">=</span> df.groupby(<span class="st">"Monat"</span>).agg({<span class="st">"Menge"</span>: <span class="st">"mean"</span>})</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>menge_pro_monat</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="85">
+<div class="cell-output cell-output-display" data-execution_count="13">
 
 <div>
 
@@ -915,7 +915,7 @@ Series.dt.weekofyear and Series.dt.week have been deprecated.  Please use Series
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Berechnen der Gesamtumsätze und Anzahl an Transaktionen je Zahlungsmethode</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>umsatz_je_zahlungsmethode <span class="op">=</span> df.groupby(<span class="st">"Zahlungsmethode"</span>).agg({<span class="st">"Umsatz"</span>: [<span class="st">"sum"</span>, <span class="st">"count"</span>]})</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>umsatz_je_zahlungsmethode</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="87">
+<div class="cell-output cell-output-display" data-execution_count="15">
 
 <div>
 
@@ -1005,7 +1005,7 @@ Series.dt.weekofyear and Series.dt.week have been deprecated.  Please use Series
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                            bins<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>, <span class="dv">80</span>, <span class="dv">90</span>, <span class="dv">100</span>], </span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>                            labels<span class="op">=</span>[<span class="st">"0-20"</span>, <span class="st">"21-30"</span>, <span class="st">"31-40"</span>, <span class="st">"41-50"</span>, <span class="st">"51-60"</span>, <span class="st">"61-70"</span>, <span class="st">"71-80"</span>, <span class="st">"81-90"</span>, <span class="st">"91-100"</span>])</span>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="91">
+<div class="cell-output cell-output-display" data-execution_count="19">
 
 <div>
 
@@ -1113,7 +1113,7 @@ Series.dt.weekofyear and Series.dt.week have been deprecated.  Please use Series
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Berechnen der Umsätze je Altersgruppe</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>umsatz_je_alter <span class="op">=</span> df.groupby(<span class="st">"Altergruppe"</span>).agg({<span class="st">"Umsatz"</span>: [<span class="st">"mean"</span>, <span class="st">"count"</span>]})</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>umsatz_je_alter</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="92">
+<div class="cell-output cell-output-display" data-execution_count="20">
 
 <div>
 
@@ -1201,7 +1201,7 @@ Series.dt.weekofyear and Series.dt.week have been deprecated.  Please use Series
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np </span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"Kundengruppe"</span>] <span class="op">=</span> np.where(df[<span class="st">"Alter"</span>] <span class="op">&lt;=</span> <span class="dv">40</span>, <span class="st">"jung"</span>, <span class="st">"alt"</span>)</span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="94">
+<div class="cell-output cell-output-display" data-execution_count="22">
 
 <div>
 
@@ -1352,10 +1352,19 @@ Series.dt.weekofyear and Series.dt.week have been deprecated.  Please use Series
 <li>wir konnten keinen Zusammenhang zwischen der Zahlungsart und der Umsatzentwicklung entdecken.</li>
 <li>wir haben dann jedoch festgestellt, dass die Kundenstruktur sich verändert hat. Wir haben mehr Kunden aus der Altersgruppe “unter 40” gewonnen, die weniger oder günstiger kaufen. Dies könnte der Grund für den Umsatzrückgang sein.</li>
 </ul>
-<p>Unser Zwischenfazit lautet also: Der Umsatzrückgang ist auf die Veränderung der Kundenstruktur zurückzuführen. Wir haben mehr Kunden aus der Altersgruppe “unter 40” gewonnen, die weniger oder günstiger kaufen.</p>
+<p><strong>Unser Zwischenfazit lautet also:</strong> Der Umsatzrückgang ist auf die Veränderung der Kundenstruktur zurückzuführen. Wir haben mehr Kunden aus der Altersgruppe “unter 40” gewonnen, die weniger oder günstiger kaufen.</p>
 </section>
 <section id="explorative-analyse-modellieren" class="level4">
 <h4 class="anchored" data-anchor-id="explorative-analyse-modellieren">Explorative Analyse: Modellieren</h4>
+<p>Unsere bisherige Analyse basiert auf rein deskriptiven Statistiken. Was meinen wir damit? Um unsere Hypothesen zu überprüfen, haben wir unseren Datensatz im Grunde nur beschrieben. Wir haben Daten gruppiert und aggregiert und teilweise für verschiedene Dimensionen visualisiert. Im unternehmerischen Kontext sind diese Analysen oft bereits ausreichend, um Trends oder Zusammenhänge zu erkennen. Jedoch ist es oft auch hilfreich und (meist auch) sinnvoll die Daten mit Hilfe von Modellen zu analysieren. Das Modellieren von Daten ist ein wesentlicher Bestandteil von Business Analytics und hat zwei wesentliche Vorteile:</p>
+<ol type="1">
+<li>Es ermöglicht es uns, die Zusammenhänge und Ursachen für Effekte (besser) zu verstehen</li>
+<li>Es ermöglicht es uns, die Daten in die Zukunft zu prognostizieren</li>
+</ol>
+<p>Was ist ein Model?</p>
+<p>Beispiel Lineare Regression</p>
+<p>In diesem Abschnitt werden wir uns mit dem Modellieren von Daten beschäftigen. Wir werden zunächst ein einfaches Modell erstellen, um die Ursache für den Umsatzrückgang zu finden. Anschließend werden wir das Modell interpretieren und die Ergebnisse diskutieren.</p>
+<p>Wir haben die Daten aggregiert und visualisiert. Wir haben jedoch noch keine Modelle erstellt, um die Ursache für den Umsatzrückgang zu finden.</p>
 <p>Wir haben nun die Ursache für den Umsatzrückgang gefunden. Die Kundenstruktur hat sich verändert. Wir haben mehr Kunden aus der Altersgruppe “unter 40” gewonnen, die weniger oder günstiger kaufen.</p>
 <p>Model aufsetzen, um - Effekt auf Umsatz zu schätzen - Signifikanz zu testen (auch ob dieser Effekt Bestand hat, wenn andere Variablen berücksichtigt werden) - Effekt zu interpretieren - Prognose zu erstellen - etc.</p>
 

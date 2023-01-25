@@ -49,6 +49,7 @@ format:
     fig-cap-location: bottom
     page-layout: full # Do I need this?
     reference-location: margin
+    mathjax: true
   epub: 
     cover-image: cover.png
 
