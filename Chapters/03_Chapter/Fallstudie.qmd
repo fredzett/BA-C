@@ -374,12 +374,28 @@ Lassen Sie uns - bevor wir mit unser Analyse fortfahren - ein kurzes Zwischenfaz
 - wir konnten keinen Zusammenhang zwischen der Zahlungsart und der Umsatzentwicklung entdecken. 
 - wir haben dann jedoch festgestellt, dass die Kundenstruktur sich verändert hat. Wir haben mehr Kunden aus der Altersgruppe "unter 40" gewonnen, die weniger oder günstiger kaufen. Dies könnte der Grund für den Umsatzrückgang sein.
 
-Unser Zwischenfazit lautet also:
+__Unser Zwischenfazit lautet also:__
 Der Umsatzrückgang ist auf die Veränderung der Kundenstruktur zurückzuführen. Wir haben mehr Kunden aus der Altersgruppe "unter 40" gewonnen, die weniger oder günstiger kaufen.
 
 
 
 #### Explorative Analyse: Modellieren
+
+Unsere bisherige Analyse basiert auf rein deskriptiven Statistiken. Was meinen wir damit? Um unsere Hypothesen zu überprüfen, haben wir unseren Datensatz im Grunde nur beschrieben. Wir haben Daten gruppiert und aggregiert und teilweise für verschiedene Dimensionen visualisiert. Im unternehmerischen Kontext sind diese Analysen oft bereits ausreichend, um Trends oder Zusammenhänge zu erkennen. Jedoch ist es oft auch hilfreich und (meist auch) sinnvoll die Daten mit Hilfe von Modellen zu analysieren. Das Modellieren von Daten ist ein wesentlicher Bestandteil von Business Analytics und hat zwei wesentliche Vorteile:
+
+1. Es ermöglicht es uns, die Zusammenhänge und Ursachen für Effekte (besser) zu verstehen
+2. Es ermöglicht es uns, die Daten in die Zukunft zu prognostizieren
+
+Was ist ein Model? 
+
+Beispiel Lineare Regression
+
+In diesem Abschnitt werden wir uns mit dem Modellieren von Daten beschäftigen. Wir werden zunächst ein einfaches Modell erstellen, um die Ursache für den Umsatzrückgang zu finden. Anschließend werden wir das Modell interpretieren und die Ergebnisse diskutieren.
+
+```{python}
+
+
+Wir haben die Daten aggregiert und visualisiert. Wir haben jedoch noch keine Modelle erstellt, um die Ursache für den Umsatzrückgang zu finden.
 
 Wir haben nun die Ursache für den Umsatzrückgang gefunden. Die Kundenstruktur hat sich verändert. Wir haben mehr Kunden aus der Altersgruppe "unter 40" gewonnen, die weniger oder günstiger kaufen. 
 
