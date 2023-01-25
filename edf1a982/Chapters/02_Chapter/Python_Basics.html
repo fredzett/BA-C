@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Eine kurze Einführung für Studierende der Betriebswirtschaftslehre">
+
+<title>Business Analytics &amp; Coding - 6&nbsp; Kurze Einführung in Python</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../Chapters/03_Chapter/Business_Analytics.html" rel="next">
+<link href="../../Chapters/02_Chapter/Introduction_notebook.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Keine Treffer",
+    "search-matching-documents-text": "Treffer",
+    "search-copy-link-title": "Link in die Suche kopieren",
+    "search-hide-matches-text": "Zusätzliche Treffer verbergen",
+    "search-more-match-text": "weitere Treffer in diesem Dokument",
+    "search-more-matches-text": "weitere Treffer in diesem Dokument",
+    "search-clear-button-title": "Zurücksetzen",
+    "search-detached-cancel-button-title": "Abbrechen",
+    "search-submit-button-title": "Abschicken"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating slimcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Kurze Einführung in Python</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">BA&amp;C</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">VORWORT</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapters/01_Chapter/Einleitung.html" class="sidebar-item-text sidebar-link">EINLEITUNG</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapters/01_Chapter/Was_ist_BA.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Business Analytics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapters/01_Chapter/Coding.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Werkzeug: Coding!</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapters/01_Chapter/Warum_Python.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Warum Python?</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapters/02_Chapter/Getting_Ready.html" class="sidebar-item-text sidebar-link">Vorbereitung</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapters/02_Chapter/Installation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Installation &amp; Setup</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapters/02_Chapter/Introduction_notebook.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Einführung Notebooks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapters/02_Chapter/Python_Basics.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Kurze Einführung in Python</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapters/03_Chapter/Business_Analytics.html" class="sidebar-item-text sidebar-link">Business Analytics</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapters/03_Chapter/Fallstudie.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Fallstudie: Business Analytics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+  <li><a href="#einfache-arithmetik" id="toc-einfache-arithmetik" class="nav-link active" data-scroll-target="#einfache-arithmetik">Einfache Arithmetik</a></li>
+  <li><a href="#variablen-und-zuweisung" id="toc-variablen-und-zuweisung" class="nav-link" data-scroll-target="#variablen-und-zuweisung">Variablen und Zuweisung</a></li>
+  <li><a href="#datentypen" id="toc-datentypen" class="nav-link" data-scroll-target="#datentypen">Datentypen</a>
+  <ul>
+  <li><a href="#beispiel-1-fehler-vermeiden" id="toc-beispiel-1-fehler-vermeiden" class="nav-link" data-scroll-target="#beispiel-1-fehler-vermeiden">Beispiel 1: Fehler vermeiden</a></li>
+  <li><a href="#beispiel-2-fähigkeiten-nutzen" id="toc-beispiel-2-fähigkeiten-nutzen" class="nav-link" data-scroll-target="#beispiel-2-fähigkeiten-nutzen">Beispiel 2: Fähigkeiten nutzen</a></li>
+  </ul></li>
+  <li><a href="#fehlermeldungen" id="toc-fehlermeldungen" class="nav-link" data-scroll-target="#fehlermeldungen">Fehlermeldungen</a></li>
+  <li><a href="#importieren-von-modulen-und-bibliotheken" id="toc-importieren-von-modulen-und-bibliotheken" class="nav-link" data-scroll-target="#importieren-von-modulen-und-bibliotheken">Importieren von Modulen und Bibliotheken</a>
+  <ul>
+  <li><a href="#built-in-fähigkeiten" id="toc-built-in-fähigkeiten" class="nav-link" data-scroll-target="#built-in-fähigkeiten">Built-in Fähigkeiten</a></li>
+  <li><a href="#importieren-von-modulen-und-bibliotheken-1" id="toc-importieren-von-modulen-und-bibliotheken-1" class="nav-link" data-scroll-target="#importieren-von-modulen-und-bibliotheken-1">Importieren von Modulen und Bibliotheken</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full column-body" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Kurze Einführung in Python</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Es ist nicht möglich, Ihnen im Rahmen dieses Kurses alle Details der Programmierung (in Python) beizubringen. Jedoch werden Sie im Rahmen dieses Kurses bereits die wesentlichen und grundlegende Konzepte der Programmierung kennenlernen. Jedoch haben wir uns dazu entschlossen, Ihnen diese Konzepte nicht isoliert vom Inhalt des Kurses zu präsentieren, sondern diese stattdessen an geeigneter Stelle (“on the fly”) in den einzelnen Kapiteln einzubauen. Dies hat den Vorteil, dass Sie das (teilweise sehr abstrakte) Programmierkonzept direkt mit einer konkreten Anwendung verbinden. Aus unserer Sicht hält das die Motivation hoch und macht das Erlernen der Programmierung für die Zwecke der Datenanalyse leichter.</p>
+<p>Dennoch ist es notwendig, dass Sie einige minimale Grundlagen der Programmierung kennen, bevor wir der Datenanalyse beginnen. In diesem Kapitel werden wir diese minimalen Grundlagen vorstellen.</p>
+<section id="einfache-arithmetik" class="level2">
+<h2 class="anchored" data-anchor-id="einfache-arithmetik">Einfache Arithmetik</h2>
+<p>Beginnen wir mit einfachen mathematischen Operationen. Das Beispiel zeigt einen Ausdruck bzw. Statement (im Folgenden verwenden wir den Begriff <code>Statement</code>) mit Berechnungen. Dieser Ausdruck ist in Python geschrieben:</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">+</span> (<span class="dv">5</span> <span class="op">*</span> <span class="dv">12</span>) <span class="op">/</span> <span class="dv">3</span> <span class="op">-</span> <span class="dv">12</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>9.0</code></pre>
+</div>
+</div>
+<p>Das Ergebnis - wenn man die Zelle mit <code>STRG</code> + <code>ENTER</code> ausführt - wird unterhalb der Zelle angezeigt und beträgt <em>9</em>.</p>
+<p>Wie man sieht, kann man - analog zu einem Taschenrechner (oder Excel) - die bekannten arithmetischen Operatoren in Python verwenden.</p>
+<p><code>+</code> = Addition</p>
+<p><code>-</code> = Subtraktion</p>
+<p><code>*</code> = Multiplikation</p>
+<p><code>/</code> = Division</p>
+<p><code>**</code> = Potenzieren (❗ die Schreibweise für <span class="math inline">\(3^4\)</span> in Python lautet <span class="math inline">\(3{**}4\)</span>)</p>
+<p>Wir werden diese Operatoren im Laufe dieses Kurses immer wieder verwenden. Jedoch nicht wie im obigen Beispiel dargestellt. Dieses Vorgehen ist nämlich meist nicht sinnvoll und wenig vorteilhaft gegenüber z.B. einem Taschenrechner. Auch in einem typischen Tabellenkalkulationsprogramm wie Excel würden wir anders vorgehen, da wird dort typischerweise nicht eine komplette Formel mit fest codierten Werten in eine Zelle schreiben. Dies ist umständlich, wenig flexibel und fehleranfällig. Gleiches gilt für Python.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../_assets/Excel_bad.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Beispiel: Excel</figcaption><p></p>
+</figure>
+</div>
+<p>In Excel würden wir stattdessen die Werte auf verschiedene Zellen aufteilen und in einer Ergebniszelle verknüpfen. Dieses Vorgehen hat den Vorteil, dass die Annahmen für das Ergebnis viel transparenter und Änderungen in Annahmen auf einen Blick ersichtlich sind. So wird z.B. deutlich, dass es sich bei der <span class="math inline">\(12\)</span>, die in der Berechnung zwei Mal vorkommt (Zellen C5 und C7) um tatsächlich zwei verschiedene Annahmen handelt - sonst würden wir nicht zwei Inputparameter benötigen -, die nur zufällig den selben Wert haben.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../_assets/Excel_good.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Beispiel: Excel (besser)</figcaption><p></p>
+</figure>
+</div>
+<p>In Python können wir das gleiche Vorgehen verwenden. Wir können die Werte in Variablen speichern und dann die Berechnung in einer weiteren Variablen durchführen.</p>
+</section>
+<section id="variablen-und-zuweisung" class="level2">
+<h2 class="anchored" data-anchor-id="variablen-und-zuweisung">Variablen und Zuweisung</h2>
+<p>In Python kann man Variablen wie Platzhalter für Werte verwenden. Man kann einer Variablen einen Wert zuweisen, indem man den Variablennamen schreibt, gefolgt von dem Zuweisungsoperator <code>=</code> und dem Wert, den man der Variablen zuweisen möchte. Wir schreiben also</p>
+<pre><code>&lt;variable&gt; = &lt;wert&gt;</code></pre>
+<p>Zum Beispiel:</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>zahl1 <span class="op">=</span> <span class="dv">42</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>zahl2 <span class="op">=</span> <span class="fl">3.2</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>satz <span class="op">=</span> <span class="st">"Deutscher Meister wird nur der BVB"</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Namen für Variablen sollten sinnvoll und prägnant (d.h. nicht zu lang) sein. In Python gibt es darüber hinaus die Konvention (siehe <a href="https://peps.python.org/pep-0008/#function-and-variable-names">PEP 8</a>), dass Variablen klein geschrieben werden und mehrere Wörter mit “<code>_</code>” getrennt werden.</p>
+<p>Beispiel:</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>liste_zahlen <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>anzahl_elemente <span class="op">=</span> <span class="dv">5</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Diese Konvention ist für die Funktion eines Programms nicht entscheiden, jedoch erleichtert diese die Lesbarkeit des Codes.</p>
+<p>Wir können nun das Konzept der Variablenzuweisung verwenden, um Berechnungen durchzuführen.</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>cash_flow <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>zinssatz <span class="op">=</span> <span class="fl">0.05</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>kapitalwert <span class="op">=</span> cash_flow <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> zinssatz)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>kapitalwert</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>95.23809523809524</code></pre>
+</div>
+</div>
+<p>Natürlich benötigen wir diese Art der Berechnungen keine Programmierkenntnisse, sondern könnten diese am Taschenrechner oder in Excel durchführen (in diesem Falle vermutlich die bessere Idee). Jedoch können wir das Grundkonzept der Variablenzuweisung auch für wesentlich komplexere Probleme oder Fragestellungen anwenden, bei denen ein Taschenrechner oder auch Excel nicht mehr geeignet wären. Was meinen wir mit <em>komplex</em>? Zum einen ist es Python egal, was wir in einer Variablen speichern. Wir können also auch ganz andere Dinge in Variablen speichern und dann mit diesen weiterarbeiten. So können wir z.B. große Datenmengen (z.B. ein Excelsheet oder eine Datenbank) einer Variabel zuweisen und dann mit dieser weiterarbieten (siehe unten). Zum anderen werden wir auch weitere Grundkonzepte kennenlernen, die es uns ermöglichen, mit Variablen zu arbeiten (z.B. könnnen wir Bedingungen anlegen, die abhängig von den Werten in Variablen sind).</p>
+<p>In der untenstehenden Zelle wird eine Exceltabelle in eine Variable <code>tabelle</code> gespeichert. Wir können mit dieser Variable dann weiterarbeiten und z.B. die Daten in der Tabelle auswerten, neue Daten hinzufügen oder die Tabelle in eine andere Datei exportieren.</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>datei_pfad <span class="op">=</span> <span class="st">"../../_data/sales.xlsx"</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>tabelle <span class="op">=</span> pd.read_excel(datei_pfad)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>tabelle</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Produkt</th>
+      <th>Preis</th>
+      <th>Menge</th>
+      <th>Datum</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Apple</td>
+      <td>0.79</td>
+      <td>10</td>
+      <td>2022-01-01</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Orange</td>
+      <td>1.99</td>
+      <td>1</td>
+      <td>2022-01-02</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Orange</td>
+      <td>1.99</td>
+      <td>5</td>
+      <td>2022-01-03</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Banana</td>
+      <td>0.79</td>
+      <td>1</td>
+      <td>2022-01-04</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Apple</td>
+      <td>0.79</td>
+      <td>7</td>
+      <td>2022-01-05</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Orange</td>
+      <td>1.99</td>
+      <td>2</td>
+      <td>2022-01-06</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Banana</td>
+      <td>0.79</td>
+      <td>9</td>
+      <td>2022-01-07</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Apple</td>
+      <td>1.99</td>
+      <td>4</td>
+      <td>2022-01-08</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Apple</td>
+      <td>2.49</td>
+      <td>8</td>
+      <td>2022-01-09</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Orange</td>
+      <td>2.49</td>
+      <td>7</td>
+      <td>2022-01-010</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="datentypen" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="datentypen">Datentypen</h2>
+<p>Unser vorheriges Beispiel zeigt, dass Variablen ganz unterschiedliche Inhalte haben können. Wir haben Zahlen, einen Text und eine Tabelle in Variablen gespeichert. Wir sprechen in diesem Fall davon, dass eine Variable einen bestimmten Datentyp hat. In der untenstehenden Tabelle (<a href="#tbl-datentypen">Tabelle&nbsp;<span>6.1</span></a>) sind die Datentypen unserer Variablen aufgelistet.</p>
+<div id="tbl-datentypen" class="anchored page-columns page-full">
+<table class="table">
+<caption>Tabelle&nbsp;6.1: Datentypen der Beispielvariablen</caption>
+<thead>
+<tr class="header">
+<th>Datentyp</th>
+<th>Beispiel</th>
+<th>Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>int</code></td>
+<td><code>42</code></td>
+<td>Ganze Zahl</td>
+</tr>
+<tr class="even">
+<td><code>float</code></td>
+<td><code>3.2</code></td>
+<td>Gleitkommazahl</td>
+</tr>
+<tr class="odd">
+<td><code>str</code></td>
+<td><code>"Deutscher Meister wird nur der BVB"</code></td>
+<td>Text</td>
+</tr>
+<tr class="even">
+<td><code>DataFrame</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></td>
+<td><code>tabelle</code></td>
+<td>Tabelle</td>
+</tr>
+</tbody>
+</table>
+<div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Konkret: <code>pd.DataFrame</code></p></li></div></div>
+<p>Wir können den Typ einer Variablen mit dem Befehl <code>type()</code> herausfinden.</p>
+<p>Wir können also z.B. den Typ der Variablen <code>zahl1</code> mit dem Befehl <code>type(zahl1)</code> herausfinden.</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(zahl1)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>int</code></pre>
+</div>
+</div>
+<p>Den Typ der Daten können wir meist nicht am Namen der Variablen erkennen. Außerdem ist es so, dass wir den Datentyp einer Variabel verändern können, in dem wir ihr einen neuen Wert zuweisen.</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>zahl1 <span class="op">=</span> <span class="fl">0.12</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(zahl1)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>float</code></pre>
+</div>
+</div>
+<p>Im obigen Beispiel haben wir der Variablen <code>zahl1</code> einen neuen Wert zugewiesen. Dieser Wert ist eine Gleitkommazahl. Dadurch hat sich der Datentyp der Variablen von <code>int</code> zu <code>float</code> geändert.</p>
+<p>Der Typ der Variable hängt also von den Werten ab, den wir ihr zuweisen.</p>
+<div class="page-columns page-full"><p>Nun mögen wir uns fragen, warum wir uns überhaupt mit dem Datentyp einer Variablen beschäftigen müssen. Der Datentyp einer Variable ist wichtig, da dieser bestimmt, welche <em>Fähigkeiten</em><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> eine Variable hat.</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;Wir verwende bewusst den untechnischen Begriff der <em>Fähigkeit</em>, um zu verdeutlichen, was die jeweilige Variable kann. Wir müssen an dieser Stelle keine technischen Begriffe verwenden.</p></li></div></div>
+<p>Prinzipiell ist es aus zwei Gründen wichtig, die Fähigkeiten einer Variable zu kennen:</p>
+<ol type="1">
+<li><p>Wir sollten die Fähigkeiten einer Variable kennen, um Fehler zu vermeiden.</p></li>
+<li><p>Wir können die Fähigkeiten einer Variable nutzen, um unsere Aufgaben zu lösen.</p></li>
+</ol>
+<p>Lassen Sie uns zwei Beispiele betrachten, die zeigen, wie wir die Fähigkeiten einer Variable nutzen können.</p>
+<section id="beispiel-1-fehler-vermeiden" class="level3">
+<h3 class="anchored" data-anchor-id="beispiel-1-fehler-vermeiden">Beispiel 1: Fehler vermeiden</h3>
+<p>Wir haben bereits kennengelernt, dass wir mit Variablen einfache Rechnungen durchführen können. Wir können z.B. zwei Variablen addieren, indem wir die beiden Variablen mit dem <code>+</code>-Zeichen verknüpfen.</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>zahl1 <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>zahl2 <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>zahl1 <span class="op">+</span> zahl2</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<pre><code>5</code></pre>
+</div>
+</div>
+<p>Diese Rechnung funktioniert, da die beiden Variablen <code>zahl1</code> und <code>zahl2</code> beide Zahlen sind. Was passiert jedoch, wenn wir zwei Variablen addieren, die keine Zahlen, sondern z.B. Texte sind?</p>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>text1 <span class="op">=</span> <span class="st">"12"</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>text2 <span class="op">=</span> <span class="st">"3"</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>text1 <span class="op">+</span> text2</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>'123'</code></pre>
+</div>
+</div>
+<p>Zu unserer Überraschung erhalten wir als Ergebnis nicht die Zahl <code>15</code>, sondern den Text <code>123</code>. Dies ist problematisch, da wir bei der Berechnung eigentlich eines von zwei Ergebnissen erwarten würden: (i) eine Fehlermeldung, da wir zwei Texte addieren wollen, oder (ii) das korrekte Ergebnis <code>15</code>. Das Ergebnis <code>123</code> ist jedoch nicht das, was wir erwarten würden.</p>
+<p>Das Beispiel ist natürlich sehr simpel und konstruiert. In der Praxis werden wir jedoch häufiger mit solchen Fehlern konfrontiert, bei denen wir Fähigkeiten auf Datentypen anwenden, die anders sind als die Fähigkeiten, die wir eigentlich anwenden wollen. Wir sollten uns also immer bewusst sein, welche Fähigkeiten eine Variable hat und diese Fähigkeiten nutzen, um Fehler zu vermeiden.</p>
+</section>
+<section id="beispiel-2-fähigkeiten-nutzen" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="beispiel-2-fähigkeiten-nutzen">Beispiel 2: Fähigkeiten nutzen</h3>
+<p>Lassen Sie uns das vorherige Beispiel aufgreifen. Wir haben gesehen, dass wir Variablen vom Datentype <code>str</code> nicht im mathematischen Sinne addieren können. Wieso hat das Programm dann aber keinen Fehler ausgeworfen. Der Grund hierfür ist, dass wir die Operation <code>+</code> nicht für mathematische Berechnungen nutzen sollten, sondern für das Zusammenfügen von Texten. Wenn wir dies wissen, können wir uns diese Fähigkeit zu Nutze machen.</p>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>vorname <span class="op">=</span> <span class="st">"Max"</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>nachname <span class="op">=</span> <span class="st">"Mustermann"</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>anrede <span class="op">=</span> <span class="st">"Lieber Herr "</span> <span class="op">+</span> vorname <span class="op">+</span> <span class="st">" "</span> <span class="op">+</span> nachname</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>anrede</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>'Lieber Herr Max Mustermann'</code></pre>
+</div>
+</div>
+<p>Auch dies ist natürlich nur ein sehr simples Beispiel, um zu verdeutlichen, dass jede Datentyp unterschiedliche Fähigkeiten hat und wir diese nutzen, um unsere Aufgabenstellung zu lösen.</p>
+<p>Wie stelle ich nun aber fest, welche Fähigkeiten eine Variable hat? Hier für gibt es verschiedene Wege:</p>
+<ol type="1">
+<li>wir können die <code>help()</code>-Funktion nutzen, um uns die Dokumentation zu einem Datentyp anzeigen zu lassen.</li>
+</ol>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">help</span>(<span class="bu">str</span>) <span class="co"># Hilfe für den Datentyp str</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="2" type="1">
+<li>wir können die <code>dir()</code>-Funktion nutzen, um uns die Methoden eines Datentyps anzeigen zu lassen.</li>
+</ol>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">dir</span>(<span class="bu">str</span>) <span class="co"># Fähigkeiten für den Datentyp str</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="3" type="1">
+<li>wir können über .<code>TAB</code>-Vervollständigung die Fähigkeiten einer Variable anzeigen lassen.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../_assets/tab_completion.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Beispiel: TAB completion</figcaption><p></p>
+</figure>
+</div>
+<ol start="4" type="1">
+<li>wir können in die Dokumentation von Python bzw. die der jeweiligen Bibliothek<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> schauen.</li>
+</ol>
+<div class="no-row-height column-margin column-container"><li id="fn3"><p><sup>3</sup>&nbsp;Was das genau ist, wir in Sektion [TODO] erläutert</p></li></div></section>
+</section>
+<section id="fehlermeldungen" class="level2">
+<h2 class="anchored" data-anchor-id="fehlermeldungen">Fehlermeldungen</h2>
+<p>Im Zuge Ihrer Arbeit mit Python werden Sie immer wieder Fehlermeldungen erhalten. Diese Fehlermeldungen sind Fluch und Segen zugleich. Was sind Fehlermeldungen und warum sind diese so wichtig? Fehlermeldungen sind eine Art Feedback (in diesem Fall von Python), das uns mitteilt, dass etwas nicht funktioniert.</p>
+<p>Gerade als Anfänger können Fehlermeldungen sehr frustrierend sein. Schließlich weisen diese uns daraufhin, dass der Code, den wir geschrieben haben, nicht funktioniert. Machen Sie jedoch nicht den Fehler zu glaubne, dass Fehlermeldungen nur von Anfängern produziert werden. Auch erfahrene Programmierer stolpern quasi täglich über Fehlermeldungen. Der Unterschied zwischen erfahrenen Programmierern und absoluten Anfängern ist jedoch, dass letztere die Fehlermeldungen meist verwirrend und unverständlich finden und dieses deshalb nicht für sich zu nutzen wissen.</p>
+<p>Fehlermeldungen geben uns nämlich wertvolle Hinweise darauf, was genau nicht funktioniert. Wir sollten uns also immer die Zeit nehmen, Fehlermeldungen zu lesen und zu verstehen. Oft werden wir dananch feststellen, dass der Fehler nicht in der Logik unseres Codes liegt, sondern in der Syntax (d.h. wir haben z.B. einen Tipfehler gemacht) und wir diesen schnell beheben können.</p>
+<p>Lassen Sie uns ein Beispiel betrachten, bei dem wir eine Fehlermeldung erhalten.</p>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>vorname <span class="op">=</span> <span class="st">"Max"</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>nachname <span class="op">=</span> <span class="st">"Mustermann"</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>anrede <span class="op">=</span> <span class="st">"Lieber Herr "</span> vorname <span class="op">+</span> <span class="st">" "</span> <span class="op">+</span> nachname</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>anrede</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../_assets/error1.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Beispiel: Fehlermeldung</figcaption><p></p>
+</figure>
+</div>
+<p>Die rote Fehlermeldung weißt zunächst darauf hin, dass unser Code so nicht funktioniert. Wir sollten also zunächst versuchen, den Fehler zu finden. Die Fehlermeldung hilft uns dabei. Wir sollten dabei immer zunächst auf die letzte Zeile der Fehlermeldung schauen. Dort wird uns mitgeteilt, um welche Art des Fehlers es sich handelt. In unserem Fall handelt es sich um einen <code>SyntaxError</code>, d.h. wir haben dem Computer einen Befehl geben, den er nicht versteht bzw. kennt. Dies passiert häufig, wenn wir einen Tippfehler gemacht haben. Sobald wir dies wissen, müssen wir uns nur noch den Code finden, in dem der Fehler gemacht wurde. Auch hier hilft uns die Fehlermeldung, da Sie zum einen die Zeile des Codes darstellt, in der der Fehler aufgetreten ist und zum anderen mit dem <code>^</code>-Symbol auf die Stelle im Code hinweist, der falsch ist. In unserem Fall ist der Fehler demnach, dass wir die Zeichenkette <code>"Lieber Herr "</code> nicht mit einem <code>+</code> an die Variable <code>vorname</code> anhängen.</p>
+<p>wir können nun den Fehler beheben und den Code erneut ausführen.</p>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>vorname <span class="op">=</span> <span class="st">"Max"</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>nachname <span class="op">=</span> <span class="st">"Mustermann"</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>anrede <span class="op">=</span> <span class="st">"Lieber Herr "</span> <span class="op">+</span> vorname <span class="op">+</span> <span class="st">" "</span> <span class="op">+</span> nachname</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>anrede</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<pre><code>'Lieber Herr Max Mustermann'</code></pre>
+</div>
+</div>
+<p>Es gibt viele verschiedene Fehlermeldungen - einigen von Ihnen werden Sie in diesem Kurs produzieren - die teilweise auch komplexer sind bzw. schwerer zu beheben sind. Wir können (und wollen) an dieser Stelle nicht auf alle verschiedenen Fehler eingehen. Uns geht es darum, dass Sie sich durch Fehlermeldungen nicht abschrecken lassen und diese als Hilfsmittel nutzen, um Ihren Code zu verbessern. In der untenstehenden Tabelle (<a href="#tbl-fehlermeldungen">Tabelle&nbsp;<span>6.2</span></a>) finden Sie eine Auswahl an häufigen Fehlermeldungen.</p>
+<div id="tbl-fehlermeldungen" class="anchored">
+<table class="table">
+<caption>Tabelle&nbsp;6.2: Beispiele: Fehlermeldungen</caption>
+<colgroup>
+<col style="width: 40%">
+<col style="width: 40%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Fehlermeldung</th>
+<th>Beschreibung der Art des Fehlers</th>
+<th>kurzes Beispiel</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SyntaxError: EOL while scanning string literal</td>
+<td>Fehler bei der Syntax, in dem ein String nicht richtig abgeschlossen wurde.</td>
+<td>“Max Muster</td>
+</tr>
+<tr class="even">
+<td>NameError: name ‘y’ is not defined</td>
+<td>Fehler bei der Verwendung einer Variable, die nicht definiert wurde.</td>
+<td>x = y + 2</td>
+</tr>
+<tr class="odd">
+<td>TypeError: unsupported operand type(s) for +: ‘int’ and ‘str’</td>
+<td>Fehler beim Verwenden eines Operators mit ungültigen Typen.</td>
+<td>2 + “Text”</td>
+</tr>
+<tr class="even">
+<td>IndexError: list index out of range</td>
+<td>Fehler beim Zugriff auf ein Element einer Liste, das nicht existiert.</td>
+<td>meine_liste[5]</td>
+</tr>
+<tr class="odd">
+<td>KeyError: ‘key’</td>
+<td>Fehler beim Zugriff auf einen Schlüssel in einem Dictionary, der nicht existiert.</td>
+<td>mein_dictionary[‘alter’]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="importieren-von-modulen-und-bibliotheken" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="importieren-von-modulen-und-bibliotheken">Importieren von Modulen und Bibliotheken</h2>
+<section id="built-in-fähigkeiten" class="level3">
+<h3 class="anchored" data-anchor-id="built-in-fähigkeiten">Built-in Fähigkeiten</h3>
+<p>Wir haben in diesem Kapitel von <em>Fähigkeiten</em> gesprochen, die wir nutzen, um unsere Analysen durchzuführen. Lassen Sie uns an dieser Stelle ein Geheimnis lüften: Python bzw. die zur Verfügung stehenden Datentypen haben in Summe kaum die Fähigkeiten, die wir für unsere Analysen benötigen.</p>
+<p>Dies mag zunächst überraschen ist jedoch vor dem Hintergrund, dass Python ursprünglich nicht für die Analyse von Daten entwickelt wurde, zu verstehen. Eine Standardinstallation von Python enthält nur die Grundfähigkeiten, von denen wir bereits einige kennengelernt haben. Mit Fähigkeiten meinen wir an dieser Stelle</p>
+<ol type="1">
+<li><p>die Datentypen, die Python zur Verfügung stellt und</p></li>
+<li><p>die Funktionen, die wir auf diesen Datentypen anwenden können und</p></li>
+</ol>
+<p>Wir haben bereits einige Datentypen kennengelernt, die Python zur Verfügung stellt. Diese sind z.B. <code>int</code>, <code>float</code>, <code>str</code>, <code>list</code> und <code>dict</code>. Auch haben wir einige Funktionen kennengelernt, die wir auf diesen Datentypen anwenden können. Diese sind z.B. <code>print()</code>, <code>dir()</code> und <code>help()</code>. Eine Liste der verfügbaren Funktionen finden Sie in der <a href="https://docs.python.org/3/library/functions.html">Python-Dokumentation</a>.</p>
+<p>Mit der Summe der verfügbaren Datentypen und Funktionen können wir theoretisch alle Analysen durchführen, die wir uns vorstellen können. Dies ist jedoch sehr aufwendig und würde viel Zeit in Anspruch nehmen. Wir müssten nämlich alle Funktionen, die wir im Rahmen eine Datenanalyse (d.h. der Erstellung von Diagrammen, der Berechnung von Kennzahlen, der Erstellung von Statistiken, etc.) benötigen, selbst schreiben. Dies ist nicht nur sehr aufwendig, sondern auch sehr fehleranfällig.</p>
+<p>Glücklicherweise gibt es jedoch eine Vielzahl an Modulen und Bibliotheken, die wir nutzen können, um die Fähigkeiten von Python zu erweitern. Diese Module und Bibliotheken sind bereits für uns geschrieben und müssen nur noch importiert werden. Wir werden in diesem Kurs einige Module und Bibliotheken kennenlernen, die wir nutzen können, um unsere Analysen durchzuführen.</p>
+</section>
+<section id="importieren-von-modulen-und-bibliotheken-1" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="importieren-von-modulen-und-bibliotheken-1">Importieren von Modulen und Bibliotheken</h3>
+<p>Wir können uns die zusätzlichen Fähigkeiten, die wir über den Import von Modulen und Bibliotheken erhalten, als eine Art “Erweiterung” von Python vorstellen - vergleichbar zu Add-ons in Excel. Da es sich bei Python um eine sogenannte Open-Source Sprache handelt, können die benötigten Erweiterungen im Internet eingesehen und kostenlos heruntergeladen werden.</p>
+<p>Wir können diese Erweiterungen nutzen, in dem wir zwei Schritte durchführen:</p>
+<ol type="1">
+<li><p>Installieren der Erweiterung (einmalig)</p></li>
+<li><p>Importieren der Erweiterung</p></li>
+</ol>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Info
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Sofern Sie Python via <code>Anaconda</code> installiert haben oder <code>google colab</code> nutzen, sollten die von uns benötigten Module bereits vorinstalliert sein.</p>
+</div>
+</div>
+<div class="page-columns page-full"><p>Falls dies jedoch nicht der Fall ist, können Sie die Module über das Terminal typischerweise über den Befehl <code>pip install &lt;modulname&gt;</code> installieren<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. Sie können die Module auch direkt in ihrem Jupyter Notebook installieren. Dazu müssen Sie lediglich den folgenden Code in einer Zeile ausführen:</p><div class="no-row-height column-margin column-container"><li id="fn4"><p><sup>4</sup>&nbsp;Hinweis: <code>&lt;modulname&gt;</code> ist hier ein Platzhalter für den jeweiligen Namen der Bibliothek oder des Moduls</p></li></div></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>{sys.executable} <span class="op">-</span>m pip install <span class="op">&lt;</span>modulname<span class="op">&gt;</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Sobald die Erweiterung installiert ist, können wir diese in unserem Code importieren. Dies geschieht über den Befehl <code>import</code>. Wir haben dies bereits einmal in diesem Kurs gesehen, als wir eine Exceldatei in ein DataFrame eingelesen haben.</p>
+<p>Der Import von Modulen erfolgt typischerweise über drei Varianten:</p>
+<ol type="1">
+<li><p>Importieren des gesamten Moduls</p></li>
+<li><p>Importieren einer Funktion aus einem Modul</p></li>
+<li><p>Importieren des gesamten Moduls unter einem anderen Namen</p></li>
+</ol>
+<p>Lassen Sie uns dies anhand des Moduls <code>statistics</code> (welches wir im weiteren Verlaufe des Kurses nicht weiter benötigen) verdeutlichen</p>
+<p><strong>Beispiel 1:</strong> Importieren des gesamten Moduls</p>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statistics</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>daten <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>]</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>avg <span class="op">=</span> statistics.mean(daten)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>avg</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<pre><code>5.5</code></pre>
+</div>
+</div>
+<p>Wir haben hier das gesamte Modul importiert und können nun <strong>alle</strong> Fähigkeiten, die dieses Modul zur Verfügung stellt, nutzen. In diesem Fall haben wir die Funktion <code>mean()</code> aus dem Modul <code>statistics</code> genutzt, um den Mittelwert der Daten zu berechnen.</p>
+<p><strong>Beispiel 2:</strong> Importieren einer Funktion aus einem Modul</p>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statistics <span class="im">import</span> mean</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>daten <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>]</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>avg <span class="op">=</span> mean(daten)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>avg</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<pre><code>5.5</code></pre>
+</div>
+</div>
+<p>Wir haben hier nur die Funktion <code>mean()</code> aus dem Modul <code>statistics</code> importiert. Dies hat den Vorteil, dass wir nicht mehr den Namen des Moduls angeben müssen, wenn wir die Funktion nutzen wollen. Jedoch können wir auch <strong>nur</strong> die Funktion <code>mean()</code> aus dem Modul <code>statistics</code> nutzen, alle anderen Funktionen sind nicht verfügbar.</p>
+<p><strong>Beispiel 3:</strong> Importieren des gesamten Moduls unter einem anderen Namen</p>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statistics <span class="im">as</span> stat</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>daten <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>]</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>avg <span class="op">=</span> stat.mean(daten)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>avg</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<pre><code>5.5</code></pre>
+</div>
+</div>
+<p>Wir haben hier das gesamte Modul <code>statistics</code> importiert und ihm den Namen <code>stat</code> gegeben. Dies hat den Vorteil, dass wir nicht mehr den Namen des Moduls angeben müssen, wenn wir die Funktion nutzen wollen. Jedoch können wir auch <strong>alle</strong> Funktionen aus dem Modul <code>statistics</code> nutzen, auch wenn wir diese nicht explizit importiert haben.</p>
+<p>Oft ist es so, dass sich in der Praxis Variante 3 für bestimmte Module durchgesetzt hat. So wird z.B. das Modul <code>pandas</code> - unser Schweizer Taschenmesser der Datenanalyse - meist unter dem Namen <code>pd</code> importiert.</p>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Sie müssen sich dieser Konventionen nicht anpassen, wenn Sie nicht möchten. Jedoch ist es sinnvoll, da insbesondere Hilfen im Internet (oder auch von ChatGTP) häufig unter der Annahme, dass Sie die Module entsprechend importiert haben, geschrieben sind.</p>
+
+
+</section>
+</section>
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Kopiert");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Kopiert");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation column-body">
+  <div class="nav-page nav-page-previous">
+      <a href="../../Chapters/02_Chapter/Introduction_notebook.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Einführung Notebooks</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../Chapters/03_Chapter/Business_Analytics.html" class="pagination-link">
+        <span class="nav-page-text">Business Analytics</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+      <div class="nav-footer-center">
+        <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ © 2023 by F. Zeidler
+  </li>  
+</ul>
+      </div>
+  </div>
+</footer>
+
+
+
+</body></html>
