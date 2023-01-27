@@ -386,26 +386,7 @@ Unsere bisherige Analyse basiert auf rein deskriptiven Statistiken. Was meinen w
 1. Es ermöglicht es uns, die Zusammenhänge und Ursachen für Effekte (besser) zu verstehen
 2. Es ermöglicht es uns, die Daten in die Zukunft zu prognostizieren
 
-Was ist ein Model? 
-
-Beispiel Lineare Regression
-
-DIES IST EIN TEST - Und hier noch einer
-
-In diesem Abschnitt werden wir uns mit dem Modellieren von Daten beschäftigen. Wir werden zunächst ein einfaches Modell erstellen, um die Ursache für den Umsatzrückgang zu finden. Anschließend werden wir das Modell interpretieren und die Ergebnisse diskutieren.
-
-```{python}
-
-
-Wir haben die Daten aggregiert und visualisiert. Wir haben jedoch noch keine Modelle erstellt, um die Ursache für den Umsatzrückgang zu finden.
-
-Wir haben nun die Ursache für den Umsatzrückgang gefunden. Die Kundenstruktur hat sich verändert. Wir haben mehr Kunden aus der Altersgruppe "unter 40" gewonnen, die weniger oder günstiger kaufen. 
-
-Model aufsetzen, um 
-- Effekt auf Umsatz zu schätzen
-- Signifikanz zu testen (auch ob dieser Effekt Bestand hat, wenn andere Variablen berücksichtigt werden)
-- Effekt zu interpretieren
-- Prognose zu erstellen 
-- etc.
-
-```{python}
+- Was ist ein Model? 
+- Wie funktioniert ein Model?
+- Wie können wir ein Model erstellen?
+...Lineare Regression etc.
