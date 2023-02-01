@@ -232,7 +232,7 @@ Es gibt viele verschiedene Fehlermeldungen - einigen von Ihnen werden Sie in die
 
 : Beispiele: Fehlermeldungen {#tbl-fehlermeldungen}
 
-## Importieren von Modulen und Bibliotheken
+## Importieren von Modulen und Bibliotheken 
 
 ### Built-in Fähigkeiten
 
@@ -251,7 +251,7 @@ Mit der Summe der verfügbaren Datentypen und Funktionen können wir theoretisch
 
 Glücklicherweise gibt es jedoch eine Vielzahl an Modulen und Bibliotheken, die wir nutzen können, um die Fähigkeiten von Python zu erweitern. Diese Module und Bibliotheken sind bereits für uns geschrieben und müssen nur noch importiert werden. Wir werden in diesem Kurs einige Module und Bibliotheken kennenlernen, die wir nutzen können, um unsere Analysen durchzuführen.
 
-### Importieren von Modulen und Bibliotheken
+### Importieren von Modulen und Bibliotheken {#sec-module}
 
 Wir können uns die zusätzlichen Fähigkeiten, die wir über den Import von Modulen und Bibliotheken erhalten, als eine Art "Erweiterung" von Python vorstellen - vergleichbar zu Add-ons in Excel. Da es sich bei Python um eine sogenannte Open-Source Sprache handelt, können die benötigten Erweiterungen im Internet eingesehen und kostenlos heruntergeladen werden. 
 

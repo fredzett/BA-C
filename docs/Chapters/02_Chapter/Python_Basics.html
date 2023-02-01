@@ -94,7 +94,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../Chapters/03_Chapter/Business_Analytics.html" rel="next">
+<link href="../../Chapters/03_Chapter/Fallstudie_1.html" rel="next">
 <link href="../../Chapters/02_Chapter/Introduction_notebook.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -151,7 +151,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../../">BA&amp;C</a> 
+      <a href="../../">Business Analytics &amp; Coding</a> 
     </div>
       </div>
       <div class="mt-2 flex-shrink-0 align-items-center">
@@ -193,7 +193,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../Chapters/02_Chapter/Getting_Ready.html" class="sidebar-item-text sidebar-link">Vorbereitung</a>
+            <a href="../../Chapters/02_Chapter/Getting_Ready.html" class="sidebar-item-text sidebar-link">VORBEREITUNG</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -216,9 +216,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapters/03_Chapter/Fallstudie_1.html" class="sidebar-item-text sidebar-link">FALLSTUDIE: Business Analytics</a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../Chapters/03_Chapter/Business_Analytics.html" class="sidebar-item-text sidebar-link">Business Analytics</a>
+            <a href="../../Chapters/04_Chapter/Deskriptive_Analyse.html" class="sidebar-item-text sidebar-link">DESKRIPTIVE ANALYSE</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -226,7 +231,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Chapters/03_Chapter/Fallstudie.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Fallstudie: Business Analytics</span></a>
+  <a href="../../Chapters/04_Chapter/Pandas.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Pandas - Allzweckwaffe für Datenanalyse</span></a>
   </div>
 </li>
       </ul>
@@ -256,7 +261,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#importieren-von-modulen-und-bibliotheken" id="toc-importieren-von-modulen-und-bibliotheken" class="nav-link" data-scroll-target="#importieren-von-modulen-und-bibliotheken">Importieren von Modulen und Bibliotheken</a>
   <ul>
   <li><a href="#built-in-fähigkeiten" id="toc-built-in-fähigkeiten" class="nav-link" data-scroll-target="#built-in-fähigkeiten">Built-in Fähigkeiten</a></li>
-  <li><a href="#importieren-von-modulen-und-bibliotheken-1" id="toc-importieren-von-modulen-und-bibliotheken-1" class="nav-link" data-scroll-target="#importieren-von-modulen-und-bibliotheken-1">Importieren von Modulen und Bibliotheken</a></li>
+  <li><a href="#sec-module" id="toc-sec-module" class="nav-link" data-scroll-target="#sec-module">Importieren von Modulen und Bibliotheken</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -288,7 +293,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Beginnen wir mit einfachen mathematischen Operationen. Das Beispiel zeigt einen Ausdruck bzw. Statement (im Folgenden verwenden wir den Begriff <code>Statement</code>) mit Berechnungen. Dieser Ausdruck ist in Python geschrieben:</p>
 <div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">+</span> (<span class="dv">5</span> <span class="op">*</span> <span class="dv">12</span>) <span class="op">/</span> <span class="dv">3</span> <span class="op">-</span> <span class="dv">12</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="1">
+<div class="cell-output cell-output-display" data-execution_count="91">
 <pre><code>9.0</code></pre>
 </div>
 </div>
@@ -338,7 +343,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>zinssatz <span class="op">=</span> <span class="fl">0.05</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>kapitalwert <span class="op">=</span> cash_flow <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> zinssatz)</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>kapitalwert</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="94">
 <pre><code>95.23809523809524</code></pre>
 </div>
 </div>
@@ -350,7 +355,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>datei_pfad <span class="op">=</span> <span class="st">"../../_data/sales.xlsx"</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>tabelle <span class="op">=</span> pd.read_excel(datei_pfad)</span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>tabelle</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div class="cell-output cell-output-display" data-execution_count="95">
 
 <div>
 
@@ -482,7 +487,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Wir können also z.B. den Typ der Variablen <code>zahl1</code> mit dem Befehl <code>type(zahl1)</code> herausfinden.</p>
 <div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(zahl1)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="96">
 <pre><code>int</code></pre>
 </div>
 </div>
@@ -490,7 +495,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>zahl1 <span class="op">=</span> <span class="fl">0.12</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(zahl1)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="97">
 <pre><code>float</code></pre>
 </div>
 </div>
@@ -510,7 +515,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>zahl1 <span class="op">=</span> <span class="dv">2</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>zahl2 <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>zahl1 <span class="op">+</span> zahl2</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div class="cell-output cell-output-display" data-execution_count="98">
 <pre><code>5</code></pre>
 </div>
 </div>
@@ -519,7 +524,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>text1 <span class="op">=</span> <span class="st">"12"</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>text2 <span class="op">=</span> <span class="st">"3"</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>text1 <span class="op">+</span> text2</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="99">
 <pre><code>'123'</code></pre>
 </div>
 </div>
@@ -534,7 +539,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>nachname <span class="op">=</span> <span class="st">"Mustermann"</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>anrede <span class="op">=</span> <span class="st">"Lieber Herr "</span> <span class="op">+</span> vorname <span class="op">+</span> <span class="st">" "</span> <span class="op">+</span> nachname</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>anrede</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="100">
 <pre><code>'Lieber Herr Max Mustermann'</code></pre>
 </div>
 </div>
@@ -591,7 +596,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>nachname <span class="op">=</span> <span class="st">"Mustermann"</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>anrede <span class="op">=</span> <span class="st">"Lieber Herr "</span> <span class="op">+</span> vorname <span class="op">+</span> <span class="st">" "</span> <span class="op">+</span> nachname</span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>anrede</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="14">
+<div class="cell-output cell-output-display" data-execution_count="104">
 <pre><code>'Lieber Herr Max Mustermann'</code></pre>
 </div>
 </div>
@@ -655,8 +660,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Mit der Summe der verfügbaren Datentypen und Funktionen können wir theoretisch alle Analysen durchführen, die wir uns vorstellen können. Dies ist jedoch sehr aufwendig und würde viel Zeit in Anspruch nehmen. Wir müssten nämlich alle Funktionen, die wir im Rahmen eine Datenanalyse (d.h. der Erstellung von Diagrammen, der Berechnung von Kennzahlen, der Erstellung von Statistiken, etc.) benötigen, selbst schreiben. Dies ist nicht nur sehr aufwendig, sondern auch sehr fehleranfällig.</p>
 <p>Glücklicherweise gibt es jedoch eine Vielzahl an Modulen und Bibliotheken, die wir nutzen können, um die Fähigkeiten von Python zu erweitern. Diese Module und Bibliotheken sind bereits für uns geschrieben und müssen nur noch importiert werden. Wir werden in diesem Kurs einige Module und Bibliotheken kennenlernen, die wir nutzen können, um unsere Analysen durchzuführen.</p>
 </section>
-<section id="importieren-von-modulen-und-bibliotheken-1" class="level3 page-columns page-full">
-<h3 class="anchored" data-anchor-id="importieren-von-modulen-und-bibliotheken-1">Importieren von Modulen und Bibliotheken</h3>
+<section id="sec-module" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="sec-module">Importieren von Modulen und Bibliotheken</h3>
 <p>Wir können uns die zusätzlichen Fähigkeiten, die wir über den Import von Modulen und Bibliotheken erhalten, als eine Art “Erweiterung” von Python vorstellen - vergleichbar zu Add-ons in Excel. Da es sich bei Python um eine sogenannte Open-Source Sprache handelt, können die benötigten Erweiterungen im Internet eingesehen und kostenlos heruntergeladen werden.</p>
 <p>Wir können diese Erweiterungen nutzen, in dem wir zwei Schritte durchführen:</p>
 <ol type="1">
@@ -694,7 +699,7 @@ Info
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>daten <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>]</span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>avg <span class="op">=</span> statistics.mean(daten)</span>
 <span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>avg</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="15">
+<div class="cell-output cell-output-display" data-execution_count="105">
 <pre><code>5.5</code></pre>
 </div>
 </div>
@@ -706,7 +711,7 @@ Info
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>daten <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>]</span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>avg <span class="op">=</span> mean(daten)</span>
 <span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>avg</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="16">
+<div class="cell-output cell-output-display" data-execution_count="106">
 <pre><code>5.5</code></pre>
 </div>
 </div>
@@ -718,7 +723,7 @@ Info
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>daten <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>]</span>
 <span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>avg <span class="op">=</span> stat.mean(daten)</span>
 <span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>avg</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="17">
+<div class="cell-output cell-output-display" data-execution_count="107">
 <pre><code>5.5</code></pre>
 </div>
 </div>
@@ -875,8 +880,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../Chapters/03_Chapter/Business_Analytics.html" class="pagination-link">
-        <span class="nav-page-text">Business Analytics</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../Chapters/03_Chapter/Fallstudie_1.html" class="pagination-link">
+        <span class="nav-page-text">FALLSTUDIE: Business Analytics</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

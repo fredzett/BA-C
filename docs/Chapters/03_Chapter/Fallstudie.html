@@ -94,7 +94,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../references.html" rel="next">
+<link href="../../Chapters/03_Chapter/Deskriptive_Analyse.html" rel="next">
 <link href="../../Chapters/03_Chapter/Business_Analytics.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -229,6 +229,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../Chapters/03_Chapter/Fallstudie.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Fallstudie: Business Analytics</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapters/03_Chapter/Deskriptive_Analyse.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Deskriptive Analyse</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -254,9 +259,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#problemstellung" id="toc-problemstellung" class="nav-link" data-scroll-target="#problemstellung">Problemstellung</a></li>
   <li><a href="#einlesen-der-daten" id="toc-einlesen-der-daten" class="nav-link" data-scroll-target="#einlesen-der-daten">Einlesen der Daten</a></li>
   <li><a href="#aufbereitung-der-daten" id="toc-aufbereitung-der-daten" class="nav-link" data-scroll-target="#aufbereitung-der-daten">Aufbereitung der Daten</a></li>
-  <li><a href="#explorative-analyse-transformation-und-visualisierung" id="toc-explorative-analyse-transformation-und-visualisierung" class="nav-link" data-scroll-target="#explorative-analyse-transformation-und-visualisierung">Explorative Analyse: Transformation und Visualisierung</a></li>
+  <li><a href="#erkenntnisse-gewinnen-transformation-und-visualisierung" id="toc-erkenntnisse-gewinnen-transformation-und-visualisierung" class="nav-link" data-scroll-target="#erkenntnisse-gewinnen-transformation-und-visualisierung">Erkenntnisse gewinnen: Transformation und Visualisierung</a></li>
   <li><a href="#zwischenfazit" id="toc-zwischenfazit" class="nav-link" data-scroll-target="#zwischenfazit">Zwischenfazit</a></li>
-  <li><a href="#explorative-analyse-modellieren" id="toc-explorative-analyse-modellieren" class="nav-link" data-scroll-target="#explorative-analyse-modellieren">Explorative Analyse: Modellieren</a></li>
+  <li><a href="#erkenntnisse-gewinnen-modellieren" id="toc-erkenntnisse-gewinnen-modellieren" class="nav-link" data-scroll-target="#erkenntnisse-gewinnen-modellieren">Erkenntnisse gewinnen: Modellieren</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -331,7 +336,7 @@ Hinweis
 <p>In <a href="../01_Chapter/Was_ist_BA.html#sec-analyseprozess"><span>Kapitel&nbsp;1.4</span></a> haben wir diesen graphisch wiefolgt zusammengefasst:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../../_assets/Analyse_Prozess.svg" class="img-fluid figure-img"></p>
+<p><img src="../../_assets/Analyse_Prozess.svg" class="img-fluid figure-img" style="width:100.0%"></p>
 <p></p><figcaption class="figure-caption">Analyseprozess</figcaption><p></p>
 </figure>
 </div>
@@ -361,7 +366,7 @@ Hinweis
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Ausgabe der ersten fünf Zeilen der Tabelle</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="1">
+<div class="cell-output cell-output-display" data-execution_count="28">
 
 <div>
 
@@ -493,8 +498,8 @@ memory usage: 547.0+ KB</code></pre>
 </div>
 <p>Wie wir sehen können, wurden die Änderungen korrekt durchgeführt.</p>
 </section>
-<section id="explorative-analyse-transformation-und-visualisierung" class="level4 page-columns page-full">
-<h4 class="anchored" data-anchor-id="explorative-analyse-transformation-und-visualisierung">Explorative Analyse: Transformation und Visualisierung</h4>
+<section id="erkenntnisse-gewinnen-transformation-und-visualisierung" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="erkenntnisse-gewinnen-transformation-und-visualisierung">Erkenntnisse gewinnen: Transformation und Visualisierung</h4>
 <div class="page-columns page-full"><p>Wie bereits im Kapitel <a href="../01_Chapter/Was_ist_BA.html#sec-analyseprozess"><span>Kapitel&nbsp;1.4</span></a> beschrieben, befinden wir uns nun in der explorativen Analysephase, in der sich die Schritte<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>:</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;Hinweis: den Schritt der Modellierung lassen wir an dieser Stelle noch aus</p></li></div></div>
 <ul>
 <li>Transformation der Daten</li>
@@ -507,7 +512,7 @@ memory usage: 547.0+ KB</code></pre>
 <div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ausgabe der ersten 5 Zeilen</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div class="cell-output cell-output-display" data-execution_count="32">
 
 <div>
 
@@ -591,12 +596,12 @@ memory usage: 547.0+ KB</code></pre>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Ausgabe der ersten fünf Zeilen der Tabelle</span></span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/cj/9s881x057_12d_qyp3jcmb380000gn/T/ipykernel_12990/3851467052.py:4: FutureWarning:
+<pre><code>/var/folders/cj/9s881x057_12d_qyp3jcmb380000gn/T/ipykernel_75122/3851467052.py:4: FutureWarning:
 
 Series.dt.weekofyear and Series.dt.week have been deprecated.  Please use Series.dt.isocalendar().week instead.
 </code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="33">
 
 <div>
 
@@ -749,7 +754,7 @@ Series.dt.weekofyear and Series.dt.week have been deprecated.  Please use Series
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Aggregieren der Preise pro Monat</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>preis_pro_monat <span class="op">=</span> df.groupby(<span class="st">"Monat"</span>).agg({<span class="st">"Preis"</span>: <span class="st">"mean"</span>})</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>preis_pro_monat</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="11">
+<div class="cell-output cell-output-display" data-execution_count="38">
 
 <div>
 
@@ -831,7 +836,7 @@ Series.dt.weekofyear and Series.dt.week have been deprecated.  Please use Series
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Aggregieren der Menge pro Monat </span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>menge_pro_monat <span class="op">=</span> df.groupby(<span class="st">"Monat"</span>).agg({<span class="st">"Menge"</span>: <span class="st">"mean"</span>})</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>menge_pro_monat</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="13">
+<div class="cell-output cell-output-display" data-execution_count="40">
 
 <div>
 
@@ -915,7 +920,7 @@ Series.dt.weekofyear and Series.dt.week have been deprecated.  Please use Series
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Berechnen der Gesamtumsätze und Anzahl an Transaktionen je Zahlungsmethode</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>umsatz_je_zahlungsmethode <span class="op">=</span> df.groupby(<span class="st">"Zahlungsmethode"</span>).agg({<span class="st">"Umsatz"</span>: [<span class="st">"sum"</span>, <span class="st">"count"</span>]})</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>umsatz_je_zahlungsmethode</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="15">
+<div class="cell-output cell-output-display" data-execution_count="42">
 
 <div>
 
@@ -1005,7 +1010,7 @@ Series.dt.weekofyear and Series.dt.week have been deprecated.  Please use Series
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                            bins<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>, <span class="dv">80</span>, <span class="dv">90</span>, <span class="dv">100</span>], </span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>                            labels<span class="op">=</span>[<span class="st">"0-20"</span>, <span class="st">"21-30"</span>, <span class="st">"31-40"</span>, <span class="st">"41-50"</span>, <span class="st">"51-60"</span>, <span class="st">"61-70"</span>, <span class="st">"71-80"</span>, <span class="st">"81-90"</span>, <span class="st">"91-100"</span>])</span>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="19">
+<div class="cell-output cell-output-display" data-execution_count="46">
 
 <div>
 
@@ -1113,7 +1118,7 @@ Series.dt.weekofyear and Series.dt.week have been deprecated.  Please use Series
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Berechnen der Umsätze je Altersgruppe</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>umsatz_je_alter <span class="op">=</span> df.groupby(<span class="st">"Altergruppe"</span>).agg({<span class="st">"Umsatz"</span>: [<span class="st">"mean"</span>, <span class="st">"count"</span>]})</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>umsatz_je_alter</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="20">
+<div class="cell-output cell-output-display" data-execution_count="47">
 
 <div>
 
@@ -1201,7 +1206,7 @@ Series.dt.weekofyear and Series.dt.week have been deprecated.  Please use Series
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np </span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"Kundengruppe"</span>] <span class="op">=</span> np.where(df[<span class="st">"Alter"</span>] <span class="op">&lt;=</span> <span class="dv">40</span>, <span class="st">"jung"</span>, <span class="st">"alt"</span>)</span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="22">
+<div class="cell-output cell-output-display" data-execution_count="49">
 
 <div>
 
@@ -1352,23 +1357,119 @@ Series.dt.weekofyear and Series.dt.week have been deprecated.  Please use Series
 <li>wir konnten keinen Zusammenhang zwischen der Zahlungsart und der Umsatzentwicklung entdecken.</li>
 <li>wir haben dann jedoch festgestellt, dass die Kundenstruktur sich verändert hat. Wir haben mehr Kunden aus der Altersgruppe “unter 40” gewonnen, die weniger oder günstiger kaufen. Dies könnte der Grund für den Umsatzrückgang sein.</li>
 </ul>
-<p><strong>Unser Zwischenfazit lautet also:</strong> Der Umsatzrückgang ist auf die Veränderung der Kundenstruktur zurückzuführen. Wir haben mehr Kunden aus der Altersgruppe “unter 40” gewonnen, die weniger oder günstiger kaufen.</p>
+<blockquote class="blockquote">
+<p><strong>Fazit:</strong> Der Umsatzrückgang ist auf die Veränderung der Kundenstruktur zurückzuführen. Wir haben mehr Kunden aus der Altersgruppe “unter 40” gewonnen, die weniger oder günstiger kaufen.</p>
+</blockquote>
 </section>
-<section id="explorative-analyse-modellieren" class="level4">
-<h4 class="anchored" data-anchor-id="explorative-analyse-modellieren">Explorative Analyse: Modellieren</h4>
-<p>Unsere bisherige Analyse basiert auf rein deskriptiven Statistiken. Was meinen wir damit? Um unsere Hypothesen zu überprüfen, haben wir unseren Datensatz im Grunde nur beschrieben. Wir haben Daten gruppiert und aggregiert und teilweise für verschiedene Dimensionen visualisiert. Im unternehmerischen Kontext sind diese Analysen oft bereits ausreichend, um Trends oder Zusammenhänge zu erkennen. Jedoch ist es oft auch hilfreich und (meist auch) sinnvoll die Daten mit Hilfe von Modellen zu analysieren. Das Modellieren von Daten ist ein wesentlicher Bestandteil von Business Analytics und hat zwei wesentliche Vorteile:</p>
+<section id="erkenntnisse-gewinnen-modellieren" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="erkenntnisse-gewinnen-modellieren">Erkenntnisse gewinnen: Modellieren</h4>
+<p>Unsere bisherige Analyse basiert auf rein deskriptiven Statistiken. Um unsere Hypothesen zu überprüfen, haben wir unseren Datensatz im Grunde nur beschrieben. Wir haben Daten gruppiert und aggregiert und teilweise für verschiedene Dimensionen (z.B. nach Monat und Zahlungsmethode) visualisiert. Wir konnten dadurch bereits wichtige Erkenntnisse gewinnen. Im betriebswirtschaftlichen Kontext in der Praxis sind diese Analysen meist auch bereits ausreichend. Jedoch ist es oft auch hilfreich und sinnvoll die Daten mit Hilfe von Modellen zu analysieren. Das Modellieren von Daten ist ein wesentlicher Bestandteil von Business Analytics und hat drei wesentliche Vorteile, den es ermöglicht uns:</p>
 <ol type="1">
-<li>Es ermöglicht es uns, die Zusammenhänge und Ursachen für Effekte (besser) zu verstehen</li>
-<li>Es ermöglicht es uns, die Daten in die Zukunft zu prognostizieren</li>
+<li>gewonnene Erkenntnisse zu validieren</li>
+<li>Zusammenhänge und Ursachen für Effekte (besser) zu verstehen</li>
+<li>Daten in die Zukunft zu prognostizieren</li>
 </ol>
+<p>Wir werden an dieser Stelle noch nicht im Detail auf die Modellierung eingehen, sondern stattdessen nur ein kurzes Beispiel geben, um Ihnen einen Eindruck davon zu geben, wie wir mit Hilfe von Modellen Erkenntnisse gewinnen können.</p>
+<p>In unserem Zwischenfazit haben wir zusammegefasst, dass der Umsatzrückgang auf die Veränderung der Kundenstruktur zurückzuführen ist. Der Anteil an jüngeren Kunden hat sich vergrößert und diese Kunden kaufen günstiger und weniger.</p>
+<div class="page-columns page-full"><p>Lassen Sie uns diese Erkenntnis noch einmal alternativ graphisch darstellen. Wir gruppieren unsere Daten dafür pro Tag (d.h. wir aggregieren einzelne Transaktionen pro Tag) und schauen uns für jeden Tag den durschnittlichen Umsatz sowie das durchschnittliche Kundenalter an.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>. Anschließend stellen wir die Daten in einem Streudiagramm dar. Wir sehen, dass es einen Zusammenhang zwischen Umsatz und Alter gibt. Je älter die Kunden sind, desto höher ist der Umsatz. Der Zusammenhang wird durch die Linie, die wir dem Graphen hinzugefügt haben visualisiert.</p><div class="no-row-height column-margin column-container"><li id="fn5"><p><sup>5</sup>&nbsp;Hinweis: wir nehmen hier den <code>Median</code>, um einzelnen Ausreißern kein großes Gewicht zu geben. Die Darstellung sähe jedoch sehr ähnlich aus, wenn wir das arithmethische Mittel nähmen.</p></li></div></div>
+<div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>umsatz_by_alter <span class="op">=</span> df.groupby(<span class="st">"Datum"</span>).agg({<span class="st">"Umsatz"</span>: <span class="st">"median"</span>, </span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>                                           <span class="st">"Alter"</span>: <span class="st">"median"</span>})</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>sns.regplot(x<span class="op">=</span><span class="st">"Alter"</span>, y<span class="op">=</span><span class="st">"Umsatz"</span>, data<span class="op">=</span>umsatz_by_alter, ci<span class="op">=</span><span class="va">True</span>, </span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>            line_kws<span class="op">=</span>{<span class="st">"color"</span>: <span class="st">"red"</span>}, scatter_kws<span class="op">=</span>{<span class="st">"alpha"</span>: <span class="fl">0.5</span>})<span class="op">;</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Fallstudie_files/figure-html/cell-26-output-1.png" width="593" height="422"></p>
+</div>
+</div>
+<p>Die Linie ist ein Modell, das die Daten beschreibt. Im vorliegenden Fall handelt es sich um ein lineares Model bzw. eine lineare Funktion. Wir können diese Funktion auch als eine mathematische Gleichung beschreiben. In unserem Fall lautet die Gleichung:</p>
+<p><span class="math display">\[
+Umsatz = \alpha + \beta \cdot Alter = -28.8 + 3.4 \cdot Alter
+\]</span></p>
+<p>Ihnen sollte das Modell bekannt vorkommen, da es sich um ein <strong>lineares Regressionsmodell</strong> handelt, welches typischerweise zu Beginn des Studiums in einer einführenden Statistikvorlesung behandelt wird. Das Ergebnis, d.h. die Werte für die sogenannten Regressionsparamter <span class="math inline">\(\alpha\)</span> und <span class="math inline">\(\beta\)</span> haben wir ebenfalls mit Python berechnet. Die Details sind an dieser Stelle (noch) nicht so wichtig, können jedoch im untenstehenden “Tab-Panel” eingesehen werden.</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Regression: Code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Regression: Output</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> smf.ols(formula<span class="op">=</span><span class="st">"Umsatz ~ Alter"</span>, data<span class="op">=</span>umsatz_by_alter)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> model.fit()</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>results.summary()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell" data-execution_count="27">
+<div class="cell-output cell-output-display" data-execution_count="54">
+
+<table class="simpletable">
+<caption>OLS Regression Results</caption>
+<tbody><tr>
+  <th>Dep. Variable:</th>         <td>Umsatz</td>      <th>  R-squared:         </th> <td>   0.725</td> 
+</tr>
+<tr>
+  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.724</td> 
+</tr>
+<tr>
+  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   956.1</td> 
+</tr>
+<tr>
+  <th>Date:</th>             <td>Mon, 30 Jan 2023</td> <th>  Prob (F-statistic):</th> <td>9.67e-104</td>
+</tr>
+<tr>
+  <th>Time:</th>                 <td>10:56:23</td>     <th>  Log-Likelihood:    </th> <td> -1612.6</td> 
+</tr>
+<tr>
+  <th>No. Observations:</th>      <td>   365</td>      <th>  AIC:               </th> <td>   3229.</td> 
+</tr>
+<tr>
+  <th>Df Residuals:</th>          <td>   363</td>      <th>  BIC:               </th> <td>   3237.</td> 
+</tr>
+<tr>
+  <th>Df Model:</th>              <td>     1</td>      <th>                     </th>     <td> </td>    
+</tr>
+<tr>
+  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>    
+</tr>
+</tbody></table>
+<table class="simpletable">
+<tbody><tr>
+      <td></td>         <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P&gt;|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>Intercept</th> <td>  -28.8068</td> <td>    4.931</td> <td>   -5.841</td> <td> 0.000</td> <td>  -38.505</td> <td>  -19.109</td>
+</tr>
+<tr>
+  <th>Alter</th>     <td>    3.3864</td> <td>    0.110</td> <td>   30.920</td> <td> 0.000</td> <td>    3.171</td> <td>    3.602</td>
+</tr>
+</tbody></table>
+<table class="simpletable">
+<tbody><tr>
+  <th>Omnibus:</th>       <td> 0.198</td> <th>  Durbin-Watson:     </th> <td>   2.043</td>
+</tr>
+<tr>
+  <th>Prob(Omnibus):</th> <td> 0.906</td> <th>  Jarque-Bera (JB):  </th> <td>   0.083</td>
+</tr>
+<tr>
+  <th>Skew:</th>          <td>-0.024</td> <th>  Prob(JB):          </th> <td>   0.959</td>
+</tr>
+<tr>
+  <th>Kurtosis:</th>      <td> 3.056</td> <th>  Cond. No.          </th> <td>    211.</td>
+</tr>
+</tbody></table><br><br>Notes:<br>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Das Modell ist nur ein Beispiel für ein Modell, das wir an dieser Stelle verwenden können oder sollten.</p>
 <ul>
-<li>Was ist ein Model?</li>
-<li>Wie funktioniert ein Model?</li>
-<li>Wie können wir ein Model erstellen? …Lineare Regression etc.</li>
+<li>es kann helfen unsere Erkenntnisse zu validieren: wir könnten dem Modell weitere Variablen hinzufügen und schauen, ob der Zusammenhang zwischen Umsatz und Alter weiterhin Bestand hat und ob dieser robust ist</li>
+<li>es kann helfen Zusammenhänge zu verstehen: wir können das Modell nutzen um zu verstehen, wie sich der Umsatz verändert, wenn wir das Alter der Kunden verändern. Wir können unser Model z.B. wie folgt interpretieren: wenn Kunden im Durchschnitt 1 Jahr älter sind, dann steigt der Umsatz im Durchschnitt um 3,4€. Wir können damit den Effekt der Veränderung der Kundenstruktur auf den Umsatz quantifizieren</li>
+<li>es kann helfen Daten in die Zukunft zu prognostizieren: wir können das Modell nutzen um zu schätzen, wie sich der Umsatz in Zukunft entwickeln wird. Wir können z.B. schätzen, dass der Umsatz nächstes Jahr um x € steigen wird, wenn wir y Jahre ältere Kunden anwerben.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></li>
 </ul>
 
 
-</section>
+<div class="no-row-height column-margin column-container"><li id="fn6"><p><sup>6</sup>&nbsp;Hinweis: dies beinhaltet aber viele Annahmen - z.B. dass die Zusammenhänge über die Zeit konstant bleiben oder dass nicht doch andere (versteckte) Faktoren eine Rolle spielen. Wir werden auf diese Aspekte an geeigneter Stelle noch im Detail eingehen.</p></li></div></section>
 </section>
 </section>
 
@@ -1514,8 +1615,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../references.html" class="pagination-link">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../Chapters/03_Chapter/Deskriptive_Analyse.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Deskriptive Analyse</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

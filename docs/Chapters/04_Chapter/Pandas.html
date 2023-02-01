@@ -1,0 +1,1676 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Eine kurze Einführung für Studierende der Betriebswirtschaftslehre">
+
+<title>Business Analytics &amp; Coding - 7&nbsp; Pandas - Allzweckwaffe für Datenanalyse</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../references.html" rel="next">
+<link href="../../Chapters/04_Chapter/Deskriptive_Analyse.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Keine Treffer",
+    "search-matching-documents-text": "Treffer",
+    "search-copy-link-title": "Link in die Suche kopieren",
+    "search-hide-matches-text": "Zusätzliche Treffer verbergen",
+    "search-more-match-text": "weitere Treffer in diesem Dokument",
+    "search-more-matches-text": "weitere Treffer in diesem Dokument",
+    "search-clear-button-title": "Zurücksetzen",
+    "search-detached-cancel-button-title": "Abbrechen",
+    "search-submit-button-title": "Abschicken"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body class="nav-sidebar floating slimcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Pandas - Allzweckwaffe für Datenanalyse</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Business Analytics &amp; Coding</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">VORWORT</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapters/01_Chapter/Einleitung.html" class="sidebar-item-text sidebar-link">EINLEITUNG</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapters/01_Chapter/Was_ist_BA.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Business Analytics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapters/01_Chapter/Coding.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Werkzeug: Coding!</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapters/01_Chapter/Warum_Python.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Warum Python?</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapters/02_Chapter/Getting_Ready.html" class="sidebar-item-text sidebar-link">VORBEREITUNG</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapters/02_Chapter/Installation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Installation &amp; Setup</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapters/02_Chapter/Introduction_notebook.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Einführung Notebooks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapters/02_Chapter/Python_Basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Kurze Einführung in Python</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapters/03_Chapter/Fallstudie_1.html" class="sidebar-item-text sidebar-link">FALLSTUDIE: Business Analytics</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapters/04_Chapter/Deskriptive_Analyse.html" class="sidebar-item-text sidebar-link">DESKRIPTIVE ANALYSE</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapters/04_Chapter/Pandas.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Pandas - Allzweckwaffe für Datenanalyse</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+  <li><a href="#grundlagen" id="toc-grundlagen" class="nav-link active" data-scroll-target="#grundlagen">Grundlagen</a>
+  <ul>
+  <li><a href="#importieren-von-pandas" id="toc-importieren-von-pandas" class="nav-link" data-scroll-target="#importieren-von-pandas">Importieren von Pandas</a></li>
+  <li><a href="#series-und-dataframes" id="toc-series-und-dataframes" class="nav-link" data-scroll-target="#series-und-dataframes">Series und Dataframes</a></li>
+  </ul></li>
+  <li><a href="#erstellen-von-series" id="toc-erstellen-von-series" class="nav-link" data-scroll-target="#erstellen-von-series">Erstellen von Series</a></li>
+  <li><a href="#erstellen-von-dataframes" id="toc-erstellen-von-dataframes" class="nav-link" data-scroll-target="#erstellen-von-dataframes">Erstellen von Dataframes</a>
+  <ul>
+  <li><a href="#manuelle-erstellung" id="toc-manuelle-erstellung" class="nav-link" data-scroll-target="#manuelle-erstellung">Manuelle Erstellung</a></li>
+  <li><a href="#einlese-von-daten" id="toc-einlese-von-daten" class="nav-link" data-scroll-target="#einlese-von-daten">Einlese von Daten</a></li>
+  </ul></li>
+  <li><a href="#aufbau-eines-dataframes" id="toc-aufbau-eines-dataframes" class="nav-link" data-scroll-target="#aufbau-eines-dataframes">Aufbau eines Dataframes</a></li>
+  <li><a href="#auswahl-von-daten" id="toc-auswahl-von-daten" class="nav-link" data-scroll-target="#auswahl-von-daten">Auswahl von Daten</a>
+  <ul>
+  <li><a href="#auswahl-von-spalten" id="toc-auswahl-von-spalten" class="nav-link" data-scroll-target="#auswahl-von-spalten">Auswahl von Spalten</a></li>
+  <li><a href="#auswahl-von-zeilen" id="toc-auswahl-von-zeilen" class="nav-link" data-scroll-target="#auswahl-von-zeilen">Auswahl von Zeilen</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full column-body" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Pandas - Allzweckwaffe für Datenanalyse</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Im Kontext der Datenanalyse haben wir es oft mit tabularischen Daten zu tun, d.h. wir arbeiten mit Informationen und/oder Daten, die in Tabellen gespeichert sind. Typischerweise haben diese Informationen Beschriftungen und sind von unterschiedlichen Typen. Stellen wir uns dies in Excel vor: wir haben mehrere Spalten, jede Spalte hat eine Bezeichnung, die beschreibt, um welche Information es sich handelt. Einige Spalten haben numerische Informationen (z.B. Umsätze), andere haben text-basierte Informationen (z.B. Namen oder Orte), wieder andere haben ein Datum als Spalteninhalt. Pandas ist das Modul, welches für den Umgang mit dieser Art von Daten gemacht wurde.</p>
+<p>Pandas unterstützt alle Schritte des Analyseprozesses, in dem es hierfür sinnvolle Funktionalitäten bereitstellt. Die gesamte Bandbreite an Funktionalitäten ist so groß, dass es unmöglich ist, diese im Rahmen <em>eines</em> Kurses zu erläutern und vorzustellen. Zusätzlich ist es so, dass Pandas am Besten im Zusammenspiel mit anderen Modulen (z.B. mit dem Visualisierungsmodul <code>seaborn</code>) eingesetzt wird.</p>
+<p>In diesem Kapitel werden wir einige wichtige Grundlagen von Pandas vorstellen. Wir nutzen hierfür - wie in den vorherigen Kapiteln auch - kleine Beispieldaten. Im nächsten Kapitel werden wir dann realistischere Datensätze verwenden, um wichtige Konzepte quasi am “lebenden Objekt” zu erlernen. Wir glauben, dass Sie zunächst einige wichtige Grundlagen verstanden haben müssen. Um diese zu erläutern benötigen wir keine “echten” Daten. Ab einem gewissen Punkt geht es jedoch nicht mehr darum isolierte Funktionen vorzustellen, sondern vielmehr den tatsächlichen Prozess der Datenanalyse zu durchlaufen, um dann auf reale Probleme zu stoßen und praxirelevante Lösungsansätze vorzustellen.</p>
+<section id="grundlagen" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="grundlagen">Grundlagen</h2>
+<p>Wir stellen im Folgenden ausgewählte Grundlagen des Moduls vor. Hierbei fokussieren wir uns auf</p>
+<ol type="1">
+<li>das Importieren des Moduls</li>
+<li>das Erstellen von <code>Series</code> und <code>Dataframes</code></li>
+</ol>
+<section id="importieren-von-pandas" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="importieren-von-pandas">Importieren von Pandas</h3>
+<div class="page-columns page-full"><p>Bevor wir Pandas nutzen können, müssen wir das Modul zunächst importieren<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Wir können hier prinzipiell wieder vorgehen, wie wir dies in Kapitel <a href="../02_Chapter/Python_Basics.html#sec-module"><span>Kapitel&nbsp;6.5.2</span></a> bereits kennengelertn haben. Pandas wird typischerweise als gesamtes Modul mit einem Alias importiert. Der Alias <code>pd</code> ist dabei der Standard, der von 99% der Pandas-Nutzer verwendet wird.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Wir gehen davon aus, dass das Modul bereits installiert ist.</p></li></div></div>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="series-und-dataframes" class="level3">
+<h3 class="anchored" data-anchor-id="series-und-dataframes">Series und Dataframes</h3>
+<p>Das Herzstück von Pandas ist der sogenannte Dataframe (<code>pd.Dataframe</code>). Sie können sich ein Dataframe als eine Art Excel-Sheet bzw. eine Excel-Tabelle vorstellen. So wie in Excel jede Tabelle aus einer Ansammlung aus Spalten besteht, ist ein Dataframe in Pandas eine Ansammlung von Series (<code>pd.Series</code>).</p>
+<p>Schauen wir uns das untenstehende Excelbeispiel an.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../_assets/dataframe_xls.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Beispiel: Excel</figcaption><p></p>
+</figure>
+</div>
+<p>Die abgebildete Excel-Tabelle ist in dieser Analogie ein <code>dataframe</code>. Jeder ihrer Spalten eine <code>series</code>. Die Spalte “Preis” wäre eine Series mit <code>floats</code>, d.h. mit Dezimalzahlen. Die Spalte “Datum” wäre eine Series vom Typ <code>str</code> oder von einem Typ, der ein Datum abbilden kann (diesen Datentyp werden wir in diesem Kapitel noch kennenlernen).</p>
+<p>Schauen wir uns an, wie wir diese Daten in <code>pandas</code> abbilden.</p>
+</section>
+</section>
+<section id="erstellen-von-series" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="erstellen-von-series">Erstellen von Series</h2>
+<p>Wenn wir die Spalte <strong>Menge</strong> nachbilden möchten, so können wir z.B. folgendes schreiben:</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>menge <span class="op">=</span> pd.Series([<span class="dv">23</span>, <span class="dv">1</span>, <span class="dv">12</span>, <span class="dv">6</span>, <span class="dv">89</span>,<span class="dv">4</span>], name<span class="op">=</span><span class="st">"Menge"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>menge</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>0    23
+1     1
+2    12
+3     6
+4    89
+5     4
+Name: Menge, dtype: int64</code></pre>
+</div>
+</div>
+<div class="page-columns page-full"><p>Die Series hat den Namen <strong>Menge</strong> und enthält die Werte 23, 1, 12, 6, 89 und 4. Die Werte sind alle vom Typ <code>int</code>.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Darüber hinaus beinhaltet die Series einen Index. Der Index ist eine Art Beschriftung der einzelnen Werte. In diesem Fall ist der Index eine fortlaufende Nummerierung. Ein Index in Python beginnt immer bei 0.</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;Hinweis:genauer gesagt vom Typ <code>int64</code>. Die Zahl hinter <code>int</code> macht deutlich, dass es eine 64-bit Integer ist und gibt uns damit Aufschluss über den abbildbaren Wertebereich (und damit auch über den benötigten Speicher) des Datentyps. Diese technischen Feinheiten sind für unsere Zwecke an dieser Stelle nicht relevant. Weitere Informationen dazu finden Sie z.B. <a href="https://de.wikipedia.org/wiki/Integer_(Datentyp)">hier</a>.</p></li></div></div>
+<p>Erstellen wir nun eine Series, die die Spalte <strong>Preis</strong> abbildet und speichern diese in der Variable “preis”. Wir schreiben den ersten Wert mit Dezimalpunkt, da die Series dann automatisch erkennt, dass es sich um den Datentyp <code>float</code> handelt.</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>preis <span class="op">=</span> pd.Series([<span class="fl">10.</span>, <span class="dv">5</span>, <span class="dv">9</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">10</span>], name<span class="op">=</span><span class="st">"Preis"</span>) <span class="co"># Der Dezimalpunkt signalisiert "float"</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>preis</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>0    10.0
+1     5.0
+2     9.0
+3     3.0
+4     5.0
+5    10.0
+Name: Preis, dtype: float64</code></pre>
+</div>
+</div>
+<p>Wir könnten den Datentyp auch explizit angeben. Der untenstehende Code gibt z.B. an, dass die Series vom Datentyp <code>str</code> sein soll, so dass die Elemente Texte sind. In Pandas wird dies dann als <code>object</code> bezeichnet.</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>preis_str <span class="op">=</span> pd.Series([<span class="fl">10.</span>, <span class="dv">5</span>, <span class="dv">9</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">10</span>], name<span class="op">=</span><span class="st">"Preis"</span>, dtype<span class="op">=</span><span class="st">"object"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>preis_str </span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>0    10.0
+1       5
+2       9
+3       3
+4       5
+5      10
+Name: Preis, dtype: object</code></pre>
+</div>
+</div>
+</section>
+<section id="erstellen-von-dataframes" class="level2">
+<h2 class="anchored" data-anchor-id="erstellen-von-dataframes">Erstellen von Dataframes</h2>
+<p>Dataframes können manuell erstellt werden oder aus externen und einzulesenden Daten erstellt werden. Wir gehen hier zunächst auf die manuelle Erstellung ein. Diese benötigen wir in der Praxis oft gar nicht, weil wir meist auf externe Daten (z.B. Excel-, CSV-, SQL- oder TXT-Dateien) zugreifen. Dennoch ist es wichtig zu verstehen, wie Dataframes manuell erstellt werden können, da dies (i) hilft, den grundsätzlichen Aufbau von Dataframes zu verstehen und (ii) oft nützlich ist, um kleinere Datensätze zu Testzwecken zu erzeugen.</p>
+<section id="manuelle-erstellung" class="level3">
+<h3 class="anchored" data-anchor-id="manuelle-erstellung">Manuelle Erstellung</h3>
+<p>Wir können Dataframes auf verschiedene Art und Weisen erstellen. Wir gehen hier auf eine Variante ein, die oft genutzt wird und die aus unserer Sicht aller meisten Anwendungsfälle abdeckt: wir erstellen Dataframes über sogenannte Dictionaries (<code>dict</code>). Ein Python-Dictionary ist ein Datentyp, der eine Sammlung von Schlüssel-Wert-Paaren darstellt. Jeder Schlüssel ist eindeutig und wird verwendet, um seinen zugehörigen Wert abzurufen. Hier ist ein Beispiel:</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>telefonbuch <span class="op">=</span> {<span class="st">"Max"</span>: <span class="st">"555-555-1212"</span>, </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Anna"</span>: <span class="st">"555-555-1213"</span>, </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Peter"</span>: <span class="st">"555-555-1214"</span>}</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In diesem Beispiel ist das Dictionary telefonbuch mit drei Schlüssel-Wert-Paaren gefüllt, wobei jeder Name (Max, Anna, Peter) einen Telefonnummer-Wert hat. WIr können jedoch auch (fast) beliebige Datentypen als Werte verwenden.</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>familienmitglieder <span class="op">=</span> {<span class="st">"Max"</span>: [<span class="st">"Frau"</span>, <span class="st">"Kind1"</span>,<span class="st">"Kind2"</span>], </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"Anna"</span>: [<span class="st">"Mann"</span>, <span class="st">"Kind"</span>], </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"Peter"</span>: []} <span class="co"># Peter ist single...</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Wenn wir ein Dataframe mittels Dictionary erzeugen, dann werden die <code>Schlüssel</code> als Spaltenbezeichnung übernommen und die <code>Werte</code> dann als Daten unterhalb der Spaltenbezeichnung eingelesen.</p>
+<p>Hier der Beispielcode für ein Dataframe, welcher die Spalten (in dem Falle Series) <strong>“Preis”</strong> und <strong>“Menge”</strong> beinhaltet.</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">"Menge"</span>: [<span class="dv">23</span>, <span class="dv">1</span>, <span class="dv">12</span>, <span class="dv">6</span>, <span class="dv">89</span>, <span class="dv">4</span>],    </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"Preis"</span>:[<span class="fl">10.</span>, <span class="dv">5</span>, <span class="dv">9</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">10</span>]})</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Menge</th>
+      <th>Preis</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>23</td>
+      <td>10.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>12</td>
+      <td>9.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>6</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>89</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>4</td>
+      <td>10.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Wir sehen, dass die <code>Schlüssel</code> <strong>Menge</strong> und <strong>Preis</strong> als Spaltenbezeichnung übernommen wurden. Die einzelnen Werte sind im obigen Fall von Datentyp <code>list</code> (eine Liste).</p>
+<p>Wir können hier jedoch auch andere Datentypen nutzen. So können wir auch <code>Series</code> einfügen. Dies ist sehr praktisch, da wir im Rahmen unser Analysen mit verschiedenen Datentypen arbeiten werden.</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">"Menge"</span>: menge,    </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"Preis"</span>:preis})</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>df </span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Menge</th>
+      <th>Preis</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>23</td>
+      <td>10.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>12</td>
+      <td>9.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>6</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>89</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>4</td>
+      <td>10.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="einlese-von-daten" class="level3">
+<h3 class="anchored" data-anchor-id="einlese-von-daten">Einlese von Daten</h3>
+<p>Wie bereits angesprochen ist es realistisch, dass wir bereits über Daten verfügen und diese in Pandas einlesen möchten. Hierfür bietet Pandas eine Vielzahl an Methoden, die es ermöglicht nahezu jeden Dateityp einzulesen. Wir werden uns in den nächsten Kapiteln auf das Einlesen von <strong>Excel</strong>- und <strong>CSV</strong>-Dateien beschränken. Das grundsätzliche Vorgehen ist jedoch - unabhängig vom Dateityp - sehr ähnlich.</p>
+<p>Pandas bietet die Methoden zum Einlesen von externen Daten via <code>pd.read_</code> an.</p>
+<p>Wir können uns über <code>pd.read_&lt;tab&gt;</code> anzeigen lassen, welche Funktionen zur Verfügung stehen und uns die gewünschte raussuchen.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../_assets/pdread_tab.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Beispiel: read-Funktionen</figcaption><p></p>
+</figure>
+</div>
+<p>Zum Einlesen der gewünschten Daten benötigen wir typischerweise den Dateipfad, d.h. den Ort, in welchem die Datei auf dem Computer oder in der Cloud hinterlegt ist.</p>
+<p><strong>Beispiel 1:</strong> Einlesen einer Excel-Datei mit relativer Pfad-Angabe</p>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fpath <span class="op">=</span> <span class="st">"../../_data/sales.xlsx"</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>sales <span class="op">=</span> pd.read_excel(fpath)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>sales</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Produkt</th>
+      <th>Preis</th>
+      <th>Menge</th>
+      <th>Datum</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Apple</td>
+      <td>0.79</td>
+      <td>10</td>
+      <td>2022-01-01</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Orange</td>
+      <td>1.99</td>
+      <td>1</td>
+      <td>2022-01-02</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Orange</td>
+      <td>1.99</td>
+      <td>5</td>
+      <td>2022-01-03</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Banana</td>
+      <td>0.79</td>
+      <td>1</td>
+      <td>2022-01-04</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Apple</td>
+      <td>0.79</td>
+      <td>7</td>
+      <td>2022-01-05</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Orange</td>
+      <td>1.99</td>
+      <td>2</td>
+      <td>2022-01-06</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Banana</td>
+      <td>0.79</td>
+      <td>9</td>
+      <td>2022-01-07</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Apple</td>
+      <td>1.99</td>
+      <td>4</td>
+      <td>2022-01-08</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Apple</td>
+      <td>2.49</td>
+      <td>8</td>
+      <td>2022-01-09</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Orange</td>
+      <td>2.49</td>
+      <td>7</td>
+      <td>2022-01-010</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Der Dateipfad ist immer relativ zum aktuellen Arbeitsverzeichnis des Notebooks, in dem wir arbeiten. In dem angegebenen Dateipfad <code>../../_data/sales.xlsx</code> bezieht sich <code>../</code> auf ein Verzeichnis, das eine Ebene höher als das aktuelle Verzeichnis liegt. Da es zwei Mal <code>../</code> im Pfad gibt, befindet sich die Datei sales.xlsx in einem Verzeichnis, das <strong>zwei</strong> Ebenen höher als das aktuelle Verzeichnis liegt. Der Unterordner <code>_data</code> befindet sich in diesem höher liegenden Verzeichnis. Daher befindet sich die Datei sales.xlsx in dem Unterverzeichnis <code>_data</code> einer Ebene höher als das aktuelle Verzeichnis.</p>
+<div class="callout-note callout callout-style-default no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Beispiel Dateipfad
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<pre class="{markdown}"><code>|--- _data  
+       |_sales1.xlsx  
+|--- Chapters  
+       |_ Chapter_01  
+       |_ Chapter_02  
+           |_ Notebook.ipynb  </code></pre>
+</div>
+</div>
+<p>Da die Pfadangaben sich zwischen den Betriebssystemen unterscheiden, ist es empfehlenswert, die <code>pathlib</code>-Bibliothek zu verwenden, um die Pfadangaben zu erstellen.</p>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>fpath <span class="op">=</span> Path.cwd() <span class="op">/</span><span class="st">".."</span> <span class="op">/</span> <span class="st">".."</span> <span class="op">/</span>  <span class="st">"_data"</span> <span class="op">/</span> <span class="st">"sales.xlsx"</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>sales <span class="op">=</span> pd.read_excel(fpath)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>sales</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Produkt</th>
+      <th>Preis</th>
+      <th>Menge</th>
+      <th>Datum</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Apple</td>
+      <td>0.79</td>
+      <td>10</td>
+      <td>2022-01-01</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Orange</td>
+      <td>1.99</td>
+      <td>1</td>
+      <td>2022-01-02</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Orange</td>
+      <td>1.99</td>
+      <td>5</td>
+      <td>2022-01-03</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Banana</td>
+      <td>0.79</td>
+      <td>1</td>
+      <td>2022-01-04</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Apple</td>
+      <td>0.79</td>
+      <td>7</td>
+      <td>2022-01-05</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Orange</td>
+      <td>1.99</td>
+      <td>2</td>
+      <td>2022-01-06</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Banana</td>
+      <td>0.79</td>
+      <td>9</td>
+      <td>2022-01-07</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Apple</td>
+      <td>1.99</td>
+      <td>4</td>
+      <td>2022-01-08</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Apple</td>
+      <td>2.49</td>
+      <td>8</td>
+      <td>2022-01-09</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Orange</td>
+      <td>2.49</td>
+      <td>7</td>
+      <td>2022-01-010</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p><strong>Beispiel 2:</strong> Einlesen einer Excel-Datei via Link</p>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>link <span class="op">=</span> <span class="st">"https://www.dropbox.com/s/oub2za2hu8yp8oj/sales1.xlsx?dl=1"</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_excel(link)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Produkt Nr.</th>
+      <th>Preis</th>
+      <th>Menge</th>
+      <th>Datum</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>3</td>
+      <td>10</td>
+      <td>23</td>
+      <td>2021-01-01</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>5</td>
+      <td>1</td>
+      <td>2021-01-02</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>9</td>
+      <td>12</td>
+      <td>2021-01-03</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>3</td>
+      <td>6</td>
+      <td>2021-01-04</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2</td>
+      <td>5</td>
+      <td>89</td>
+      <td>2021-01-05</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>3</td>
+      <td>10</td>
+      <td>4</td>
+      <td>2021-01-06</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Wenn sich die Datei auf einem Server oder einer Cloud befindet (hier: Dropbox), dann können wir die Datei auch direkt via Link einlesen. Der Vorteil ist, dass wir uns keine Gedanken darüber machen müssen, wo die Datei auf dem Computer gespeichert ist. Der Nachteil ist jedoch, dass wir (i) die Datei nicht lokal speichern können und (ii) die Ladezeiten oft länger sind.</p>
+<p>Die jeweiligen <code>pd.read_</code>-Methoden haben eine Vielzahl von optionalen Parametern, die man übergeben kann. Wir werden an dieser Stelle nicht auf alle eingehen. Grundsätzlich können Sie aber quasi davon ausgehen, dass es für alle typischen Optionen, die man beim Einlesen von Daten benötigt (z.B. nur bestimmte Spalten, nur bestimmte Tabellenblätter, Auswahl der Spaltenbezeichnung, Auswahl von Datentypen, Datumsformat) eine optionale Auswahlmöglichkeit innerhalb der Methode gibt. Sie können diese via <code>pd.read_&lt;..&gt;?</code> aufrufen lassen.</p>
+</section>
+</section>
+<section id="aufbau-eines-dataframes" class="level2">
+<h2 class="anchored" data-anchor-id="aufbau-eines-dataframes">Aufbau eines Dataframes</h2>
+<p>Ein Dataframe ist immer eine Tabelle, mit zwei Achsen:</p>
+<ul>
+<li>vertikale Achse: wird als <code>Index</code> bezeichnet</li>
+<li>horizontale Achse: werden als <code>Columns</code> (d.h. Spalten) bezeichne</li>
+</ul>
+<p>Der Index eines Dataframes ist standardmäßig numerisch und beginnt bei 0. Der Index ist vergleichbar mit den Zeilenbezeichnungen in Excel.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../_assets/index_xlsx.gif" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Beispiel: Index in Excel</figcaption><p></p>
+</figure>
+</div>
+<p>Wir greifen auf Index und Spalten wiefolgt zu:</p>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>idx <span class="op">=</span> df.index</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>idx</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>RangeIndex(start=0, stop=6, step=1)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span> df.columns</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>cols</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<pre><code>Index(['Produkt Nr.', 'Preis', 'Menge', 'Datum'], dtype='object')</code></pre>
+</div>
+</div>
+<p>Über diese Logik können wir auch neue Werte für den Index oder die Spaltenbezeichnung erstellen.</p>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>df.index <span class="op">=</span> [<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>, <span class="st">"F"</span>]</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>df.columns <span class="op">=</span> [<span class="st">"H1"</span>, <span class="st">"H2"</span>, <span class="st">"H3"</span>, <span class="st">"H4"</span>, ]</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>H1</th>
+      <th>H2</th>
+      <th>H3</th>
+      <th>H4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>A</th>
+      <td>3</td>
+      <td>10</td>
+      <td>23</td>
+      <td>2021-01-01</td>
+    </tr>
+    <tr>
+      <th>B</th>
+      <td>2</td>
+      <td>5</td>
+      <td>1</td>
+      <td>2021-01-02</td>
+    </tr>
+    <tr>
+      <th>C</th>
+      <td>1</td>
+      <td>9</td>
+      <td>12</td>
+      <td>2021-01-03</td>
+    </tr>
+    <tr>
+      <th>D</th>
+      <td>4</td>
+      <td>3</td>
+      <td>6</td>
+      <td>2021-01-04</td>
+    </tr>
+    <tr>
+      <th>E</th>
+      <td>2</td>
+      <td>5</td>
+      <td>89</td>
+      <td>2021-01-05</td>
+    </tr>
+    <tr>
+      <th>F</th>
+      <td>3</td>
+      <td>10</td>
+      <td>4</td>
+      <td>2021-01-06</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="auswahl-von-daten" class="level2">
+<h2 class="anchored" data-anchor-id="auswahl-von-daten">Auswahl von Daten</h2>
+<p>Im Rahmen einer Datenanalyse wird es vorkommen, dass wir uns auf bestimmte Zeilen oder Spalten eines Dataframes beziehen wollen. Schauen wir uns an, wie wir dies in Python machen.</p>
+<p>Leider gibt es verschiedene Ansätze, um Daten zu selektieren. Wir werden hier ein paar gängige Ansätze vorstellen. Im Rahmen ihrer Online-Recherchen werden Sie ggf. auf weitere Ansätze stoßen. Hierbei gibt es oft kein “richtig” oder “falsch”. Schauen Sie, was für Sie ein passender Ansatz ist. Wir geben darüber hinaus an den relevanten Stellen Hinweise, wenn bestimmte Ansätze sich als besonders geeignet herausstellen.</p>
+<section id="auswahl-von-spalten" class="level3">
+<h3 class="anchored" data-anchor-id="auswahl-von-spalten">Auswahl von Spalten</h3>
+<p>Ein einfacher und gängiger Weg, bestimmte Spalten zu selektieren, ist die Auswahl via Spaltenname.</p>
+<p>Datensatz:</p>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> sales.copy()</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Produkt</th>
+      <th>Preis</th>
+      <th>Menge</th>
+      <th>Datum</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Apple</td>
+      <td>0.79</td>
+      <td>10</td>
+      <td>2022-01-01</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Orange</td>
+      <td>1.99</td>
+      <td>1</td>
+      <td>2022-01-02</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Orange</td>
+      <td>1.99</td>
+      <td>5</td>
+      <td>2022-01-03</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Banana</td>
+      <td>0.79</td>
+      <td>1</td>
+      <td>2022-01-04</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Apple</td>
+      <td>0.79</td>
+      <td>7</td>
+      <td>2022-01-05</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Orange</td>
+      <td>1.99</td>
+      <td>2</td>
+      <td>2022-01-06</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Banana</td>
+      <td>0.79</td>
+      <td>9</td>
+      <td>2022-01-07</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Apple</td>
+      <td>1.99</td>
+      <td>4</td>
+      <td>2022-01-08</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Apple</td>
+      <td>2.49</td>
+      <td>8</td>
+      <td>2022-01-09</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Orange</td>
+      <td>2.49</td>
+      <td>7</td>
+      <td>2022-01-010</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Hier ein Beispiel für die Selektion einer Spalte. Das Resultat ist eine <code>Series</code>.</p>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Auswahl der Spalte "Menge"</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>menge <span class="op">=</span> df[<span class="st">"Menge"</span>]</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>menge</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<pre><code>0    10
+1     1
+2     5
+3     1
+4     7
+5     2
+6     9
+7     4
+8     8
+9     7
+Name: Menge, dtype: int64</code></pre>
+</div>
+</div>
+<div class="callout-warning callout callout-style-default no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Achtung: Auswahl von Spalten
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Sie werden in verschiedenen Quellen auch die folgende Variante finden</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>menge <span class="op">=</span> df.Menge</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Der Ansatz ist grundsätzlich korrekt, jedoch nicht empfehlenswert. Hintergrund ist, dass dieser nicht funkioniert, wenn Spaltenbezeichnungen mit einer Zahl beginnen oder Leerzeichen beinhalten. Eine Spalte <code>Produkt Nr.</code> ist so bspw. nicht selektierbar. Sie müssen also auf die von uns präferierte Variante zurückgreifen. Insofern bietet sich die von uns dargestellte Notation besser an, da diese immer funktioniert.</p>
+</div>
+</div>
+<p>Natürlich können wir aber auch mehrere Spalten gleichzeitig auswählen. Wir machen dies, in dem wir eine Liste mit Spaltennamen übergeben. Das Resultat ist dann ein <code>Dataframe</code>.</p>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Auswahl der Spalten "Menge" und "Preis"</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>menge_preis <span class="op">=</span> df[[<span class="st">"Menge"</span>, <span class="st">"Preis"</span>]]</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>menge_preis</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Menge</th>
+      <th>Preis</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>10</td>
+      <td>0.79</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1.99</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>5</td>
+      <td>1.99</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>0.79</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>7</td>
+      <td>0.79</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2</td>
+      <td>1.99</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>9</td>
+      <td>0.79</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>4</td>
+      <td>1.99</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>8</td>
+      <td>2.49</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>7</td>
+      <td>2.49</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Wir können die gleiche Funktionalität auch mit einer speziellen Funktion <code>.filter</code> erreichen.</p>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>df.<span class="bu">filter</span>(items<span class="op">=</span>[<span class="st">"Menge"</span>, <span class="st">"Preis"</span>])</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Menge</th>
+      <th>Preis</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>10</td>
+      <td>0.79</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1.99</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>5</td>
+      <td>1.99</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>0.79</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>7</td>
+      <td>0.79</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2</td>
+      <td>1.99</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>9</td>
+      <td>0.79</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>4</td>
+      <td>1.99</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>8</td>
+      <td>2.49</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>7</td>
+      <td>2.49</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Die Funktion bietet weitere Möglichkeiten. So können wir Spalten auch nach bestimmten (einfachen) Logiken filtern. Wir könnten z.B. interessiert sein an allen Spalten, die mit “P” beginnen. Dies können wir einfach erreichen mit</p>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>df.<span class="bu">filter</span>(like<span class="op">=</span><span class="st">"P"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Produkt</th>
+      <th>Preis</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Apple</td>
+      <td>0.79</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Orange</td>
+      <td>1.99</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Orange</td>
+      <td>1.99</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Banana</td>
+      <td>0.79</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Apple</td>
+      <td>0.79</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Orange</td>
+      <td>1.99</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Banana</td>
+      <td>0.79</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Apple</td>
+      <td>1.99</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Apple</td>
+      <td>2.49</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Orange</td>
+      <td>2.49</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="auswahl-von-zeilen" class="level3">
+<h3 class="anchored" data-anchor-id="auswahl-von-zeilen">Auswahl von Zeilen</h3>
+<p>Sie können auch spezifische Zeilen auswählen. Die üblichste Variante ist dies über die Methoden <code>iloc</code> und <code>loc</code> zu machen.</p>
+<ul>
+<li>Auswahl auf Basis von Index- oder Spalten<strong>numerierung</strong>: <code>iloc</code></li>
+<li>Auswahl auf Basis von Index- oder Spalten<strong>bezeichnung</strong>: <code>loc</code></li>
+</ul>
+<p><strong>Wichtig:</strong> auch in Pandas ist das erste Elemente wie bei allen anderen Datentypen für die dies relevant war sowohl für Index, als auch für Columns immer an der Stelle <code>0</code>.</p>
+<p>Gerade für Beginner ist die Auswahl via <code>iloc</code> und <code>loc</code> zunächst verwirrend. Lassen Sie uns deshalb einige typische Beispiele durchgehen.</p>
+<p>Zur Übersicht stellen wir hier noch einmal unseren Ausgangsdatensatz dar:</p>
+<div class="cell" data-execution_count="20">
+<div class="cell-output cell-output-display" data-execution_count="20">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Produkt</th>
+      <th>Preis</th>
+      <th>Menge</th>
+      <th>Datum</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Apple</td>
+      <td>0.79</td>
+      <td>10</td>
+      <td>2022-01-01</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Orange</td>
+      <td>1.99</td>
+      <td>1</td>
+      <td>2022-01-02</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Orange</td>
+      <td>1.99</td>
+      <td>5</td>
+      <td>2022-01-03</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Banana</td>
+      <td>0.79</td>
+      <td>1</td>
+      <td>2022-01-04</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Apple</td>
+      <td>0.79</td>
+      <td>7</td>
+      <td>2022-01-05</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Orange</td>
+      <td>1.99</td>
+      <td>2</td>
+      <td>2022-01-06</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Banana</td>
+      <td>0.79</td>
+      <td>9</td>
+      <td>2022-01-07</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Apple</td>
+      <td>1.99</td>
+      <td>4</td>
+      <td>2022-01-08</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Apple</td>
+      <td>2.49</td>
+      <td>8</td>
+      <td>2022-01-09</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Orange</td>
+      <td>2.49</td>
+      <td>7</td>
+      <td>2022-01-010</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p><strong>Beispiel 1:</strong> Auswahl der Zeilen 0, 3 und 5</p>
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>df.iloc[[<span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">5</span>]]</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Produkt</th>
+      <th>Preis</th>
+      <th>Menge</th>
+      <th>Datum</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Apple</td>
+      <td>0.79</td>
+      <td>10</td>
+      <td>2022-01-01</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Banana</td>
+      <td>0.79</td>
+      <td>1</td>
+      <td>2022-01-04</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Orange</td>
+      <td>1.99</td>
+      <td>2</td>
+      <td>2022-01-06</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p><strong>Beispiel 2:</strong> Auswahl der ersten 3 Zeilen</p>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>df.iloc[:<span class="dv">3</span>]</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Produkt</th>
+      <th>Preis</th>
+      <th>Menge</th>
+      <th>Datum</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Apple</td>
+      <td>0.79</td>
+      <td>10</td>
+      <td>2022-01-01</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Orange</td>
+      <td>1.99</td>
+      <td>1</td>
+      <td>2022-01-02</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Orange</td>
+      <td>1.99</td>
+      <td>5</td>
+      <td>2022-01-03</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p><strong>Beispiel 3:</strong> Auswahl der ersten 4 Zeilen und der Spalten 0 und 2</p>
+<div class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>df.iloc[:<span class="dv">4</span>, [<span class="dv">0</span>, <span class="dv">2</span>]]</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Produkt</th>
+      <th>Menge</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Apple</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Orange</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Orange</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Banana</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p><strong>Beispiel 4:</strong> Auswahl der ersten drei Zeilen und Spalten</p>
+<div class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>df.iloc[:<span class="dv">3</span>, :<span class="dv">3</span>]</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="24">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Produkt</th>
+      <th>Preis</th>
+      <th>Menge</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Apple</td>
+      <td>0.79</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Orange</td>
+      <td>1.99</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Orange</td>
+      <td>1.99</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Die oberen Beispiele haben wir <code>iloc</code> genutzt: wir greifen jeweils auf die Numerierung der Spalte oder des Index zu. D.h. wir greifen auf z.B. Zeile 2 oder Spalte 0 zu.</p>
+<p>Sobald wir auf den Index oder die Spalte mit einer bestimmten Bezeichnung zugreifen wollen, dann müssen wir <code>loc</code> nutzen. Dies ist insbesondere im Falle der Spalten sehr häufig der Fall.</p>
+
+
+</section>
+</section>
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Kopiert");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Kopiert");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation column-body">
+  <div class="nav-page nav-page-previous">
+      <a href="../../Chapters/04_Chapter/Deskriptive_Analyse.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">DESKRIPTIVE ANALYSE</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../references.html" class="pagination-link">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+      <div class="nav-footer-center">
+        <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ © 2023 by F. Zeidler
+  </li>  
+</ul>
+      </div>
+  </div>
+</footer>
+
+
+
+</body></html>

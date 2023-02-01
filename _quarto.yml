@@ -17,23 +17,27 @@ book:
       - Chapters/02_Chapter/Installation.qmd
       - Chapters/02_Chapter/Introduction_notebook.qmd
       - Chapters/02_Chapter/Python_Basics.qmd
-    - part: Chapters/03_Chapter/Business_Analytics.qmd
+    - Chapters/03_Chapter/Fallstudie_1.qmd
+    - part: Chapters/04_Chapter/Deskriptive_Analyse.qmd
       chapters:
-      - Chapters/03_Chapter/Fallstudie.qmd
-      #- Chapters/03_Chapter/Descriptive_Analytics.qmd
+      - Chapters/04_Chapter/Einlesen_Aufbereiten.qmd
       #- Chapters/03_Chapter/Predictive_Analytics.qmd
       #- Chapters/03_Chapter/Prescriptive_Analytics.qmd
     - references.qmd
+    - part: Appendices/Appendix.qmd
+      chapters:
+      - Appendices/Modules/Pandas.qmd
+
   page-navigation: true
   sidebar: 
-    #downloads: [pdf, epub]
+    collapse-level: 1
     search: true
-    title: "BA&C"
+    title: Inhalt
+  reader-mode: true
+  
   page-footer: 
     center: 
     - text: "© 2023 by F. Zeidler"
-  
-  
 
 bibliography: references.bib
 
