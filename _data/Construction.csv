@@ -1,4 +1,4 @@
-Projekt_ID,Projektname,Projekt_Beginn,Plan_Bau_fertig,Ist_Bau_fertig,Plan_Kosten,Ist_Kosten,Project_team
+Project_ID,Projektname,projekt_Beginn,Plan Bau fertig,Ist_Bau_fertig,plan_Kosten,Ist_Kosten,Project_team
 P-62602,Stadtpark // Eberhardtallee,2013-10-15,2013-12-26,2013-12-25,109129.55,130487.07,Team 4
 P-80374,Spielplatz // Geißlerweg,2016-07-14,2016-09-20,2016-09-22,59521.33,66009.97,Team 4
 P-96379,Spielplatz // Schäferring,2019-06-14,2019-06-16,2019-06-29,82572.27,107571.64,Team 2

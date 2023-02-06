@@ -8,7 +8,7 @@
 
 <meta name="description" content="Eine kurze Einführung für Studierende der Betriebswirtschaftslehre">
 
-<title>Business Analytics &amp; Coding - 7&nbsp; Einlesen und Aufbereiten</title>
+<title>Business Analytics &amp; Coding - 8&nbsp; Einlesen und Aufbereiten</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -32,7 +95,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
 <link href="../../references.html" rel="next">
-<link href="../../Chapters/04_Chapter/Deskriptive_Analyse.html" rel="prev">
+<link href="../../Chapters/04_Chapter/Deskriptive_Problemstellung.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -61,17 +124,20 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Abschicken"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Einlesen und Aufbereiten</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-title">Einlesen und Aufbereiten</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -116,17 +182,17 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Chapters/01_Chapter/Was_ist_BA.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Business Analytics</span></a>
+  <a href="../../Chapters/01_Chapter/Was_ist_BA.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Business Analytics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Chapters/01_Chapter/Coding.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Werkzeug: Coding!</span></a>
+  <a href="../../Chapters/01_Chapter/Coding.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Werkzeug: Coding!</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Chapters/01_Chapter/Warum_Python.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Warum Python?</span></a>
+  <a href="../../Chapters/01_Chapter/Warum_Python.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Warum Python?</span></a>
   </div>
 </li>
       </ul>
@@ -141,17 +207,17 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Chapters/02_Chapter/Installation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Installation &amp; Setup</span></a>
+  <a href="../../Chapters/02_Chapter/Installation.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Installation &amp; Setup</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Chapters/02_Chapter/Introduction_notebook.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Einführung Notebooks</span></a>
+  <a href="../../Chapters/02_Chapter/Introduction_notebook.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Einführung Notebooks</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Chapters/02_Chapter/Python_Basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Kurze Einführung in Python</span></a>
+  <a href="../../Chapters/02_Chapter/Python_Basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Kurze Einführung in Python</span></a>
   </div>
 </li>
       </ul>
@@ -171,7 +237,12 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Chapters/04_Chapter/Einlesen_Aufbereiten.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Einlesen und Aufbereiten</span></a>
+  <a href="../../Chapters/04_Chapter/Deskriptive_Problemstellung.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Ausgangslage und Problemstellung</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapters/04_Chapter/Einlesen_Aufbereiten.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Einlesen und Aufbereiten</span></a>
   </div>
 </li>
       </ul>
@@ -183,7 +254,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../Appendices/Appendix.html" class="sidebar-item-text sidebar-link">ANHANG</a>
+            <a href="../../Appendices/Anhang.html" class="sidebar-item-text sidebar-link">ANHANG</a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -200,15 +271,26 @@ ul.task-list li input[type="checkbox"] {
     </div>
 </nav>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+  <li><a href="#einlesen-und-ersten-überblick-verschaffen" id="toc-einlesen-und-ersten-überblick-verschaffen" class="nav-link active" data-scroll-target="#einlesen-und-ersten-überblick-verschaffen">Einlesen und ersten Überblick verschaffen</a></li>
+  <li><a href="#aufbereitung-der-daten" id="toc-aufbereitung-der-daten" class="nav-link" data-scroll-target="#aufbereitung-der-daten">Aufbereitung der Daten</a>
+  <ul>
+  <li><a href="#datentypen" id="toc-datentypen" class="nav-link" data-scroll-target="#datentypen">Datentypen</a></li>
+  <li><a href="#spalten-umbenennen" id="toc-spalten-umbenennen" class="nav-link" data-scroll-target="#spalten-umbenennen">Spalten umbenennen</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content page-columns page-full column-body" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Einlesen und Aufbereiten</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-title">Einlesen und Aufbereiten</span></h1>
 </div>
 
 
@@ -223,7 +305,344 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<section id="einlesen-und-ersten-überblick-verschaffen" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="einlesen-und-ersten-überblick-verschaffen">Einlesen und ersten Überblick verschaffen</h2>
+<div class="page-columns page-full"><p>Beginnen wir mit der Analyse, in dem wir die Daten zunächst einlesen und aufbereiten. Dazu verwenden wir die Funktion <code>read_csv()</code> aus dem Paket <code>pandas</code>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Die Funktion <code>read_csv()</code> erwartet als Argument den Pfad zur CSV-Datei, die eingelesen werden soll. Darüber hinaus können noch viele weitere Parameter übergeben werden (z.B. welche Spalten wir einlesen möchten, welches Datenformat wir verwenden, welches Dezimalkomma wir verwenden, etc.).</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Hinweis: wir werden die für die Fallstudie(n) benötigten Funktionalitäten immer dann vorstellen und erläutern, wenn wir diese benötigen. Für einen gesamthaften Überblick zum Modul Pandas verweisen wir auf den Anhang <a href="../../Appendices/Modules/Pandas.html#sec-pandas"><span>Kapitel&nbsp;1</span></a>.</p></li></div></div>
+<div class="page-columns page-full"><p>Die Funktion gibt ein sogenanntes <code>DataFrame</code> zurück, das wir in der Variable <code>df</code> speichern. Ein <code>DataFrame</code> ist eine Datenstruktur, die in der Regel Tabellen repräsentiert. In unserem Fall enthält das <code>DataFrame</code> die Daten aus der CSV-Datei. Prinzipiell können wir nahezu jedes gängige Format einlesen, das Pandas unterstützt. Eine vollständige Liste der unterstützten Formate finden Sie in der Dokumentation von Pandas.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;siehe <a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html">hier</a></p></li></div></div>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'../../_data/Construction.csv'</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Die Variable <code>df</code> enthält nun die Daten aus der CSV-Datei. Wenn das Einlesen der Daten erfolgreich war - d.h. wir keine Fehlermeldung erhalten haben -, können wir uns einen ersten Überblick verschaffen und uns den Inhalt der Variable <code>df</code> anschauen. Dazu verwenden wir die Funktion <code>head()</code>.</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
 
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Project_ID</th>
+      <th>Projektname</th>
+      <th>projekt_Beginn</th>
+      <th>Plan Bau fertig</th>
+      <th>Ist_Bau_fertig</th>
+      <th>plan_Kosten</th>
+      <th>Ist_Kosten</th>
+      <th>Project_team</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>P-62602</td>
+      <td>Stadtpark // Eberhardtallee</td>
+      <td>2013-10-15</td>
+      <td>2013-12-26</td>
+      <td>2013-12-25</td>
+      <td>109129.55</td>
+      <td>130487.07</td>
+      <td>Team 4</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>P-80374</td>
+      <td>Spielplatz // Geißlerweg</td>
+      <td>2016-07-14</td>
+      <td>2016-09-20</td>
+      <td>2016-09-22</td>
+      <td>59521.33</td>
+      <td>66009.97</td>
+      <td>Team 4</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>P-96379</td>
+      <td>Spielplatz // Schäferring</td>
+      <td>2019-06-14</td>
+      <td>2019-06-16</td>
+      <td>2019-06-29</td>
+      <td>82572.27</td>
+      <td>107571.64</td>
+      <td>Team 2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>P-31809</td>
+      <td>Baumbestand // Raphaela-Scheel-Platz</td>
+      <td>2019-02-06</td>
+      <td>2019-02-11</td>
+      <td>2019-02-11</td>
+      <td>29563.59</td>
+      <td>29724.17</td>
+      <td>Team 1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>P-51445</td>
+      <td>Landschaftsbau // Julia-Neureuther-Platz</td>
+      <td>2015-04-26</td>
+      <td>2015-05-16</td>
+      <td>2015-05-20</td>
+      <td>38315.35</td>
+      <td>53783.40</td>
+      <td>Team 3</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Die Funktion ist sehr hilfreich, um zu überprüfen, ob die Daten (zumindest scheinbar) korrekt eingelesen wurden. Außderm können wir so den Aufbau des Datensatzes erkennen.</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+<code>head()</code> und <code>tail()</code>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Die Funktion <code>head()</code> gibt die ersten Zeilen eines DataFrames aus. Mit der Funktion <code>tail()</code> können wir die letzten Zeilen ausgeben lassen. Ohne weitere Angabe von Parametern geben <code>head()</code> und <code>tail()</code> jeweils fünf Zeilen aus. Wir können beide Funktionen auch mit einem Argument aufrufen, um die Anzahl der Zeilen anzupassen. Beispiel: <code>df.head(10)</code> gibt die ersten zehn Zeilen aus. Der Aufruf von <code>head()</code> ist also äquivalent zum Aufruf <code>head(5)</code>.</p>
+</div>
+</div>
+</div>
+<p>Nachdem wir uns die Daten angeschaut haben, sollten wir einen weiteren, tieferen Blick auf die Daten werfen. Mit der Funktion <code>info()</code> können wir uns die Spaltennamen und die Datentypen der Spalten ausgeben lassen. Dies ist ein guter Einstieg, um zu verstehen, welche Daten wir vor uns haben.</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df.info()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 10000 entries, 0 to 9999
+Data columns (total 8 columns):
+ #   Column           Non-Null Count  Dtype  
+---  ------           --------------  -----  
+ 0   Project_ID       10000 non-null  object 
+ 1   Projektname      10000 non-null  object 
+ 2   projekt_Beginn   10000 non-null  object 
+ 3   Plan Bau fertig  10000 non-null  object 
+ 4   Ist_Bau_fertig   10000 non-null  object 
+ 5   plan_Kosten      10000 non-null  float64
+ 6   Ist_Kosten       10000 non-null  float64
+ 7   Project_team     10000 non-null  object 
+dtypes: float64(2), object(6)
+memory usage: 625.1+ KB</code></pre>
+</div>
+</div>
+<p>Die Funktion <code>info()</code> gibt uns folgende Informationen aus:</p>
+<ul>
+<li><code>#</code> Position der Spalte (beginnend bei <code>0</code>)</li>
+<li><code>Column</code> Name der Spalte</li>
+<li><code>Non-Null Count</code> Anzahl der nicht leeren Werte je Spalte</li>
+<li><code>Dtype</code> Datentyp der Spalte</li>
+</ul>
+<p>Wir können also sehr schnell erkennen, ob der Datensatz vollständig ist. In unserem Fall sind alle Spalten vollständig. Außerdem gibt uns die Funktion <code>info()</code> Auskunft über den Datentyp der Spalten. In unserem Fall gibt es zwei Datentypen: <code>object</code> und <code>float</code>. Der Datentyp <code>float</code> repräsentiert Gleitkommazahlen. Der Datentyp <code>object</code> repräsentiert Zeichenketten (d.h. Python interpretiert die Daten als Text). Da wir beim Einlesen der Daten keine Angabe über die Datentypen gemacht haben, hat Pandas die Datentypen automatisch ermittelt. In der Regel ist dies auch eine guter erster Ansatz. Wir sollten jedoch in einem nächsten Schritt die Datentypen überprüfen und ggf. anpassen. Denn je besser der Datentyp zum Inhalt der Spalte passt, desto besser können wir mit den Daten arbeiten.</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Position <code>0</code> in Python
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Die erste Position in Python ist immer <code>0</code>. Das ist ein Konzept, das wir uns merken sollten. Wir werden es in den kommenden Kapiteln immer wieder verwenden. Die erste Zeile eines DataFrames hat die Position <code>0</code>. Die erste Spalte hat die Position <code>0</code>.</p>
+<p>Dies ist zunächst etwas verwirrend und ungewohnt. Jedoch ist Python hier sehr konsistent, so dass wir uns schnell daran gewöhnen werden. Grundsätzlich gilt: die erste Position in Python ist immer <code>0</code>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="aufbereitung-der-daten" class="level2">
+<h2 class="anchored" data-anchor-id="aufbereitung-der-daten">Aufbereitung der Daten</h2>
+<p>Beginnen wir mit der Aufbereitung der Daten.</p>
+<section id="datentypen" class="level3">
+<h3 class="anchored" data-anchor-id="datentypen">Datentypen</h3>
+<p>Wir schauen dafür zunächst, ob die Datentypen der Spalten passen.</p>
+<ul>
+<li><code>Project_ID</code>: die Spalte beinhaltet Buchstaben, Zeichen und Zahlen (z.B. P-62602). Der Datentyp <code>object</code> ist also passend.</li>
+<li><code>Projektname</code>: die Spalte beinhaltet Text. Der Datentyp <code>object</code> ist also passend.</li>
+<li><code>projekt_Beginn</code>: die Spalte beinhaltet Datumswerte. Der Datentyp <code>object</code> ist nicht passend. Wir sollten den Datentyp in ein Datumsformat umwandeln.</li>
+<li><code>Plan Bau fertig</code>: die Spalte beinhaltet Datumswerte. Der Datentyp <code>object</code> ist nicht passend. Wir sollten den Datentyp in ein Datumsformat umwandeln.</li>
+<li><code>Ist_Bau_fertig</code>: die Spalte beinhaltet Datumswerte. Der Datentyp <code>object</code> ist nicht passend. Wir sollten den Datentyp in ein Datumsformat umwandeln.</li>
+<li><code>plan_Kosten</code>: die Spalte beinhaltet Gleitkommazahlen. Der Datentyp <code>float</code> ist passend.</li>
+<li><code>Ist_Kosten</code>: die Spalte beinhaltet Gleitkommazahlen. Der Datentyp <code>float</code> ist passend.</li>
+<li><code>Project_team</code>: die Spalte beinhaltet Text. Der Datentyp <code>object</code> ist also passend.</li>
+</ul>
+<p>Die Anpassung der Datumsformate können wir mit der Pandas-Funktion <code>to_datetime()</code> durchführen. Wir müssen dabei nur die Spalten angeben, die wir anpassen möchten. Die Funktion <code>to_datetime()</code> wandelt die Spalten dann in ein Datumsformate um.</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'projekt_Beginn'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'projekt_Beginn'</span>])</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Plan Bau fertig'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'Plan Bau fertig'</span>])</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Ist_Bau_fertig'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'Ist_Bau_fertig'</span>])</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Das Ergebnis können wir uns mit der Funktion <code>info()</code> anzeigen lassen.</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df.info()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 10000 entries, 0 to 9999
+Data columns (total 8 columns):
+ #   Column           Non-Null Count  Dtype         
+---  ------           --------------  -----         
+ 0   Project_ID       10000 non-null  object        
+ 1   Projektname      10000 non-null  object        
+ 2   projekt_Beginn   10000 non-null  datetime64[ns]
+ 3   Plan Bau fertig  10000 non-null  datetime64[ns]
+ 4   Ist_Bau_fertig   10000 non-null  datetime64[ns]
+ 5   plan_Kosten      10000 non-null  float64       
+ 6   Ist_Kosten       10000 non-null  float64       
+ 7   Project_team     10000 non-null  object        
+dtypes: datetime64[ns](3), float64(2), object(3)
+memory usage: 625.1+ KB</code></pre>
+</div>
+</div>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Datumsformate
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Die Konvertierung der Daten in ein Datumsformat ist für uns in unserem Falle nicht ersichtlich. Schauen wir uns die Daten an, sehen diese für uns aus wie vor der Konvertierung. Jedoch hat Pandas die Daten intern in ein Datumsformat umgewandelt, was den Vorteil hat, dass wir auf verschiedene Funktionen zurückgreifen können, die nur mit Datumsformaten funktionieren. So können wir z.B. mit der Funktion <code>dt.weekday</code> den Wochentag auslesen.</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'projekt_Beginn'</span>].dt.weekday</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>0       1
+1       3
+2       4
+3       2
+4       6
+       ..
+9995    3
+9996    5
+9997    5
+9998    0
+9999    5
+Name: projekt_Beginn, Length: 10000, dtype: int64</code></pre>
+</div>
+</div>
+<p>Die Umwandlung in ein Datumsformat ist also nicht nur für die Darstellung der Daten sinnvoll, sondern auch für die weitere Analyse - zumindest dann, wenn wir mit Datumsformaten arbeiten möchten.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="spalten-umbenennen" class="level3">
+<h3 class="anchored" data-anchor-id="spalten-umbenennen">Spalten umbenennen</h3>
+<p>Das Umbennen von Spalten ist nicht zwingend notwendig. Jedoch ist die Bezeichnung von Spalten oft nicht intuitiv, inkonsistent oder unklar. Daher ist es sinnvoll, die Spalten so zu bennen, dass wir im Rahmen der Analyse (i) schnell erkennen, was in der Spalte steht und (ii) die Auswahl der Spalten intuitiv ist. Die Umbenennung der Spalten hat dabei natürlich immer eine subjektive Komponente, da jeder andere Vorstellungen hat, wie die Spalten benannt sein sollten.</p>
+<p>In unserem Datensatz sind die Spaltennamen jedoch insbesondere auch nicht einheitlich benannt. So beginnen einige Spalten mit einem Großbuchstaben, andere mit einem Kleinbuchstaben. Bei einigen Spalten ist der englische Begriff <code>project</code>, bei anderen der deutsche Begriff <code>projekt</code> verwendet. Einige Spalten beinhalten Leerzeichen, andere sind mit <code>_</code> verbunden. Dies sind alles Dinge, die die weitere Analyse ein Stück weit erschweren, da wir Spalten nicht intuitiv auswählen können.</p>
+<p>Lassen Sie uns die Spalten deshalb vereinheitlichen, in dem wir:</p>
+<ul>
+<li>alle Spalten in Kleinbuchstaben umwandeln</li>
+<li>alle Leerzeichen durch <code>_</code> ersetzen</li>
+<li>alle Begriffe <code>project</code> durch <code>projekt</code> ersetzen</li>
+<li>wo sinnvoll kürzere Begriffe ver wenden</li>
+</ul>
+<p>Wir können die Spalten mit der Funktion <code>rename()</code> umbenennen. Die Funktion <code>rename()</code> erwartet als Parameter ein Dictionary, in dem wir die alten Spaltennamen als Schlüssel und die neuen Spaltennamen als Werte angeben.</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.rename(columns<span class="op">=</span>{<span class="st">'Project_ID'</span>: <span class="st">'id'</span>, <span class="co"># Spalte "Projekt_ID" wird umbenannt in "id"</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                        <span class="st">'Projektname'</span>: <span class="st">'name'</span>,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                        <span class="st">'projekt_Beginn'</span>: <span class="st">'beginn'</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                        <span class="st">'Plan Bau fertig'</span>: <span class="st">'ende_plan'</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>                        <span class="st">'Ist_Bau_fertig'</span>: <span class="st">'ende_ist'</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>                        <span class="st">'plan_Kosten'</span>: <span class="st">'kosten_plan'</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>                        <span class="st">'Ist_Kosten'</span>: <span class="st">'kosten_ist'</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>                        <span class="st">'Project_team'</span>: <span class="st">'team'</span>})</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>id</th>
+      <th>name</th>
+      <th>beginn</th>
+      <th>ende_plan</th>
+      <th>ende_ist</th>
+      <th>kosten_plan</th>
+      <th>kosten_ist</th>
+      <th>team</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>P-62602</td>
+      <td>Stadtpark // Eberhardtallee</td>
+      <td>2013-10-15</td>
+      <td>2013-12-26</td>
+      <td>2013-12-25</td>
+      <td>109129.55</td>
+      <td>130487.07</td>
+      <td>Team 4</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>P-80374</td>
+      <td>Spielplatz // Geißlerweg</td>
+      <td>2016-07-14</td>
+      <td>2016-09-20</td>
+      <td>2016-09-22</td>
+      <td>59521.33</td>
+      <td>66009.97</td>
+      <td>Team 4</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>P-96379</td>
+      <td>Spielplatz // Schäferring</td>
+      <td>2019-06-14</td>
+      <td>2019-06-16</td>
+      <td>2019-06-29</td>
+      <td>82572.27</td>
+      <td>107571.64</td>
+      <td>Team 2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>P-31809</td>
+      <td>Baumbestand // Raphaela-Scheel-Platz</td>
+      <td>2019-02-06</td>
+      <td>2019-02-11</td>
+      <td>2019-02-11</td>
+      <td>29563.59</td>
+      <td>29724.17</td>
+      <td>Team 1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>P-51445</td>
+      <td>Landschaftsbau // Julia-Neureuther-Platz</td>
+      <td>2015-04-26</td>
+      <td>2015-05-16</td>
+      <td>2015-05-20</td>
+      <td>38315.35</td>
+      <td>53783.40</td>
+      <td>Team 3</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
 
 
 </main> <!-- /main -->
@@ -360,10 +779,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation column-page-right">
+<nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="../../Chapters/04_Chapter/Deskriptive_Analyse.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">DESKRIPTIVE ANALYSE</span>
+      <a href="../../Chapters/04_Chapter/Deskriptive_Problemstellung.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Ausgangslage und Problemstellung</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

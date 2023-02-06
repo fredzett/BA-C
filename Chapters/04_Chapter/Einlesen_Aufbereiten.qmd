@@ -1,1 +1,131 @@
 # Einlesen und Aufbereiten
+
+## Einlesen und ersten Überblick verschaffen
+
+Beginnen wir mit der Analyse, in dem wir die Daten zunächst einlesen und aufbereiten. Dazu verwenden wir die Funktion `read_csv()` aus dem Paket `pandas`.^[Hinweis: wir werden die für die Fallstudie(n) benötigten Funktionalitäten immer dann vorstellen und erläutern, wenn wir diese benötigen. Für einen gesamthaften Überblick zum Modul Pandas verweisen wir auf den Anhang @sec-pandas.] Die Funktion `read_csv()` erwartet als Argument den Pfad zur CSV-Datei, die eingelesen werden soll. Darüber hinaus können noch viele weitere Parameter übergeben werden (z.B. welche Spalten wir einlesen möchten, welches Datenformat wir verwenden, welches Dezimalkomma wir verwenden, etc.).
+
+Die Funktion gibt ein sogenanntes `DataFrame` zurück, das wir in der Variable `df` speichern. Ein `DataFrame` ist eine Datenstruktur, die in der Regel Tabellen repräsentiert. In unserem Fall enthält das `DataFrame` die Daten aus der CSV-Datei. Prinzipiell können wir nahezu jedes gängige Format einlesen, das Pandas unterstützt. Eine vollständige Liste der unterstützten Formate finden Sie in der Dokumentation von Pandas.^[siehe [hier](https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html)]
+
+ 
+
+```{python}
+import pandas as pd
+
+df = pd.read_csv('../../_data/Construction.csv')
+```
+
+Die Variable `df` enthält nun die Daten aus der CSV-Datei. Wenn das Einlesen der Daten erfolgreich war - d.h. wir keine Fehlermeldung erhalten haben -, können wir uns einen ersten Überblick verschaffen und uns den Inhalt der Variable `df` anschauen. Dazu verwenden wir die Funktion `head()`. 
+
+
+```{python}
+df.head()
+```
+
+Die Funktion ist sehr hilfreich, um zu überprüfen, ob die Daten (zumindest scheinbar) korrekt eingelesen wurden. Außderm können wir so den Aufbau des Datensatzes erkennen. 
+
+::: {.callout-tip collapse="true"}
+
+## `head()` und `tail()`
+
+Die Funktion `head()` gibt die ersten Zeilen eines DataFrames aus. Mit der Funktion `tail()` können wir die letzten Zeilen ausgeben lassen. Ohne weitere Angabe von Parametern geben `head()` und `tail()` jeweils fünf Zeilen aus.  Wir können beide Funktionen auch mit einem Argument aufrufen, um die Anzahl der Zeilen anzupassen. Beispiel: `df.head(10)` gibt die ersten zehn Zeilen aus. Der Aufruf von `head()` ist also äquivalent zum Aufruf `head(5)`.
+
+:::
+
+Nachdem wir uns die Daten angeschaut haben, sollten wir einen weiteren, tieferen Blick auf die Daten werfen. Mit der Funktion `info()` können wir uns die Spaltennamen und die Datentypen der Spalten ausgeben lassen. Dies ist ein guter Einstieg, um zu verstehen, welche Daten wir vor uns haben.
+
+```{python}
+df.info()
+```
+
+Die Funktion `info()` gibt uns folgende Informationen aus:
+
+- `#` Position der Spalte (beginnend bei `0`)
+- `Column` Name der Spalte
+- `Non-Null Count` Anzahl der nicht leeren Werte je Spalte
+- `Dtype` Datentyp der Spalte
+
+Wir können also sehr schnell erkennen, ob der Datensatz vollständig ist. In unserem Fall sind alle Spalten vollständig. Außerdem gibt uns die Funktion `info()` Auskunft über den Datentyp der Spalten. In unserem Fall gibt es zwei Datentypen: `object` und `float`. Der Datentyp `float` repräsentiert Gleitkommazahlen. Der Datentyp `object` repräsentiert Zeichenketten (d.h. Python interpretiert die Daten als Text). Da wir beim Einlesen der Daten keine Angabe über die Datentypen gemacht haben, hat Pandas die Datentypen automatisch ermittelt. In der Regel ist dies auch eine guter erster Ansatz. Wir sollten jedoch in einem nächsten Schritt die Datentypen überprüfen und ggf. anpassen. Denn je besser der Datentyp zum Inhalt der Spalte passt, desto besser können wir mit den Daten arbeiten. 
+
+::: {.callout-tip collapse="true"}
+
+## Position `0` in Python
+
+Die erste Position in Python ist immer `0`. Das ist ein Konzept, das wir uns merken sollten. Wir werden es in den kommenden Kapiteln immer wieder verwenden. Die erste Zeile eines DataFrames hat die Position `0`. Die erste Spalte hat die Position `0`.
+
+Dies ist zunächst etwas verwirrend und ungewohnt. Jedoch ist Python hier sehr konsistent, so dass wir uns schnell daran gewöhnen werden. Grundsätzlich gilt: die erste Position in Python ist immer `0`.
+
+:::
+
+## Aufbereitung der Daten
+
+Beginnen wir mit der Aufbereitung der Daten. 
+
+### Datentypen
+
+Wir schauen dafür zunächst, ob die Datentypen der Spalten passen. 
+
+- `Project_ID`: die Spalte beinhaltet Buchstaben, Zeichen und Zahlen (z.B. P-62602). Der Datentyp `object` ist also passend.
+- `Projektname`: die Spalte beinhaltet Text. Der Datentyp `object` ist also passend. 
+- `projekt_Beginn`: die Spalte beinhaltet Datumswerte. Der Datentyp `object` ist nicht passend. Wir sollten den Datentyp in ein Datumsformat umwandeln.
+- `Plan Bau fertig`: die Spalte beinhaltet Datumswerte. Der Datentyp `object` ist nicht passend. Wir sollten den Datentyp in ein Datumsformat umwandeln.
+- `Ist_Bau_fertig`: die Spalte beinhaltet Datumswerte. Der Datentyp `object` ist nicht passend. Wir sollten den Datentyp in ein Datumsformat umwandeln.
+- `plan_Kosten`: die Spalte beinhaltet Gleitkommazahlen. Der Datentyp `float` ist passend.
+- `Ist_Kosten`: die Spalte beinhaltet Gleitkommazahlen. Der Datentyp `float` ist passend.
+- `Project_team`: die Spalte beinhaltet Text. Der Datentyp `object` ist also passend.
+
+Die Anpassung der Datumsformate können wir mit der Pandas-Funktion `to_datetime()` durchführen. Wir müssen dabei nur die Spalten angeben, die wir anpassen möchten. Die Funktion `to_datetime()` wandelt die Spalten dann in ein Datumsformate um. 
+
+```{python}
+df['projekt_Beginn'] = pd.to_datetime(df['projekt_Beginn'])
+df['Plan Bau fertig'] = pd.to_datetime(df['Plan Bau fertig'])
+df['Ist_Bau_fertig'] = pd.to_datetime(df['Ist_Bau_fertig'])
+```
+
+Das Ergebnis können wir uns mit der Funktion `info()` anzeigen lassen. 
+
+```{python}
+df.info()
+```
+
+::: {.callout-tip collapse="true"}
+
+## Datumsformate
+
+Die Konvertierung der Daten in ein Datumsformat ist für uns in unserem Falle nicht ersichtlich. Schauen wir uns die Daten an, sehen diese für uns aus wie vor der Konvertierung. Jedoch hat Pandas die Daten intern in ein Datumsformat umgewandelt, was den Vorteil hat, dass wir auf verschiedene Funktionen zurückgreifen können, die nur mit Datumsformaten funktionieren. So können wir z.B. mit der Funktion `dt.weekday` den Wochentag auslesen. 
+
+```{python}
+df['projekt_Beginn'].dt.weekday
+```
+
+Die Umwandlung in ein Datumsformat ist also nicht nur für die Darstellung der Daten sinnvoll, sondern auch für die weitere Analyse - zumindest dann, wenn wir mit Datumsformaten arbeiten möchten.
+
+:::
+
+
+### Spalten umbenennen
+
+Das Umbennen von Spalten ist nicht zwingend notwendig. Jedoch ist die Bezeichnung von Spalten oft nicht intuitiv, inkonsistent oder unklar. Daher ist es sinnvoll, die Spalten so zu bennen, dass wir im Rahmen der Analyse (i) schnell erkennen, was in der Spalte steht und (ii) die Auswahl der Spalten intuitiv ist. Die Umbenennung der Spalten hat dabei natürlich immer eine subjektive Komponente, da jeder andere Vorstellungen hat, wie die Spalten benannt sein sollten. 
+
+In unserem Datensatz sind die Spaltennamen jedoch insbesondere auch nicht einheitlich benannt. So beginnen einige Spalten mit einem Großbuchstaben, andere mit einem Kleinbuchstaben. Bei einigen Spalten ist der englische Begriff `project`, bei anderen der deutsche Begriff `projekt` verwendet. Einige Spalten beinhalten Leerzeichen, andere sind mit `_` verbunden. Dies sind alles Dinge, die die weitere Analyse ein Stück weit erschweren, da wir Spalten nicht intuitiv auswählen können.
+
+Lassen Sie uns die Spalten deshalb vereinheitlichen, in dem wir:
+
+- alle Spalten in Kleinbuchstaben umwandeln
+- alle Leerzeichen durch `_` ersetzen
+- alle Begriffe `project` durch `projekt` ersetzen
+- wo sinnvoll kürzere Begriffe ver wenden
+
+Wir können die Spalten mit der Funktion `rename()` umbenennen. Die Funktion `rename()` erwartet als Parameter ein Dictionary, in dem wir die alten Spaltennamen als Schlüssel und die neuen Spaltennamen als Werte angeben. 
+
+```{python}
+df = df.rename(columns={'Project_ID': 'id', # Spalte "Projekt_ID" wird umbenannt in "id"
+                        'Projektname': 'name',
+                        'projekt_Beginn': 'beginn',
+                        'Plan Bau fertig': 'ende_plan',
+                        'Ist_Bau_fertig': 'ende_ist',
+                        'plan_Kosten': 'kosten_plan',
+                        'Ist_Kosten': 'kosten_ist',
+                        'Project_team': 'team'})
+df.head()
+```
+

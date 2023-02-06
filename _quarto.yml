@@ -20,11 +20,12 @@ book:
     - Chapters/03_Chapter/Fallstudie_1.qmd
     - part: Chapters/04_Chapter/Deskriptive_Analyse.qmd
       chapters:
+      - Chapters/04_Chapter/Deskriptive_Problemstellung.qmd
       - Chapters/04_Chapter/Einlesen_Aufbereiten.qmd
       #- Chapters/03_Chapter/Predictive_Analytics.qmd
       #- Chapters/03_Chapter/Prescriptive_Analytics.qmd
     - references.qmd
-    - part: Appendices/Appendix.qmd
+    - part: Appendices/Anhang.qmd
       chapters:
       - Appendices/Modules/Pandas.qmd
 
@@ -33,6 +34,8 @@ book:
     collapse-level: 1
     search: true
     title: Inhalt
+
+    
   reader-mode: true
   
   page-footer: 
@@ -47,7 +50,7 @@ format:
     lang: de
     toc: true
     toc-depth: 4
-    number-sections: True
+    number-sections: False
     number-depth: 1
     text-algin: justify
     linestretch: 1.75

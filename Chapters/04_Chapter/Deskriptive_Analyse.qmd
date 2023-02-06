@@ -1,53 +1,11 @@
 # DESKRIPTIVE ANALYSE
 
-[TODO:  
-- deskriptive Analyse abgrenzen von deskriptiver Statistik   
-- deskriptive Analyse als Voraussetzung für weitere Analysemethoden  
-- Datensatz vorstellen  
-]
-
 Die deskriptive Analyse ist eine wichtige Komponente der Datenanalyse, die einen Einblick in die Eigenschaften und Merkmale eines bestimmten Datensatzes ermöglicht. Sie ist gleichzeitig auch die Grundlage für viele weitere Analysemethoden. Davon ausgehend, dass Sie bereits durch ihre statistische Vorausbildung mit den grundlegenden Konzepten der deskriptiven Statistik vertraut sind, werden wir uns in diesem Kapitel auf die Anwendung dieser Konzepte auf die Datenanalyse konzentrieren. Wir werden sehen, dass es bei der deskriptiven Analyse im Grunde nur um die Zusammenfassung, Organisation und Darstellung von Daten geht. Auch werden wir feststellen, dass diese Form der Analyse methodisch oft einfach oder trivial erscheint, jedoch in der Praxis oft bereits entscheidende Erkenntnisse über die Daten liefern kann.
 
 In diesem Kapitel werden wir uns mit den ersten vier Schritten des Analyseprozesses beschäftigen. Diese sind in unser bekannten Darstellung blau hervorgehoben. 
 
 ![Fokus der deskriptiven Analyse](../../_assets/Analyse_Prozess_Descriptive.svg){width="100%"}
 
-Bevor wir mit dem ersten Schritt - dem Einlesen der Daten - beginnen, werden wir uns kurz mit dem Datensatz beschäftigen, mit dem wir in diesem Kapitel arbeiten werden.
-
-::: {.callout-note icon="false"}
-
-## Datensatz: Bau und Werken GmbH
-
-Im Rahmen der Analysen dieses Kapitels nutzen wir den (fiktiven) Datensatz der __Bau und Werken GmbH__. Die Bau und Werken GmbH ist ein mittelständisches Unternehmen in Dortmund, das sich auf kommunale Bau- und Instandhaltungsprojekte spezialisiert hat. Der Datensatz beinhaltet Informationen zu den Projekten, die das Unternehmen in den letzten Jahren durchgeführt hat. Die Daten wurden von einem Mitarbeiter der Bau und Werken GmbH in einer Excel-Tabelle erfasst und anschließend in das CSV-Format exportiert. Der Datensatz beinhaltet folgende Informationen:
-
-- `Projekt_ID`: eindeutige Identifikationsnummer des Projekts
-- `Projektname`: Art des Projektes // Ort des Projektes (z.B. "Stadtpark // Eberhardtallee")
-- `Projekt_Beginn`: Baubeginn bzw. Beginn der Instandhaltungsarbeiten
-- `Plan_Bau_fertig`: geplantes Bauende bzw. Instandhaltungsende
-- `Ist_Bau_fertig`: tatsächliches Bauende bzw. Instandhaltungsende
-- `Plan_Kosten`: budgetierte Gesamtkosten des Projektes
-- `Ist_Kosten`: tatsächliche Gesamtkosten des Projektes
-- `Project_team`: internes Team, welches das Projekt bearbeitet hat
-
-:::
-
-## Einlesen der Daten
 
 
 
-Im ersten Schritt müssen wir den Datensatz einlesen. Dieser ist im CSV-Format vorliegend und kann mit der Funktion `read_csv` von Pandas eingelesen werden.
-
-
-
-
-Wir werden für dieses Kapitel im Wesentlicheh mit einem Datensatz 
-
-Was ist "Deskriptive Analyse"?
-
-Warum setzen wir diese ein?
-
-Verteilungsmaße, Aggregationen, Gruppierungen, Filterung
-
-Visualisierung von Daten
-
-(Beispiel Edward Tufte - The Visual Display of Quantitative Information)

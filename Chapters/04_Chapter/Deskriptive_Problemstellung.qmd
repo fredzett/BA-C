@@ -1,0 +1,30 @@
+# Ausgangslage und Problemstellung
+
+## Einleitung
+
+Die __Bau und Werken GmbH__ wurde in Recklinghausen gegründet und hat bis heute ihren Sitz in der Stadt. Seit ihrer Gründung im Jahre 1967 hat das Unternehmen eine bemerkenswerte Entwicklung durchgemacht. Anfangs konzentrierte sich das Unternehmen hauptsächlich auf kleinere kommunale Bauprojekte. Mit der Zeit jedoch wuchs die Firma und konnte sich auf größere Projekte spezialisieren.
+
+Im Laufe der Jahre hat die Bau und Werken GmbH ein starkes Netzwerk an Geschäftspartnern und Lieferanten aufgebaut, das es ihr ermöglichte, auch anspruchsvollere Projekte auszuführen. Mittlerweile bietet das Unternehmen eine breite Pallete von Projekten an: von Baumarbeiten bis Tiefbauarbeiten bei städtischen U-Bahnen ist alles dabei.  Durch ihren Fokus auf Qualität und Kundenzufriedenheit hat sich das Unternehmen einen hervorragenden Ruf in der Branche erworben.
+
+Heute ist die Bau und Werken GmbH deshalb ein wichtiger Akteur in der kommunalen Bau- und Instandhaltungsbranche und hat sich als zuverlässiger Partner für viele Kommunen und Städte etabliert. Trotz ihres Erfolgs blickt das Unternehmen stets nach vorn und sucht ständig nach Wegen, um seine Geschäftspraktiken zu verbessern und den Kunden noch bessere Dienstleistungen anzubieten.
+
+Wie die gesamte Branche hat auch die Bau und Werken GmbH immer wieder mit Projekten zu kämpfen, die länger dauern als geplant und mehr kosten als budgetiert. Dies ist ein großes Hindernis für die Profitabilität des Unternehmens. Der Chef des Unternehmens, Maximilian Müller, ist sich dessen bewusst und hat es sich zur Aufgabe gemacht, dieses Problem in den Griff zu bekommen.
+
+Maximilian weiß, dass je geringer die Bauverzögerungen sind, desto höher der Fertigstellungsbonus sein wird. Die Nichteinhaltung der budgetierten Kosten sind außerdem ein großes Problem. Natürlich plant das Unternehmen Kostenerhöhungen prinzipiell von vorne herein ein und wirtschaftet deshalb bei allen Projekten profitabel. Dennoch: die Profitmarge wäre deutlich höher, wenn die Kosten von Anfang an realistischer geplant würden. Um das Problem der Verzögerungen und der Kostenüberschreitungen zu lösen, will er die Projekte der Vergangenheit genau untersuchen lassen, um zu analysieren, ob es bestimmte Muster gibt, die sich wiederholen bzw. ob es bestimmte Faktoren gibt, die die Verzögerungen und Kostenüberschreitungen verursachen.
+
+Diese Herausforderung ist von entscheidender Bedeutung für die Zukunft des Unternehmens und Maximilian ist entschlossen, das Problem zu lösen, um die Bau und Werken GmbH noch erfolgreicher und profitabler zu machen.
+
+
+## Datensatz
+
+Der Datensatz beinhaltet Informationen zu den Projekten, die das Unternehmen in den letzten Jahren durchgeführt hat. Die Daten wurden von einem Mitarbeiter der Bau und Werken GmbH in einer Excel-Tabelle erfasst und anschließend in das CSV-Format exportiert. Der Datensatz beinhaltet folgende Informationen:
+
+- `Projekt_ID`: eindeutige Identifikationsnummer des Projekts
+- `Projektname`: Art des Projektes // Ort des Projektes (z.B. "Stadtpark // Eberhardtallee")
+- `Projekt_Beginn`: Baubeginn bzw. Beginn der Instandhaltungsarbeiten
+- `Plan_Bau_fertig`: geplantes Bauende bzw. Instandhaltungsende
+- `Ist_Bau_fertig`: tatsächliches Bauende bzw. Instandhaltungsende
+- `Plan_Kosten`: budgetierte Gesamtkosten des Projektes
+- `Ist_Kosten`: tatsächliche Gesamtkosten des Projektes
+- `Project_team`: internes Team, welches das Projekt bearbeitet hat
+
