@@ -279,9 +279,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#einlesen-und-ersten-überblick-verschaffen" id="toc-einlesen-und-ersten-überblick-verschaffen" class="nav-link active" data-scroll-target="#einlesen-und-ersten-überblick-verschaffen">Einlesen und ersten Überblick verschaffen</a></li>
   <li><a href="#aufbereitung-der-daten" id="toc-aufbereitung-der-daten" class="nav-link" data-scroll-target="#aufbereitung-der-daten">Aufbereitung der Daten</a>
   <ul>
-  <li><a href="#datentypen" id="toc-datentypen" class="nav-link" data-scroll-target="#datentypen">Datentypen</a></li>
+  <li><a href="#datentypen-anpassen" id="toc-datentypen-anpassen" class="nav-link" data-scroll-target="#datentypen-anpassen">Datentypen anpassen</a></li>
   <li><a href="#spalten-umbenennen" id="toc-spalten-umbenennen" class="nav-link" data-scroll-target="#spalten-umbenennen">Spalten umbenennen</a></li>
+  <li><a href="#fehler-finden" id="toc-fehler-finden" class="nav-link" data-scroll-target="#fehler-finden">“Fehler” finden</a>
+  <ul class="collapse">
+  <li><a href="#duplikate-identifizieren" id="toc-duplikate-identifizieren" class="nav-link" data-scroll-target="#duplikate-identifizieren">Duplikate identifizieren</a></li>
   </ul></li>
+  <li><a href="#was-noch" id="toc-was-noch" class="nav-link" data-scroll-target="#was-noch">WAS NOCH:</a></li>
+  </ul></li>
+  <li><a href="#genutzte-funktionen-und-methoden" id="toc-genutzte-funktionen-und-methoden" class="nav-link" data-scroll-target="#genutzte-funktionen-und-methoden">Genutzte Funktionen und Methoden</a></li>
   </ul>
 </nav>
     </div>
@@ -460,11 +466,11 @@ Position <code>0</code> in Python
 </div>
 </div>
 </section>
-<section id="aufbereitung-der-daten" class="level2">
+<section id="aufbereitung-der-daten" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="aufbereitung-der-daten">Aufbereitung der Daten</h2>
 <p>Beginnen wir mit der Aufbereitung der Daten.</p>
-<section id="datentypen" class="level3">
-<h3 class="anchored" data-anchor-id="datentypen">Datentypen</h3>
+<section id="datentypen-anpassen" class="level3">
+<h3 class="anchored" data-anchor-id="datentypen-anpassen">Datentypen anpassen</h3>
 <p>Wir schauen dafür zunächst, ob die Datentypen der Spalten passen.</p>
 <ul>
 <li><code>Project_ID</code>: die Spalte beinhaltet Buchstaben, Zeichen und Zahlen (z.B. P-62602). Der Datentyp <code>object</code> ist also passend.</li>
@@ -639,9 +645,676 @@ Name: projekt_Beginn, Length: 10000, dtype: int64</code></pre>
 </div>
 </div>
 </div>
-
-
 </section>
+<section id="fehler-finden" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="fehler-finden">“Fehler” finden</h3>
+<div class="page-columns page-full"><p>Wir haben bereits festgestellt, dass unser Datensatz keine fehlenden Werte enthält.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> Diese kommen in der Praxis sehr häufig vor, weil z.B. Daten nicht erfasst wurden oder Daten nicht vollständig sind. Das Fehlen von Werten ist meist eine offensichtlicher “Fehler”. Andere “Fehler” sind oft nicht so offensichtlich und können sich in den Daten verstecken. Bei diesen “Fehlern” handelt es sich oft um Ausreißer oder Ungereimtheiten, auf die man oft auch erst im Rahmen der Analyse stößt (insb. durch Visualisierung der Daten). Auch haben wir den Begriff “Fehler” bewusst in Anführungszeichen gesetzt, da es sich hierbei nicht immer um fehlerhafte Daten handelt. Manchmal sind die Daten einfach nur ungewöhnlich oder erfordern eine andere Interpretation oder genauere Analyse. Die Entscheidung, wie mit diesen “Fehlern” umgegangen wird, ist abhängig von der Aufgabenstellung, vom Datensatz und von der Analyse.</p><div class="no-row-height column-margin column-container"><li id="fn3"><p><sup>3</sup>&nbsp;Man bezeichnet fehlende Werte auch als “Not a number”-Werten sog. <code>NaN</code>s.</p></li></div></div>
+<p>Lassen Sie uns nun ein Beispiel für einen solchen “Fehler” betrachten und dann entscheiden, wir wir damit im Rahmen der Analyse umgehen. Dazu müssen wir uns zunächst die Daten genauer anschauen. Wir werden uns auf zwei potentielle “Fehler” konzentrieren:</p>
+<ol type="1">
+<li>Duplikate oder doppelte Einträge</li>
+<li>Ausreißer in den Daten</li>
+</ol>
+<section id="duplikate-identifizieren" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="duplikate-identifizieren">Duplikate identifizieren</h4>
+<p>Duplikate sind doppelte Einträge in den Daten. Sie können entstehen, wenn z.B. Daten mehrfach erfasst wurden oder wenn Daten aus verschiedenen Quellen zusammengeführt wurden. Duplikate können zu Problemen führen, wenn wir die Daten aggregieren oder zusammenführen wollen. Daher ist es sinnvoll, Duplikate zu identifizieren und (meistens) zu entfernen.</p>
+<p>Wir unterscheiden zwischen drei Arten von Duplikaten:</p>
+<ol type="1">
+<li>Duplikate in den Zeilen, d.h. doppelte Datenpunkte (z.B. zwei Einträge für das gleiche Projekt)</li>
+<li>Duplikate in den Spalten, d.h. doppelte Variablen (z.B. zwei Spalten in denen die gleichen Daten enthalten sind)</li>
+<li>Duplikate innerhalb einer Variable, d.h. eigentlich einzigartige Werte tretten doppelt auf (z.B. zwei Projekte mit dem gleichen Namen)</li>
+</ol>
+<p>Die Punkte 1 und 2 führen nahezu immer dazu, dass man die doppelten Zeilen oder Spalten aus dem Datensatz löscht. Bei Punkt 3 ist es teilweise sinnvoll, die doppelten Werte neu zu bezeichnen oder zu kodieren. Die Beurteilung des Sachverhalts erfordert jedoch ein Verständnis der Daten und der Aufgabenstellung.</p>
+<p>Lassen Sie uns für die nachfolgenden zwei Beispiele zunächst einen kleinen Beispiel-Datensatz erstellen:</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>example <span class="op">=</span> pd.DataFrame({<span class="st">'Spalte A'</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>],</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'Spalte B'</span>: [<span class="st">'Hund'</span>, <span class="st">'Katze'</span>, <span class="st">'Vogel'</span>, <span class="st">'Katze'</span>, <span class="st">'Fisch'</span>, <span class="st">'Vogel'</span>],</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'Spalte C'</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>]})</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>example.head()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Spalte A</th>
+      <th>Spalte B</th>
+      <th>Spalte C</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Hund</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>Katze</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>Vogel</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2</td>
+      <td>Katze</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>Fisch</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p><strong>Beispiel 1: Duplikate in Zeilen identifizieren und entfernen</strong></p>
+<p>Wir können die Methode <code>duplicated()</code> nutzen, um Duplikate in Zeilen eines DataFrames zu <strong>identifizieren</strong>. Sie gibt eine Boolesche Reihe (True, False, True etc.) zurück, die angibt, ob eine Zeile ein Duplikat ist oder nicht. Standardmäßig werden dabei alle Spalten berücksichtigt, jedoch kann auch eine Teilmenge von Spalten angegeben werden, die bei der Suche nach Duplikaten berücksichtigt werden soll.</p>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>example.duplicated()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>0    False
+1    False
+2    False
+3     True
+4    False
+5    False
+dtype: bool</code></pre>
+</div>
+</div>
+<p>Die Funktion gibt an, dass die Zeile mit dem Index <code>3</code> ein Duplikat ist. Wir können wegen der kleinen Größe des Datensatzes direkt sehen, dass das Duplikat im Zeilenindex 1 befindet. Bei größeren Datensätzen ist dies oft nicht mehr mit dem bloßen Auge möglich. Wir können dann etwas anders vorgehen, um uns die Duplikate anzeigen zu lassen. Wir lassen uns über den Parameter <code>keep=False</code> die Zeilen aller Duplikate anzeigen und filtern anschließend den Datensatz nach genau diesen Zeilen.</p>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>idx <span class="op">=</span> example.duplicated(keep<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>example[idx]</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Spalte A</th>
+      <th>Spalte B</th>
+      <th>Spalte C</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>Katze</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2</td>
+      <td>Katze</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Unser Datensatz beinhaltet also einen doppelten Eintrag. Wir müssen nun entscheiden, ob wir diesen Eintrag entfernen wollen oder nicht. In diesem Fall ist es sinnvoll, den doppelten Eintrag zu entfernen, da wir in der Regel davon ausgehen, dass die Daten nur einmal erfasst wurden. Wir können dies mit der Methode <code>drop_duplicates()</code> tun.</p>
+<p>Die Methode <code>drop_duplicates()</code> dient dazu, Duplikate in Zeilen eines DataFrames zu entfernen. Standardmäßig werden alle Spalten berücksichtigt und der erste Datensatz eines doppelten Datensatz behalten. Auch hier kann eine Teilmenge von Spalten angeben, die bei der Suche nach Duplikaten berücksichtigt werden soll. Zusätzlich kann auch hier angegeben werden, ob der erste, letzte oder alle Datensätze des doppelten Datensatezs gelöscht werden soll.</p>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>example <span class="op">=</span> example.drop_duplicates()</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>example</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Spalte A</th>
+      <th>Spalte B</th>
+      <th>Spalte C</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Hund</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>Katze</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>Vogel</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>Fisch</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>5</td>
+      <td>Vogel</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="page-columns page-full"><p>Der Datensatz im Zeilenindex <code>3</code> wurde entfernt. Wir erkennen dies auch schon daran, dass der Index <code>3</code> nicht mehr vorhanden ist. Dies kann jedoch oft auch zu Problemen führen, da die Indizes nicht mehr fortlaufend sind. Wir können dies mit der Methode <code>reset_index()</code> beheben.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p><div class="no-row-height column-margin column-container"><li id="fn4"><p><sup>4</sup>&nbsp;Hinweis: wir hätten diesen Schritt auch gleich mit dem Löschen der Duplikate durchführen können, indem wir bei der Funktion <code>drop_duplicates()</code> den Parameter <code>ignore_index=True</code> angegeben hätten.</p></li></div></div>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>example <span class="op">=</span> example.reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>example</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Spalte A</th>
+      <th>Spalte B</th>
+      <th>Spalte C</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Hund</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>Katze</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>Vogel</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>Fisch</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>Vogel</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+<code>duplicated()</code> und <code>drop_duplicates()</code>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Die Funktionen <code>duplicated()</code> und <code>drop_duplicates</code> haben zwei wichtige Parameter (<code>drop_), die wir angeben können. Der erste Parameter ist</code>subset<code>, mit dem wir angeben, in welchen Spalten wir nach Duplikaten suchen wollen. Der zweite Parameter ist</code>keep`, mit dem wir angeben, ob wir die erste, die letzte oder alle Zeilen eines Duplikats identifizieren möchten.</p>
+<p>Beispiel: Wir wollen nur Duplikate in den Spalten <code>Spalte A</code> und <code>Spalte C</code> finden und nur die erste Zeile eines Duplikats identifizieren.</p>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>example.duplicated(subset<span class="op">=</span>[<span class="st">"Spalte A"</span>, <span class="st">"Spalte C"</span>], keep<span class="op">=</span><span class="st">"last"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<pre><code>0    False
+1    False
+2    False
+3    False
+4    False
+dtype: bool</code></pre>
+</div>
+</div>
+<p>Die Funktion <code>drop_duplicates()</code> hat darüber hinaus noch den Parameter <code>ignore_index</code>, mit dem wir angeben können, ob wir die Indizes neu nummerieren wollen oder nicht.</p>
+<p>Beispiel: wir wollen die Duplikate in den Spalten <code>Spalte A</code> und <code>Spalte C</code> finden und nur die erste Zeile eines Duplikats identifizieren. Zusätzlich wollen wir die Indizes neu nummerieren.</p>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>example.drop_duplicates(subset<span class="op">=</span>[<span class="st">"Spalte A"</span>, <span class="st">"Spalte C"</span>], </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                        keep<span class="op">=</span><span class="st">"last"</span>, ignore_index<span class="op">=</span><span class="va">True</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Spalte A</th>
+      <th>Spalte B</th>
+      <th>Spalte C</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Hund</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>Katze</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>Vogel</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>Fisch</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>Vogel</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p><strong>Beispiel 2: Duplikate in Spalten identifizieren und entfernen</strong></p>
+<p>Die Identifikation von identischen Spalten ist etwas schwieriger, da es hierfür keine vorgefertigte Funktion gibt. Hintergrund hierfür ist, dass diese Art des “Fehlers” nicht so schwerwiegend ist, wie Duplikate in Zeilen, da wir Spalten üblicherweise explizit auswählen, Zeilen jedoch im Rahmen einer Aggregation unbewusst berücksichtigt werden können.</p>
+<p>Wir können Spalten nicht über die doppelte Bezeichnung identifizieren, da dies in Pandas nicht erlaubt ist. Spalten müssen eine einzigartige Bezeichnung haben. Falls dies nicht der Fall ist, wird die Spalte mit den neuen Werten überschrieben. Der untenstehende Code prouziert z.B. einen DataFrame mit drei Spalten, weil <code>Spalte A</code> schlicht mit dem neuen Wert überschrieben wird.</p>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>pd.DataFrame({<span class="st">"Spalte A"</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>],</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>                        <span class="st">"Spalte B"</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>],</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>                        <span class="st">"Spalte A"</span>: [<span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>],</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>                        <span class="st">"Spalte C"</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]})</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Spalte A</th>
+      <th>Spalte B</th>
+      <th>Spalte C</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>6</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>7</td>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>8</td>
+      <td>3</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>9</td>
+      <td>4</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>10</td>
+      <td>5</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="page-columns page-full"><p>Um Spalten mit identischem Inhalt zu identifizieren, können wir jedoch einen Trick anwenden.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> Wir können den Datensatz transponieren (d.h. wir tauschen Zeilen und Spalten eines Datensatzes), um anschließend die doppelten Zeilen zu dentifizieren, d.h. so vorzugehen, wie wir es beim vorherigen Ansatz kennengelernt haben.</p><div class="no-row-height column-margin column-container"><li id="fn5"><p><sup>5</sup>&nbsp;Hinweis: der Trick ist nicht besonders elegant oder effizient und sollte insbesondere bei sehr großen Datensätzen nicht angewandt werden.</p></li></div></div>
+<p>Lassen Sie uns unseren Beispieldatensatz <code>example</code> zunächst transponieren, um zu sehen, was wir erreichen wollen. Wir erreichen dies mit der Methode <code>transpose()</code> (oder Kurzschreibweise <code>T</code>) erreichen.</p>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>example.transpose()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Spalte A</th>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>Spalte B</th>
+      <td>Hund</td>
+      <td>Katze</td>
+      <td>Vogel</td>
+      <td>Fisch</td>
+      <td>Vogel</td>
+    </tr>
+    <tr>
+      <th>Spalte C</th>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Im Beispieldatensatz konnten wir sofort erkennen, dass die Spalten <code>Spalte A</code> und <code>Spalte C</code> inhaltlich identisch sind. Nach dem Transponieren sind es die Zeilen, die identisch sind. Wir können jetzt wie oben beschrieben die doppelten Zeilen identifizieren und entfernen. Im Anschluss transponieren wir den Datensatz wieder, um das ursprüngliche Spaltenformat wiederherzustellen.</p>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>example <span class="op">=</span> example.transpose().drop_duplicates().transpose()</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>example</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Spalte A</th>
+      <th>Spalte B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Hund</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>Katze</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>Vogel</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>Fisch</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>Vogel</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Das obige Beispiel verdeutlicht außerdem, dass eine hilfreiche Funktionalität von DataFrames: wir können Methoden aneinanderketten. Wir können also eine Methode anwenden und das Ergebnis einer weiteren Methode übergeben. In unserem Beispiel haben wir unser Ziel in drei Schritten erreicht:</p>
+<ol type="1">
+<li>Datensatz transponieren (mit <code>transpose()</code>)</li>
+<li>Doppelte Zeilen identifizieren (mit <code>drop_duplicates()</code>)</li>
+<li>Datensatz wieder in Ursprungsformat transponieren (mit <code>transpose()</code>)</li>
+</ol>
+<p>Eine übliche Schreibweise für Methodenketten nutzt die <code>(.)</code>-Notation. Wir können also auch folgenden Code schreiben:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>example <span class="op">=</span> (example</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>           .transpose() <span class="co"># Transponieren des Datensatzes</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>           .drop_duplicates() <span class="co"># Doppelte Zeilen löschen (ursprünglich Spalten)</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>           .transpose() <span class="co"># Transponieren des Datensatzes (zurück in Ursprungsformat)</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>          )</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Beim obigen Code spricht man auch vom <strong>Method-Chaining</strong>. Wir werden diese Konzept noch sehr häufig anwenden, wenn wir mit DataFrames arbeiten. Es hilft komplexe Datenaufbereitungen zu strukturieren und zu vereinfachen.</p>
+<p><strong>Beispiel 3: Duplikate in Spalten identifizieren und entfernen</strong></p>
+<p>Ein weiteres Beispiel für “Fehler” oder Inkonsistenzen innerhalb eines Datensatzes, ist die Dopplung von Werten, die eigentlich einzigartig sein sollten. Hier gilt es dann zu prüfen, wie mit einer solchen Dopplung umzugehen ist. Nicht immer bedeutet dies, dass der Datensatz fehlerhaft ist.</p>
+<p>Lassen Sie uns ein Beispiel betrachten. Wir haben einen Datensatz mit Projekten, die von einer Firma durchgeführt wurden. Jedes Projekt hat eine einzigartige ID und einen Namen. Die Kosten für jedes Projekt sind ebenfalls in der Tabelle enthalten.</p>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>example <span class="op">=</span> pd.DataFrame({<span class="st">"Unique_ID"</span>: [<span class="st">"A1"</span>, <span class="st">"B1"</span>, <span class="st">"C1"</span>, <span class="st">"D1"</span>, <span class="st">"E1"</span>],</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Projektname"</span>: [<span class="st">"Projekt A"</span>, <span class="st">"Projekt B"</span>, <span class="st">"Projekt A"</span>, <span class="st">"Projekt D"</span>, <span class="st">"Projekt E"</span>],</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Kosten"</span>: [<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">300</span>, <span class="dv">400</span>, <span class="dv">500</span>],</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>                          })</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>example</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Unique_ID</th>
+      <th>Projektname</th>
+      <th>Kosten</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>A1</td>
+      <td>Projekt A</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>B1</td>
+      <td>Projekt B</td>
+      <td>200</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>C1</td>
+      <td>Projekt A</td>
+      <td>300</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>D1</td>
+      <td>Projekt D</td>
+      <td>400</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>E1</td>
+      <td>Projekt E</td>
+      <td>500</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Betrachtet man den Datensatz, so stellt man fest, dass das Projekt mit dem Namen “Projekt A” zwei Mal vorkommt. Hierbei muss es sich nicht zwangsläufig um einen Fehler handeln. Namen sind eben gerade nicht einzigartig, so dass es durchaus sein kann, dass zwei Projekte den gleichen Namen haben. Jedoch ist es wichtig, sich über die Dopplung im Klaren zu sein, da wir spätestens bei der Analyse des Datensatzes auf Probleme stoßen werden (z.B. wenn wir die Kosten pro Projekt nicht eindeutig zuordnen können). In Realität haben wir es häufig mit größeren Datenmengen zu tun, die wir nicht manuell durchsehen können. Daher ist es wichtig, dass wir solche Inkonsistenzen identifizieren, um dann zu entscheiden, wie wir damit umgehen.</p>
+<p>Wir können einfach feststellen, ob eine Spalte nur einzigartige Werte beinhaltet, in dem wir testen, ob die Anzahl an Duplikaten in der Spalte gleich Null ist. Wir können dies mit der Funktion <code>sum</code> oder <code>any</code> tun.</p>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>example[<span class="st">"Projektname"</span>].duplicated().<span class="bu">sum</span>() </span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<pre><code>1</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>example[<span class="st">"Projektname"</span>].duplicated().<span class="bu">any</span>()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<pre><code>True</code></pre>
+</div>
+</div>
+<p>Wir können auch direkt die einzigartigen Werte mit der Methode <code>.unique()</code> identifizieren. Diese Methode gibt uns eine Liste mit allen einzigartigen Werten in der Spalte zurück.</p>
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>uniques <span class="op">=</span> example[<span class="st">"Projektname"</span>].unique()</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>uniques</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<pre><code>array(['Projekt A', 'Projekt B', 'Projekt D', 'Projekt E'], dtype=object)</code></pre>
+</div>
+</div>
+<p>Wenn wir nun die Länge der Liste mit den einzigartigen Werten mit der Länge des ursprünglichen DataFrames vergleichen, können wir feststellen, ob es Duplikate gibt.</p>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(uniques) <span class="op">==</span> <span class="bu">len</span>(example)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
+<pre><code>False</code></pre>
+</div>
+</div>
+<p>Lassen Sie uns nun zurück zur <strong>Bau und Werken GmbH</strong> gehen.</p>
+<div class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>id</th>
+      <th>name</th>
+      <th>beginn</th>
+      <th>ende_plan</th>
+      <th>ende_ist</th>
+      <th>kosten_plan</th>
+      <th>kosten_ist</th>
+      <th>team</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>P-62602</td>
+      <td>Stadtpark // Eberhardtallee</td>
+      <td>2013-10-15</td>
+      <td>2013-12-26</td>
+      <td>2013-12-25</td>
+      <td>109129.55</td>
+      <td>130487.07</td>
+      <td>Team 4</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>P-80374</td>
+      <td>Spielplatz // Geißlerweg</td>
+      <td>2016-07-14</td>
+      <td>2016-09-20</td>
+      <td>2016-09-22</td>
+      <td>59521.33</td>
+      <td>66009.97</td>
+      <td>Team 4</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>P-96379</td>
+      <td>Spielplatz // Schäferring</td>
+      <td>2019-06-14</td>
+      <td>2019-06-16</td>
+      <td>2019-06-29</td>
+      <td>82572.27</td>
+      <td>107571.64</td>
+      <td>Team 2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>P-31809</td>
+      <td>Baumbestand // Raphaela-Scheel-Platz</td>
+      <td>2019-02-06</td>
+      <td>2019-02-11</td>
+      <td>2019-02-11</td>
+      <td>29563.59</td>
+      <td>29724.17</td>
+      <td>Team 1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>P-51445</td>
+      <td>Landschaftsbau // Julia-Neureuther-Platz</td>
+      <td>2015-04-26</td>
+      <td>2015-05-16</td>
+      <td>2015-05-20</td>
+      <td>38315.35</td>
+      <td>53783.40</td>
+      <td>Team 3</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="was-noch" class="level3">
+<h3 class="anchored" data-anchor-id="was-noch">WAS NOCH:</h3>
+<ul>
+<li>Duplikate innerhalb einer Variable identifizieren</li>
+<li>Anwendung auf eigenen Datensatz</li>
+<li>genutzte Funktionen und Methoden zusammenfassen</li>
+</ul>
+</section>
+</section>
+<section id="genutzte-funktionen-und-methoden" class="level2">
+<h2 class="anchored" data-anchor-id="genutzte-funktionen-und-methoden">Genutzte Funktionen und Methoden</h2>
+<ul>
+<li><code>pd.DataFrame()</code>: Erzeugen eines DataFrames</li>
+<li><code>.read_csv()</code>: Einlesen eines CSV-Files (<a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html">siehe hier</a>)</li>
+<li><code>.drop_duplicates()</code>: Entfernen von Duplikaten (<a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.drop_duplicates.html">siehe hier</a>)</li>
+<li><code>.duplicated()</code>: Identifizieren von Duplikaten (<a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.duplicated.html">siehe hier</a>)</li>
+<li><code>.reset_index()</code>: Wiederherstellen der Indizes (<a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.reset_index.html">siehe hier</a>)</li>
+<li><code>.transpose()</code>: Transponieren eines DataFrames (<a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.transpose.html">siehe hier</a>)</li>
+</ul>
+
+
 </section>
 
 

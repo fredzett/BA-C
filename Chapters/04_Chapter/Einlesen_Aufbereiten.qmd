@@ -60,7 +60,7 @@ Dies ist zunächst etwas verwirrend und ungewohnt. Jedoch ist Python hier sehr k
 
 Beginnen wir mit der Aufbereitung der Daten. 
 
-### Datentypen
+### Datentypen anpassen
 
 Wir schauen dafür zunächst, ob die Datentypen der Spalten passen. 
 
@@ -129,3 +129,202 @@ df = df.rename(columns={'Project_ID': 'id', # Spalte "Projekt_ID" wird umbenannt
 df.head()
 ```
 
+### "Fehler" finden
+
+Wir haben bereits festgestellt, dass unser Datensatz keine fehlenden Werte enthält.^[Man bezeichnet fehlende Werte auch als "Not a number"-Werten sog. `NaN`s.] Diese kommen in der Praxis sehr häufig vor, weil z.B. Daten nicht erfasst wurden oder Daten nicht vollständig sind. Das Fehlen von Werten ist meist eine offensichtlicher "Fehler".  Andere "Fehler" sind oft nicht so offensichtlich und können sich in den Daten verstecken. Bei diesen "Fehlern" handelt es sich oft um Ausreißer oder Ungereimtheiten, auf die man oft auch erst im Rahmen der Analyse stößt (insb. durch Visualisierung der Daten). Auch haben wir den Begriff "Fehler" bewusst in Anführungszeichen gesetzt, da es sich hierbei nicht immer um fehlerhafte Daten handelt. Manchmal sind die Daten einfach nur ungewöhnlich oder erfordern eine andere Interpretation oder genauere Analyse. Die Entscheidung, wie mit diesen "Fehlern" umgegangen wird, ist abhängig von der Aufgabenstellung, vom Datensatz und von der Analyse. 
+
+Lassen Sie uns nun ein Beispiel für einen solchen "Fehler" betrachten und dann entscheiden, wir wir damit im Rahmen der Analyse umgehen. Dazu müssen wir uns zunächst die Daten genauer anschauen. Wir werden uns auf zwei potentielle "Fehler" konzentrieren:
+
+1. Duplikate oder doppelte Einträge
+2. Ausreißer in den Daten
+
+#### Duplikate identifizieren
+
+Duplikate sind doppelte Einträge in den Daten. Sie können entstehen, wenn z.B. Daten mehrfach erfasst wurden oder wenn Daten aus verschiedenen Quellen zusammengeführt wurden. Duplikate können zu Problemen führen, wenn wir die Daten aggregieren oder zusammenführen wollen. Daher ist es sinnvoll, Duplikate zu identifizieren und (meistens) zu entfernen. 
+
+Wir unterscheiden zwischen drei Arten von Duplikaten:
+
+1. Duplikate in den Zeilen, d.h. doppelte Datenpunkte (z.B. zwei Einträge für das gleiche Projekt)
+2. Duplikate in den Spalten, d.h. doppelte Variablen (z.B. zwei Spalten in denen die gleichen Daten enthalten sind)
+3. Duplikate innerhalb einer Variable, d.h. eigentlich einzigartige Werte tretten doppelt auf (z.B. zwei Projekte mit dem gleichen Namen)
+
+Die Punkte 1 und 2 führen nahezu immer dazu, dass man die doppelten Zeilen oder Spalten aus dem Datensatz löscht. Bei Punkt 3 ist es teilweise sinnvoll, die doppelten Werte neu zu bezeichnen oder zu kodieren. Die Beurteilung des Sachverhalts erfordert jedoch ein Verständnis der Daten und der Aufgabenstellung.
+
+Lassen Sie uns für die nachfolgenden zwei Beispiele zunächst einen kleinen Beispiel-Datensatz erstellen:
+
+```{python}
+example = pd.DataFrame({'Spalte A': [1, 2, 3, 2, 4, 5],
+                   'Spalte B': ['Hund', 'Katze', 'Vogel', 'Katze', 'Fisch', 'Vogel'],
+                   'Spalte C': [1, 2, 3, 2, 4, 5]})
+example.head()
+```
+
+__Beispiel 1: Duplikate in Zeilen identifizieren und entfernen__ 
+
+Wir können die Methode `duplicated()` nutzen, um Duplikate in Zeilen eines DataFrames zu __identifizieren__. Sie gibt eine Boolesche Reihe (True, False, True etc.) zurück, die angibt, ob eine Zeile ein Duplikat ist oder nicht. Standardmäßig werden dabei alle Spalten berücksichtigt, jedoch kann auch eine Teilmenge von Spalten angegeben werden, die bei der Suche nach Duplikaten berücksichtigt werden soll. 
+
+
+```{python}
+example.duplicated()
+```
+
+Die Funktion gibt an, dass die Zeile mit dem Index `3` ein Duplikat ist. Wir können wegen der kleinen Größe des Datensatzes direkt sehen, dass das Duplikat im Zeilenindex 1 befindet. Bei größeren Datensätzen ist dies oft nicht mehr mit dem bloßen Auge möglich. Wir können dann etwas anders vorgehen, um uns die Duplikate anzeigen zu lassen. Wir lassen uns über den Parameter `keep=False` die Zeilen aller Duplikate anzeigen und filtern anschließend den Datensatz nach genau diesen Zeilen. 
+
+```{python}
+idx = example.duplicated(keep=False)
+example[idx]
+```
+
+Unser Datensatz beinhaltet also einen doppelten Eintrag. Wir müssen nun entscheiden, ob wir diesen Eintrag entfernen wollen oder nicht. In diesem Fall ist es sinnvoll, den doppelten Eintrag zu entfernen, da wir in der Regel davon ausgehen, dass die Daten nur einmal erfasst wurden. Wir können dies mit der Methode `drop_duplicates()` tun.
+
+Die Methode `drop_duplicates()` dient dazu, Duplikate in Zeilen eines DataFrames zu entfernen. Standardmäßig werden alle Spalten berücksichtigt und der erste Datensatz eines doppelten Datensatz behalten. Auch hier kann eine Teilmenge von Spalten angeben, die bei der Suche nach Duplikaten berücksichtigt werden soll. Zusätzlich kann auch hier angegeben werden, ob der erste, letzte oder alle Datensätze des doppelten Datensatezs gelöscht werden soll. 
+
+
+```{python}
+example = example.drop_duplicates()
+example
+```
+
+Der Datensatz im Zeilenindex `3` wurde entfernt. Wir erkennen dies auch schon daran, dass der Index `3` nicht mehr vorhanden ist. Dies kann jedoch oft auch zu Problemen führen, da die Indizes nicht mehr fortlaufend sind. Wir können dies mit der Methode `reset_index()` beheben.^[Hinweis: wir hätten diesen Schritt auch gleich mit dem Löschen der Duplikate durchführen können, indem wir bei der Funktion `drop_duplicates()` den Parameter `ignore_index=True` angegeben hätten.]
+
+```{python}
+example = example.reset_index(drop=True)
+example
+```
+
+
+
+::: {.callout-tip collapse="true"}
+
+## `duplicated()` und `drop_duplicates()`
+
+Die Funktionen `duplicated()` und `drop_duplicates` haben zwei wichtige Parameter (`drop_), die wir angeben können. Der erste Parameter ist `subset`, mit dem wir angeben, in welchen Spalten wir nach Duplikaten suchen wollen. Der zweite Parameter ist `keep`, mit dem wir angeben, ob wir die erste, die letzte oder alle Zeilen eines Duplikats identifizieren möchten.
+
+Beispiel: Wir wollen nur Duplikate in den Spalten `Spalte A` und `Spalte C` finden und nur die erste Zeile eines Duplikats identifizieren. 
+
+```{python}
+example.duplicated(subset=["Spalte A", "Spalte C"], keep="last")
+```
+
+Die Funktion `drop_duplicates()` hat darüber hinaus noch den Parameter `ignore_index`, mit dem wir angeben können, ob wir die Indizes neu nummerieren wollen oder nicht.
+
+Beispiel: wir wollen die Duplikate in den Spalten `Spalte A` und `Spalte C` finden und nur die erste Zeile eines Duplikats identifizieren. Zusätzlich wollen wir die Indizes neu nummerieren. 
+
+```{python}
+example.drop_duplicates(subset=["Spalte A", "Spalte C"], 
+                        keep="last", ignore_index=True)
+```
+
+:::
+
+
+__Beispiel 2: Duplikate in Spalten identifizieren und entfernen__
+
+Die Identifikation von identischen Spalten ist etwas schwieriger, da es hierfür keine vorgefertigte Funktion gibt. Hintergrund hierfür ist, dass diese Art des "Fehlers" nicht so schwerwiegend ist, wie Duplikate in Zeilen, da wir Spalten üblicherweise explizit auswählen, Zeilen jedoch im Rahmen einer Aggregation unbewusst berücksichtigt werden können.
+
+ Wir können Spalten nicht über die doppelte Bezeichnung identifizieren, da dies in Pandas nicht erlaubt ist. Spalten müssen eine einzigartige Bezeichnung haben. Falls dies nicht der Fall ist, wird die Spalte mit den neuen Werten überschrieben. Der untenstehende Code prouziert z.B. einen DataFrame mit drei Spalten, weil `Spalte A` schlicht mit dem neuen Wert überschrieben wird.
+
+```{python}
+pd.DataFrame({"Spalte A": [1, 2, 3, 4, 5],
+                        "Spalte B": [1, 2, 3, 4, 5],
+                        "Spalte A": [6, 7, 8, 9, 10],
+                        "Spalte C": [1, 2, 3, 4, 5]})
+```
+
+Um Spalten mit identischem Inhalt zu identifizieren, können wir jedoch einen Trick anwenden.^[Hinweis: der Trick ist nicht besonders elegant oder effizient und sollte insbesondere bei sehr großen Datensätzen nicht angewandt werden.] Wir können den Datensatz transponieren (d.h. wir tauschen Zeilen und Spalten eines Datensatzes), um anschließend die doppelten Zeilen zu dentifizieren, d.h. so vorzugehen, wie wir es beim vorherigen Ansatz kennengelernt haben. 
+
+Lassen Sie uns unseren Beispieldatensatz `example` zunächst transponieren, um zu sehen, was wir erreichen wollen. Wir erreichen dies mit der Methode `transpose()` (oder Kurzschreibweise `T`) erreichen. 
+
+```{python}
+example.transpose()
+```
+
+Im Beispieldatensatz konnten wir sofort erkennen, dass die Spalten `Spalte A` und `Spalte C` inhaltlich identisch sind. Nach dem Transponieren sind es die Zeilen, die identisch sind. Wir können jetzt wie oben beschrieben die doppelten Zeilen identifizieren und entfernen. Im Anschluss transponieren wir den Datensatz wieder, um das ursprüngliche Spaltenformat wiederherzustellen.
+
+```{python}
+example = example.transpose().drop_duplicates().transpose()
+example
+```
+
+Das obige Beispiel verdeutlicht außerdem, dass eine hilfreiche Funktionalität von DataFrames: wir können Methoden aneinanderketten. Wir können also eine Methode anwenden und das Ergebnis einer weiteren Methode übergeben. In unserem Beispiel haben wir unser Ziel in drei Schritten erreicht: 
+
+1. Datensatz transponieren (mit `transpose()`)
+2. Doppelte Zeilen identifizieren (mit `drop_duplicates()`)
+3. Datensatz wieder in Ursprungsformat transponieren (mit `transpose()`)
+
+Eine übliche Schreibweise für Methodenketten nutzt die `(.)`-Notation. Wir können also auch folgenden Code schreiben:
+
+```{.python}
+example = (example
+           .transpose() # Transponieren des Datensatzes
+           .drop_duplicates() # Doppelte Zeilen löschen (ursprünglich Spalten)
+           .transpose() # Transponieren des Datensatzes (zurück in Ursprungsformat)
+          )
+```
+
+Beim obigen Code spricht man auch vom __Method-Chaining__. Wir werden diese Konzept noch sehr häufig anwenden, wenn wir mit DataFrames arbeiten. Es hilft komplexe Datenaufbereitungen zu strukturieren und zu vereinfachen.
+
+__Beispiel 3: Duplikate in Spalten identifizieren und entfernen__
+
+Ein weiteres Beispiel für "Fehler" oder Inkonsistenzen innerhalb eines Datensatzes, ist die Dopplung von Werten, die eigentlich einzigartig sein sollten. Hier gilt es dann zu prüfen, wie mit einer solchen Dopplung umzugehen ist. Nicht immer bedeutet dies, dass der Datensatz fehlerhaft ist. 
+
+Lassen Sie uns ein Beispiel betrachten. Wir haben einen Datensatz mit Projekten, die von einer Firma durchgeführt wurden. Jedes Projekt hat eine einzigartige ID und einen Namen. Die Kosten für jedes Projekt sind ebenfalls in der Tabelle enthalten. 
+
+```{python}
+example = pd.DataFrame({"Unique_ID": ["A1", "B1", "C1", "D1", "E1"],
+                          "Projektname": ["Projekt A", "Projekt B", "Projekt A", "Projekt D", "Projekt E"],
+                          "Kosten": [100, 200, 300, 400, 500],
+                          })
+example
+```
+
+Betrachtet man den Datensatz, so stellt man fest, dass das Projekt mit dem Namen "Projekt A" zwei Mal vorkommt. Hierbei muss es sich nicht zwangsläufig um einen Fehler handeln. Namen sind eben gerade nicht einzigartig, so dass es durchaus sein kann, dass zwei Projekte den gleichen Namen haben. Jedoch ist es wichtig, sich über die Dopplung im Klaren zu sein, da wir spätestens bei der Analyse des Datensatzes auf Probleme stoßen werden (z.B. wenn wir die Kosten pro Projekt nicht eindeutig zuordnen können). In Realität haben wir es häufig mit größeren Datenmengen zu tun, die wir nicht manuell durchsehen können. Daher ist es wichtig, dass wir solche Inkonsistenzen identifizieren, um dann zu entscheiden, wie wir damit umgehen.
+
+Wir können einfach feststellen, ob eine Spalte nur einzigartige Werte beinhaltet, in dem wir testen, ob die Anzahl an Duplikaten in der Spalte gleich Null ist. Wir können dies mit der Funktion `sum` oder `any` tun. 
+
+
+```{python}
+example["Projektname"].duplicated().sum() 
+```
+
+```{python}
+example["Projektname"].duplicated().any()
+```
+
+
+Wir können auch direkt die einzigartigen Werte mit der Methode `.unique()` identifizieren. Diese Methode gibt uns eine Liste mit allen einzigartigen Werten in der Spalte zurück. 
+
+```{python}
+uniques = example["Projektname"].unique()
+uniques
+```
+
+Wenn wir nun die Länge der Liste mit den einzigartigen Werten mit der Länge des ursprünglichen DataFrames vergleichen, können wir feststellen, ob es Duplikate gibt. 
+
+```{python}
+len(uniques) == len(example)
+```
+
+Lassen Sie uns nun zurück zur __Bau und Werken GmbH__ gehen. 
+
+```{python}
+df.head()
+```
+
+
+
+
+### WAS NOCH:
+- Duplikate innerhalb einer Variable identifizieren
+- Anwendung auf eigenen Datensatz
+- genutzte Funktionen und Methoden zusammenfassen
+
+
+## Genutzte Funktionen und Methoden
+
+- `pd.DataFrame()`: Erzeugen eines DataFrames
+- `.read_csv()`: Einlesen eines CSV-Files ([siehe hier](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html))
+- `.drop_duplicates()`: Entfernen von Duplikaten ([siehe hier](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.drop_duplicates.html))
+- `.duplicated()`: Identifizieren von Duplikaten ([siehe hier](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.duplicated.html))
+- `.reset_index()`: Wiederherstellen der Indizes ([siehe hier](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.reset_index.html))
+- `.transpose()`: Transponieren eines DataFrames ([siehe hier](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.transpose.html))
