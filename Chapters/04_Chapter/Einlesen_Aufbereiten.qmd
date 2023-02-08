@@ -1,14 +1,44 @@
 # Einlesen und Aufbereiten
 
+::: {.callout-note collapse="false" icon="false"}
+
+## Modul Pandas
+
+Wir werden im Rahmen unserer Analyse(n) verschiedene Module / Bibliotheken und Funktionalitäten Pythons kennenlernen. Eine der wichtigsten Bibliotheken ist `pandas`. Wir bezeichnen `pandas` als das Schweizer Taschenmesser der Datenanalyse, weil es ein mächtiges und vielseitiges Werkzeug für Datenanalyse und -verarbeitung in Python ist. Pandas bietet für nahezu alle gängigen Anforderungen - sei es Datenimport, Datenbereinigung, Datentransformation und -analyse oder sogar Visualisierung - nützliche Funktionalitäten. Die Palette an Funktionalitäten ist so umfangreich, dass wir diese unmöglich alle vorstellen können. Wir glauben auch nicht, dass dies didaktisch sinnvoll ist. Stattdessen werden wir geeignete Funktionen immer dann vorstellen, wenn wir sie für unsere Analyse benötigen. Viele der vorgestellten Funktionen bieten Funktionalitäten an, die wir nicht nutzen. Es ist deshalb sinnvoll, dass Sie sich die Dokumentation der Funktionen anschauen, wenn Sie diese für Ihre Analyse benötigen. Die Dokumentation finden Sie [hier](https://pandas.pydata.org/pandas-docs/stable/reference/index.html).
+
+Für einen ersten kurzen und durchaus unvollständigen Überblick über die Funktionalitäten von Pandas verweisen wir auf den Anhang @sec-pandas.
+
+:::
+
 ## Einlesen und ersten Überblick verschaffen
 
-Beginnen wir mit der Analyse, in dem wir die Daten zunächst einlesen und aufbereiten. Dazu verwenden wir die Funktion `read_csv()` aus dem Paket `pandas`.^[Hinweis: wir werden die für die Fallstudie(n) benötigten Funktionalitäten immer dann vorstellen und erläutern, wenn wir diese benötigen. Für einen gesamthaften Überblick zum Modul Pandas verweisen wir auf den Anhang @sec-pandas.] Die Funktion `read_csv()` erwartet als Argument den Pfad zur CSV-Datei, die eingelesen werden soll. Darüber hinaus können noch viele weitere Parameter übergeben werden (z.B. welche Spalten wir einlesen möchten, welches Datenformat wir verwenden, welches Dezimalkomma wir verwenden, etc.).
+Beginnen wir mit der Analyse, in dem wir die Daten zunächst einlesen und aufbereiten. Dazu verwenden wir  `read_csv()` aus dem Paket `pandas`. Bei `read_csv()` handelt es sich um eine __Funktion__^[genauer gesagt, um eine Methode eines Objektes.], der verschiedene Parameter übergeben werden können. 
 
-Die Funktion gibt ein sogenanntes `DataFrame` zurück, das wir in der Variable `df` speichern. Ein `DataFrame` ist eine Datenstruktur, die in der Regel Tabellen repräsentiert. In unserem Fall enthält das `DataFrame` die Daten aus der CSV-Datei. Prinzipiell können wir nahezu jedes gängige Format einlesen, das Pandas unterstützt. Eine vollständige Liste der unterstützten Formate finden Sie in der Dokumentation von Pandas.^[siehe [hier](https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html)]
+::: {.callout-tip collapse="true" icon="false"}
+
+## Was sind Funktionen?
+
+Eine Funktion ist ein Teil eines Programms, der eine bestimmte Aufgabe erfüllt. Wir können Funktionen einsetzen, um Teile des Codes wiederverwendbar zu machen bzw. um bereits geschriebenen Code von anderen wiederzuverwenden. Das Konstrukt ist sehr mächtig und wir werden sowohl bereits implementierte Funktionen nutzen (wie alle Funktionen, die `pandas` bereitstellt), als auch eigene Funktionen schreiben lernen.
+
+Lassen Sie uns eine Analogie aus Excel nutzen. Stellen Sie sich vor, wir haben eine Spalte mit vielen Werten und wir wollen wissen, um wieviele Werte es sich handelt, d.h. wir wollen die Anzahl an Werten bestimmen. Wir könnten diese Information z.B. benötigen, um einen Durchschnitt zu berechnen.
+
+![](../../_assets/RndNumbers.png){fig-align="center"}
+
+Natürlich könnten wir die Anzahl an Werten selber und manuell zählen (es sind 10 Werte). Diese Lösung ist aber wenig sinnvoll, da wir so einen manuellen Schritt in unser “Programm” einbauen. Besser wäre es, wenn wir die Anzahl an Werten automatisiert bestimmen. Wir könnten uns über diese eigentlich triviale Aufgabe nun Gedanken machen. Jedoch müssen wir dies nicht, da es für diese spezielle Frage bereits eine Lösung in Excel gibt. Wir können die Funktion `Anzahl()` nutzen, die Excel bzw. Microsoft bereits für den Anwender zur Verfügung gestellt hat. Die Funktion berechnet, wie viele Zellen in einem Bereich Zahlen enthalten.
+
+![](../../_assets/RndNumbers_Solution.png){fig-align="center"}
+
+Ein Großteil der Funktionalität von Excel geht auf die breite Palette an bereits verfügbaren Funktionen zurück. Gleiches gilt für Python. Wir können uns die Arbeit von anderen Anwendern zu Nutze machen und die bereits implementierten Funktionen nutzen. 
+
+Eine Funktion in Python ist prinzipiell sehr ähnlich zu einer Funktion in Excel. Eine Funktion hat einen Namen, der sie eindeutig identifiziert. Außerdem hat sie Parameter, die sie benötigt, um ihre Aufgabe zu erfüllen. Die Funktion `Anzahl()` in Excel hat einen Parameter, der den Bereich angibt, in dem die Anzahl an Zahlen bestimmt werden soll. Die Funktion `read_csv()` in Python hat einen Parameter, der den Pfad zur Datei angibt, die eingelesen werden soll. Sowohl in Excel, als auch in Python gibt es Funktionen mit optionalen Parametern, die nicht zwingend angegeben werden müssen. Die Funktion `Anzahl()` in Excel hat einen optionalen Parameter, der angibt, ob auch leere Zellen gezählt werden sollen. Die Funktion `read_csv()` in Python hat eine Vielzahl von optionalen Parameter, die der Anwender beim Einlesen von Daten ggf. nutzen möchte oder muss (z.B. welche Spalten wir einlesen möchten, welches Datenformat wir verwenden, welches Dezimalkomma wir verwenden, etc.).
+
+:::
+
+Der wichtigste (und einzige zwingend notwendige) Paramerter ist der __Pfad zur Datei__, die eingelesen werden soll. In unserem Fall ist der Pfad `../../_data/Construction.csv`. Der Pfad ist relativ zum aktuellen Arbeitsverzeichnis, d.h. relativ zum Ort, in der sich das Notebook, mit dem wir arbeiten befindet.^[Sofern sich die Datei in einer Cloud befindet, kann auch der Link zur Datei angegeben werden, d.h. die Datei muss nicht lokal abgespeichert sein]. Die Funktion gibt ein sogenanntes `DataFrame` zurück, das wir in der Variable `df` speichern. Ein `DataFrame` ist eine Datenstruktur, die in der Regel Tabellen repräsentiert. In unserem Fall enthält das `DataFrame` die Daten aus der CSV-Datei. Prinzipiell können wir nahezu jedes gängige Format einlesen, das Pandas unterstützt. Eine vollständige Liste der unterstützten Formate finden Sie in der Dokumentation von Pandas.^[siehe [hier](https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html)]
 
  
 
-```{python}
+```{python} 
 import pandas as pd
 
 df = pd.read_csv('../../_data/Construction.csv')
@@ -37,14 +67,14 @@ Nachdem wir uns die Daten angeschaut haben, sollten wir einen weiteren, tieferen
 df.info()
 ```
 
-Die Funktion `info()` gibt uns folgende Informationen aus:
+Die Funktion `info()` gibt an, wieviele Zeilen (`RangeIndex`) und Spalten `Data columns`) der Datensatz hat und zusätzlich noch folgende Informationen je Spalte an:
 
 - `#` Position der Spalte (beginnend bei `0`)
 - `Column` Name der Spalte
 - `Non-Null Count` Anzahl der nicht leeren Werte je Spalte
 - `Dtype` Datentyp der Spalte
 
-Wir können also sehr schnell erkennen, ob der Datensatz vollständig ist. In unserem Fall sind alle Spalten vollständig. Außerdem gibt uns die Funktion `info()` Auskunft über den Datentyp der Spalten. In unserem Fall gibt es zwei Datentypen: `object` und `float`. Der Datentyp `float` repräsentiert Gleitkommazahlen. Der Datentyp `object` repräsentiert Zeichenketten (d.h. Python interpretiert die Daten als Text). Da wir beim Einlesen der Daten keine Angabe über die Datentypen gemacht haben, hat Pandas die Datentypen automatisch ermittelt. In der Regel ist dies auch eine guter erster Ansatz. Wir sollten jedoch in einem nächsten Schritt die Datentypen überprüfen und ggf. anpassen. Denn je besser der Datentyp zum Inhalt der Spalte passt, desto besser können wir mit den Daten arbeiten. 
+Wir können mit der Funkton also einige wichtige Dinge im Rahmen der Datenaufbereitung erkennen. In unserem Fall sind z.B. nicht alle Spalten mit Werten gefüllt. Wir werden im nächsten Abschnitt detaillierter darauf eingehen. Die Spalten haben außerdem einen von zwei Datentypen: `object` und `float`. Der Datentyp `float` repräsentiert Gleitkommazahlen. Der Datentyp `object` repräsentiert Zeichenketten (d.h. Python interpretiert die Daten als Text). Da wir beim Einlesen der Daten keine Angabe über die Datentypen gemacht haben, hat Pandas die Datentypen automatisch ermittelt. In der Regel ist dies auch eine guter erster Ansatz. Wir sollten jedoch in einem nächsten Schritt die Datentypen überprüfen und ggf. anpassen. Denn je besser der Datentyp zum Inhalt der Spalte passt, desto besser können wir mit den Daten arbeiten. Außerdem können wir bereits jetzt erkennen, dass die Spaltenbezeichungen inkonsistent und teilweise unglücklich gewählt sind. Wir werden im nächsten Abschnitt detaillierter darauf eingehen.
 
 ::: {.callout-tip collapse="true"}
 
@@ -58,53 +88,11 @@ Dies ist zunächst etwas verwirrend und ungewohnt. Jedoch ist Python hier sehr k
 
 ## Aufbereitung der Daten
 
-Beginnen wir mit der Aufbereitung der Daten. 
+Beginnen wir mit der Aufbereitung der Daten. Natürlich gibt es nicht _den_ richtigen Weg, um Daten aufzubereiten. Jeder Datensatz ist unterschiedlich und nicht alle Daten sind gleich. Dennoch gibt es typische Aufgaben, die wir bei der Aufbereitung von Daten immer wieder vorfinden. Wir werden uns im Folgenden einige dieser Aufgaben ansehen und die entsprechenden Lösungen diskutieren.
 
-### Datentypen anpassen
+### Variablennamen anpassen
 
-Wir schauen dafür zunächst, ob die Datentypen der Spalten passen. 
-
-- `Project_ID`: die Spalte beinhaltet Buchstaben, Zeichen und Zahlen (z.B. P-62602). Der Datentyp `object` ist also passend.
-- `Projektname`: die Spalte beinhaltet Text. Der Datentyp `object` ist also passend. 
-- `projekt_Beginn`: die Spalte beinhaltet Datumswerte. Der Datentyp `object` ist nicht passend. Wir sollten den Datentyp in ein Datumsformat umwandeln.
-- `Plan Bau fertig`: die Spalte beinhaltet Datumswerte. Der Datentyp `object` ist nicht passend. Wir sollten den Datentyp in ein Datumsformat umwandeln.
-- `Ist_Bau_fertig`: die Spalte beinhaltet Datumswerte. Der Datentyp `object` ist nicht passend. Wir sollten den Datentyp in ein Datumsformat umwandeln.
-- `plan_Kosten`: die Spalte beinhaltet Gleitkommazahlen. Der Datentyp `float` ist passend.
-- `Ist_Kosten`: die Spalte beinhaltet Gleitkommazahlen. Der Datentyp `float` ist passend.
-- `Project_team`: die Spalte beinhaltet Text. Der Datentyp `object` ist also passend.
-
-Die Anpassung der Datumsformate können wir mit der Pandas-Funktion `to_datetime()` durchführen. Wir müssen dabei nur die Spalten angeben, die wir anpassen möchten. Die Funktion `to_datetime()` wandelt die Spalten dann in ein Datumsformate um. 
-
-```{python}
-df['projekt_Beginn'] = pd.to_datetime(df['projekt_Beginn'])
-df['Plan Bau fertig'] = pd.to_datetime(df['Plan Bau fertig'])
-df['Ist_Bau_fertig'] = pd.to_datetime(df['Ist_Bau_fertig'])
-```
-
-Das Ergebnis können wir uns mit der Funktion `info()` anzeigen lassen. 
-
-```{python}
-df.info()
-```
-
-::: {.callout-tip collapse="true"}
-
-## Datumsformate
-
-Die Konvertierung der Daten in ein Datumsformat ist für uns in unserem Falle nicht ersichtlich. Schauen wir uns die Daten an, sehen diese für uns aus wie vor der Konvertierung. Jedoch hat Pandas die Daten intern in ein Datumsformat umgewandelt, was den Vorteil hat, dass wir auf verschiedene Funktionen zurückgreifen können, die nur mit Datumsformaten funktionieren. So können wir z.B. mit der Funktion `dt.weekday` den Wochentag auslesen. 
-
-```{python}
-df['projekt_Beginn'].dt.weekday
-```
-
-Die Umwandlung in ein Datumsformat ist also nicht nur für die Darstellung der Daten sinnvoll, sondern auch für die weitere Analyse - zumindest dann, wenn wir mit Datumsformaten arbeiten möchten.
-
-:::
-
-
-### Spalten umbenennen
-
-Das Umbennen von Spalten ist nicht zwingend notwendig. Jedoch ist die Bezeichnung von Spalten oft nicht intuitiv, inkonsistent oder unklar. Daher ist es sinnvoll, die Spalten so zu bennen, dass wir im Rahmen der Analyse (i) schnell erkennen, was in der Spalte steht und (ii) die Auswahl der Spalten intuitiv ist. Die Umbenennung der Spalten hat dabei natürlich immer eine subjektive Komponente, da jeder andere Vorstellungen hat, wie die Spalten benannt sein sollten. 
+Es ist nicht zwingend notwendig Variablen neu zu benennen. Im vorliegenden Datensatz hat jede Variable zumindest eine den Inhalt beschreibende Bezeichnung. Jedoch ist die Bezeichnung von Spalten oft nicht intuitiv, inkonsistent oder unklar. Daher ist es sinnvoll, die Spalten so zu bennen, dass wir im Rahmen der Analyse (i) schnell erkennen, was in der Spalte steht und (ii) die Auswahl der Spalten intuitiv ist. Die Umbenennung von Variablen hat dabei natürlich immer eine subjektive Komponente, da jeder andere Vorstellungen hat, wie die Spalten benannt sein sollten. 
 
 In unserem Datensatz sind die Spaltennamen jedoch insbesondere auch nicht einheitlich benannt. So beginnen einige Spalten mit einem Großbuchstaben, andere mit einem Kleinbuchstaben. Bei einigen Spalten ist der englische Begriff `project`, bei anderen der deutsche Begriff `projekt` verwendet. Einige Spalten beinhalten Leerzeichen, andere sind mit `_` verbunden. Dies sind alles Dinge, die die weitere Analyse ein Stück weit erschweren, da wir Spalten nicht intuitiv auswählen können.
 
@@ -113,53 +101,122 @@ Lassen Sie uns die Spalten deshalb vereinheitlichen, in dem wir:
 - alle Spalten in Kleinbuchstaben umwandeln
 - alle Leerzeichen durch `_` ersetzen
 - alle Begriffe `project` durch `projekt` ersetzen
-- wo sinnvoll kürzere Begriffe ver wenden
+- wo sinnvoll kürzere Begriffe verwenden
+- Begriffe wie `Plan` und `Ist` einheitlich verwenden
 
 Wir können die Spalten mit der Funktion `rename()` umbenennen. Die Funktion `rename()` erwartet als Parameter ein Dictionary, in dem wir die alten Spaltennamen als Schlüssel und die neuen Spaltennamen als Werte angeben. 
 
 ```{python}
 df = df.rename(columns={'Project_ID': 'id', # Spalte "Projekt_ID" wird umbenannt in "id"
-                        'Projektname': 'name',
+                        'Name Projekt': 'name',
                         'projekt_Beginn': 'beginn',
                         'Plan Bau fertig': 'ende_plan',
-                        'Ist_Bau_fertig': 'ende_ist',
-                        'plan_Kosten': 'kosten_plan',
+                        'Fertig_IST': 'ende_ist',
+                        'Kosten Plan': 'kosten_plan',
                         'Ist_Kosten': 'kosten_ist',
                         'Project_team': 'team'})
 df.head()
 ```
 
-### "Fehler" finden
+### Datentypen anpassen
 
-Wir haben bereits festgestellt, dass unser Datensatz keine fehlenden Werte enthält.^[Man bezeichnet fehlende Werte auch als "Not a number"-Werten sog. `NaN`s.] Diese kommen in der Praxis sehr häufig vor, weil z.B. Daten nicht erfasst wurden oder Daten nicht vollständig sind. Das Fehlen von Werten ist meist eine offensichtlicher "Fehler".  Andere "Fehler" sind oft nicht so offensichtlich und können sich in den Daten verstecken. Bei diesen "Fehlern" handelt es sich oft um Ausreißer oder Ungereimtheiten, auf die man oft auch erst im Rahmen der Analyse stößt (insb. durch Visualisierung der Daten). Auch haben wir den Begriff "Fehler" bewusst in Anführungszeichen gesetzt, da es sich hierbei nicht immer um fehlerhafte Daten handelt. Manchmal sind die Daten einfach nur ungewöhnlich oder erfordern eine andere Interpretation oder genauere Analyse. Die Entscheidung, wie mit diesen "Fehlern" umgegangen wird, ist abhängig von der Aufgabenstellung, vom Datensatz und von der Analyse. 
+Ein wichtiger Schritt bei der Aufbereitung von Daten ist die Überprüfung der Datentypen. Wir haben bereits gesehen, dass unser Datensatz nach dem Einlesen zwei Datentypen enthält: `object` und `float64`. Lassen Sie uns deshalb überlegen, ob diese Datentypen geeignet für unsere Analyse sind. Denn: die Datentypen beeinflussen die Art und Weise, wie wir mit den Daten arbeiten können. 
 
-Lassen Sie uns nun ein Beispiel für einen solchen "Fehler" betrachten und dann entscheiden, wir wir damit im Rahmen der Analyse umgehen. Dazu müssen wir uns zunächst die Daten genauer anschauen. Wir werden uns auf zwei potentielle "Fehler" konzentrieren:
+- `id`: die Spalte beinhaltet Buchstaben, Zeichen und Zahlen (z.B. P-62602). Der Datentyp `object` ist also passend.
+- `name`: die Spalte beinhaltet Text. Der Datentyp `object` ist also passend. 
+- `beginn`: die Spalte beinhaltet Datumswerte. Der Datentyp `object` ist nicht passend. Wir sollten den Datentyp in ein Datumsformat umwandeln.
+- `ende_plan`: die Spalte beinhaltet Datumswerte. Der Datentyp `object` ist nicht passend. Wir sollten den Datentyp in ein Datumsformat umwandeln.
+- `ende_ist`: die Spalte beinhaltet Datumswerte. Der Datentyp `object` ist nicht passend. Wir sollten den Datentyp in ein Datumsformat umwandeln.
+- `kosten_plan`: die Spalte beinhaltet Zahlen. Der Datentyp `float64` erscheint passend.
+- `kosten_ist`: die Spalte beinhaltet Zahlen. Der Datentyp `float64` erscheint passend.
+- `team`: die Spalte beinhaltet Text. Der Datentyp `object` ist also passend.
 
-1. Duplikate oder doppelte Einträge
-2. Ausreißer in den Daten
+Wir müssen also lediglich die Spalten mit Datumsinformationen in ein geeignetes Format umwandeln. Die Anpassung der Datumsformate können wir mit der Pandas-Funktion `to_datetime()` durchführen. Wir müssen dabei nur die Spalten angeben, die wir anpassen möchten. Die Funktion `to_datetime()` wandelt die Spalten dann in ein Datumsformate um. Wir überschreiben die Spalten einfach mit den neuen Werten.
 
-#### Duplikate identifizieren
+```{python}
+df['beginn'] = pd.to_datetime(df['beginn'])
+df['ende_plan'] = pd.to_datetime(df['ende_plan'])
+df['ende_ist'] = pd.to_datetime(df['ende_ist'])
+df.head()
+```
 
-Duplikate sind doppelte Einträge in den Daten. Sie können entstehen, wenn z.B. Daten mehrfach erfasst wurden oder wenn Daten aus verschiedenen Quellen zusammengeführt wurden. Duplikate können zu Problemen führen, wenn wir die Daten aggregieren oder zusammenführen wollen. Daher ist es sinnvoll, Duplikate zu identifizieren und (meistens) zu entfernen. 
+Das Ergebnis ist für uns nicht ersichtlich. Wir können uns die Datentypen der einzelnen Spalten jedoch mit der Funktion `dtypes` anzeigen lassen und überprüfen, ob die Datentypen nun passend sind. 
 
-Wir unterscheiden zwischen drei Arten von Duplikaten:
+```{python}
+df.dtypes
+```
 
-1. Duplikate in den Zeilen, d.h. doppelte Datenpunkte (z.B. zwei Einträge für das gleiche Projekt)
-2. Duplikate in den Spalten, d.h. doppelte Variablen (z.B. zwei Spalten in denen die gleichen Daten enthalten sind)
-3. Duplikate innerhalb einer Variable, d.h. eigentlich einzigartige Werte tretten doppelt auf (z.B. zwei Projekte mit dem gleichen Namen)
+::: {.callout-tip collapse="true"}
 
-Die Punkte 1 und 2 führen nahezu immer dazu, dass man die doppelten Zeilen oder Spalten aus dem Datensatz löscht. Bei Punkt 3 ist es teilweise sinnvoll, die doppelten Werte neu zu bezeichnen oder zu kodieren. Die Beurteilung des Sachverhalts erfordert jedoch ein Verständnis der Daten und der Aufgabenstellung.
+## Warum Datumsformate?
 
-Lassen Sie uns für die nachfolgenden zwei Beispiele zunächst einen kleinen Beispiel-Datensatz erstellen:
+Die Konvertierung der Daten in ein Datumsformat ist für uns in unserem Falle nicht ersichtlich. Schauen wir uns die Daten an, sehen diese für uns aus wie vor der Konvertierung. Jedoch hat Pandas die Daten intern in ein Datumsformat umgewandelt, was den Vorteil hat, dass wir auf verschiedene Funktionen zurückgreifen können, die nur mit Daten vom Datentyp `datetime` funktionieren. So können wir z.B. mit der Funktion `dt.weekday` den Wochentag auslesen. 
+
+```{python}
+df['beginn'].dt.weekday
+```
+
+Die Umwandlung in ein Datumsformat ist also nicht nur für die Darstellung der Daten sinnvoll, sondern auch für die weitere Analyse - zumindest dann, wenn wir mit Datumsformaten arbeiten möchten.
+
+Weitere Informationen zu den `datetime`-Funktionen finden Sie in der [Dokumentation](https://pandas.pydata.org/docs/user_guide/timeseries.html#time-date-components).
+
+:::
+
+### Daten bereinigen
+
+#### Fehlende Werte
+
+Wir haben bereits gesehen, dass nicht alle Spalten mit Werten gefüllt sind. Jedoch wissen wir nicht, wo sich diese fehlenden Werte befinden. Diese Information wird jedoch benötigt, um zu entscheiden, wie wir mit den fehlenden Werten umgehen. Wollen wir Beobachtungen mit fehlenden Werte entfernen oder wollen wir z.B. die fehlenden Werte mit einem anderen Wert ersetzen? Sind die fehlenden Werte für unsere Analyse relevant? 
+
+Mit der Funktion `isna()` können wir herausfinden, wo sich fehlende Werte befinden. Schauen wir uns die Funktion `isna()` zunächst einmal an. 
+
+```{python}
+df.isna()
+```
+
+Das Ergebnis der Funktion `isna()` ist ein DataFrame, der für jede Zelle einen Boolean-Wert zurückgibt. `True` bedeutet, dass die Zelle einen fehlenden Wert enthält, `False` bedeutet, dass die Zelle einen Wert enthält. In unserem Fall ist der Datensatz jedoch zu groß, als dass wir die Ausgabe der Funktion `isna()` komplett betrachten können. Idealerweise möchten wir nur die Zeilen sehen, die fehlende Werte enthalten. 
+
+Dies können wir mit der Funktion `any()` erreichen. Die Funktion `any()` gibt für jede Spalte oder Zeile einen Boolean-Wert zurück. `True` bedeutet, dass dort mindestens ein fehlender Wert enthalten ist. Mit dem Parameter `axis` können wir angeben, ob wir die Funktion `any()` für jede Spalte oder für jede Zeile ausführen möchten. `axis=1` bedeutet, dass wir die Funktion `any()` für jede Zeile ausführen möchten. 
+
+
+```{python}
+df.isna().any(axis=1)
+```
+
+Wir können dieses Ergebnis nun zum Filtern der Zeilen verwenden. Wir erstellen einen Boolean-Index, der nur die Zeilen enthält, die fehlende Werte enthalten^[Hinweis: dieser wird oft als `mask` bezeichnet. Da es sich aber um eine einfache Variable handelt, können wir diese theoretisch benennen, wie wir möchten.]. Diesen Index können wir dann verwenden, um nur die Zeilen auszuwählen, die fehlende Werte enthalten.
+
+```{python}
+mask = df.isna().any(axis=1)
+df[mask]
+```
+
+
+Das Ergebnis ist ein Ausschnitt unseres Datensatzes, der nur die Zeilen enthält, die fehlende Werte enthalten. Da wir keine weiteren Informationen zu den fehlenden Daten haben und auch keinen systematischen Fehler entdecken können, der zu den fehlenden Daten führt, werden wir die fehlenden Werte einfach entfernen. Dies können wir mit der Funktion `dropna()` erreichen. 
+
+```{python}
+df = df.dropna()
+df.info()
+```
+
+Der angepasste Datensatz enthält nun keine fehlenden Werte mehr, ist jedoch auch um einige Zeilen kleiner geworden. Gemessen an der Größe des Gesamtdatensatzes scheint dies jedoch vernachlässigbar zu sein. 
+
+#### Duplikate 
+
+Ähnlich wie bei den fehlenden Werten können wir mit der Funktion `duplicated()` herausfinden, ob es Duplikate in unserem Datensatz gibt. Mit Duplikaten meinen wir hier, dass es Zeilen gibt, die im Datensatz mehrfach vorkommen. Das Vorgehen zur Identifikation von Duplikaten ist ähnlich wie bei den fehlenden Werten.
+
+::: {.callout-tip icon="false" collapse="true"}
+
+## Beispiel: Duplikate
+
+ Da wir bei Duplikaten - anders als bei fehlenden Werte - eigentlich immer Zeilen und nicht Spalten identifizieren wollen, benötigen wir die Funktion `any()` nicht. Die Funktion `duplicated()` kann auch mit dem Parameter `subset` verwendet werden. Mit diesem Parameter können wir angeben, innerhalb welchen Spalten wir Duplikate suchen möchten. Mit dem Parameter `keep` können wir angeben, ob wir die erste, die letzte oder alle Duplikate identifizieren möchten. 
 
 ```{python}
 example = pd.DataFrame({'Spalte A': [1, 2, 3, 2, 4, 5],
                    'Spalte B': ['Hund', 'Katze', 'Vogel', 'Katze', 'Fisch', 'Vogel'],
-                   'Spalte C': [1, 2, 3, 2, 4, 5]})
-example.head()
+                   'Spalte C': [19, 43, 1, 43, 127, 21]})
+example
 ```
 
-__Beispiel 1: Duplikate in Zeilen identifizieren und entfernen__ 
 
 Wir können die Methode `duplicated()` nutzen, um Duplikate in Zeilen eines DataFrames zu __identifizieren__. Sie gibt eine Boolesche Reihe (True, False, True etc.) zurück, die angibt, ob eine Zeile ein Duplikat ist oder nicht. Standardmäßig werden dabei alle Spalten berücksichtigt, jedoch kann auch eine Teilmenge von Spalten angegeben werden, die bei der Suche nach Duplikaten berücksichtigt werden soll. 
 
@@ -168,163 +225,200 @@ Wir können die Methode `duplicated()` nutzen, um Duplikate in Zeilen eines Data
 example.duplicated()
 ```
 
-Die Funktion gibt an, dass die Zeile mit dem Index `3` ein Duplikat ist. Wir können wegen der kleinen Größe des Datensatzes direkt sehen, dass das Duplikat im Zeilenindex 1 befindet. Bei größeren Datensätzen ist dies oft nicht mehr mit dem bloßen Auge möglich. Wir können dann etwas anders vorgehen, um uns die Duplikate anzeigen zu lassen. Wir lassen uns über den Parameter `keep=False` die Zeilen aller Duplikate anzeigen und filtern anschließend den Datensatz nach genau diesen Zeilen. 
+Die Funktion gibt an, dass die Zeile mit dem Index `3` ein Duplikat ist. Wir können wegen der kleinen Größe des Datensatzes direkt sehen, dass die Zeile eine Duplikat zur Zeile mit dem Zeilindex `1` ist. Bei größeren Datensätzen ist dies oft nicht mehr mit dem bloßen Auge ersichtlich. Wir wollen aber ggf. wissen, welche Zeilen Duplikate sind.
+Wir können uns beide Zeilen über den Parameter `keep=False` anzeigen lassen
 
 ```{python}
-idx = example.duplicated(keep=False)
-example[idx]
+example.duplicated(keep=False)
 ```
 
-Unser Datensatz beinhaltet also einen doppelten Eintrag. Wir müssen nun entscheiden, ob wir diesen Eintrag entfernen wollen oder nicht. In diesem Fall ist es sinnvoll, den doppelten Eintrag zu entfernen, da wir in der Regel davon ausgehen, dass die Daten nur einmal erfasst wurden. Wir können dies mit der Methode `drop_duplicates()` tun.
+Nun können wir - analog zu unserem Vorgehen bei den fehlenden Werte - die Duplikate im Datensatz identifizieren. 
 
-Die Methode `drop_duplicates()` dient dazu, Duplikate in Zeilen eines DataFrames zu entfernen. Standardmäßig werden alle Spalten berücksichtigt und der erste Datensatz eines doppelten Datensatz behalten. Auch hier kann eine Teilmenge von Spalten angeben, die bei der Suche nach Duplikaten berücksichtigt werden soll. Zusätzlich kann auch hier angegeben werden, ob der erste, letzte oder alle Datensätze des doppelten Datensatezs gelöscht werden soll. 
+```{python}
+mask = example.duplicated(keep=False)
+example[mask]
+```
+
+Wir müssen nun entscheiden, ob wir diesen Eintrag entfernen wollen oder nicht. In diesem Fall scheint es sinnvoll, den doppelten Eintrag zu entfernen, da wir in der Regel davon ausgehen, dass die Daten nur einmal erfasst wurden. Wir können dies mit der Methode `drop_duplicates()` tun. Diese entfernt standardmäßig die zweite Zeile einer doppelten Beobachtung. Wir können dies jedoch ebenfalls mit dem Parameter `keep` ändern (d.h. alle Duplikate entfernen oder nur die erste oder letzte Zeile).
 
 
 ```{python}
-example = example.drop_duplicates()
+example.drop_duplicates()
+```
+
+Mit dem Parameter `subset` können wir angeben, in welchen Spalten wir Duplikate suchen möchten. 
+
+```{python}
+example = pd.DataFrame({'Spalte A': [1, 2, 3, 2, 4, 5],
+                   'Spalte B': ['Hund', 'Dinosaurier', 'Vogel', 'Katze', 'Fisch', 'Vogel'],
+                   'Spalte C': [19, 43, 1, 43, 127, 21]})
 example
 ```
 
-Der Datensatz im Zeilenindex `3` wurde entfernt. Wir erkennen dies auch schon daran, dass der Index `3` nicht mehr vorhanden ist. Dies kann jedoch oft auch zu Problemen führen, da die Indizes nicht mehr fortlaufend sind. Wir können dies mit der Methode `reset_index()` beheben.^[Hinweis: wir hätten diesen Schritt auch gleich mit dem Löschen der Duplikate durchführen können, indem wir bei der Funktion `drop_duplicates()` den Parameter `ignore_index=True` angegeben hätten.]
+In unserem leicht abgeänderten Beispieldatensatz unterscheiden sich die Zeilen mit den Zeilenindex `1` und `3` nur in der Spalte `Spalte B`.
+
+Möchten wir nun  Duplikate in den Spalten `Spalte A` und `Spalte C` finden und die Inhalte der  `Spalte B` ignorieren, können wir dies wie folgt tun.
 
 ```{python}
-example = example.reset_index(drop=True)
-example
-```
-
-
-
-::: {.callout-tip collapse="true"}
-
-## `duplicated()` und `drop_duplicates()`
-
-Die Funktionen `duplicated()` und `drop_duplicates` haben zwei wichtige Parameter (`drop_), die wir angeben können. Der erste Parameter ist `subset`, mit dem wir angeben, in welchen Spalten wir nach Duplikaten suchen wollen. Der zweite Parameter ist `keep`, mit dem wir angeben, ob wir die erste, die letzte oder alle Zeilen eines Duplikats identifizieren möchten.
-
-Beispiel: Wir wollen nur Duplikate in den Spalten `Spalte A` und `Spalte C` finden und nur die erste Zeile eines Duplikats identifizieren. 
-
-```{python}
-example.duplicated(subset=["Spalte A", "Spalte C"], keep="last")
-```
-
-Die Funktion `drop_duplicates()` hat darüber hinaus noch den Parameter `ignore_index`, mit dem wir angeben können, ob wir die Indizes neu nummerieren wollen oder nicht.
-
-Beispiel: wir wollen die Duplikate in den Spalten `Spalte A` und `Spalte C` finden und nur die erste Zeile eines Duplikats identifizieren. Zusätzlich wollen wir die Indizes neu nummerieren. 
-
-```{python}
-example.drop_duplicates(subset=["Spalte A", "Spalte C"], 
-                        keep="last", ignore_index=True)
+example.drop_duplicates(subset=['Spalte A', 'Spalte C'])
 ```
 
 :::
 
-
-__Beispiel 2: Duplikate in Spalten identifizieren und entfernen__
-
-Die Identifikation von identischen Spalten ist etwas schwieriger, da es hierfür keine vorgefertigte Funktion gibt. Hintergrund hierfür ist, dass diese Art des "Fehlers" nicht so schwerwiegend ist, wie Duplikate in Zeilen, da wir Spalten üblicherweise explizit auswählen, Zeilen jedoch im Rahmen einer Aggregation unbewusst berücksichtigt werden können.
-
- Wir können Spalten nicht über die doppelte Bezeichnung identifizieren, da dies in Pandas nicht erlaubt ist. Spalten müssen eine einzigartige Bezeichnung haben. Falls dies nicht der Fall ist, wird die Spalte mit den neuen Werten überschrieben. Der untenstehende Code prouziert z.B. einen DataFrame mit drei Spalten, weil `Spalte A` schlicht mit dem neuen Wert überschrieben wird.
+Lassen Sie uns nun analysieren, ob es überhaupt Duplikate in unserem Datensatz gibt uns dafür alle Spalten berücksichtigen. Mit der Funktion `sum()` können wir die Anzahl der Duplikate ermitteln.
 
 ```{python}
-pd.DataFrame({"Spalte A": [1, 2, 3, 4, 5],
-                        "Spalte B": [1, 2, 3, 4, 5],
-                        "Spalte A": [6, 7, 8, 9, 10],
-                        "Spalte C": [1, 2, 3, 4, 5]})
+df.duplicated().sum()
 ```
 
-Um Spalten mit identischem Inhalt zu identifizieren, können wir jedoch einen Trick anwenden.^[Hinweis: der Trick ist nicht besonders elegant oder effizient und sollte insbesondere bei sehr großen Datensätzen nicht angewandt werden.] Wir können den Datensatz transponieren (d.h. wir tauschen Zeilen und Spalten eines Datensatzes), um anschließend die doppelten Zeilen zu dentifizieren, d.h. so vorzugehen, wie wir es beim vorherigen Ansatz kennengelernt haben. 
+Da es Duplikate gibt, können sollten wir uns diese nun genauer anschauen. Dafür nutzen wir zusätzlich zur Funktion `duplicated()` noch die Funktion `sort_values()`. Diese Funktion sortiert die Werte in einem DataFrame. Wir sortieren hier die Werte nach der Spalte `id` und geben dann die ersten 10 Zeilen aus. 
 
-Lassen Sie uns unseren Beispieldatensatz `example` zunächst transponieren, um zu sehen, was wir erreichen wollen. Wir erreichen dies mit der Methode `transpose()` (oder Kurzschreibweise `T`) erreichen. 
 
 ```{python}
-example.transpose()
+mask = df.duplicated(keep=False)
+df[mask].sort_values('id').head(10)
 ```
 
-Im Beispieldatensatz konnten wir sofort erkennen, dass die Spalten `Spalte A` und `Spalte C` inhaltlich identisch sind. Nach dem Transponieren sind es die Zeilen, die identisch sind. Wir können jetzt wie oben beschrieben die doppelten Zeilen identifizieren und entfernen. Im Anschluss transponieren wir den Datensatz wieder, um das ursprüngliche Spaltenformat wiederherzustellen.
+In unserem Falle erscheint es sinnvoll, die Duplikate zu entfernen. Wir können dies mit der Funktion `drop_duplicates()` tun. Diese Funktion entfernt standardmäßig die zweite Zeile einer doppelten Beobachtung. Wir können dies jedoch ebenfalls mit dem Parameter `keep` ändern (d.h. alle Duplikate entfernen oder nur die erste oder letzte Zeile).
 
 ```{python}
-example = example.transpose().drop_duplicates().transpose()
-example
+df = df.drop_duplicates()
 ```
 
-Das obige Beispiel verdeutlicht außerdem, dass eine hilfreiche Funktionalität von DataFrames: wir können Methoden aneinanderketten. Wir können also eine Methode anwenden und das Ergebnis einer weiteren Methode übergeben. In unserem Beispiel haben wir unser Ziel in drei Schritten erreicht: 
+Wir können nun nochmals überprüfen, ob es noch Duplikate gibt und stellen fest, dass unsere Daten nun auf Dopplungen bereinigt sind.
 
-1. Datensatz transponieren (mit `transpose()`)
-2. Doppelte Zeilen identifizieren (mit `drop_duplicates()`)
-3. Datensatz wieder in Ursprungsformat transponieren (mit `transpose()`)
+```{python}
+df.duplicated().any()
+```
 
-Eine übliche Schreibweise für Methodenketten nutzt die `(.)`-Notation. Wir können also auch folgenden Code schreiben:
+#### Falsche Werte
+
+Ein wichtiger Schritt bei der Datenbereinigung ist die Überprüfung der Daten auf (offensichtlich) falsche Werte. Nicht immer ist bereits bei der Aufbereitung der Daten erkennbar, ob ein Wert plausibel ist oder nicht. Häufig werden falsche Werte erst bei der Analyse der Daten sichtbar. Jedoch können und sollten einige Plausibilitätsprüfungen bereits bei der Aufbereitung der Daten durchgeführt werden. 
+
+Im vorliegenden Datensatz können wir z.B. folgende Plausibilitätsprüfungen durchführen:
+
+1. Ist der Wert der Spalte `id` eindeutig?
+
+2. Sind die Werte für Kosten (`kosten_plan` und `kosten_ist`) plaubibel, d.h. sind die Kosten positiv (bzw. haben alle das gleiche Vorzeichen)?
+
+3. Sind die Werte für die Datumsspalten (`beginn`, `ende_plan` und `ende_ist`) plausibel, d.h. (i) liegen die Werte in der Vergangenheit und (ii) ist das Enddatum nach dem Startdatum? 
+
+__Plausibilitätsprüfung 1:__ Ist der Wert der Spalte `id` eindeutig?
+
+Eine `id` sollte immer eindeutig sein. Im vorliegenden Fall sollte die Anzahl an eindeutigen Werten der Anzahl an Zeilen entsprechen. Ist dies der Fall, so ist die `id` eindeutig, falls nicht, wurde die `id` mehrfach vergeben. Nicht-eindeutige `id`s müssen nicht problematisch sein, jedoch können dann Fehler bei z.B. der Zusammenführung von Datensätzen oder bei der Aggregation von Daten auftreten. Wir können mit der Funktion `unique()` überprüfen, ob die `id` eindeutig ist.
+
+```{python}
+unique_ids = df['id'].unique()
+```
+
+Wir können nun überprüfen, ob die Anzahl der eindeutigen Werte der Anzahl der Zeilen entspricht.
+
+```{python}
+len(unique_ids) == len(df)
+```
+
+Da der Wert `True` zurückgegeben wird, ist die `id` eindeutig und wir können uns sicher sein, dass keine Projekt-ID mehrfach vergeben wurde.
+
+__Plausibilitätsprüfung 2:__ Sind die Werte für Kosten (`kosten_plan` und `kosten_ist`) plaubibel, d.h. sind die Kosten positiv (bzw. haben alle das gleiche Vorzeichen)?
+
+Lassen Sie uns zunächst die Kostenwerte für die Spalte `kosten_plan` betrachten und überprüfen, ob es Werte gibt, die negativ sind. Dazu müssen wir überprüfen, ob es Werte gibt, die kleiner als 0 sind. Die können wir mit dem Operator `<` überprüfen. 
+
+```{python}
+df['kosten_plan'] < 0
+```
+
+Wir erhalten eine `Series` mit `True` und `False` Werten. `True` bedeutet, dass der Wert kleiner als 0 ist, `False` bedeutet, dass der Wert größer oder gleich 0 ist. Wir können nun überprüfen, ob es überhaupt Werte gibt, die kleiner als 0 sind, in dem wir z.B. die bereits bekannte Funktion `any()` nutzen.
+
+```{python}
+(df['kosten_plan'] < 0).any()
+```
+
+Da der Wert `True` zurückgegeben wird, gibt es Werte, die kleiner als 0 sind. Lassen Sie uns diese Werte nun betrachten. Das vorgehen ist ähnlich wie bei der Überprüfung auf Duplikate. Wir können die Werte mit dem Operator `<` filtern und anschließend die Zeilen mit den negativen Kostenwerten ausgeben. Wir nutzen hier eine komprimierte Schreibweise ohne die Zwischenspeicherung in einer Variablen `mask`. 
 
 ```{.python}
-example = (example
-           .transpose() # Transponieren des Datensatzes
-           .drop_duplicates() # Doppelte Zeilen löschen (ursprünglich Spalten)
-           .transpose() # Transponieren des Datensatzes (zurück in Ursprungsformat)
-          )
+# Variante 1
+mask = df['kosten_plan'] < 0
+df[mask]
+
+# Variante 2
+df[df['kosten_plan'] < 0]
 ```
 
-Beim obigen Code spricht man auch vom __Method-Chaining__. Wir werden diese Konzept noch sehr häufig anwenden, wenn wir mit DataFrames arbeiten. Es hilft komplexe Datenaufbereitungen zu strukturieren und zu vereinfachen.
+Die Schreibweise ist ohne die Zwischenspeicherung in einer Variablen `mask`  etwas kompakter und auch in der Praxis häufiger anzutreffen. Wir stellen an dieser Stelle noch eine weitere - und aus unserer Sicht elegantere - Möglichkeit vor, um die Zeilen mit negativen Kostenwerten auszugeben. 
 
-__Beispiel 3: Duplikate in Spalten identifizieren und entfernen__
-
-Ein weiteres Beispiel für "Fehler" oder Inkonsistenzen innerhalb eines Datensatzes, ist die Dopplung von Werten, die eigentlich einzigartig sein sollten. Hier gilt es dann zu prüfen, wie mit einer solchen Dopplung umzugehen ist. Nicht immer bedeutet dies, dass der Datensatz fehlerhaft ist. 
-
-Lassen Sie uns ein Beispiel betrachten. Wir haben einen Datensatz mit Projekten, die von einer Firma durchgeführt wurden. Jedes Projekt hat eine einzigartige ID und einen Namen. Die Kosten für jedes Projekt sind ebenfalls in der Tabelle enthalten. 
+Wir können die Funktion `query` nutzen, um unseren Datensatz nach Bedingungen zu filtern. Die Bedingung wird als String übergeben. In unserem Fall wollen wir alle Zeilen ausgeben, die einen negativen Kostenwert haben. Die Bedingung lautet also `kosten_plan < 0`.
 
 ```{python}
-example = pd.DataFrame({"Unique_ID": ["A1", "B1", "C1", "D1", "E1"],
-                          "Projektname": ["Projekt A", "Projekt B", "Projekt A", "Projekt D", "Projekt E"],
-                          "Kosten": [100, 200, 300, 400, 500],
-                          })
-example
+# Datensatz nach Bedingung filtern
+df.query('kosten_plan < 0')
 ```
 
-Betrachtet man den Datensatz, so stellt man fest, dass das Projekt mit dem Namen "Projekt A" zwei Mal vorkommt. Hierbei muss es sich nicht zwangsläufig um einen Fehler handeln. Namen sind eben gerade nicht einzigartig, so dass es durchaus sein kann, dass zwei Projekte den gleichen Namen haben. Jedoch ist es wichtig, sich über die Dopplung im Klaren zu sein, da wir spätestens bei der Analyse des Datensatzes auf Probleme stoßen werden (z.B. wenn wir die Kosten pro Projekt nicht eindeutig zuordnen können). In Realität haben wir es häufig mit größeren Datenmengen zu tun, die wir nicht manuell durchsehen können. Daher ist es wichtig, dass wir solche Inkonsistenzen identifizieren, um dann zu entscheiden, wie wir damit umgehen.
+Eine nicht unerhebliche Anzahl an Projekten hat Kosten mit negativen Werten. Auch wird deutlich, dass die Kostenwerte für die Spalte `kosten_ist` dann ebenfalls negativ sind. Dies kann verschiedene Ursachen haben, z.B. dass die Kosten beim erfassen der Daten falsch eingegeben wurden. In Realität würde man hier mit dem Kunden oder der Projektleitung sprechen und versuchen die Daten zu korrigieren. In unserem Fall werden wir die Daten eliminieren, um keinen Fehler in der weiteren Analyse zu erzeugen. 
 
-Wir können einfach feststellen, ob eine Spalte nur einzigartige Werte beinhaltet, in dem wir testen, ob die Anzahl an Duplikaten in der Spalte gleich Null ist. Wir können dies mit der Funktion `sum` oder `any` tun. 
-
+Der einfachste Weg, die Zeilen mit negativen Vorzeichen zu eliminieren, ist es den Datensatz mit `query` zu filtern. Wir können die Bedingung `kosten_plan >= 0` nutzen, um alle Zeilen auszugeben, die einen positiven Kostenwert haben.
 
 ```{python}
-example["Projektname"].duplicated().sum() 
+df = df.query('kosten_plan >= 0')
 ```
+
+Wir könnten nun die gleiche Überprüfung für die Spalte `kosten_ist` durchführen. Stattdessen filtern wir aber alle Zeilen, die einen negativen Kostenwert haben, aus dem Datensatz heraus. 
 
 ```{python}
-example["Projektname"].duplicated().any()
+df = df.query('kosten_ist >= 0')
 ```
 
+Wir hätten die beiden letzten Schritte auch in einem Schritt durchführen können, indem wir die Bedingungen mit einem `and` verknüpft hätten. 
 
-Wir können auch direkt die einzigartigen Werte mit der Methode `.unique()` identifizieren. Diese Methode gibt uns eine Liste mit allen einzigartigen Werten in der Spalte zurück. 
+```{.python}
+df = df.query('kosten_plan >= 0 and kosten_ist >= 0')
+```
+
+__Plausibilitätsprüfung 3:__ Sind die Werte für die Datumsspalten (`beginn`, `ende_plan` und `ende_ist`) plausibel?
+
+Bei der nun folgenden Überprüfung kommt uns zugute, dass wir die Spalten bereits in den Datentyp `datetime` konvertiert haben. Wir können nun die Werte für die Spalten `beginn`, `ende_plan` und `ende_ist` miteinander vergleichen. 
+
+Wir können zwei Überprüfungen durchführen:
+
+1. Sind alle Projekte bereits beendet?
+
+2. Liegt das Datum für `ende_plan` nach dem Datum für `beginn`?
+
+Lassen Sie uns mit der ersten Überprüfung beginnen. Wir können die Funktion `max()` nutzen, um das jüngste Datum in der Spalte `ende_ist` zu ermitteln. Dieses Datum sollte in der Vergangenheit liegen.
 
 ```{python}
-uniques = example["Projektname"].unique()
-uniques
+df['ende_ist'].max()
 ```
 
-Wenn wir nun die Länge der Liste mit den einzigartigen Werten mit der Länge des ursprünglichen DataFrames vergleichen, können wir feststellen, ob es Duplikate gibt. 
+Das letzte Projekt wurde in der Vergangeheit beendet, d.h. wir können sicher sein, dass alle Projekte bereits beendet sind (und somit annehmen, dass auch alle Kosten bereits berücksichtigt wurden). Eine weitere Plausibiltätsprüfung ist, ob das Datum für `ende_ist` nach dem Datum für `beginn` liegt. Falls nicht, läge ein offensichtlicher Datenfehler vor. Wir können dies mit dem Operator `<` überprüfen. Da wir die Spalten bereits in den Datentyp `datetime` konvertiert haben, liegt diese Funktionalität bereits vor; mit dem Datentyp `object` wäre dies nicht möglich gewesen. Wir können also unseren Datensatz filtern für Zeilen, bei denen gilt, dass `ende_ist` kleiner oder gleich `beginn` ist.   
 
 ```{python}
-len(uniques) == len(example)
+df.query('ende_ist <= beginn')
 ```
 
-Lassen Sie uns nun zurück zur __Bau und Werken GmbH__ gehen. 
+Schauen wir uns die Projekte näher an, so stellt man fest, dass es sich ausschließlich um Projekte handelt, die am gleichen Tag begonnen und beendet wurden. Dies ist prinzipiell nicht ausgeschlossen, jedoch erscheint dies - zumindest für einige Projekte - sehr unwahrscheinlich, da gleichzeitig hohe Kosten veranschlagt wurden, was auf eine längere Projektlaufzeit schließen lässt. Wir müssen jetzt entscheiden, ob wir diese Projekte eliminieren wollen oder nicht. Da wir uns in diesem Fall nicht sicher sind, ob die Daten korrekt sind, werden wir die Projekte nicht eliminieren. Stattdessen fügen wir eine neue Spalte hinzu, die die Dauer des Projektes in Tagen angibt. Wir können dann im Rahmen unserer Analyse die Projekte mit einer Projektdauer von 0 Tagen herausfiltern und analysieren, ob dies unsere Ergebnisse beeinflusst. 
 
 ```{python}
-df.head()
+df['dauer'] = df['ende_ist'] - df['beginn']
 ```
 
 
+## Übersicht genutzter Methoden
+
+Es wurden folgende Funktionen und Methoden genutzt:
+
+- `read_csv()`: Einlesen der Daten
+- `head()`: Anzeigen der ersten Zeilen
+- `tail()`: Anzeigen der letzten Zeilen
+- `info()`: Anzeigen der Datentypen und der Anzahl der nicht fehlenden Werte
+- `rename()`: Umbenennen der Spalten
+- `to_datetime()`: Konvertieren der Spalten in den Datentyp `datetime`
+- `isna()`: Überprüfen, ob Werte fehlen
+- `any()`: Überprüfen, ob Spalte oder Zeile `False` enthält
+- `dropna()`: Eliminieren von Zeilen mit fehlenden Werten
+- `duplicated()`: Überprüfen, ob es Duplikate gibt
+- `drop_duplicates()`: Eliminieren von Duplikaten
+- `unique()`: Ermitteln der einzigartigen Werte
+- `query()`: Filtern von Zeilen nach Bedingung
+- `max()`: Ermitteln des höchsten Wertes
 
 
-### WAS NOCH:
-- Duplikate innerhalb einer Variable identifizieren
-- Anwendung auf eigenen Datensatz
-- genutzte Funktionen und Methoden zusammenfassen
-
-
-## Genutzte Funktionen und Methoden
-
-- `pd.DataFrame()`: Erzeugen eines DataFrames
-- `.read_csv()`: Einlesen eines CSV-Files ([siehe hier](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html))
-- `.drop_duplicates()`: Entfernen von Duplikaten ([siehe hier](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.drop_duplicates.html))
-- `.duplicated()`: Identifizieren von Duplikaten ([siehe hier](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.duplicated.html))
-- `.reset_index()`: Wiederherstellen der Indizes ([siehe hier](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.reset_index.html))
-- `.transpose()`: Transponieren eines DataFrames ([siehe hier](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.transpose.html))

@@ -19,12 +19,12 @@ Diese Herausforderung ist von entscheidender Bedeutung für die Zukunft des Unte
 
 Der Datensatz beinhaltet Informationen zu den Projekten, die das Unternehmen in den letzten Jahren durchgeführt hat. Die Daten wurden von einem Mitarbeiter der Bau und Werken GmbH in einer Excel-Tabelle erfasst und anschließend in das CSV-Format exportiert. Der Datensatz beinhaltet folgende Informationen:
 
-- `Projekt_ID`: eindeutige Identifikationsnummer des Projekts
-- `Projektname`: Art des Projektes // Ort des Projektes (z.B. "Stadtpark // Eberhardtallee")
-- `Projekt_Beginn`: Baubeginn bzw. Beginn der Instandhaltungsarbeiten
-- `Plan_Bau_fertig`: geplantes Bauende bzw. Instandhaltungsende
-- `Ist_Bau_fertig`: tatsächliches Bauende bzw. Instandhaltungsende
-- `Plan_Kosten`: budgetierte Gesamtkosten des Projektes
+- `Project_ID`: eindeutige Identifikationsnummer des Projekts
+- `Name Projekt`: Art des Projektes // Ort des Projektes (z.B. "Stadtpark // Eberhardtallee")
+- `projekt_Beginn`: Baubeginn bzw. Beginn der Instandhaltungsarbeiten
+- `Plan Bau fertig`: geplantes Bauende bzw. Instandhaltungsende
+- `Fertig_IST`: tatsächliches Bauende bzw. Instandhaltungsende
+- `Kosten Plan`: budgetierte Gesamtkosten des Projektes
 - `Ist_Kosten`: tatsächliche Gesamtkosten des Projektes
 - `Project_team`: internes Team, welches das Projekt bearbeitet hat
 

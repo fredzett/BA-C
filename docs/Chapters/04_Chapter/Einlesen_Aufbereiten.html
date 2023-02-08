@@ -279,15 +279,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#einlesen-und-ersten-überblick-verschaffen" id="toc-einlesen-und-ersten-überblick-verschaffen" class="nav-link active" data-scroll-target="#einlesen-und-ersten-überblick-verschaffen">Einlesen und ersten Überblick verschaffen</a></li>
   <li><a href="#aufbereitung-der-daten" id="toc-aufbereitung-der-daten" class="nav-link" data-scroll-target="#aufbereitung-der-daten">Aufbereitung der Daten</a>
   <ul>
+  <li><a href="#variablennamen-anpassen" id="toc-variablennamen-anpassen" class="nav-link" data-scroll-target="#variablennamen-anpassen">Variablennamen anpassen</a></li>
   <li><a href="#datentypen-anpassen" id="toc-datentypen-anpassen" class="nav-link" data-scroll-target="#datentypen-anpassen">Datentypen anpassen</a></li>
-  <li><a href="#spalten-umbenennen" id="toc-spalten-umbenennen" class="nav-link" data-scroll-target="#spalten-umbenennen">Spalten umbenennen</a></li>
-  <li><a href="#fehler-finden" id="toc-fehler-finden" class="nav-link" data-scroll-target="#fehler-finden">“Fehler” finden</a>
+  <li><a href="#daten-bereinigen" id="toc-daten-bereinigen" class="nav-link" data-scroll-target="#daten-bereinigen">Daten bereinigen</a>
   <ul class="collapse">
-  <li><a href="#duplikate-identifizieren" id="toc-duplikate-identifizieren" class="nav-link" data-scroll-target="#duplikate-identifizieren">Duplikate identifizieren</a></li>
+  <li><a href="#fehlende-werte" id="toc-fehlende-werte" class="nav-link" data-scroll-target="#fehlende-werte">Fehlende Werte</a></li>
+  <li><a href="#duplikate" id="toc-duplikate" class="nav-link" data-scroll-target="#duplikate">Duplikate</a></li>
+  <li><a href="#falsche-werte" id="toc-falsche-werte" class="nav-link" data-scroll-target="#falsche-werte">Falsche Werte</a></li>
   </ul></li>
-  <li><a href="#was-noch" id="toc-was-noch" class="nav-link" data-scroll-target="#was-noch">WAS NOCH:</a></li>
   </ul></li>
-  <li><a href="#genutzte-funktionen-und-methoden" id="toc-genutzte-funktionen-und-methoden" class="nav-link" data-scroll-target="#genutzte-funktionen-und-methoden">Genutzte Funktionen und Methoden</a></li>
+  <li><a href="#übersicht-genutzter-methoden" id="toc-übersicht-genutzter-methoden" class="nav-link" data-scroll-target="#übersicht-genutzter-methoden">Übersicht genutzter Methoden</a></li>
   </ul>
 </nav>
     </div>
@@ -311,10 +312,57 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
+<div class="callout-note callout callout-style-default no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Modul Pandas
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Wir werden im Rahmen unserer Analyse(n) verschiedene Module / Bibliotheken und Funktionalitäten Pythons kennenlernen. Eine der wichtigsten Bibliotheken ist <code>pandas</code>. Wir bezeichnen <code>pandas</code> als das Schweizer Taschenmesser der Datenanalyse, weil es ein mächtiges und vielseitiges Werkzeug für Datenanalyse und -verarbeitung in Python ist. Pandas bietet für nahezu alle gängigen Anforderungen - sei es Datenimport, Datenbereinigung, Datentransformation und -analyse oder sogar Visualisierung - nützliche Funktionalitäten. Die Palette an Funktionalitäten ist so umfangreich, dass wir diese unmöglich alle vorstellen können. Wir glauben auch nicht, dass dies didaktisch sinnvoll ist. Stattdessen werden wir geeignete Funktionen immer dann vorstellen, wenn wir sie für unsere Analyse benötigen. Viele der vorgestellten Funktionen bieten Funktionalitäten an, die wir nicht nutzen. Es ist deshalb sinnvoll, dass Sie sich die Dokumentation der Funktionen anschauen, wenn Sie diese für Ihre Analyse benötigen. Die Dokumentation finden Sie <a href="https://pandas.pydata.org/pandas-docs/stable/reference/index.html">hier</a>.</p>
+<p>Für einen ersten kurzen und durchaus unvollständigen Überblick über die Funktionalitäten von Pandas verweisen wir auf den Anhang <a href="../../Appendices/Modules/Pandas.html#sec-pandas"><span>Kapitel&nbsp;1</span></a>.</p>
+</div>
+</div>
+</div>
 <section id="einlesen-und-ersten-überblick-verschaffen" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="einlesen-und-ersten-überblick-verschaffen">Einlesen und ersten Überblick verschaffen</h2>
-<div class="page-columns page-full"><p>Beginnen wir mit der Analyse, in dem wir die Daten zunächst einlesen und aufbereiten. Dazu verwenden wir die Funktion <code>read_csv()</code> aus dem Paket <code>pandas</code>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Die Funktion <code>read_csv()</code> erwartet als Argument den Pfad zur CSV-Datei, die eingelesen werden soll. Darüber hinaus können noch viele weitere Parameter übergeben werden (z.B. welche Spalten wir einlesen möchten, welches Datenformat wir verwenden, welches Dezimalkomma wir verwenden, etc.).</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Hinweis: wir werden die für die Fallstudie(n) benötigten Funktionalitäten immer dann vorstellen und erläutern, wenn wir diese benötigen. Für einen gesamthaften Überblick zum Modul Pandas verweisen wir auf den Anhang <a href="../../Appendices/Modules/Pandas.html#sec-pandas"><span>Kapitel&nbsp;1</span></a>.</p></li></div></div>
-<div class="page-columns page-full"><p>Die Funktion gibt ein sogenanntes <code>DataFrame</code> zurück, das wir in der Variable <code>df</code> speichern. Ein <code>DataFrame</code> ist eine Datenstruktur, die in der Regel Tabellen repräsentiert. In unserem Fall enthält das <code>DataFrame</code> die Daten aus der CSV-Datei. Prinzipiell können wir nahezu jedes gängige Format einlesen, das Pandas unterstützt. Eine vollständige Liste der unterstützten Formate finden Sie in der Dokumentation von Pandas.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;siehe <a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html">hier</a></p></li></div></div>
+<div class="page-columns page-full"><p>Beginnen wir mit der Analyse, in dem wir die Daten zunächst einlesen und aufbereiten. Dazu verwenden wir <code>read_csv()</code> aus dem Paket <code>pandas</code>. Bei <code>read_csv()</code> handelt es sich um eine <strong>Funktion</strong><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, der verschiedene Parameter übergeben werden können.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;genauer gesagt, um eine Methode eines Objektes.</p></li></div></div>
+<div class="callout-tip callout callout-style-default no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Was sind Funktionen?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Eine Funktion ist ein Teil eines Programms, der eine bestimmte Aufgabe erfüllt. Wir können Funktionen einsetzen, um Teile des Codes wiederverwendbar zu machen bzw. um bereits geschriebenen Code von anderen wiederzuverwenden. Das Konstrukt ist sehr mächtig und wir werden sowohl bereits implementierte Funktionen nutzen (wie alle Funktionen, die <code>pandas</code> bereitstellt), als auch eigene Funktionen schreiben lernen.</p>
+<p>Lassen Sie uns eine Analogie aus Excel nutzen. Stellen Sie sich vor, wir haben eine Spalte mit vielen Werten und wir wollen wissen, um wieviele Werte es sich handelt, d.h. wir wollen die Anzahl an Werten bestimmen. Wir könnten diese Information z.B. benötigen, um einen Durchschnitt zu berechnen.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../_assets/RndNumbers.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>Natürlich könnten wir die Anzahl an Werten selber und manuell zählen (es sind 10 Werte). Diese Lösung ist aber wenig sinnvoll, da wir so einen manuellen Schritt in unser “Programm” einbauen. Besser wäre es, wenn wir die Anzahl an Werten automatisiert bestimmen. Wir könnten uns über diese eigentlich triviale Aufgabe nun Gedanken machen. Jedoch müssen wir dies nicht, da es für diese spezielle Frage bereits eine Lösung in Excel gibt. Wir können die Funktion <code>Anzahl()</code> nutzen, die Excel bzw. Microsoft bereits für den Anwender zur Verfügung gestellt hat. Die Funktion berechnet, wie viele Zellen in einem Bereich Zahlen enthalten.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../_assets/RndNumbers_Solution.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>Ein Großteil der Funktionalität von Excel geht auf die breite Palette an bereits verfügbaren Funktionen zurück. Gleiches gilt für Python. Wir können uns die Arbeit von anderen Anwendern zu Nutze machen und die bereits implementierten Funktionen nutzen.</p>
+<p>Eine Funktion in Python ist prinzipiell sehr ähnlich zu einer Funktion in Excel. Eine Funktion hat einen Namen, der sie eindeutig identifiziert. Außerdem hat sie Parameter, die sie benötigt, um ihre Aufgabe zu erfüllen. Die Funktion <code>Anzahl()</code> in Excel hat einen Parameter, der den Bereich angibt, in dem die Anzahl an Zahlen bestimmt werden soll. Die Funktion <code>read_csv()</code> in Python hat einen Parameter, der den Pfad zur Datei angibt, die eingelesen werden soll. Sowohl in Excel, als auch in Python gibt es Funktionen mit optionalen Parametern, die nicht zwingend angegeben werden müssen. Die Funktion <code>Anzahl()</code> in Excel hat einen optionalen Parameter, der angibt, ob auch leere Zellen gezählt werden sollen. Die Funktion <code>read_csv()</code> in Python hat eine Vielzahl von optionalen Parameter, die der Anwender beim Einlesen von Daten ggf. nutzen möchte oder muss (z.B. welche Spalten wir einlesen möchten, welches Datenformat wir verwenden, welches Dezimalkomma wir verwenden, etc.).</p>
+</div>
+</div>
+</div>
+<div class="page-columns page-full"><p>Der wichtigste (und einzige zwingend notwendige) Paramerter ist der <strong>Pfad zur Datei</strong>, die eingelesen werden soll. In unserem Fall ist der Pfad <code>../../_data/Construction.csv</code>. Der Pfad ist relativ zum aktuellen Arbeitsverzeichnis, d.h. relativ zum Ort, in der sich das Notebook, mit dem wir arbeiten befindet.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Die Funktion gibt ein sogenanntes <code>DataFrame</code> zurück, das wir in der Variable <code>df</code> speichern. Ein <code>DataFrame</code> ist eine Datenstruktur, die in der Regel Tabellen repräsentiert. In unserem Fall enthält das <code>DataFrame</code> die Daten aus der CSV-Datei. Prinzipiell können wir nahezu jedes gängige Format einlesen, das Pandas unterstützt. Eine vollständige Liste der unterstützten Formate finden Sie in der Dokumentation von Pandas.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;Sofern sich die Datei in einer Cloud befindet, kann auch der Link zur Datei angegeben werden, d.h. die Datei muss nicht lokal abgespeichert sein</p></li><li id="fn3"><p><sup>3</sup>&nbsp;siehe <a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html">hier</a></p></li></div></div>
 <div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -332,11 +380,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <tr>
       <th></th>
       <th>Project_ID</th>
-      <th>Projektname</th>
+      <th>Name Projekt</th>
       <th>projekt_Beginn</th>
       <th>Plan Bau fertig</th>
-      <th>Ist_Bau_fertig</th>
-      <th>plan_Kosten</th>
+      <th>Fertig_IST</th>
+      <th>Kosten Plan</th>
       <th>Ist_Kosten</th>
       <th>Project_team</th>
     </tr>
@@ -344,58 +392,58 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <tbody>
     <tr>
       <th>0</th>
-      <td>P-62602</td>
-      <td>Stadtpark // Eberhardtallee</td>
-      <td>2013-10-15</td>
-      <td>2013-12-26</td>
-      <td>2013-12-25</td>
-      <td>109129.55</td>
-      <td>130487.07</td>
-      <td>Team 4</td>
+      <td>HN-399443</td>
+      <td>Straßenbau // Jennifer-Buchholz-Ring</td>
+      <td>2014-09-01</td>
+      <td>2014-10-03</td>
+      <td>2014-10-02</td>
+      <td>219817.40</td>
+      <td>246192.34</td>
+      <td>Team 3</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>P-80374</td>
-      <td>Spielplatz // Geißlerweg</td>
-      <td>2016-07-14</td>
-      <td>2016-09-20</td>
-      <td>2016-09-22</td>
-      <td>59521.33</td>
-      <td>66009.97</td>
-      <td>Team 4</td>
+      <td>UD-626094</td>
+      <td>Elektroarbeiten // Langernstraße</td>
+      <td>2021-06-12</td>
+      <td>2021-08-16</td>
+      <td>2021-09-18</td>
+      <td>105683.14</td>
+      <td>144657.38</td>
+      <td>Team 3</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>P-96379</td>
-      <td>Spielplatz // Schäferring</td>
-      <td>2019-06-14</td>
-      <td>2019-06-16</td>
-      <td>2019-06-29</td>
-      <td>82572.27</td>
-      <td>107571.64</td>
-      <td>Team 2</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>P-31809</td>
-      <td>Baumbestand // Raphaela-Scheel-Platz</td>
-      <td>2019-02-06</td>
-      <td>2019-02-11</td>
-      <td>2019-02-11</td>
-      <td>29563.59</td>
-      <td>29724.17</td>
+      <td>IO-468103</td>
+      <td>Spielplatz // Dussen vanweg</td>
+      <td>2016-05-20</td>
+      <td>2016-06-29</td>
+      <td>2016-06-27</td>
+      <td>129851.26</td>
+      <td>136753.06</td>
       <td>Team 1</td>
     </tr>
     <tr>
+      <th>3</th>
+      <td>OG-758899</td>
+      <td>Stadtpark // Lübsstr.</td>
+      <td>2014-11-11</td>
+      <td>2014-12-30</td>
+      <td>2015-01-28</td>
+      <td>181236.83</td>
+      <td>273996.91</td>
+      <td>Team 2</td>
+    </tr>
+    <tr>
       <th>4</th>
-      <td>P-51445</td>
-      <td>Landschaftsbau // Julia-Neureuther-Platz</td>
-      <td>2015-04-26</td>
-      <td>2015-05-16</td>
-      <td>2015-05-20</td>
-      <td>38315.35</td>
-      <td>53783.40</td>
-      <td>Team 3</td>
+      <td>CZ-107835</td>
+      <td>Elektroarbeiten // Försterweg</td>
+      <td>2017-07-25</td>
+      <td>2017-10-08</td>
+      <td>2017-10-08</td>
+      <td>75205.92</td>
+      <td>77519.27</td>
+      <td>Team 4</td>
     </tr>
   </tbody>
 </table>
@@ -404,7 +452,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Die Funktion ist sehr hilfreich, um zu überprüfen, ob die Daten (zumindest scheinbar) korrekt eingelesen wurden. Außderm können wir so den Aufbau des Datensatzes erkennen.</p>
 <div class="callout-tip callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -413,7 +461,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Die Funktion <code>head()</code> gibt die ersten Zeilen eines DataFrames aus. Mit der Funktion <code>tail()</code> können wir die letzten Zeilen ausgeben lassen. Ohne weitere Angabe von Parametern geben <code>head()</code> und <code>tail()</code> jeweils fünf Zeilen aus. Wir können beide Funktionen auch mit einem Argument aufrufen, um die Anzahl der Zeilen anzupassen. Beispiel: <code>df.head(10)</code> gibt die ersten zehn Zeilen aus. Der Aufruf von <code>head()</code> ist also äquivalent zum Aufruf <code>head(5)</code>.</p>
 </div>
@@ -424,32 +472,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df.info()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
-RangeIndex: 10000 entries, 0 to 9999
+RangeIndex: 10019 entries, 0 to 10018
 Data columns (total 8 columns):
  #   Column           Non-Null Count  Dtype  
 ---  ------           --------------  -----  
- 0   Project_ID       10000 non-null  object 
- 1   Projektname      10000 non-null  object 
- 2   projekt_Beginn   10000 non-null  object 
- 3   Plan Bau fertig  10000 non-null  object 
- 4   Ist_Bau_fertig   10000 non-null  object 
- 5   plan_Kosten      10000 non-null  float64
- 6   Ist_Kosten       10000 non-null  float64
- 7   Project_team     10000 non-null  object 
+ 0   Project_ID       10019 non-null  object 
+ 1   Name Projekt     10019 non-null  object 
+ 2   projekt_Beginn   10019 non-null  object 
+ 3   Plan Bau fertig  10012 non-null  object 
+ 4   Fertig_IST       10019 non-null  object 
+ 5   Kosten Plan      10005 non-null  float64
+ 6   Ist_Kosten       10019 non-null  float64
+ 7   Project_team     10019 non-null  object 
 dtypes: float64(2), object(6)
-memory usage: 625.1+ KB</code></pre>
+memory usage: 626.3+ KB</code></pre>
 </div>
 </div>
-<p>Die Funktion <code>info()</code> gibt uns folgende Informationen aus:</p>
+<p>Die Funktion <code>info()</code> gibt an, wieviele Zeilen (<code>RangeIndex</code>) und Spalten <code>Data columns</code>) der Datensatz hat und zusätzlich noch folgende Informationen je Spalte an:</p>
 <ul>
 <li><code>#</code> Position der Spalte (beginnend bei <code>0</code>)</li>
 <li><code>Column</code> Name der Spalte</li>
 <li><code>Non-Null Count</code> Anzahl der nicht leeren Werte je Spalte</li>
 <li><code>Dtype</code> Datentyp der Spalte</li>
 </ul>
-<p>Wir können also sehr schnell erkennen, ob der Datensatz vollständig ist. In unserem Fall sind alle Spalten vollständig. Außerdem gibt uns die Funktion <code>info()</code> Auskunft über den Datentyp der Spalten. In unserem Fall gibt es zwei Datentypen: <code>object</code> und <code>float</code>. Der Datentyp <code>float</code> repräsentiert Gleitkommazahlen. Der Datentyp <code>object</code> repräsentiert Zeichenketten (d.h. Python interpretiert die Daten als Text). Da wir beim Einlesen der Daten keine Angabe über die Datentypen gemacht haben, hat Pandas die Datentypen automatisch ermittelt. In der Regel ist dies auch eine guter erster Ansatz. Wir sollten jedoch in einem nächsten Schritt die Datentypen überprüfen und ggf. anpassen. Denn je besser der Datentyp zum Inhalt der Spalte passt, desto besser können wir mit den Daten arbeiten.</p>
+<p>Wir können mit der Funkton also einige wichtige Dinge im Rahmen der Datenaufbereitung erkennen. In unserem Fall sind z.B. nicht alle Spalten mit Werten gefüllt. Wir werden im nächsten Abschnitt detaillierter darauf eingehen. Die Spalten haben außerdem einen von zwei Datentypen: <code>object</code> und <code>float</code>. Der Datentyp <code>float</code> repräsentiert Gleitkommazahlen. Der Datentyp <code>object</code> repräsentiert Zeichenketten (d.h. Python interpretiert die Daten als Text). Da wir beim Einlesen der Daten keine Angabe über die Datentypen gemacht haben, hat Pandas die Datentypen automatisch ermittelt. In der Regel ist dies auch eine guter erster Ansatz. Wir sollten jedoch in einem nächsten Schritt die Datentypen überprüfen und ggf. anpassen. Denn je besser der Datentyp zum Inhalt der Spalte passt, desto besser können wir mit den Daten arbeiten. Außerdem können wir bereits jetzt erkennen, dass die Spaltenbezeichungen inkonsistent und teilweise unglücklich gewählt sind. Wir werden im nächsten Abschnitt detaillierter darauf eingehen.</p>
 <div class="callout-tip callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -458,7 +506,7 @@ Position <code>0</code> in Python
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Die erste Position in Python ist immer <code>0</code>. Das ist ein Konzept, das wir uns merken sollten. Wir werden es in den kommenden Kapiteln immer wieder verwenden. Die erste Zeile eines DataFrames hat die Position <code>0</code>. Die erste Spalte hat die Position <code>0</code>.</p>
 <p>Dies ist zunächst etwas verwirrend und ungewohnt. Jedoch ist Python hier sehr konsistent, so dass wir uns schnell daran gewöhnen werden. Grundsätzlich gilt: die erste Position in Python ist immer <code>0</code>.</p>
@@ -468,105 +516,31 @@ Position <code>0</code> in Python
 </section>
 <section id="aufbereitung-der-daten" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="aufbereitung-der-daten">Aufbereitung der Daten</h2>
-<p>Beginnen wir mit der Aufbereitung der Daten.</p>
-<section id="datentypen-anpassen" class="level3">
-<h3 class="anchored" data-anchor-id="datentypen-anpassen">Datentypen anpassen</h3>
-<p>Wir schauen dafür zunächst, ob die Datentypen der Spalten passen.</p>
-<ul>
-<li><code>Project_ID</code>: die Spalte beinhaltet Buchstaben, Zeichen und Zahlen (z.B. P-62602). Der Datentyp <code>object</code> ist also passend.</li>
-<li><code>Projektname</code>: die Spalte beinhaltet Text. Der Datentyp <code>object</code> ist also passend.</li>
-<li><code>projekt_Beginn</code>: die Spalte beinhaltet Datumswerte. Der Datentyp <code>object</code> ist nicht passend. Wir sollten den Datentyp in ein Datumsformat umwandeln.</li>
-<li><code>Plan Bau fertig</code>: die Spalte beinhaltet Datumswerte. Der Datentyp <code>object</code> ist nicht passend. Wir sollten den Datentyp in ein Datumsformat umwandeln.</li>
-<li><code>Ist_Bau_fertig</code>: die Spalte beinhaltet Datumswerte. Der Datentyp <code>object</code> ist nicht passend. Wir sollten den Datentyp in ein Datumsformat umwandeln.</li>
-<li><code>plan_Kosten</code>: die Spalte beinhaltet Gleitkommazahlen. Der Datentyp <code>float</code> ist passend.</li>
-<li><code>Ist_Kosten</code>: die Spalte beinhaltet Gleitkommazahlen. Der Datentyp <code>float</code> ist passend.</li>
-<li><code>Project_team</code>: die Spalte beinhaltet Text. Der Datentyp <code>object</code> ist also passend.</li>
-</ul>
-<p>Die Anpassung der Datumsformate können wir mit der Pandas-Funktion <code>to_datetime()</code> durchführen. Wir müssen dabei nur die Spalten angeben, die wir anpassen möchten. Die Funktion <code>to_datetime()</code> wandelt die Spalten dann in ein Datumsformate um.</p>
-<div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'projekt_Beginn'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'projekt_Beginn'</span>])</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Plan Bau fertig'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'Plan Bau fertig'</span>])</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Ist_Bau_fertig'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'Ist_Bau_fertig'</span>])</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Das Ergebnis können wir uns mit der Funktion <code>info()</code> anzeigen lassen.</p>
-<div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df.info()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
-RangeIndex: 10000 entries, 0 to 9999
-Data columns (total 8 columns):
- #   Column           Non-Null Count  Dtype         
----  ------           --------------  -----         
- 0   Project_ID       10000 non-null  object        
- 1   Projektname      10000 non-null  object        
- 2   projekt_Beginn   10000 non-null  datetime64[ns]
- 3   Plan Bau fertig  10000 non-null  datetime64[ns]
- 4   Ist_Bau_fertig   10000 non-null  datetime64[ns]
- 5   plan_Kosten      10000 non-null  float64       
- 6   Ist_Kosten       10000 non-null  float64       
- 7   Project_team     10000 non-null  object        
-dtypes: datetime64[ns](3), float64(2), object(3)
-memory usage: 625.1+ KB</code></pre>
-</div>
-</div>
-<div class="callout-tip callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Datumsformate
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Die Konvertierung der Daten in ein Datumsformat ist für uns in unserem Falle nicht ersichtlich. Schauen wir uns die Daten an, sehen diese für uns aus wie vor der Konvertierung. Jedoch hat Pandas die Daten intern in ein Datumsformat umgewandelt, was den Vorteil hat, dass wir auf verschiedene Funktionen zurückgreifen können, die nur mit Datumsformaten funktionieren. So können wir z.B. mit der Funktion <code>dt.weekday</code> den Wochentag auslesen.</p>
-<div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'projekt_Beginn'</span>].dt.weekday</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>0       1
-1       3
-2       4
-3       2
-4       6
-       ..
-9995    3
-9996    5
-9997    5
-9998    0
-9999    5
-Name: projekt_Beginn, Length: 10000, dtype: int64</code></pre>
-</div>
-</div>
-<p>Die Umwandlung in ein Datumsformat ist also nicht nur für die Darstellung der Daten sinnvoll, sondern auch für die weitere Analyse - zumindest dann, wenn wir mit Datumsformaten arbeiten möchten.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="spalten-umbenennen" class="level3">
-<h3 class="anchored" data-anchor-id="spalten-umbenennen">Spalten umbenennen</h3>
-<p>Das Umbennen von Spalten ist nicht zwingend notwendig. Jedoch ist die Bezeichnung von Spalten oft nicht intuitiv, inkonsistent oder unklar. Daher ist es sinnvoll, die Spalten so zu bennen, dass wir im Rahmen der Analyse (i) schnell erkennen, was in der Spalte steht und (ii) die Auswahl der Spalten intuitiv ist. Die Umbenennung der Spalten hat dabei natürlich immer eine subjektive Komponente, da jeder andere Vorstellungen hat, wie die Spalten benannt sein sollten.</p>
+<p>Beginnen wir mit der Aufbereitung der Daten. Natürlich gibt es nicht <em>den</em> richtigen Weg, um Daten aufzubereiten. Jeder Datensatz ist unterschiedlich und nicht alle Daten sind gleich. Dennoch gibt es typische Aufgaben, die wir bei der Aufbereitung von Daten immer wieder vorfinden. Wir werden uns im Folgenden einige dieser Aufgaben ansehen und die entsprechenden Lösungen diskutieren.</p>
+<section id="variablennamen-anpassen" class="level3">
+<h3 class="anchored" data-anchor-id="variablennamen-anpassen">Variablennamen anpassen</h3>
+<p>Es ist nicht zwingend notwendig Variablen neu zu benennen. Im vorliegenden Datensatz hat jede Variable zumindest eine den Inhalt beschreibende Bezeichnung. Jedoch ist die Bezeichnung von Spalten oft nicht intuitiv, inkonsistent oder unklar. Daher ist es sinnvoll, die Spalten so zu bennen, dass wir im Rahmen der Analyse (i) schnell erkennen, was in der Spalte steht und (ii) die Auswahl der Spalten intuitiv ist. Die Umbenennung von Variablen hat dabei natürlich immer eine subjektive Komponente, da jeder andere Vorstellungen hat, wie die Spalten benannt sein sollten.</p>
 <p>In unserem Datensatz sind die Spaltennamen jedoch insbesondere auch nicht einheitlich benannt. So beginnen einige Spalten mit einem Großbuchstaben, andere mit einem Kleinbuchstaben. Bei einigen Spalten ist der englische Begriff <code>project</code>, bei anderen der deutsche Begriff <code>projekt</code> verwendet. Einige Spalten beinhalten Leerzeichen, andere sind mit <code>_</code> verbunden. Dies sind alles Dinge, die die weitere Analyse ein Stück weit erschweren, da wir Spalten nicht intuitiv auswählen können.</p>
 <p>Lassen Sie uns die Spalten deshalb vereinheitlichen, in dem wir:</p>
 <ul>
 <li>alle Spalten in Kleinbuchstaben umwandeln</li>
 <li>alle Leerzeichen durch <code>_</code> ersetzen</li>
 <li>alle Begriffe <code>project</code> durch <code>projekt</code> ersetzen</li>
-<li>wo sinnvoll kürzere Begriffe ver wenden</li>
+<li>wo sinnvoll kürzere Begriffe verwenden</li>
+<li>Begriffe wie <code>Plan</code> und <code>Ist</code> einheitlich verwenden</li>
 </ul>
 <p>Wir können die Spalten mit der Funktion <code>rename()</code> umbenennen. Die Funktion <code>rename()</code> erwartet als Parameter ein Dictionary, in dem wir die alten Spaltennamen als Schlüssel und die neuen Spaltennamen als Werte angeben.</p>
-<div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.rename(columns<span class="op">=</span>{<span class="st">'Project_ID'</span>: <span class="st">'id'</span>, <span class="co"># Spalte "Projekt_ID" wird umbenannt in "id"</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                        <span class="st">'Projektname'</span>: <span class="st">'name'</span>,</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                        <span class="st">'projekt_Beginn'</span>: <span class="st">'beginn'</span>,</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                        <span class="st">'Plan Bau fertig'</span>: <span class="st">'ende_plan'</span>,</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>                        <span class="st">'Ist_Bau_fertig'</span>: <span class="st">'ende_ist'</span>,</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>                        <span class="st">'plan_Kosten'</span>: <span class="st">'kosten_plan'</span>,</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>                        <span class="st">'Ist_Kosten'</span>: <span class="st">'kosten_ist'</span>,</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>                        <span class="st">'Project_team'</span>: <span class="st">'team'</span>})</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.rename(columns<span class="op">=</span>{<span class="st">'Project_ID'</span>: <span class="st">'id'</span>, <span class="co"># Spalte "Projekt_ID" wird umbenannt in "id"</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                        <span class="st">'Name Projekt'</span>: <span class="st">'name'</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                        <span class="st">'projekt_Beginn'</span>: <span class="st">'beginn'</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                        <span class="st">'Plan Bau fertig'</span>: <span class="st">'ende_plan'</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                        <span class="st">'Fertig_IST'</span>: <span class="st">'ende_ist'</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                        <span class="st">'Kosten Plan'</span>: <span class="st">'kosten_plan'</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>                        <span class="st">'Ist_Kosten'</span>: <span class="st">'kosten_ist'</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>                        <span class="st">'Project_team'</span>: <span class="st">'team'</span>})</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
 
 <div>
 
@@ -587,58 +561,58 @@ Name: projekt_Beginn, Length: 10000, dtype: int64</code></pre>
   <tbody>
     <tr>
       <th>0</th>
-      <td>P-62602</td>
-      <td>Stadtpark // Eberhardtallee</td>
-      <td>2013-10-15</td>
-      <td>2013-12-26</td>
-      <td>2013-12-25</td>
-      <td>109129.55</td>
-      <td>130487.07</td>
-      <td>Team 4</td>
+      <td>HN-399443</td>
+      <td>Straßenbau // Jennifer-Buchholz-Ring</td>
+      <td>2014-09-01</td>
+      <td>2014-10-03</td>
+      <td>2014-10-02</td>
+      <td>219817.40</td>
+      <td>246192.34</td>
+      <td>Team 3</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>P-80374</td>
-      <td>Spielplatz // Geißlerweg</td>
-      <td>2016-07-14</td>
-      <td>2016-09-20</td>
-      <td>2016-09-22</td>
-      <td>59521.33</td>
-      <td>66009.97</td>
-      <td>Team 4</td>
+      <td>UD-626094</td>
+      <td>Elektroarbeiten // Langernstraße</td>
+      <td>2021-06-12</td>
+      <td>2021-08-16</td>
+      <td>2021-09-18</td>
+      <td>105683.14</td>
+      <td>144657.38</td>
+      <td>Team 3</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>P-96379</td>
-      <td>Spielplatz // Schäferring</td>
-      <td>2019-06-14</td>
-      <td>2019-06-16</td>
-      <td>2019-06-29</td>
-      <td>82572.27</td>
-      <td>107571.64</td>
-      <td>Team 2</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>P-31809</td>
-      <td>Baumbestand // Raphaela-Scheel-Platz</td>
-      <td>2019-02-06</td>
-      <td>2019-02-11</td>
-      <td>2019-02-11</td>
-      <td>29563.59</td>
-      <td>29724.17</td>
+      <td>IO-468103</td>
+      <td>Spielplatz // Dussen vanweg</td>
+      <td>2016-05-20</td>
+      <td>2016-06-29</td>
+      <td>2016-06-27</td>
+      <td>129851.26</td>
+      <td>136753.06</td>
       <td>Team 1</td>
     </tr>
     <tr>
+      <th>3</th>
+      <td>OG-758899</td>
+      <td>Stadtpark // Lübsstr.</td>
+      <td>2014-11-11</td>
+      <td>2014-12-30</td>
+      <td>2015-01-28</td>
+      <td>181236.83</td>
+      <td>273996.91</td>
+      <td>Team 2</td>
+    </tr>
+    <tr>
       <th>4</th>
-      <td>P-51445</td>
-      <td>Landschaftsbau // Julia-Neureuther-Platz</td>
-      <td>2015-04-26</td>
-      <td>2015-05-16</td>
-      <td>2015-05-20</td>
-      <td>38315.35</td>
-      <td>53783.40</td>
-      <td>Team 3</td>
+      <td>CZ-107835</td>
+      <td>Elektroarbeiten // Försterweg</td>
+      <td>2017-07-25</td>
+      <td>2017-10-08</td>
+      <td>2017-10-08</td>
+      <td>75205.92</td>
+      <td>77519.27</td>
+      <td>Team 4</td>
     </tr>
   </tbody>
 </table>
@@ -646,30 +620,163 @@ Name: projekt_Beginn, Length: 10000, dtype: int64</code></pre>
 </div>
 </div>
 </section>
-<section id="fehler-finden" class="level3 page-columns page-full">
-<h3 class="anchored" data-anchor-id="fehler-finden">“Fehler” finden</h3>
-<div class="page-columns page-full"><p>Wir haben bereits festgestellt, dass unser Datensatz keine fehlenden Werte enthält.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> Diese kommen in der Praxis sehr häufig vor, weil z.B. Daten nicht erfasst wurden oder Daten nicht vollständig sind. Das Fehlen von Werten ist meist eine offensichtlicher “Fehler”. Andere “Fehler” sind oft nicht so offensichtlich und können sich in den Daten verstecken. Bei diesen “Fehlern” handelt es sich oft um Ausreißer oder Ungereimtheiten, auf die man oft auch erst im Rahmen der Analyse stößt (insb. durch Visualisierung der Daten). Auch haben wir den Begriff “Fehler” bewusst in Anführungszeichen gesetzt, da es sich hierbei nicht immer um fehlerhafte Daten handelt. Manchmal sind die Daten einfach nur ungewöhnlich oder erfordern eine andere Interpretation oder genauere Analyse. Die Entscheidung, wie mit diesen “Fehlern” umgegangen wird, ist abhängig von der Aufgabenstellung, vom Datensatz und von der Analyse.</p><div class="no-row-height column-margin column-container"><li id="fn3"><p><sup>3</sup>&nbsp;Man bezeichnet fehlende Werte auch als “Not a number”-Werten sog. <code>NaN</code>s.</p></li></div></div>
-<p>Lassen Sie uns nun ein Beispiel für einen solchen “Fehler” betrachten und dann entscheiden, wir wir damit im Rahmen der Analyse umgehen. Dazu müssen wir uns zunächst die Daten genauer anschauen. Wir werden uns auf zwei potentielle “Fehler” konzentrieren:</p>
-<ol type="1">
-<li>Duplikate oder doppelte Einträge</li>
-<li>Ausreißer in den Daten</li>
-</ol>
-<section id="duplikate-identifizieren" class="level4 page-columns page-full">
-<h4 class="anchored" data-anchor-id="duplikate-identifizieren">Duplikate identifizieren</h4>
-<p>Duplikate sind doppelte Einträge in den Daten. Sie können entstehen, wenn z.B. Daten mehrfach erfasst wurden oder wenn Daten aus verschiedenen Quellen zusammengeführt wurden. Duplikate können zu Problemen führen, wenn wir die Daten aggregieren oder zusammenführen wollen. Daher ist es sinnvoll, Duplikate zu identifizieren und (meistens) zu entfernen.</p>
-<p>Wir unterscheiden zwischen drei Arten von Duplikaten:</p>
-<ol type="1">
-<li>Duplikate in den Zeilen, d.h. doppelte Datenpunkte (z.B. zwei Einträge für das gleiche Projekt)</li>
-<li>Duplikate in den Spalten, d.h. doppelte Variablen (z.B. zwei Spalten in denen die gleichen Daten enthalten sind)</li>
-<li>Duplikate innerhalb einer Variable, d.h. eigentlich einzigartige Werte tretten doppelt auf (z.B. zwei Projekte mit dem gleichen Namen)</li>
-</ol>
-<p>Die Punkte 1 und 2 führen nahezu immer dazu, dass man die doppelten Zeilen oder Spalten aus dem Datensatz löscht. Bei Punkt 3 ist es teilweise sinnvoll, die doppelten Werte neu zu bezeichnen oder zu kodieren. Die Beurteilung des Sachverhalts erfordert jedoch ein Verständnis der Daten und der Aufgabenstellung.</p>
-<p>Lassen Sie uns für die nachfolgenden zwei Beispiele zunächst einen kleinen Beispiel-Datensatz erstellen:</p>
+<section id="datentypen-anpassen" class="level3">
+<h3 class="anchored" data-anchor-id="datentypen-anpassen">Datentypen anpassen</h3>
+<p>Ein wichtiger Schritt bei der Aufbereitung von Daten ist die Überprüfung der Datentypen. Wir haben bereits gesehen, dass unser Datensatz nach dem Einlesen zwei Datentypen enthält: <code>object</code> und <code>float64</code>. Lassen Sie uns deshalb überlegen, ob diese Datentypen geeignet für unsere Analyse sind. Denn: die Datentypen beeinflussen die Art und Weise, wie wir mit den Daten arbeiten können.</p>
+<ul>
+<li><code>id</code>: die Spalte beinhaltet Buchstaben, Zeichen und Zahlen (z.B. P-62602). Der Datentyp <code>object</code> ist also passend.</li>
+<li><code>name</code>: die Spalte beinhaltet Text. Der Datentyp <code>object</code> ist also passend.</li>
+<li><code>beginn</code>: die Spalte beinhaltet Datumswerte. Der Datentyp <code>object</code> ist nicht passend. Wir sollten den Datentyp in ein Datumsformat umwandeln.</li>
+<li><code>ende_plan</code>: die Spalte beinhaltet Datumswerte. Der Datentyp <code>object</code> ist nicht passend. Wir sollten den Datentyp in ein Datumsformat umwandeln.</li>
+<li><code>ende_ist</code>: die Spalte beinhaltet Datumswerte. Der Datentyp <code>object</code> ist nicht passend. Wir sollten den Datentyp in ein Datumsformat umwandeln.</li>
+<li><code>kosten_plan</code>: die Spalte beinhaltet Zahlen. Der Datentyp <code>float64</code> erscheint passend.</li>
+<li><code>kosten_ist</code>: die Spalte beinhaltet Zahlen. Der Datentyp <code>float64</code> erscheint passend.</li>
+<li><code>team</code>: die Spalte beinhaltet Text. Der Datentyp <code>object</code> ist also passend.</li>
+</ul>
+<p>Wir müssen also lediglich die Spalten mit Datumsinformationen in ein geeignetes Format umwandeln. Die Anpassung der Datumsformate können wir mit der Pandas-Funktion <code>to_datetime()</code> durchführen. Wir müssen dabei nur die Spalten angeben, die wir anpassen möchten. Die Funktion <code>to_datetime()</code> wandelt die Spalten dann in ein Datumsformate um. Wir überschreiben die Spalten einfach mit den neuen Werten.</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'beginn'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'beginn'</span>])</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'ende_plan'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'ende_plan'</span>])</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'ende_ist'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'ende_ist'</span>])</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>id</th>
+      <th>name</th>
+      <th>beginn</th>
+      <th>ende_plan</th>
+      <th>ende_ist</th>
+      <th>kosten_plan</th>
+      <th>kosten_ist</th>
+      <th>team</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>HN-399443</td>
+      <td>Straßenbau // Jennifer-Buchholz-Ring</td>
+      <td>2014-09-01</td>
+      <td>2014-10-03</td>
+      <td>2014-10-02</td>
+      <td>219817.40</td>
+      <td>246192.34</td>
+      <td>Team 3</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>UD-626094</td>
+      <td>Elektroarbeiten // Langernstraße</td>
+      <td>2021-06-12</td>
+      <td>2021-08-16</td>
+      <td>2021-09-18</td>
+      <td>105683.14</td>
+      <td>144657.38</td>
+      <td>Team 3</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>IO-468103</td>
+      <td>Spielplatz // Dussen vanweg</td>
+      <td>2016-05-20</td>
+      <td>2016-06-29</td>
+      <td>2016-06-27</td>
+      <td>129851.26</td>
+      <td>136753.06</td>
+      <td>Team 1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>OG-758899</td>
+      <td>Stadtpark // Lübsstr.</td>
+      <td>2014-11-11</td>
+      <td>2014-12-30</td>
+      <td>2015-01-28</td>
+      <td>181236.83</td>
+      <td>273996.91</td>
+      <td>Team 2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>CZ-107835</td>
+      <td>Elektroarbeiten // Försterweg</td>
+      <td>2017-07-25</td>
+      <td>2017-10-08</td>
+      <td>2017-10-08</td>
+      <td>75205.92</td>
+      <td>77519.27</td>
+      <td>Team 4</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Das Ergebnis ist für uns nicht ersichtlich. Wir können uns die Datentypen der einzelnen Spalten jedoch mit der Funktion <code>dtypes</code> anzeigen lassen und überprüfen, ob die Datentypen nun passend sind.</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df.dtypes</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>id                     object
+name                   object
+beginn         datetime64[ns]
+ende_plan      datetime64[ns]
+ende_ist       datetime64[ns]
+kosten_plan           float64
+kosten_ist            float64
+team                   object
+dtype: object</code></pre>
+</div>
+</div>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Warum Datumsformate?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Die Konvertierung der Daten in ein Datumsformat ist für uns in unserem Falle nicht ersichtlich. Schauen wir uns die Daten an, sehen diese für uns aus wie vor der Konvertierung. Jedoch hat Pandas die Daten intern in ein Datumsformat umgewandelt, was den Vorteil hat, dass wir auf verschiedene Funktionen zurückgreifen können, die nur mit Daten vom Datentyp <code>datetime</code> funktionieren. So können wir z.B. mit der Funktion <code>dt.weekday</code> den Wochentag auslesen.</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'beginn'</span>].dt.weekday</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>0        0
+1        5
+2        4
+3        1
+4        1
+        ..
+10014    2
+10015    6
+10016    5
+10017    3
+10018    1
+Name: beginn, Length: 10019, dtype: int64</code></pre>
+</div>
+</div>
+<p>Die Umwandlung in ein Datumsformat ist also nicht nur für die Darstellung der Daten sinnvoll, sondern auch für die weitere Analyse - zumindest dann, wenn wir mit Datumsformaten arbeiten möchten.</p>
+<p>Weitere Informationen zu den <code>datetime</code>-Funktionen finden Sie in der <a href="https://pandas.pydata.org/docs/user_guide/timeseries.html#time-date-components">Dokumentation</a>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="daten-bereinigen" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="daten-bereinigen">Daten bereinigen</h3>
+<section id="fehlende-werte" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="fehlende-werte">Fehlende Werte</h4>
+<p>Wir haben bereits gesehen, dass nicht alle Spalten mit Werten gefüllt sind. Jedoch wissen wir nicht, wo sich diese fehlenden Werte befinden. Diese Information wird jedoch benötigt, um zu entscheiden, wie wir mit den fehlenden Werten umgehen. Wollen wir Beobachtungen mit fehlenden Werte entfernen oder wollen wir z.B. die fehlenden Werte mit einem anderen Wert ersetzen? Sind die fehlenden Werte für unsere Analyse relevant?</p>
+<p>Mit der Funktion <code>isna()</code> können wir herausfinden, wo sich fehlende Werte befinden. Schauen wir uns die Funktion <code>isna()</code> zunächst einmal an.</p>
 <div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>example <span class="op">=</span> pd.DataFrame({<span class="st">'Spalte A'</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>],</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'Spalte B'</span>: [<span class="st">'Hund'</span>, <span class="st">'Katze'</span>, <span class="st">'Vogel'</span>, <span class="st">'Katze'</span>, <span class="st">'Fisch'</span>, <span class="st">'Vogel'</span>],</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'Spalte C'</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>]})</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>example.head()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df.isna()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 
 <div>
@@ -678,65 +785,167 @@ Name: projekt_Beginn, Length: 10000, dtype: int64</code></pre>
   <thead>
     <tr>
       <th></th>
-      <th>Spalte A</th>
-      <th>Spalte B</th>
-      <th>Spalte C</th>
+      <th>id</th>
+      <th>name</th>
+      <th>beginn</th>
+      <th>ende_plan</th>
+      <th>ende_ist</th>
+      <th>kosten_plan</th>
+      <th>kosten_ist</th>
+      <th>team</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>1</td>
-      <td>Hund</td>
-      <td>1</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>2</td>
-      <td>Katze</td>
-      <td>2</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>3</td>
-      <td>Vogel</td>
-      <td>3</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>2</td>
-      <td>Katze</td>
-      <td>2</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>4</td>
-      <td>Fisch</td>
-      <td>4</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>10014</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>10015</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>10016</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>10017</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>10018</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
     </tr>
   </tbody>
 </table>
+<p>10019 rows × 8 columns</p>
 </div>
 </div>
 </div>
-<p><strong>Beispiel 1: Duplikate in Zeilen identifizieren und entfernen</strong></p>
-<p>Wir können die Methode <code>duplicated()</code> nutzen, um Duplikate in Zeilen eines DataFrames zu <strong>identifizieren</strong>. Sie gibt eine Boolesche Reihe (True, False, True etc.) zurück, die angibt, ob eine Zeile ein Duplikat ist oder nicht. Standardmäßig werden dabei alle Spalten berücksichtigt, jedoch kann auch eine Teilmenge von Spalten angegeben werden, die bei der Suche nach Duplikaten berücksichtigt werden soll.</p>
+<p>Das Ergebnis der Funktion <code>isna()</code> ist ein DataFrame, der für jede Zelle einen Boolean-Wert zurückgibt. <code>True</code> bedeutet, dass die Zelle einen fehlenden Wert enthält, <code>False</code> bedeutet, dass die Zelle einen Wert enthält. In unserem Fall ist der Datensatz jedoch zu groß, als dass wir die Ausgabe der Funktion <code>isna()</code> komplett betrachten können. Idealerweise möchten wir nur die Zeilen sehen, die fehlende Werte enthalten.</p>
+<p>Dies können wir mit der Funktion <code>any()</code> erreichen. Die Funktion <code>any()</code> gibt für jede Spalte oder Zeile einen Boolean-Wert zurück. <code>True</code> bedeutet, dass dort mindestens ein fehlender Wert enthalten ist. Mit dem Parameter <code>axis</code> können wir angeben, ob wir die Funktion <code>any()</code> für jede Spalte oder für jede Zeile ausführen möchten. <code>axis=1</code> bedeutet, dass wir die Funktion <code>any()</code> für jede Zeile ausführen möchten.</p>
 <div class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>example.duplicated()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df.isna().<span class="bu">any</span>(axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
-<pre><code>0    False
-1    False
-2    False
-3     True
-4    False
-5    False
-dtype: bool</code></pre>
+<pre><code>0        False
+1        False
+2        False
+3        False
+4        False
+         ...  
+10014    False
+10015    False
+10016    False
+10017    False
+10018    False
+Length: 10019, dtype: bool</code></pre>
 </div>
 </div>
-<p>Die Funktion gibt an, dass die Zeile mit dem Index <code>3</code> ein Duplikat ist. Wir können wegen der kleinen Größe des Datensatzes direkt sehen, dass das Duplikat im Zeilenindex 1 befindet. Bei größeren Datensätzen ist dies oft nicht mehr mit dem bloßen Auge möglich. Wir können dann etwas anders vorgehen, um uns die Duplikate anzeigen zu lassen. Wir lassen uns über den Parameter <code>keep=False</code> die Zeilen aller Duplikate anzeigen und filtern anschließend den Datensatz nach genau diesen Zeilen.</p>
+<div class="page-columns page-full"><p>Wir können dieses Ergebnis nun zum Filtern der Zeilen verwenden. Wir erstellen einen Boolean-Index, der nur die Zeilen enthält, die fehlende Werte enthalten<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. Diesen Index können wir dann verwenden, um nur die Zeilen auszuwählen, die fehlende Werte enthalten.</p><div class="no-row-height column-margin column-container"><li id="fn4"><p><sup>4</sup>&nbsp;Hinweis: dieser wird oft als <code>mask</code> bezeichnet. Da es sich aber um eine einfache Variable handelt, können wir diese theoretisch benennen, wie wir möchten.</p></li></div></div>
 <div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>idx <span class="op">=</span> example.duplicated(keep<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>example[idx]</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>mask <span class="op">=</span> df.isna().<span class="bu">any</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>df[mask]</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 
 <div>
@@ -745,87 +954,298 @@ dtype: bool</code></pre>
   <thead>
     <tr>
       <th></th>
-      <th>Spalte A</th>
-      <th>Spalte B</th>
-      <th>Spalte C</th>
+      <th>id</th>
+      <th>name</th>
+      <th>beginn</th>
+      <th>ende_plan</th>
+      <th>ende_ist</th>
+      <th>kosten_plan</th>
+      <th>kosten_ist</th>
+      <th>team</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>1</th>
-      <td>2</td>
-      <td>Katze</td>
-      <td>2</td>
+      <th>103</th>
+      <td>TH-593312</td>
+      <td>Elektroarbeiten // Börnerplatz</td>
+      <td>2018-05-07</td>
+      <td>2018-07-11</td>
+      <td>2018-07-17</td>
+      <td>NaN</td>
+      <td>69375.23</td>
+      <td>Team 3</td>
     </tr>
     <tr>
-      <th>3</th>
-      <td>2</td>
-      <td>Katze</td>
-      <td>2</td>
+      <th>740</th>
+      <td>NL-673150</td>
+      <td>Baumbestand // Loosplatz</td>
+      <td>2016-12-30</td>
+      <td>NaT</td>
+      <td>2016-12-31</td>
+      <td>16349.93</td>
+      <td>17892.16</td>
+      <td>Team 3</td>
+    </tr>
+    <tr>
+      <th>896</th>
+      <td>LM-748355</td>
+      <td>Baumbestand // Martha-Bohlander-Ring</td>
+      <td>2019-10-17</td>
+      <td>2019-10-22</td>
+      <td>2019-10-24</td>
+      <td>NaN</td>
+      <td>40637.75</td>
+      <td>Team 4</td>
+    </tr>
+    <tr>
+      <th>996</th>
+      <td>AY-257302</td>
+      <td>Elektroarbeiten // Eimerstr.</td>
+      <td>2014-02-03</td>
+      <td>2014-02-28</td>
+      <td>2014-03-01</td>
+      <td>NaN</td>
+      <td>112867.21</td>
+      <td>Team 2</td>
+    </tr>
+    <tr>
+      <th>1059</th>
+      <td>RR-446242</td>
+      <td>Elektroarbeiten // Florentine-Kambs-Allee</td>
+      <td>2013-06-16</td>
+      <td>2013-07-24</td>
+      <td>2013-07-23</td>
+      <td>NaN</td>
+      <td>164730.94</td>
+      <td>Team 1</td>
+    </tr>
+    <tr>
+      <th>1272</th>
+      <td>RG-867589</td>
+      <td>Stadtpark // Gottlieb-Plath-Platz</td>
+      <td>2015-03-05</td>
+      <td>NaT</td>
+      <td>2015-04-14</td>
+      <td>199994.22</td>
+      <td>233881.99</td>
+      <td>Team 4</td>
+    </tr>
+    <tr>
+      <th>1357</th>
+      <td>ZL-002818</td>
+      <td>Elektroarbeiten // Margrafweg</td>
+      <td>2015-10-13</td>
+      <td>NaT</td>
+      <td>2016-01-24</td>
+      <td>94817.15</td>
+      <td>132951.83</td>
+      <td>Team 3</td>
+    </tr>
+    <tr>
+      <th>1406</th>
+      <td>XJ-212266</td>
+      <td>Elektroarbeiten // Xenia-Hermighausen-Weg</td>
+      <td>2020-12-17</td>
+      <td>2021-01-30</td>
+      <td>2021-02-03</td>
+      <td>NaN</td>
+      <td>75133.80</td>
+      <td>Team 4</td>
+    </tr>
+    <tr>
+      <th>1887</th>
+      <td>HT-062324</td>
+      <td>Ubahn // Norma-Kade-Platz</td>
+      <td>2013-08-26</td>
+      <td>2013-09-30</td>
+      <td>2013-09-11</td>
+      <td>NaN</td>
+      <td>-84308.51</td>
+      <td>Team 4</td>
+    </tr>
+    <tr>
+      <th>2477</th>
+      <td>TQ-532646</td>
+      <td>Landschaftsbau // Ester-Eberhardt-Platz</td>
+      <td>2015-11-07</td>
+      <td>2015-11-08</td>
+      <td>2015-11-12</td>
+      <td>NaN</td>
+      <td>75117.33</td>
+      <td>Team 2</td>
+    </tr>
+    <tr>
+      <th>2916</th>
+      <td>CN-702227</td>
+      <td>Spielplatz // Werneckeweg</td>
+      <td>2019-08-12</td>
+      <td>2019-09-06</td>
+      <td>2019-09-26</td>
+      <td>NaN</td>
+      <td>70094.61</td>
+      <td>Team 2</td>
+    </tr>
+    <tr>
+      <th>3678</th>
+      <td>RY-972392</td>
+      <td>Elektroarbeiten // Textorallee</td>
+      <td>2014-04-05</td>
+      <td>2014-06-24</td>
+      <td>2014-06-14</td>
+      <td>NaN</td>
+      <td>119277.88</td>
+      <td>Team 1</td>
+    </tr>
+    <tr>
+      <th>4724</th>
+      <td>HV-603533</td>
+      <td>Landschaftsbau // Grein Grothring</td>
+      <td>2018-03-12</td>
+      <td>2018-03-25</td>
+      <td>2018-03-28</td>
+      <td>NaN</td>
+      <td>187268.32</td>
+      <td>Team 4</td>
+    </tr>
+    <tr>
+      <th>5652</th>
+      <td>ZL-598081</td>
+      <td>Baumbestand // Tintzmannallee</td>
+      <td>2014-12-04</td>
+      <td>2014-12-04</td>
+      <td>2014-12-04</td>
+      <td>NaN</td>
+      <td>27231.15</td>
+      <td>Team 4</td>
+    </tr>
+    <tr>
+      <th>5948</th>
+      <td>HZ-310515</td>
+      <td>Spielplatz // Mansplatz</td>
+      <td>2021-11-21</td>
+      <td>2022-01-30</td>
+      <td>2022-03-08</td>
+      <td>NaN</td>
+      <td>236494.73</td>
+      <td>Team 2</td>
+    </tr>
+    <tr>
+      <th>6034</th>
+      <td>VE-356952</td>
+      <td>Landschaftsbau // Samira-Trupp-Straße</td>
+      <td>2013-08-27</td>
+      <td>NaT</td>
+      <td>2013-09-17</td>
+      <td>-31296.91</td>
+      <td>-36533.15</td>
+      <td>Team 2</td>
+    </tr>
+    <tr>
+      <th>6398</th>
+      <td>CG-482764</td>
+      <td>Landschaftsbau // Süßebierstraße</td>
+      <td>2021-08-31</td>
+      <td>NaT</td>
+      <td>2021-09-12</td>
+      <td>116367.77</td>
+      <td>105993.50</td>
+      <td>Team 1</td>
+    </tr>
+    <tr>
+      <th>6672</th>
+      <td>HK-793800</td>
+      <td>Baumbestand // Bolanderstr.</td>
+      <td>2014-05-26</td>
+      <td>NaT</td>
+      <td>2014-06-07</td>
+      <td>60701.91</td>
+      <td>68018.53</td>
+      <td>Team 3</td>
+    </tr>
+    <tr>
+      <th>7894</th>
+      <td>RV-503877</td>
+      <td>Elektroarbeiten // Anselm-Römer-Allee</td>
+      <td>2013-06-20</td>
+      <td>2013-10-11</td>
+      <td>2013-10-12</td>
+      <td>NaN</td>
+      <td>80977.58</td>
+      <td>Team 2</td>
+    </tr>
+    <tr>
+      <th>8853</th>
+      <td>VY-133979</td>
+      <td>Baumbestand // Ansgar-Lindau-Weg</td>
+      <td>2017-02-17</td>
+      <td>NaT</td>
+      <td>2017-03-12</td>
+      <td>44071.21</td>
+      <td>49196.77</td>
+      <td>Team 1</td>
+    </tr>
+    <tr>
+      <th>9759</th>
+      <td>LR-884749</td>
+      <td>Stadtpark // Steven-Döhn-Weg</td>
+      <td>2021-11-10</td>
+      <td>2021-12-17</td>
+      <td>2021-12-07</td>
+      <td>NaN</td>
+      <td>172659.20</td>
+      <td>Team 3</td>
     </tr>
   </tbody>
 </table>
 </div>
 </div>
 </div>
-<p>Unser Datensatz beinhaltet also einen doppelten Eintrag. Wir müssen nun entscheiden, ob wir diesen Eintrag entfernen wollen oder nicht. In diesem Fall ist es sinnvoll, den doppelten Eintrag zu entfernen, da wir in der Regel davon ausgehen, dass die Daten nur einmal erfasst wurden. Wir können dies mit der Methode <code>drop_duplicates()</code> tun.</p>
-<p>Die Methode <code>drop_duplicates()</code> dient dazu, Duplikate in Zeilen eines DataFrames zu entfernen. Standardmäßig werden alle Spalten berücksichtigt und der erste Datensatz eines doppelten Datensatz behalten. Auch hier kann eine Teilmenge von Spalten angeben, die bei der Suche nach Duplikaten berücksichtigt werden soll. Zusätzlich kann auch hier angegeben werden, ob der erste, letzte oder alle Datensätze des doppelten Datensatezs gelöscht werden soll.</p>
+<p>Das Ergebnis ist ein Ausschnitt unseres Datensatzes, der nur die Zeilen enthält, die fehlende Werte enthalten. Da wir keine weiteren Informationen zu den fehlenden Daten haben und auch keinen systematischen Fehler entdecken können, der zu den fehlenden Daten führt, werden wir die fehlenden Werte einfach entfernen. Dies können wir mit der Funktion <code>dropna()</code> erreichen.</p>
 <div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>example <span class="op">=</span> example.drop_duplicates()</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>example</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="11">
-
-<div>
-
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Spalte A</th>
-      <th>Spalte B</th>
-      <th>Spalte C</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-      <td>Hund</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2</td>
-      <td>Katze</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>3</td>
-      <td>Vogel</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>4</td>
-      <td>Fisch</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>5</td>
-      <td>Vogel</td>
-      <td>5</td>
-    </tr>
-  </tbody>
-</table>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.dropna()</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>df.info()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+Int64Index: 9998 entries, 0 to 10018
+Data columns (total 8 columns):
+ #   Column       Non-Null Count  Dtype         
+---  ------       --------------  -----         
+ 0   id           9998 non-null   object        
+ 1   name         9998 non-null   object        
+ 2   beginn       9998 non-null   datetime64[ns]
+ 3   ende_plan    9998 non-null   datetime64[ns]
+ 4   ende_ist     9998 non-null   datetime64[ns]
+ 5   kosten_plan  9998 non-null   float64       
+ 6   kosten_ist   9998 non-null   float64       
+ 7   team         9998 non-null   object        
+dtypes: datetime64[ns](3), float64(2), object(3)
+memory usage: 703.0+ KB</code></pre>
 </div>
 </div>
+<p>Der angepasste Datensatz enthält nun keine fehlenden Werte mehr, ist jedoch auch um einige Zeilen kleiner geworden. Gemessen an der Größe des Gesamtdatensatzes scheint dies jedoch vernachlässigbar zu sein.</p>
+</section>
+<section id="duplikate" class="level4">
+<h4 class="anchored" data-anchor-id="duplikate">Duplikate</h4>
+<p>Ähnlich wie bei den fehlenden Werten können wir mit der Funktion <code>duplicated()</code> herausfinden, ob es Duplikate in unserem Datensatz gibt. Mit Duplikaten meinen wir hier, dass es Zeilen gibt, die im Datensatz mehrfach vorkommen. Das Vorgehen zur Identifikation von Duplikaten ist ähnlich wie bei den fehlenden Werten.</p>
+<div class="callout-tip callout callout-style-default no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
 </div>
-<div class="page-columns page-full"><p>Der Datensatz im Zeilenindex <code>3</code> wurde entfernt. Wir erkennen dies auch schon daran, dass der Index <code>3</code> nicht mehr vorhanden ist. Dies kann jedoch oft auch zu Problemen führen, da die Indizes nicht mehr fortlaufend sind. Wir können dies mit der Methode <code>reset_index()</code> beheben.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p><div class="no-row-height column-margin column-container"><li id="fn4"><p><sup>4</sup>&nbsp;Hinweis: wir hätten diesen Schritt auch gleich mit dem Löschen der Duplikate durchführen können, indem wir bei der Funktion <code>drop_duplicates()</code> den Parameter <code>ignore_index=True</code> angegeben hätten.</p></li></div></div>
+<div class="callout-caption-container flex-fill">
+Beispiel: Duplikate
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Da wir bei Duplikaten - anders als bei fehlenden Werte - eigentlich immer Zeilen und nicht Spalten identifizieren wollen, benötigen wir die Funktion <code>any()</code> nicht. Die Funktion <code>duplicated()</code> kann auch mit dem Parameter <code>subset</code> verwendet werden. Mit diesem Parameter können wir angeben, innerhalb welchen Spalten wir Duplikate suchen möchten. Mit dem Parameter <code>keep</code> können wir angeben, ob wir die erste, die letzte oder alle Duplikate identifizieren möchten.</p>
 <div class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>example <span class="op">=</span> example.reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>example</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>example <span class="op">=</span> pd.DataFrame({<span class="st">'Spalte A'</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>],</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'Spalte B'</span>: [<span class="st">'Hund'</span>, <span class="st">'Katze'</span>, <span class="st">'Vogel'</span>, <span class="st">'Katze'</span>, <span class="st">'Fisch'</span>, <span class="st">'Vogel'</span>],</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'Spalte C'</span>: [<span class="dv">19</span>, <span class="dv">43</span>, <span class="dv">1</span>, <span class="dv">43</span>, <span class="dv">127</span>, <span class="dv">21</span>]})</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>example</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 
 <div>
@@ -844,127 +1264,73 @@ dtype: bool</code></pre>
       <th>0</th>
       <td>1</td>
       <td>Hund</td>
-      <td>1</td>
+      <td>19</td>
     </tr>
     <tr>
       <th>1</th>
       <td>2</td>
       <td>Katze</td>
-      <td>2</td>
+      <td>43</td>
     </tr>
     <tr>
       <th>2</th>
       <td>3</td>
       <td>Vogel</td>
-      <td>3</td>
+      <td>1</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>4</td>
-      <td>Fisch</td>
-      <td>4</td>
+      <td>2</td>
+      <td>Katze</td>
+      <td>43</td>
     </tr>
     <tr>
       <th>4</th>
+      <td>4</td>
+      <td>Fisch</td>
+      <td>127</td>
+    </tr>
+    <tr>
+      <th>5</th>
       <td>5</td>
       <td>Vogel</td>
-      <td>5</td>
+      <td>21</td>
     </tr>
   </tbody>
 </table>
 </div>
 </div>
 </div>
-<div class="callout-tip callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-<code>duplicated()</code> und <code>drop_duplicates()</code>
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Die Funktionen <code>duplicated()</code> und <code>drop_duplicates</code> haben zwei wichtige Parameter (<code>drop_), die wir angeben können. Der erste Parameter ist</code>subset<code>, mit dem wir angeben, in welchen Spalten wir nach Duplikaten suchen wollen. Der zweite Parameter ist</code>keep`, mit dem wir angeben, ob wir die erste, die letzte oder alle Zeilen eines Duplikats identifizieren möchten.</p>
-<p>Beispiel: Wir wollen nur Duplikate in den Spalten <code>Spalte A</code> und <code>Spalte C</code> finden und nur die erste Zeile eines Duplikats identifizieren.</p>
+<p>Wir können die Methode <code>duplicated()</code> nutzen, um Duplikate in Zeilen eines DataFrames zu <strong>identifizieren</strong>. Sie gibt eine Boolesche Reihe (True, False, True etc.) zurück, die angibt, ob eine Zeile ein Duplikat ist oder nicht. Standardmäßig werden dabei alle Spalten berücksichtigt, jedoch kann auch eine Teilmenge von Spalten angegeben werden, die bei der Suche nach Duplikaten berücksichtigt werden soll.</p>
 <div class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>example.duplicated(subset<span class="op">=</span>[<span class="st">"Spalte A"</span>, <span class="st">"Spalte C"</span>], keep<span class="op">=</span><span class="st">"last"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>example.duplicated()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code>0    False
 1    False
 2    False
-3    False
+3     True
 4    False
+5    False
 dtype: bool</code></pre>
 </div>
 </div>
-<p>Die Funktion <code>drop_duplicates()</code> hat darüber hinaus noch den Parameter <code>ignore_index</code>, mit dem wir angeben können, ob wir die Indizes neu nummerieren wollen oder nicht.</p>
-<p>Beispiel: wir wollen die Duplikate in den Spalten <code>Spalte A</code> und <code>Spalte C</code> finden und nur die erste Zeile eines Duplikats identifizieren. Zusätzlich wollen wir die Indizes neu nummerieren.</p>
+<p>Die Funktion gibt an, dass die Zeile mit dem Index <code>3</code> ein Duplikat ist. Wir können wegen der kleinen Größe des Datensatzes direkt sehen, dass die Zeile eine Duplikat zur Zeile mit dem Zeilindex <code>1</code> ist. Bei größeren Datensätzen ist dies oft nicht mehr mit dem bloßen Auge ersichtlich. Wir wollen aber ggf. wissen, welche Zeilen Duplikate sind. Wir können uns beide Zeilen über den Parameter <code>keep=False</code> anzeigen lassen</p>
 <div class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>example.drop_duplicates(subset<span class="op">=</span>[<span class="st">"Spalte A"</span>, <span class="st">"Spalte C"</span>], </span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                        keep<span class="op">=</span><span class="st">"last"</span>, ignore_index<span class="op">=</span><span class="va">True</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>example.duplicated(keep<span class="op">=</span><span class="va">False</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
-
-<div>
-
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Spalte A</th>
-      <th>Spalte B</th>
-      <th>Spalte C</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-      <td>Hund</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2</td>
-      <td>Katze</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>3</td>
-      <td>Vogel</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>4</td>
-      <td>Fisch</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>5</td>
-      <td>Vogel</td>
-      <td>5</td>
-    </tr>
-  </tbody>
-</table>
+<pre><code>0    False
+1     True
+2    False
+3     True
+4    False
+5    False
+dtype: bool</code></pre>
 </div>
 </div>
-</div>
-</div>
-</div>
-</div>
-<p><strong>Beispiel 2: Duplikate in Spalten identifizieren und entfernen</strong></p>
-<p>Die Identifikation von identischen Spalten ist etwas schwieriger, da es hierfür keine vorgefertigte Funktion gibt. Hintergrund hierfür ist, dass diese Art des “Fehlers” nicht so schwerwiegend ist, wie Duplikate in Zeilen, da wir Spalten üblicherweise explizit auswählen, Zeilen jedoch im Rahmen einer Aggregation unbewusst berücksichtigt werden können.</p>
-<p>Wir können Spalten nicht über die doppelte Bezeichnung identifizieren, da dies in Pandas nicht erlaubt ist. Spalten müssen eine einzigartige Bezeichnung haben. Falls dies nicht der Fall ist, wird die Spalte mit den neuen Werten überschrieben. Der untenstehende Code prouziert z.B. einen DataFrame mit drei Spalten, weil <code>Spalte A</code> schlicht mit dem neuen Wert überschrieben wird.</p>
+<p>Nun können wir - analog zu unserem Vorgehen bei den fehlenden Werte - die Duplikate im Datensatz identifizieren.</p>
 <div class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>pd.DataFrame({<span class="st">"Spalte A"</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>],</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>                        <span class="st">"Spalte B"</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>],</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>                        <span class="st">"Spalte A"</span>: [<span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>],</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>                        <span class="st">"Spalte C"</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]})</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>mask <span class="op">=</span> example.duplicated(keep<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>example[mask]</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 
 <div>
@@ -980,44 +1346,25 @@ dtype: bool</code></pre>
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
-      <td>6</td>
-      <td>1</td>
-      <td>1</td>
-    </tr>
-    <tr>
       <th>1</th>
-      <td>7</td>
       <td>2</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>8</td>
-      <td>3</td>
-      <td>3</td>
+      <td>Katze</td>
+      <td>43</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>9</td>
-      <td>4</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>10</td>
-      <td>5</td>
-      <td>5</td>
+      <td>2</td>
+      <td>Katze</td>
+      <td>43</td>
     </tr>
   </tbody>
 </table>
 </div>
 </div>
 </div>
-<div class="page-columns page-full"><p>Um Spalten mit identischem Inhalt zu identifizieren, können wir jedoch einen Trick anwenden.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> Wir können den Datensatz transponieren (d.h. wir tauschen Zeilen und Spalten eines Datensatzes), um anschließend die doppelten Zeilen zu dentifizieren, d.h. so vorzugehen, wie wir es beim vorherigen Ansatz kennengelernt haben.</p><div class="no-row-height column-margin column-container"><li id="fn5"><p><sup>5</sup>&nbsp;Hinweis: der Trick ist nicht besonders elegant oder effizient und sollte insbesondere bei sehr großen Datensätzen nicht angewandt werden.</p></li></div></div>
-<p>Lassen Sie uns unseren Beispieldatensatz <code>example</code> zunächst transponieren, um zu sehen, was wir erreichen wollen. Wir erreichen dies mit der Methode <code>transpose()</code> (oder Kurzschreibweise <code>T</code>) erreichen.</p>
+<p>Wir müssen nun entscheiden, ob wir diesen Eintrag entfernen wollen oder nicht. In diesem Fall scheint es sinnvoll, den doppelten Eintrag zu entfernen, da wir in der Regel davon ausgehen, dass die Daten nur einmal erfasst wurden. Wir können dies mit der Methode <code>drop_duplicates()</code> tun. Diese entfernt standardmäßig die zweite Zeile einer doppelten Beobachtung. Wir können dies jedoch ebenfalls mit dem Parameter <code>keep</code> ändern (d.h. alle Duplikate entfernen oder nur die erste oder letzte Zeile).</p>
 <div class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>example.transpose()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>example.drop_duplicates()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
 
 <div>
@@ -1026,47 +1373,53 @@ dtype: bool</code></pre>
   <thead>
     <tr>
       <th></th>
-      <th>0</th>
-      <th>1</th>
-      <th>2</th>
-      <th>3</th>
-      <th>4</th>
+      <th>Spalte A</th>
+      <th>Spalte B</th>
+      <th>Spalte C</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>Spalte A</th>
+      <th>0</th>
       <td>1</td>
-      <td>2</td>
-      <td>3</td>
-      <td>4</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>Spalte B</th>
       <td>Hund</td>
-      <td>Katze</td>
-      <td>Vogel</td>
-      <td>Fisch</td>
-      <td>Vogel</td>
+      <td>19</td>
     </tr>
     <tr>
-      <th>Spalte C</th>
-      <td>1</td>
+      <th>1</th>
       <td>2</td>
+      <td>Katze</td>
+      <td>43</td>
+    </tr>
+    <tr>
+      <th>2</th>
       <td>3</td>
+      <td>Vogel</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
       <td>4</td>
+      <td>Fisch</td>
+      <td>127</td>
+    </tr>
+    <tr>
+      <th>5</th>
       <td>5</td>
+      <td>Vogel</td>
+      <td>21</td>
     </tr>
   </tbody>
 </table>
 </div>
 </div>
 </div>
-<p>Im Beispieldatensatz konnten wir sofort erkennen, dass die Spalten <code>Spalte A</code> und <code>Spalte C</code> inhaltlich identisch sind. Nach dem Transponieren sind es die Zeilen, die identisch sind. Wir können jetzt wie oben beschrieben die doppelten Zeilen identifizieren und entfernen. Im Anschluss transponieren wir den Datensatz wieder, um das ursprüngliche Spaltenformat wiederherzustellen.</p>
+<p>Mit dem Parameter <code>subset</code> können wir angeben, in welchen Spalten wir Duplikate suchen möchten.</p>
 <div class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>example <span class="op">=</span> example.transpose().drop_duplicates().transpose()</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>example</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>example <span class="op">=</span> pd.DataFrame({<span class="st">'Spalte A'</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>],</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'Spalte B'</span>: [<span class="st">'Hund'</span>, <span class="st">'Dinosaurier'</span>, <span class="st">'Vogel'</span>, <span class="st">'Katze'</span>, <span class="st">'Fisch'</span>, <span class="st">'Vogel'</span>],</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'Spalte C'</span>: [<span class="dv">19</span>, <span class="dv">43</span>, <span class="dv">1</span>, <span class="dv">43</span>, <span class="dv">127</span>, <span class="dv">21</span>]})</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>example</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 
 <div>
@@ -1077,6 +1430,7 @@ dtype: bool</code></pre>
       <th></th>
       <th>Spalte A</th>
       <th>Spalte B</th>
+      <th>Spalte C</th>
     </tr>
   </thead>
   <tbody>
@@ -1084,54 +1438,47 @@ dtype: bool</code></pre>
       <th>0</th>
       <td>1</td>
       <td>Hund</td>
+      <td>19</td>
     </tr>
     <tr>
       <th>1</th>
       <td>2</td>
-      <td>Katze</td>
+      <td>Dinosaurier</td>
+      <td>43</td>
     </tr>
     <tr>
       <th>2</th>
       <td>3</td>
       <td>Vogel</td>
+      <td>1</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>4</td>
-      <td>Fisch</td>
+      <td>2</td>
+      <td>Katze</td>
+      <td>43</td>
     </tr>
     <tr>
       <th>4</th>
+      <td>4</td>
+      <td>Fisch</td>
+      <td>127</td>
+    </tr>
+    <tr>
+      <th>5</th>
       <td>5</td>
       <td>Vogel</td>
+      <td>21</td>
     </tr>
   </tbody>
 </table>
 </div>
 </div>
 </div>
-<p>Das obige Beispiel verdeutlicht außerdem, dass eine hilfreiche Funktionalität von DataFrames: wir können Methoden aneinanderketten. Wir können also eine Methode anwenden und das Ergebnis einer weiteren Methode übergeben. In unserem Beispiel haben wir unser Ziel in drei Schritten erreicht:</p>
-<ol type="1">
-<li>Datensatz transponieren (mit <code>transpose()</code>)</li>
-<li>Doppelte Zeilen identifizieren (mit <code>drop_duplicates()</code>)</li>
-<li>Datensatz wieder in Ursprungsformat transponieren (mit <code>transpose()</code>)</li>
-</ol>
-<p>Eine übliche Schreibweise für Methodenketten nutzt die <code>(.)</code>-Notation. Wir können also auch folgenden Code schreiben:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>example <span class="op">=</span> (example</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>           .transpose() <span class="co"># Transponieren des Datensatzes</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>           .drop_duplicates() <span class="co"># Doppelte Zeilen löschen (ursprünglich Spalten)</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>           .transpose() <span class="co"># Transponieren des Datensatzes (zurück in Ursprungsformat)</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>          )</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Beim obigen Code spricht man auch vom <strong>Method-Chaining</strong>. Wir werden diese Konzept noch sehr häufig anwenden, wenn wir mit DataFrames arbeiten. Es hilft komplexe Datenaufbereitungen zu strukturieren und zu vereinfachen.</p>
-<p><strong>Beispiel 3: Duplikate in Spalten identifizieren und entfernen</strong></p>
-<p>Ein weiteres Beispiel für “Fehler” oder Inkonsistenzen innerhalb eines Datensatzes, ist die Dopplung von Werten, die eigentlich einzigartig sein sollten. Hier gilt es dann zu prüfen, wie mit einer solchen Dopplung umzugehen ist. Nicht immer bedeutet dies, dass der Datensatz fehlerhaft ist.</p>
-<p>Lassen Sie uns ein Beispiel betrachten. Wir haben einen Datensatz mit Projekten, die von einer Firma durchgeführt wurden. Jedes Projekt hat eine einzigartige ID und einen Namen. Die Kosten für jedes Projekt sind ebenfalls in der Tabelle enthalten.</p>
+<p>In unserem leicht abgeänderten Beispieldatensatz unterscheiden sich die Zeilen mit den Zeilenindex <code>1</code> und <code>3</code> nur in der Spalte <code>Spalte B</code>.</p>
+<p>Möchten wir nun Duplikate in den Spalten <code>Spalte A</code> und <code>Spalte C</code> finden und die Inhalte der <code>Spalte B</code> ignorieren, können wir dies wie folgt tun.</p>
 <div class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>example <span class="op">=</span> pd.DataFrame({<span class="st">"Unique_ID"</span>: [<span class="st">"A1"</span>, <span class="st">"B1"</span>, <span class="st">"C1"</span>, <span class="st">"D1"</span>, <span class="st">"E1"</span>],</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Projektname"</span>: [<span class="st">"Projekt A"</span>, <span class="st">"Projekt B"</span>, <span class="st">"Projekt A"</span>, <span class="st">"Projekt D"</span>, <span class="st">"Projekt E"</span>],</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Kosten"</span>: [<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">300</span>, <span class="dv">400</span>, <span class="dv">500</span>],</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>                          })</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>example</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>example.drop_duplicates(subset<span class="op">=</span>[<span class="st">'Spalte A'</span>, <span class="st">'Spalte C'</span>])</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
 
 <div>
@@ -1140,80 +1487,62 @@ dtype: bool</code></pre>
   <thead>
     <tr>
       <th></th>
-      <th>Unique_ID</th>
-      <th>Projektname</th>
-      <th>Kosten</th>
+      <th>Spalte A</th>
+      <th>Spalte B</th>
+      <th>Spalte C</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>A1</td>
-      <td>Projekt A</td>
-      <td>100</td>
+      <td>1</td>
+      <td>Hund</td>
+      <td>19</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>B1</td>
-      <td>Projekt B</td>
-      <td>200</td>
+      <td>2</td>
+      <td>Dinosaurier</td>
+      <td>43</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>C1</td>
-      <td>Projekt A</td>
-      <td>300</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>D1</td>
-      <td>Projekt D</td>
-      <td>400</td>
+      <td>3</td>
+      <td>Vogel</td>
+      <td>1</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>E1</td>
-      <td>Projekt E</td>
-      <td>500</td>
+      <td>4</td>
+      <td>Fisch</td>
+      <td>127</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>5</td>
+      <td>Vogel</td>
+      <td>21</td>
     </tr>
   </tbody>
 </table>
 </div>
 </div>
 </div>
-<p>Betrachtet man den Datensatz, so stellt man fest, dass das Projekt mit dem Namen “Projekt A” zwei Mal vorkommt. Hierbei muss es sich nicht zwangsläufig um einen Fehler handeln. Namen sind eben gerade nicht einzigartig, so dass es durchaus sein kann, dass zwei Projekte den gleichen Namen haben. Jedoch ist es wichtig, sich über die Dopplung im Klaren zu sein, da wir spätestens bei der Analyse des Datensatzes auf Probleme stoßen werden (z.B. wenn wir die Kosten pro Projekt nicht eindeutig zuordnen können). In Realität haben wir es häufig mit größeren Datenmengen zu tun, die wir nicht manuell durchsehen können. Daher ist es wichtig, dass wir solche Inkonsistenzen identifizieren, um dann zu entscheiden, wie wir damit umgehen.</p>
-<p>Wir können einfach feststellen, ob eine Spalte nur einzigartige Werte beinhaltet, in dem wir testen, ob die Anzahl an Duplikaten in der Spalte gleich Null ist. Wir können dies mit der Funktion <code>sum</code> oder <code>any</code> tun.</p>
+</div>
+</div>
+</div>
+<p>Lassen Sie uns nun analysieren, ob es überhaupt Duplikate in unserem Datensatz gibt uns dafür alle Spalten berücksichtigen. Mit der Funktion <code>sum()</code> können wir die Anzahl der Duplikate ermitteln.</p>
 <div class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>example[<span class="st">"Projektname"</span>].duplicated().<span class="bu">sum</span>() </span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>df.duplicated().<span class="bu">sum</span>()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
-<pre><code>1</code></pre>
+<pre><code>19</code></pre>
 </div>
 </div>
+<p>Da es Duplikate gibt, können sollten wir uns diese nun genauer anschauen. Dafür nutzen wir zusätzlich zur Funktion <code>duplicated()</code> noch die Funktion <code>sort_values()</code>. Diese Funktion sortiert die Werte in einem DataFrame. Wir sortieren hier die Werte nach der Spalte <code>id</code> und geben dann die ersten 10 Zeilen aus.</p>
 <div class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>example[<span class="st">"Projektname"</span>].duplicated().<span class="bu">any</span>()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>mask <span class="op">=</span> df.duplicated(keep<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>df[mask].sort_values(<span class="st">'id'</span>).head(<span class="dv">10</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
-<pre><code>True</code></pre>
-</div>
-</div>
-<p>Wir können auch direkt die einzigartigen Werte mit der Methode <code>.unique()</code> identifizieren. Diese Methode gibt uns eine Liste mit allen einzigartigen Werten in der Spalte zurück.</p>
-<div class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>uniques <span class="op">=</span> example[<span class="st">"Projektname"</span>].unique()</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>uniques</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="21">
-<pre><code>array(['Projekt A', 'Projekt B', 'Projekt D', 'Projekt E'], dtype=object)</code></pre>
-</div>
-</div>
-<p>Wenn wir nun die Länge der Liste mit den einzigartigen Werten mit der Länge des ursprünglichen DataFrames vergleichen, können wir feststellen, ob es Duplikate gibt.</p>
-<div class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(uniques) <span class="op">==</span> <span class="bu">len</span>(example)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="22">
-<pre><code>False</code></pre>
-</div>
-</div>
-<p>Lassen Sie uns nun zurück zur <strong>Bau und Werken GmbH</strong> gehen.</p>
-<div class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="23">
 
 <div>
 
@@ -1233,58 +1562,113 @@ dtype: bool</code></pre>
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
-      <td>P-62602</td>
-      <td>Stadtpark // Eberhardtallee</td>
-      <td>2013-10-15</td>
-      <td>2013-12-26</td>
-      <td>2013-12-25</td>
-      <td>109129.55</td>
-      <td>130487.07</td>
+      <th>1438</th>
+      <td>AS-665106</td>
+      <td>Landschaftsbau // Junckengasse</td>
+      <td>2013-03-30</td>
+      <td>2013-04-20</td>
+      <td>2013-04-20</td>
+      <td>112341.63</td>
+      <td>171362.50</td>
       <td>Team 4</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>P-80374</td>
-      <td>Spielplatz // Geißlerweg</td>
-      <td>2016-07-14</td>
-      <td>2016-09-20</td>
-      <td>2016-09-22</td>
-      <td>59521.33</td>
-      <td>66009.97</td>
+      <th>5617</th>
+      <td>AS-665106</td>
+      <td>Landschaftsbau // Junckengasse</td>
+      <td>2013-03-30</td>
+      <td>2013-04-20</td>
+      <td>2013-04-20</td>
+      <td>112341.63</td>
+      <td>171362.50</td>
       <td>Team 4</td>
     </tr>
     <tr>
-      <th>2</th>
-      <td>P-96379</td>
-      <td>Spielplatz // Schäferring</td>
-      <td>2019-06-14</td>
-      <td>2019-06-16</td>
-      <td>2019-06-29</td>
-      <td>82572.27</td>
-      <td>107571.64</td>
-      <td>Team 2</td>
+      <th>8235</th>
+      <td>BD-570752</td>
+      <td>Landschaftsbau // Seifertstr.</td>
+      <td>2021-10-27</td>
+      <td>2021-11-12</td>
+      <td>2021-11-14</td>
+      <td>83103.02</td>
+      <td>125081.94</td>
+      <td>Team 4</td>
     </tr>
     <tr>
-      <th>3</th>
-      <td>P-31809</td>
-      <td>Baumbestand // Raphaela-Scheel-Platz</td>
-      <td>2019-02-06</td>
-      <td>2019-02-11</td>
-      <td>2019-02-11</td>
-      <td>29563.59</td>
-      <td>29724.17</td>
+      <th>2591</th>
+      <td>BD-570752</td>
+      <td>Landschaftsbau // Seifertstr.</td>
+      <td>2021-10-27</td>
+      <td>2021-11-12</td>
+      <td>2021-11-14</td>
+      <td>83103.02</td>
+      <td>125081.94</td>
+      <td>Team 4</td>
+    </tr>
+    <tr>
+      <th>1337</th>
+      <td>DH-600607</td>
+      <td>Straßenbau // Tröstplatz</td>
+      <td>2015-01-06</td>
+      <td>2015-01-25</td>
+      <td>2015-01-26</td>
+      <td>189536.10</td>
+      <td>210407.91</td>
       <td>Team 1</td>
     </tr>
     <tr>
-      <th>4</th>
-      <td>P-51445</td>
-      <td>Landschaftsbau // Julia-Neureuther-Platz</td>
-      <td>2015-04-26</td>
-      <td>2015-05-16</td>
-      <td>2015-05-20</td>
-      <td>38315.35</td>
-      <td>53783.40</td>
+      <th>6452</th>
+      <td>DH-600607</td>
+      <td>Straßenbau // Tröstplatz</td>
+      <td>2015-01-06</td>
+      <td>2015-01-25</td>
+      <td>2015-01-26</td>
+      <td>189536.10</td>
+      <td>210407.91</td>
+      <td>Team 1</td>
+    </tr>
+    <tr>
+      <th>8931</th>
+      <td>FN-033852</td>
+      <td>Elektroarbeiten // Gerhard-Sontag-Allee</td>
+      <td>2015-08-17</td>
+      <td>2015-09-17</td>
+      <td>2015-09-19</td>
+      <td>69545.97</td>
+      <td>92323.52</td>
+      <td>Team 2</td>
+    </tr>
+    <tr>
+      <th>5015</th>
+      <td>FN-033852</td>
+      <td>Elektroarbeiten // Gerhard-Sontag-Allee</td>
+      <td>2015-08-17</td>
+      <td>2015-09-17</td>
+      <td>2015-09-19</td>
+      <td>69545.97</td>
+      <td>92323.52</td>
+      <td>Team 2</td>
+    </tr>
+    <tr>
+      <th>1586</th>
+      <td>GM-576339</td>
+      <td>Ubahn // Dörrplatz</td>
+      <td>2019-05-06</td>
+      <td>2019-09-08</td>
+      <td>2019-11-04</td>
+      <td>398069.61</td>
+      <td>427038.79</td>
+      <td>Team 3</td>
+    </tr>
+    <tr>
+      <th>2200</th>
+      <td>GM-576339</td>
+      <td>Ubahn // Dörrplatz</td>
+      <td>2019-05-06</td>
+      <td>2019-09-08</td>
+      <td>2019-11-04</td>
+      <td>398069.61</td>
+      <td>427038.79</td>
       <td>Team 3</td>
     </tr>
   </tbody>
@@ -1292,26 +1676,543 @@ dtype: bool</code></pre>
 </div>
 </div>
 </div>
+<p>In unserem Falle erscheint es sinnvoll, die Duplikate zu entfernen. Wir können dies mit der Funktion <code>drop_duplicates()</code> tun. Diese Funktion entfernt standardmäßig die zweite Zeile einer doppelten Beobachtung. Wir können dies jedoch ebenfalls mit dem Parameter <code>keep</code> ändern (d.h. alle Duplikate entfernen oder nur die erste oder letzte Zeile).</p>
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop_duplicates()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Wir können nun nochmals überprüfen, ob es noch Duplikate gibt und stellen fest, dass unsere Daten nun auf Dopplungen bereinigt sind.</p>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>df.duplicated().<span class="bu">any</span>()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
+<pre><code>False</code></pre>
+</div>
+</div>
+</section>
+<section id="falsche-werte" class="level4">
+<h4 class="anchored" data-anchor-id="falsche-werte">Falsche Werte</h4>
+<p>Ein wichtiger Schritt bei der Datenbereinigung ist die Überprüfung der Daten auf (offensichtlich) falsche Werte. Nicht immer ist bereits bei der Aufbereitung der Daten erkennbar, ob ein Wert plausibel ist oder nicht. Häufig werden falsche Werte erst bei der Analyse der Daten sichtbar. Jedoch können und sollten einige Plausibilitätsprüfungen bereits bei der Aufbereitung der Daten durchgeführt werden.</p>
+<p>Im vorliegenden Datensatz können wir z.B. folgende Plausibilitätsprüfungen durchführen:</p>
+<ol type="1">
+<li><p>Ist der Wert der Spalte <code>id</code> eindeutig?</p></li>
+<li><p>Sind die Werte für Kosten (<code>kosten_plan</code> und <code>kosten_ist</code>) plaubibel, d.h. sind die Kosten positiv (bzw. haben alle das gleiche Vorzeichen)?</p></li>
+<li><p>Sind die Werte für die Datumsspalten (<code>beginn</code>, <code>ende_plan</code> und <code>ende_ist</code>) plausibel, d.h. (i) liegen die Werte in der Vergangenheit und (ii) ist das Enddatum nach dem Startdatum?</p></li>
+</ol>
+<p><strong>Plausibilitätsprüfung 1:</strong> Ist der Wert der Spalte <code>id</code> eindeutig?</p>
+<p>Eine <code>id</code> sollte immer eindeutig sein. Im vorliegenden Fall sollte die Anzahl an eindeutigen Werten der Anzahl an Zeilen entsprechen. Ist dies der Fall, so ist die <code>id</code> eindeutig, falls nicht, wurde die <code>id</code> mehrfach vergeben. Nicht-eindeutige <code>id</code>s müssen nicht problematisch sein, jedoch können dann Fehler bei z.B. der Zusammenführung von Datensätzen oder bei der Aggregation von Daten auftreten. Wir können mit der Funktion <code>unique()</code> überprüfen, ob die <code>id</code> eindeutig ist.</p>
+<div class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>unique_ids <span class="op">=</span> df[<span class="st">'id'</span>].unique()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Wir können nun überprüfen, ob die Anzahl der eindeutigen Werte der Anzahl der Zeilen entspricht.</p>
+<div class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(unique_ids) <span class="op">==</span> <span class="bu">len</span>(df)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="24">
+<pre><code>True</code></pre>
+</div>
+</div>
+<p>Da der Wert <code>True</code> zurückgegeben wird, ist die <code>id</code> eindeutig und wir können uns sicher sein, dass keine Projekt-ID mehrfach vergeben wurde.</p>
+<p><strong>Plausibilitätsprüfung 2:</strong> Sind die Werte für Kosten (<code>kosten_plan</code> und <code>kosten_ist</code>) plaubibel, d.h. sind die Kosten positiv (bzw. haben alle das gleiche Vorzeichen)?</p>
+<p>Lassen Sie uns zunächst die Kostenwerte für die Spalte <code>kosten_plan</code> betrachten und überprüfen, ob es Werte gibt, die negativ sind. Dazu müssen wir überprüfen, ob es Werte gibt, die kleiner als 0 sind. Die können wir mit dem Operator <code>&lt;</code> überprüfen.</p>
+<div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'kosten_plan'</span>] <span class="op">&lt;</span> <span class="dv">0</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="25">
+<pre><code>0        False
+1        False
+2        False
+3        False
+4        False
+         ...  
+10014    False
+10015    False
+10016    False
+10017    False
+10018    False
+Name: kosten_plan, Length: 9979, dtype: bool</code></pre>
+</div>
+</div>
+<p>Wir erhalten eine <code>Series</code> mit <code>True</code> und <code>False</code> Werten. <code>True</code> bedeutet, dass der Wert kleiner als 0 ist, <code>False</code> bedeutet, dass der Wert größer oder gleich 0 ist. Wir können nun überprüfen, ob es überhaupt Werte gibt, die kleiner als 0 sind, in dem wir z.B. die bereits bekannte Funktion <code>any()</code> nutzen.</p>
+<div class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>(df[<span class="st">'kosten_plan'</span>] <span class="op">&lt;</span> <span class="dv">0</span>).<span class="bu">any</span>()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="26">
+<pre><code>True</code></pre>
+</div>
+</div>
+<p>Da der Wert <code>True</code> zurückgegeben wird, gibt es Werte, die kleiner als 0 sind. Lassen Sie uns diese Werte nun betrachten. Das vorgehen ist ähnlich wie bei der Überprüfung auf Duplikate. Wir können die Werte mit dem Operator <code>&lt;</code> filtern und anschließend die Zeilen mit den negativen Kostenwerten ausgeben. Wir nutzen hier eine komprimierte Schreibweise ohne die Zwischenspeicherung in einer Variablen <code>mask</code>.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Variante 1</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>mask <span class="op">=</span> df[<span class="st">'kosten_plan'</span>] <span class="op">&lt;</span> <span class="dv">0</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>df[mask]</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Variante 2</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>df[df[<span class="st">'kosten_plan'</span>] <span class="op">&lt;</span> <span class="dv">0</span>]</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Die Schreibweise ist ohne die Zwischenspeicherung in einer Variablen <code>mask</code> etwas kompakter und auch in der Praxis häufiger anzutreffen. Wir stellen an dieser Stelle noch eine weitere - und aus unserer Sicht elegantere - Möglichkeit vor, um die Zeilen mit negativen Kostenwerten auszugeben.</p>
+<p>Wir können die Funktion <code>query</code> nutzen, um unseren Datensatz nach Bedingungen zu filtern. Die Bedingung wird als String übergeben. In unserem Fall wollen wir alle Zeilen ausgeben, die einen negativen Kostenwert haben. Die Bedingung lautet also <code>kosten_plan &lt; 0</code>.</p>
+<div class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Datensatz nach Bedingung filtern</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>df.query(<span class="st">'kosten_plan &lt; 0'</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="27">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>id</th>
+      <th>name</th>
+      <th>beginn</th>
+      <th>ende_plan</th>
+      <th>ende_ist</th>
+      <th>kosten_plan</th>
+      <th>kosten_ist</th>
+      <th>team</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>149</th>
+      <td>ZU-631931</td>
+      <td>Ubahn // Mohammed-Lehmann-Straße</td>
+      <td>2018-11-14</td>
+      <td>2019-04-02</td>
+      <td>2019-08-27</td>
+      <td>-97953.64</td>
+      <td>-138873.05</td>
+      <td>Team 1</td>
+    </tr>
+    <tr>
+      <th>187</th>
+      <td>UO-403669</td>
+      <td>Straßenbau // Cichoriusallee</td>
+      <td>2013-06-15</td>
+      <td>2013-09-03</td>
+      <td>2013-09-03</td>
+      <td>-6600.91</td>
+      <td>-11154.49</td>
+      <td>Team 2</td>
+    </tr>
+    <tr>
+      <th>203</th>
+      <td>TA-448220</td>
+      <td>Ubahn // Miesgasse</td>
+      <td>2018-10-27</td>
+      <td>2019-03-14</td>
+      <td>2019-06-01</td>
+      <td>-10881.99</td>
+      <td>-12512.99</td>
+      <td>Team 1</td>
+    </tr>
+    <tr>
+      <th>228</th>
+      <td>DD-996695</td>
+      <td>Landschaftsbau // Hertrampfstraße</td>
+      <td>2019-12-19</td>
+      <td>2019-12-20</td>
+      <td>2020-01-22</td>
+      <td>-12584.56</td>
+      <td>-16566.35</td>
+      <td>Team 2</td>
+    </tr>
+    <tr>
+      <th>290</th>
+      <td>XX-607121</td>
+      <td>Baumbestand // Sandro-Schönland-Weg</td>
+      <td>2016-10-08</td>
+      <td>2016-10-21</td>
+      <td>2016-10-23</td>
+      <td>-28178.22</td>
+      <td>-30112.10</td>
+      <td>Team 4</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>9850</th>
+      <td>MP-329043</td>
+      <td>Elektroarbeiten // Anica-Hövel-Ring</td>
+      <td>2014-08-01</td>
+      <td>2014-10-04</td>
+      <td>2014-10-01</td>
+      <td>-18000.60</td>
+      <td>-20083.99</td>
+      <td>Team 1</td>
+    </tr>
+    <tr>
+      <th>9874</th>
+      <td>FY-695742</td>
+      <td>Baumbestand // Trubinplatz</td>
+      <td>2020-11-05</td>
+      <td>2020-11-20</td>
+      <td>2020-11-22</td>
+      <td>-2681.19</td>
+      <td>-3792.85</td>
+      <td>Team 2</td>
+    </tr>
+    <tr>
+      <th>9917</th>
+      <td>BQ-152614</td>
+      <td>Baumbestand // Sylwia-Flantz-Gasse</td>
+      <td>2018-09-12</td>
+      <td>2018-09-15</td>
+      <td>2018-09-17</td>
+      <td>-40725.60</td>
+      <td>-46026.01</td>
+      <td>Team 1</td>
+    </tr>
+    <tr>
+      <th>9921</th>
+      <td>AG-880105</td>
+      <td>Landschaftsbau // Natalja-Sölzer-Platz</td>
+      <td>2013-11-03</td>
+      <td>2013-11-23</td>
+      <td>2013-11-25</td>
+      <td>-13156.08</td>
+      <td>-13550.75</td>
+      <td>Team 4</td>
+    </tr>
+    <tr>
+      <th>9964</th>
+      <td>UT-072682</td>
+      <td>Stadtpark // Roswita-Ebert-Weg</td>
+      <td>2014-10-18</td>
+      <td>2014-11-25</td>
+      <td>2014-11-24</td>
+      <td>-27341.83</td>
+      <td>-45652.98</td>
+      <td>Team 2</td>
+    </tr>
+  </tbody>
+</table>
+<p>213 rows × 8 columns</p>
+</div>
+</div>
+</div>
+<p>Eine nicht unerhebliche Anzahl an Projekten hat Kosten mit negativen Werten. Auch wird deutlich, dass die Kostenwerte für die Spalte <code>kosten_ist</code> dann ebenfalls negativ sind. Dies kann verschiedene Ursachen haben, z.B. dass die Kosten beim erfassen der Daten falsch eingegeben wurden. In Realität würde man hier mit dem Kunden oder der Projektleitung sprechen und versuchen die Daten zu korrigieren. In unserem Fall werden wir die Daten eliminieren, um keinen Fehler in der weiteren Analyse zu erzeugen.</p>
+<p>Der einfachste Weg, die Zeilen mit negativen Vorzeichen zu eliminieren, ist es den Datensatz mit <code>query</code> zu filtern. Wir können die Bedingung <code>kosten_plan &gt;= 0</code> nutzen, um alle Zeilen auszugeben, die einen positiven Kostenwert haben.</p>
+<div class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.query(<span class="st">'kosten_plan &gt;= 0'</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Wir könnten nun die gleiche Überprüfung für die Spalte <code>kosten_ist</code> durchführen. Stattdessen filtern wir aber alle Zeilen, die einen negativen Kostenwert haben, aus dem Datensatz heraus.</p>
+<div class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.query(<span class="st">'kosten_ist &gt;= 0'</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Wir hätten die beiden letzten Schritte auch in einem Schritt durchführen können, indem wir die Bedingungen mit einem <code>and</code> verknüpft hätten.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.query(<span class="st">'kosten_plan &gt;= 0 and kosten_ist &gt;= 0'</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Plausibilitätsprüfung 3:</strong> Sind die Werte für die Datumsspalten (<code>beginn</code>, <code>ende_plan</code> und <code>ende_ist</code>) plausibel?</p>
+<p>Bei der nun folgenden Überprüfung kommt uns zugute, dass wir die Spalten bereits in den Datentyp <code>datetime</code> konvertiert haben. Wir können nun die Werte für die Spalten <code>beginn</code>, <code>ende_plan</code> und <code>ende_ist</code> miteinander vergleichen.</p>
+<p>Wir können zwei Überprüfungen durchführen:</p>
+<ol type="1">
+<li><p>Sind alle Projekte bereits beendet?</p></li>
+<li><p>Liegt das Datum für <code>ende_plan</code> nach dem Datum für <code>beginn</code>?</p></li>
+</ol>
+<p>Lassen Sie uns mit der ersten Überprüfung beginnen. Wir können die Funktion <code>max()</code> nutzen, um das jüngste Datum in der Spalte <code>ende_ist</code> zu ermitteln. Dieses Datum sollte in der Vergangenheit liegen.</p>
+<div class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'ende_ist'</span>].<span class="bu">max</span>()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="30">
+<pre><code>Timestamp('2023-03-09 00:00:00')</code></pre>
+</div>
+</div>
+<p>Das letzte Projekt wurde in der Vergangeheit beendet, d.h. wir können sicher sein, dass alle Projekte bereits beendet sind (und somit annehmen, dass auch alle Kosten bereits berücksichtigt wurden). Eine weitere Plausibiltätsprüfung ist, ob das Datum für <code>ende_ist</code> nach dem Datum für <code>beginn</code> liegt. Falls nicht, läge ein offensichtlicher Datenfehler vor. Wir können dies mit dem Operator <code>&lt;</code> überprüfen. Da wir die Spalten bereits in den Datentyp <code>datetime</code> konvertiert haben, liegt diese Funktionalität bereits vor; mit dem Datentyp <code>object</code> wäre dies nicht möglich gewesen. Wir können also unseren Datensatz filtern für Zeilen, bei denen gilt, dass <code>ende_ist</code> kleiner oder gleich <code>beginn</code> ist.</p>
+<div class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>df.query(<span class="st">'ende_ist &lt;= beginn'</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="31">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>id</th>
+      <th>name</th>
+      <th>beginn</th>
+      <th>ende_plan</th>
+      <th>ende_ist</th>
+      <th>kosten_plan</th>
+      <th>kosten_ist</th>
+      <th>team</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1251</th>
+      <td>TG-362669</td>
+      <td>Baumbestand // Cornelia-Schönland-Gasse</td>
+      <td>2017-08-16</td>
+      <td>2017-08-16</td>
+      <td>2017-08-16</td>
+      <td>55507.48</td>
+      <td>69877.32</td>
+      <td>Team 2</td>
+    </tr>
+    <tr>
+      <th>1584</th>
+      <td>CF-360814</td>
+      <td>Baumbestand // Adlerallee</td>
+      <td>2014-10-18</td>
+      <td>2014-10-19</td>
+      <td>2014-10-18</td>
+      <td>80258.30</td>
+      <td>80779.37</td>
+      <td>Team 4</td>
+    </tr>
+    <tr>
+      <th>2456</th>
+      <td>JV-632251</td>
+      <td>Baumbestand // Gabriel-Gude-Platz</td>
+      <td>2014-11-03</td>
+      <td>2014-11-03</td>
+      <td>2014-11-03</td>
+      <td>31973.47</td>
+      <td>35215.93</td>
+      <td>Team 3</td>
+    </tr>
+    <tr>
+      <th>2764</th>
+      <td>WS-799566</td>
+      <td>Stadtpark // Hesseplatz</td>
+      <td>2014-04-21</td>
+      <td>2014-04-22</td>
+      <td>2014-04-21</td>
+      <td>175422.45</td>
+      <td>270521.71</td>
+      <td>Team 2</td>
+    </tr>
+    <tr>
+      <th>3319</th>
+      <td>QC-047279</td>
+      <td>Stadtpark // Heiko-Pohl-Straße</td>
+      <td>2020-06-24</td>
+      <td>2020-07-12</td>
+      <td>2020-06-24</td>
+      <td>92345.10</td>
+      <td>117155.99</td>
+      <td>Team 3</td>
+    </tr>
+    <tr>
+      <th>3786</th>
+      <td>VL-461771</td>
+      <td>Landschaftsbau // Löfflerweg</td>
+      <td>2017-07-06</td>
+      <td>2017-07-07</td>
+      <td>2017-07-06</td>
+      <td>159544.85</td>
+      <td>160881.59</td>
+      <td>Team 1</td>
+    </tr>
+    <tr>
+      <th>4180</th>
+      <td>LN-394370</td>
+      <td>Ubahn // Miodrag-Harloff-Gasse</td>
+      <td>2021-03-28</td>
+      <td>2021-05-02</td>
+      <td>2021-03-28</td>
+      <td>196492.47</td>
+      <td>315066.68</td>
+      <td>Team 4</td>
+    </tr>
+    <tr>
+      <th>4192</th>
+      <td>TB-549699</td>
+      <td>Landschaftsbau // Ruppertweg</td>
+      <td>2020-12-20</td>
+      <td>2020-12-21</td>
+      <td>2020-12-20</td>
+      <td>112881.59</td>
+      <td>176922.78</td>
+      <td>Team 4</td>
+    </tr>
+    <tr>
+      <th>4426</th>
+      <td>GD-117672</td>
+      <td>Baumbestand // Editha-Roskoth-Allee</td>
+      <td>2021-11-30</td>
+      <td>2021-11-30</td>
+      <td>2021-11-30</td>
+      <td>18952.82</td>
+      <td>20637.53</td>
+      <td>Team 3</td>
+    </tr>
+    <tr>
+      <th>4732</th>
+      <td>JS-419276</td>
+      <td>Baumbestand // Noackstraße</td>
+      <td>2013-07-03</td>
+      <td>2013-07-03</td>
+      <td>2013-07-03</td>
+      <td>95666.74</td>
+      <td>102161.85</td>
+      <td>Team 4</td>
+    </tr>
+    <tr>
+      <th>5032</th>
+      <td>LN-496169</td>
+      <td>Elektroarbeiten // Kerstin-Kreusel-Gasse</td>
+      <td>2019-09-13</td>
+      <td>2019-09-13</td>
+      <td>2019-09-13</td>
+      <td>216360.70</td>
+      <td>376378.86</td>
+      <td>Team 2</td>
+    </tr>
+    <tr>
+      <th>5154</th>
+      <td>XN-964801</td>
+      <td>Baumbestand // Marc-Tlustek-Gasse</td>
+      <td>2014-06-01</td>
+      <td>2014-06-03</td>
+      <td>2014-06-01</td>
+      <td>32613.11</td>
+      <td>38129.52</td>
+      <td>Team 1</td>
+    </tr>
+    <tr>
+      <th>6035</th>
+      <td>NG-005840</td>
+      <td>Stadtpark // Kaulgasse</td>
+      <td>2018-09-12</td>
+      <td>2018-09-15</td>
+      <td>2018-09-12</td>
+      <td>98942.58</td>
+      <td>106455.00</td>
+      <td>Team 4</td>
+    </tr>
+    <tr>
+      <th>6046</th>
+      <td>VB-997519</td>
+      <td>Baumbestand // Isabella-Caspar-Allee</td>
+      <td>2021-09-04</td>
+      <td>2021-09-04</td>
+      <td>2021-09-04</td>
+      <td>47069.77</td>
+      <td>49991.91</td>
+      <td>Team 4</td>
+    </tr>
+    <tr>
+      <th>6139</th>
+      <td>KM-743270</td>
+      <td>Landschaftsbau // Hentschelgasse</td>
+      <td>2015-05-20</td>
+      <td>2015-05-20</td>
+      <td>2015-05-20</td>
+      <td>61717.02</td>
+      <td>69451.95</td>
+      <td>Team 2</td>
+    </tr>
+    <tr>
+      <th>6656</th>
+      <td>FH-375317</td>
+      <td>Baumbestand // Wilmsplatz</td>
+      <td>2013-11-02</td>
+      <td>2013-11-02</td>
+      <td>2013-11-02</td>
+      <td>13688.48</td>
+      <td>14638.31</td>
+      <td>Team 4</td>
+    </tr>
+    <tr>
+      <th>7118</th>
+      <td>OH-717871</td>
+      <td>Landschaftsbau // Horst-Günter-Tröst-Platz</td>
+      <td>2014-07-13</td>
+      <td>2014-07-13</td>
+      <td>2014-07-13</td>
+      <td>141555.26</td>
+      <td>146860.57</td>
+      <td>Team 1</td>
+    </tr>
+    <tr>
+      <th>7511</th>
+      <td>VH-400747</td>
+      <td>Stadtpark // Zahngasse</td>
+      <td>2018-01-05</td>
+      <td>2018-01-18</td>
+      <td>2018-01-05</td>
+      <td>136581.01</td>
+      <td>164558.76</td>
+      <td>Team 3</td>
+    </tr>
+    <tr>
+      <th>8262</th>
+      <td>BB-659680</td>
+      <td>Baumbestand // Schottinring</td>
+      <td>2020-07-29</td>
+      <td>2020-07-29</td>
+      <td>2020-07-29</td>
+      <td>50229.52</td>
+      <td>65361.78</td>
+      <td>Team 2</td>
+    </tr>
+    <tr>
+      <th>9047</th>
+      <td>XI-154940</td>
+      <td>Baumbestand // Inken-Staude-Weg</td>
+      <td>2017-07-25</td>
+      <td>2017-07-26</td>
+      <td>2017-07-25</td>
+      <td>88698.82</td>
+      <td>96346.85</td>
+      <td>Team 1</td>
+    </tr>
+    <tr>
+      <th>9071</th>
+      <td>JC-187276</td>
+      <td>Landschaftsbau // Röhrdanzstraße</td>
+      <td>2017-08-25</td>
+      <td>2017-08-25</td>
+      <td>2017-08-25</td>
+      <td>60098.23</td>
+      <td>58506.66</td>
+      <td>Team 1</td>
+    </tr>
+    <tr>
+      <th>10015</th>
+      <td>YH-661176</td>
+      <td>Baumbestand // Nohlmansweg</td>
+      <td>2017-02-12</td>
+      <td>2017-02-12</td>
+      <td>2017-02-12</td>
+      <td>50864.60</td>
+      <td>70050.16</td>
+      <td>Team 4</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Schauen wir uns die Projekte näher an, so stellt man fest, dass es sich ausschließlich um Projekte handelt, die am gleichen Tag begonnen und beendet wurden. Dies ist prinzipiell nicht ausgeschlossen, jedoch erscheint dies - zumindest für einige Projekte - sehr unwahrscheinlich, da gleichzeitig hohe Kosten veranschlagt wurden, was auf eine längere Projektlaufzeit schließen lässt. Wir müssen jetzt entscheiden, ob wir diese Projekte eliminieren wollen oder nicht. Da wir uns in diesem Fall nicht sicher sind, ob die Daten korrekt sind, werden wir die Projekte nicht eliminieren. Stattdessen fügen wir eine neue Spalte hinzu, die die Dauer des Projektes in Tagen angibt. Wir können dann im Rahmen unserer Analyse die Projekte mit einer Projektdauer von 0 Tagen herausfiltern und analysieren, ob dies unsere Ergebnisse beeinflusst.</p>
+<div class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'dauer'</span>] <span class="op">=</span> df[<span class="st">'ende_ist'</span>] <span class="op">-</span> df[<span class="st">'beginn'</span>]</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 </section>
-<section id="was-noch" class="level3">
-<h3 class="anchored" data-anchor-id="was-noch">WAS NOCH:</h3>
+</section>
+<section id="übersicht-genutzter-methoden" class="level2">
+<h2 class="anchored" data-anchor-id="übersicht-genutzter-methoden">Übersicht genutzter Methoden</h2>
+<p>Es wurden folgende Funktionen und Methoden genutzt:</p>
 <ul>
-<li>Duplikate innerhalb einer Variable identifizieren</li>
-<li>Anwendung auf eigenen Datensatz</li>
-<li>genutzte Funktionen und Methoden zusammenfassen</li>
-</ul>
-</section>
-</section>
-<section id="genutzte-funktionen-und-methoden" class="level2">
-<h2 class="anchored" data-anchor-id="genutzte-funktionen-und-methoden">Genutzte Funktionen und Methoden</h2>
-<ul>
-<li><code>pd.DataFrame()</code>: Erzeugen eines DataFrames</li>
-<li><code>.read_csv()</code>: Einlesen eines CSV-Files (<a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html">siehe hier</a>)</li>
-<li><code>.drop_duplicates()</code>: Entfernen von Duplikaten (<a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.drop_duplicates.html">siehe hier</a>)</li>
-<li><code>.duplicated()</code>: Identifizieren von Duplikaten (<a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.duplicated.html">siehe hier</a>)</li>
-<li><code>.reset_index()</code>: Wiederherstellen der Indizes (<a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.reset_index.html">siehe hier</a>)</li>
-<li><code>.transpose()</code>: Transponieren eines DataFrames (<a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.transpose.html">siehe hier</a>)</li>
+<li><code>read_csv()</code>: Einlesen der Daten</li>
+<li><code>head()</code>: Anzeigen der ersten Zeilen</li>
+<li><code>tail()</code>: Anzeigen der letzten Zeilen</li>
+<li><code>info()</code>: Anzeigen der Datentypen und der Anzahl der nicht fehlenden Werte</li>
+<li><code>rename()</code>: Umbenennen der Spalten</li>
+<li><code>to_datetime()</code>: Konvertieren der Spalten in den Datentyp <code>datetime</code></li>
+<li><code>isna()</code>: Überprüfen, ob Werte fehlen</li>
+<li><code>any()</code>: Überprüfen, ob Spalte oder Zeile <code>False</code> enthält</li>
+<li><code>dropna()</code>: Eliminieren von Zeilen mit fehlenden Werten</li>
+<li><code>duplicated()</code>: Überprüfen, ob es Duplikate gibt</li>
+<li><code>drop_duplicates()</code>: Eliminieren von Duplikaten</li>
+<li><code>unique()</code>: Ermitteln der einzigartigen Werte</li>
+<li><code>query()</code>: Filtern von Zeilen nach Bedingung</li>
+<li><code>max()</code>: Ermitteln des höchsten Wertes</li>
 </ul>
 
 
