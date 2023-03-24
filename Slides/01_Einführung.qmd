@@ -1,0 +1,451 @@
+---
+title: "Business Analytics" 
+subtitle:  "~~01~~ | Einführung"
+author: "Prof. Dr. Felix Zeidler | FH Bielefeld | SoSe 2023"
+lang: "De"
+format: 
+    revealjs: 
+        theme: [simple, custom.scss]
+        toc: true
+        toc-title: "Inhaltsverzeichnis"
+        toc-depth: 1
+        number-sections: true
+        number-depth: 1
+        preview-links: true
+        reference-location: block
+        tbl-colwidths: auto
+        tbl-cap-location: bottom
+from: markdown+emoji 
+slide-number: c/t
+jupyter: py39
+---
+
+
+## Modul "Business Analytics" ist ein Pilot
+### Vorwort
+
+
+- Modul findet in der Form das erste Mal statt. Es handelt sich um einen __Piloten__
+
+- Inhalte des Kurses wurden im Wintersemester 2022/23 erstmalig (teilweise) im Seminar CFR getestet. Insgesamt war das Modul ein Erfolg. 
+
+. . .
+
+- __Ziel__: 
+    
+    - Verankerung des Moduls als Wahlmodul im Curriculum
+
+    - Weil: 
+    
+        - Datenanalyse wichtiger Bestandteil der modernen Arbeitswelt 
+
+        - Studierende der BWL einen Einstieg in die zweckgebundene Programmierung erhalten sollen
+
+. . .
+
+- __Feedback__
+
+    - ist explizit erwünscht
+
+    - kann jederzeit an mich gerichtet werden
+
+ 
+
+# Admin & Orga
+
+## Organisatorisches
+### Admin & Orga
+
+__Wann:__ 9.45 bis 13.00 Uhr
+
+__Wo:__ B437
+
+__Wie:__ 
+
+- Präsenzunterricht
+
+- idealerweise Laptop mitbringen
+
+__Dozent__ 
+
+> __Prof. Dr. Felix Zeidler__  
+> email: felix.zeidler@fh-bielefeld.de  
+> Raum: B 323  
+> Sprechstunde:   
+> - Montag 08.00 bis 10.00 Uhr  
+> - Terminvereinbarung via [https://calendly.com/felix-zeidler/sprechstunde](https://calendly.com/felix-zeidler/sprechstunde)
+
+
+## Ablauf des Kurses
+### Admin & Orga
+
+__Ablauf__
+
+- __Wochen 1 bis 8__: Vorlesungen
+    - Sie bereiten sich mit Selbstlernmaterial vor 
+    - wichtige Inhalte und Lösungen werden vorgestellt und Fragen beantwortet
+
+- __ab Woche 9__: Zeit zur Bearbeitung der Fallstudie
+    - Sie bearbeiten die Fallstudie in Kleingruppen
+    - es wird Q&A-Sessions geben, um je Gruppe Fragen zu klären
+
+## Prüfungsleistung
+### Admin & Orga
+<br>
+
+__Prüfungsleistung__
+
+- `Präsentation_` der Fallstudienergebnisse (30% der Note)
+
+- `Schriftliche Bearbeitung` der Fallstudie (70% der Note) 
+
+__Gruppeneinteilung__
+
+- Gruppen können selbst gewählt werden
+
+- Gruppengröße: 4 Personen
+
+- bitte bis zum 11.04.2023 per E-Mail an mich melden
+
+## Materialien / Literatur
+### Admin & Orga
+
+__Skript__
+
+- wird laufend aktualisiert
+
+- Online verfügbar via __[https://fredzett.github.io/BA-C/](https://fredzett.github.io/BA-C/)__
+
+
+# Was ist Business Analytics?
+
+## Definition von Business Analytics
+### Business Analytics
+
+
+- Der Begriff Business Analytics wird in der Literatur unterschiedlich definiert.^[siehe z.B. @seiter_business_2019] 
+
+- Für manche Autoren umfasst er alle Formen der Analyse von Unternehmensdaten, während andere eine engere Definition bevorzugen, die sich auf die Verwendung von maschinellen Lernverfahren und anderen fortgeschrittenen Analysemethoden konzentriert. 
+
+- Trotz dieser Unterschiede in der Definition haben alle Ansätze zu Business Analytics eines gemeinsam: Sie zielen darauf ab, __durch die Analyse von Daten unternehmerische Entscheidungen zu unterstützen und zu verbessern__. 
+
+- Business Analytics ist daher als  wichtige Disziplin zu betrachten, die Unternehmen dabei hilft, ihre Leistung zu steigern und ihre Entscheidungen datengestützt zu treffen. 
+
+Im Kontext dieser Veranstaltung definieren wir Business Analytics als 
+
+> "Ein Prozess zur Analyse von Daten mit dem Ziel unternehmerische Entscheidungen zu unterstützen und zu verbessern."
+
+
+## Beispiele für Anwendung von Business Analytics
+### Business Analytics
+
+
+<br>
+
+| Funktion | Anwendungsfall | Beispiel |
+|----|--------|-----------------------|
+| `Marketing`            | Wirksamkeit von Marketingkampagnen analysieren und optimieren | ein Unternehmen könnte die Conversion-Rate von Landing Pages oder die Klickrate von Email-Kampagnen analysieren, um zu verstehen, welche Maßnahmen am effektivsten sind |
+| `Finanzen`     | finanzielle Leistung analysieren und optimieren | ein Unternehmen könnte die Rentabilität von einzelnen Produkten oder Geschäftsbereichen analysieren, um Ressourcen gezielt einzusetzen und die Profitabilität zu erhöhen|
+| `Personal`    | Mitarbeiterleistung analysieren und verbessern | ein Unternehmen könnte Daten zu Mitarbeiterfeedback, Absentismus und Fluktuation analysieren, um die Mitarbeiterzufriedenheit und -fluktuation zu erhöhen |
+| `Logistik`       | Leistung der Lieferkette analysieren und optimieren | ein Unternehmen könnte Daten zu Lieferzeiten, Bestandsniveaus und Transportkosten analysieren, um die Effizienz der Lieferkette zu erhöhen und Lieferprobleme zu minimieren |
+
+## Vorteile durch Business Analytics
+### Business Analytics
+
+- Vorteile sowohl auf __stratetgischer__ als auch auf __operativer__ Ebene
+
+- __Strategische Vorteile__
+
+    - Erkennen von Trends, um schnell auf Veränderungen reagieren zu können
+
+    - Verbesserung der Entscheidungsfindung (Märkte, Kunden, Produkte, Prozesse)
+
+
+- __Operative Vorteile__
+
+    - Verbesserung der Effizienz und Effektivität von Prozessen
+
+    - Identifikation von Kostenreduzierungspotenzialen
+
+    - Identifikation von operativen Risiken
+
+
+
+## Vorteile durch Business Analytics (cont'd)
+### Business Analytics
+
+Unternehmen, die Business Analytics systematisch einsetzen sind erfolgreicher
+
+- Unternehmen performen besser^[@shanks_impact_2010]
+
+- Unternehmen treffen bessere Entscheidungen^[@popovic_impact_2018]
+
+- Unternehmen haben Wettbewerbsvorteil^[@almazmomi_impact_2021]
+
+
+## Arten von Business Analytics {.incremental}
+### Business Analytics
+
+Im Rahmen dieser Veranstaltung werden wir uns mit folgenden __drei Arten von Business Analytics__ beschäftigen:
+
+
+1. deskriptive Analyse
+
+2. diagnostische Analyse
+
+3. prädiktive Analyse
+
+Teilweise sind die Übergänge zwischen den jeweiligen Analyseformen fließend bzw. nicht immer trennscharf.
+
+
+## Deskriptive Analyse
+### Business Analytics
+
+Die __deskriptive Analytik__ ist die Art von Business Analytics, die sich auf die Vergangenheit konzentriert. `
+
+- zielt darauf ab, zu verstehen, was in der Vergangenheit geschehen ist 
+
+- beschreibt die vorhandenen Daten "nur"
+
+- trägt dazu bei, Muster und Trends zu erkennen und die Leistung des Unternehmens besser zu verstehen.
+
+
+> __Beispiel:__ 
+> 
+> Ein Unternehmen analysiert die Verkaufszahlen der vergangenen Jahre, um herauszufinden, welche Produkte am beliebtesten waren und wie sich die Verkäufe im Laufe der Zeit entwickelt haben. 
+
+## Diagnostische Analyse
+### Business Analytics
+
+Die __diagnostische Analytik__ geht einen Schritt weiter und versucht, die Ursachen für bestimmte Ereignisse oder Muster zu untersuchen.
+
+- nutzt Vergangenheitsdaten und statistische Verfahren, um Muster und Trends zu identifizieren
+
+- versucht zu verstehen, warum bestimmte Ereignisse oder Muster in der Vergangenheit aufgetreten sind
+
+> __Beispiel:__
+> 
+> Ein Unternehmen setzt die diagnostische Analytik ein, um herauszufinden, warum bestimmte Kunden häufiger Produkte zurückgeben oder warum die Umsätze in bestimmten Filialen niedriger sind als in anderen.
+
+
+## Prädiktive Analyse
+### Business Analytics
+
+Die __prädiktive Analytik__ geht noch einen Schritt weiter und versucht, die Zukunft vorherzusagen. 
+
+- nutzt Vergangenheitsdaten, statistische Verfahren und maschinelles Lernen, um Muster und Trends zu identifizieren
+
+- versucht, die Zukunft vorherzusagen, indem es die Ergebnisse der Vergangenheitsdaten mit den Ergebnissen der aktuellen Daten vergleicht und Prognosen für die Zukunft erstellt
+
+> __Beispiel:__
+>
+> Ein Unternehmen setzt die prädiktive Analytik ein, um zu verstehen, wie sich die Verkäufe in den kommenden Monaten entwickeln werden, um die Lagerbestände zu optimieren und die Lieferkette zu planen.
+
+
+## Der Analyseprozess
+### Business Analytics
+<br>
+
+![](_assets/Analyse_Prozess.svg)
+
+
+# Warum Coding?
+
+
+## Business Analytics setzt "Werkzeug" voraus
+### Warum Coding?
+
+Drei Arten von Werkzeugen für Business Analytics:
+
+1. Tabellenkalkulationsprogramme (z.B. Excel)
+
+2. No-Code-Tools (z.B. Power BI)
+
+3. Programmiersprachen (z.B. Python, R, Julia etc.)
+
+> __dieser Kurs:__ 
+>
+> - nutzt Werkzeug "Programmiersprache"
+> 
+> - wird `Python` im Kontext von Business Analytics einsetzen
+
+## Programmieren?
+### Warum Coding?
+
+![](https://media.giphy.com/media/QYY4cJp6EzEIbMUtIn/giphy.gif){width=100%}
+
+## Warum Programmieren?
+### Warum Coding?
+
+<br> 
+
+- Fähigkeit zu Programmieren ist eine Grundlagenkompetenz 
+
+- Fähigkeit ist insbesondere, aber nicht nur, für die Datenanalyse hilfreich und sinnvoll. 
+
+__Drei Argumente für Programmierkenntnisse__
+
+1. Daten aufbereiten und analysieren zu können
+
+2. repetitive Aufgaben  automatisieren
+
+3. Problemlösungsfähigkeiten  verbessern
+
+## Argument 1: Daten aufbereiten und analysieren
+### Warum Coding?
+
+- Programmierkenntnisse werden für BWLer immer wichtiger, um Daten effizient aufzubereiten und zu analysieren.
+
+- Excel ist für sehr große Datenmengen weniger geeignet und bietet keine klare Trennung zwischen Daten und Analyse.
+
+- Business Intelligence Software ermöglicht Visualisierungen und Dashboards, hat aber Einschränkungen bei der Datenaufbereitung.
+
+- Programmierung ist eine sinnvolle Ergänzung zu Excel und BI-Tools, um Daten effektiv zu verarbeiten und zu analysieren.
+
+
+## Argument 2: Automatisierung von repetitiven Aufgaben
+### Warum Coding?
+
+- Unternehmen weisen oft manuelle Schnittstellenwechsel und ineffiziente Arbeitsabläufe auf.
+
+- "Große" Lösungen erfordern neue Standardsoftware und Veränderungen in internen Abläufen, was oft zu Verzögerungen führt.
+
+- Geringe Programmierkenntnisse ermöglichen die Identifizierung und teilweise Automatisierung von Prozessbrüchen.
+
+- Fachexperten sind notwendig, um Verbesserungspotentiale in Arbeitsabläufen zu erkennen und mit IT-Experten zu diskutieren.
+
+
+
+## Argument 3: Problemlösungsfähigkeiten verbessern
+### Warum Coding?
+
+
+
+- Programmieren hilft, komplexe Probleme besser zu verstehen und zu lösen.
+
+
+- Programmieren bedeutet, Algorithmen und Anweisungen für Computer zu erstellen.
+
+- In der Wirtschaft sind komplexe Entscheidungen erforderlich, die Problemlösungskompetenzen erfordern.
+
+- Programmieren lehrt das Zerlegen von Problemen in kleinere Stücke und das Erstellen eines schrittweisen Lösungsplans.
+
+## Software-Entwicklung vs. Coding
+### Warum Coding?
+
+- Programmieren ist wertvoll, aber nicht gleichbedeutend mit Softwareentwicklung.
+
+- Softwareentwicklung erfordert eine hochspezialisierte Ausbildung und Erfahrung.
+
+- Programmieren ist eine grundlegende Fähigkeit, die innerhalb weniger Wochen erlernbar ist.
+
+- Programmieren wird oft fälschlicherweise mit Informatik-Aufgaben verwechselt.
+
+- In diesem Modul sprechen wir deshalb von `"Coding"` und beziehen uns damit auf die grundlegenden Programmierkenntnisse für den Zweck der Datenanalyse.
+
+
+## Coden in Zeiten von KI-Tools?
+### Warum Coding?
+
+
+![](/_assets/ChatGPT_example.svg){fig-align="center" width=100%}
+
+
+
+## Coden in Zeiten von KI-Tools? (cont'd)
+### Warum Coding?
+
+- KI-Tools wie ChatGPT können Code auf Grundlage natürlicher Sprache schreiben.
+- Programmieren mit komplexer Syntax wird deshalb mittelfristig (...kurzfristig) durch natürliche Sprache ersetzt werden.
+- Grundlegende Programmierkenntnisse sind aber weiterhin notwendig, um KI-Tools zu nutzen und zu verstehen. 
+- Insbesondere das Herunterbrechen von Problemen in kleinere Teile und das Erstellen eines schrittweisen Lösungsplans sind wichtige Fähigkeiten.
+- oder anders: gerade jetzt macht es Sinn programmieren zu lernen, da wir in kurzer Zeit mit der Unterstützugn von KI-Tool sehr komplexe Programme schreiben können. 
+
+
+# Warum Python?
+
+## Was muss Programmiersprache können?
+### Warum Python?
+
+1. Die Sprache sollte populär sein
+
+2. Die Sprache sollte "einfach" zu erlernen sein
+
+3. Die Sprache sollte für Datenanalyse geeignet sein
+
+4. Die Sprache sollte für weitere Anwendungsfälle geeignet sein
+
+
+## Python ist populär
+### Warum Python?
+
+![](https://149351115.v2.pressablecdn.com/wp-content/uploads/2017/09/growth_major_languages-1-1024x878.png){fig-align="center" width=50%}
+
+
+
+
+## Python ist einfach(er)
+### Warum Python?
+
+__Fiktive Aufgabe:__
+
+Stellen Sie sich vor, wir möchten das arithmetische Mittel einer Zahlenreihe berechnen (engl. `mean`). 
+
+__Beispiel:__
+
+- Zahlenreihe: 2.0, 3.0, 5.0, 7.0, 13.0, 21.0, 33.0, 54.0
+- arithmetisches Mittel: 
+
+. . .
+
+$$ 
+\begin{align}
+\mu &= \frac{\sum_i^N x_i}{N} \\[1em]
+    &= \frac{2.0 + 3.0 + 5.0 + 7.0 + 13.0 + 21.0 + 33.0 + 54.0}{8} = 17.5
+\end{align}
+$$
+
+## Python ist einfach(er)
+### Warum Python?
+
+::: {.panel-tabset}
+
+## Rust
+
+```{.Rust}
+fn sum(arr: &[f64]) -> f64 {
+    arr.iter().fold(0.0, |p,&q| p + q)
+}
+
+fn mean(arr: &[f64]) -> f64 {
+    sum(arr) / arr.len() as f64
+}
+
+fn main() {
+    let v = &[2.0, 3.0, 5.0, 7.0, 13.0, 21.0, 33.0, 54.0];
+    println!("mean of {:?}: {:?}", v, mean(v));
+
+    let w = &[];
+    println!("mean of {:?}: {:?}", w, mean(w));
+}
+```
+
+## Python
+
+
+```{python}
+#| echo: true
+from statistics import mean
+m = mean([2.0, 3.0, 5.0, 7.0, 13.0, 21.0, 33.0, 54.0])
+print(m)
+```
+
+:::
+
+## Quellen
+### 
+
+<br>
+
+::: {#refs}
+:::
