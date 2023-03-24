@@ -4,7 +4,7 @@
 
 ## Modul Pandas
 
-Wir werden im Rahmen unserer Analyse(n) verschiedene Module / Bibliotheken und Funktionalitäten Pythons kennenlernen. Eine der wichtigsten Bibliotheken ist `pandas`. Wir bezeichnen `pandas` als das Schweizer Taschenmesser der Datenanalyse, weil es ein mächtiges und vielseitiges Werkzeug für Datenanalyse und -verarbeitung in Python ist. Pandas bietet für nahezu alle gängigen Anforderungen - sei es Datenimport, Datenbereinigung, Datentransformation und -analyse oder sogar Visualisierung - nützliche Funktionalitäten. Die Palette an Funktionalitäten ist so umfangreich, dass wir diese unmöglich alle vorstellen können. Wir glauben auch nicht, dass dies didaktisch sinnvoll ist. Stattdessen werden wir geeignete Funktionen immer dann vorstellen, wenn wir sie für unsere Analyse benötigen. Viele der vorgestellten Funktionen bieten Funktionalitäten an, die wir nicht nutzen. Es ist deshalb sinnvoll, dass Sie sich die Dokumentation der Funktionen anschauen, wenn Sie diese für Ihre Analyse benötigen. Die Dokumentation finden Sie [hier](https://pandas.pydata.org/pandas-docs/stable/reference/index.html).
+Wir werden im Rahmen unserer Analyse(n) verschiedene Module / Bibliotheken und Funktionalitäten Pythons kennenlernen. Eine der wichtigsten Bibliotheken ist `pandas`. Wir bezeichnen `pandas` als das Schweizer Taschenmesser der Datenanalyse, weil es ein mächtiges und vielseitiges Werkzeug für die Datenanalyse und -verarbeitung in Python ist. Pandas bietet für nahezu alle gängigen Anforderungen - sei es Datenimport, Datenbereinigung, Datentransformation und -analyse oder sogar Visualisierung - nützliche Funktionalitäten. Die Palette an Funktionalitäten ist so umfangreich, dass wir diese unmöglich alle vorstellen können. Wir glauben auch nicht, dass dies didaktisch sinnvoll ist. Stattdessen werden wir geeignete Funktionen immer dann vorstellen, wenn wir sie für unsere Analyse benötigen. Viele der vorgestellten Module bieten Funktionalitäten an, die wir nicht nutzen. Es ist deshalb sinnvoll, dass Sie sich die Dokumentation der Funktionen anschauen, wenn Sie diese für Ihre Analyse benötigen. Die Dokumentation finden Sie [hier](https://pandas.pydata.org/pandas-docs/stable/reference/index.html).
 
 Für einen ersten kurzen und durchaus unvollständigen Überblick über die Funktionalitäten von Pandas verweisen wir auf den Anhang @sec-pandas.
 
@@ -18,23 +18,23 @@ Beginnen wir mit der Analyse, in dem wir die Daten zunächst einlesen und aufber
 
 ## Was sind Funktionen?
 
-Eine Funktion ist ein Teil eines Programms, der eine bestimmte Aufgabe erfüllt. Wir können Funktionen einsetzen, um Teile des Codes wiederverwendbar zu machen bzw. um bereits geschriebenen Code von anderen wiederzuverwenden. Das Konstrukt ist sehr mächtig und wir werden sowohl bereits implementierte Funktionen nutzen (wie alle Funktionen, die `pandas` bereitstellt), als auch eigene Funktionen schreiben lernen.
+Eine Funktion ist ein Teil eines Programms, der eine bestimmte Aufgabe erfüllt. Wir können Funktionen einsetzen, um Teile des Codes wiederverwendbar zu machen oder um bereits geschriebenen Code von anderen wiederzuverwenden. Das Konstrukt ist sehr mächtig und wir werden sowohl bereits implementierte Funktionen nutzen (wie alle Funktionen, die `pandas` bereitstellt), als auch eigene Funktionen schreiben lernen.
 
 Lassen Sie uns eine Analogie aus Excel nutzen. Stellen Sie sich vor, wir haben eine Spalte mit vielen Werten und wir wollen wissen, um wieviele Werte es sich handelt, d.h. wir wollen die Anzahl an Werten bestimmen. Wir könnten diese Information z.B. benötigen, um einen Durchschnitt zu berechnen.
 
 ![](../../_assets/RndNumbers.png){fig-align="center"}
 
-Natürlich könnten wir die Anzahl an Werten selber und manuell zählen (es sind 10 Werte). Diese Lösung ist aber wenig sinnvoll, da wir so einen manuellen Schritt in unser “Programm” einbauen. Besser wäre es, wenn wir die Anzahl an Werten automatisiert bestimmen. Wir könnten uns über diese eigentlich triviale Aufgabe nun Gedanken machen. Jedoch müssen wir dies nicht, da es für diese spezielle Frage bereits eine Lösung in Excel gibt. Wir können die Funktion `Anzahl()` nutzen, die Excel bzw. Microsoft bereits für den Anwender zur Verfügung gestellt hat. Die Funktion berechnet, wie viele Zellen in einem Bereich Zahlen enthalten.
+Natürlich könnten wir die Anzahl an Werten selber und manuell zählen (es sind 10 Werte). Diese Lösung ist aber wenig sinnvoll, da wir so einen manuellen Schritt in unser “Programm” einbauen. Besser wäre es, wenn wir die Anzahl an Werten automatisiert bestimmen. Wir könnten uns über diese eigentlich triviale Aufgabe nun Gedanken machen. Jedoch müssen wir dies nicht, da es für diese spezielle Frage bereits eine Lösung in Excel gibt. Wir können die Funktion `ANZAHL()` nutzen, die Excel bzw. Microsoft bereits für den Anwender zur Verfügung gestellt hat. Die Funktion berechnet, wie viele Zellen in einem Bereich Zahlen enthalten.
 
 ![](../../_assets/RndNumbers_Solution.png){fig-align="center"}
 
 Ein Großteil der Funktionalität von Excel geht auf die breite Palette an bereits verfügbaren Funktionen zurück. Gleiches gilt für Python. Wir können uns die Arbeit von anderen Anwendern zu Nutze machen und die bereits implementierten Funktionen nutzen. 
 
-Eine Funktion in Python ist prinzipiell sehr ähnlich zu einer Funktion in Excel. Eine Funktion hat einen Namen, der sie eindeutig identifiziert. Außerdem hat sie Parameter, die sie benötigt, um ihre Aufgabe zu erfüllen. Die Funktion `Anzahl()` in Excel hat einen Parameter, der den Bereich angibt, in dem die Anzahl an Zahlen bestimmt werden soll. Die Funktion `read_csv()` in Python hat einen Parameter, der den Pfad zur Datei angibt, die eingelesen werden soll. Sowohl in Excel, als auch in Python gibt es Funktionen mit optionalen Parametern, die nicht zwingend angegeben werden müssen. Die Funktion `Anzahl()` in Excel hat einen optionalen Parameter, der angibt, ob auch leere Zellen gezählt werden sollen. Die Funktion `read_csv()` in Python hat eine Vielzahl von optionalen Parameter, die der Anwender beim Einlesen von Daten ggf. nutzen möchte oder muss (z.B. welche Spalten wir einlesen möchten, welches Datenformat wir verwenden, welches Dezimalkomma wir verwenden, etc.).
+Eine Funktion in Python ist prinzipiell sehr ähnlich zu einer Funktion in Excel. Eine Funktion hat einen Namen, der sie eindeutig identifiziert. Außerdem hat sie Parameter, die sie benötigt, um ihre Aufgabe zu erfüllen. Die Funktion `ANZAHL()` in Excel hat einen Parameter, der den Bereich angibt, in dem die Anzahl an Zahlen bestimmt werden soll. Die Funktion `read_csv()` in Python hat einen Parameter, der den Pfad zur Datei angibt, die eingelesen werden soll. Sowohl in Excel, als auch in Python gibt es Funktionen mit optionalen Parametern, die nicht zwingend angegeben werden müssen. Die Funktion `Anzahl()` in Excel hat einen optionalen Parameter, der angibt, ob auch leere Zellen gezählt werden sollen. Die Funktion `read_csv()` in Python hat eine Vielzahl von optionalen Parameter, die der Anwender beim Einlesen von Daten ggf. nutzen möchte oder muss (z.B. welche Spalten wir einlesen möchten, welches Datenformat wir verwenden, welches Dezimalkomma wir verwenden, etc.).
 
 :::
 
-Der wichtigste (und einzige zwingend notwendige) Paramerter ist der __Pfad zur Datei__, die eingelesen werden soll. In unserem Fall ist der Pfad `../../_data/Construction.csv`. Der Pfad ist relativ zum aktuellen Arbeitsverzeichnis, d.h. relativ zum Ort, in der sich das Notebook, mit dem wir arbeiten befindet.^[Sofern sich die Datei in einer Cloud befindet, kann auch der Link zur Datei angegeben werden, d.h. die Datei muss nicht lokal abgespeichert sein]. Die Funktion gibt ein sogenanntes `DataFrame` zurück, das wir in der Variable `df` speichern. Ein `DataFrame` ist eine Datenstruktur, die in der Regel Tabellen repräsentiert. In unserem Fall enthält das `DataFrame` die Daten aus der CSV-Datei. Prinzipiell können wir nahezu jedes gängige Format einlesen, das Pandas unterstützt. Eine vollständige Liste der unterstützten Formate finden Sie in der Dokumentation von Pandas.^[siehe [hier](https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html)]
+Der wichtigste (und einzige zwingend notwendige) Parameter ist der __Pfad zur Datei__, die eingelesen werden soll. In unserem Fall ist der Pfad `../../_data/Construction.csv`. Der Pfad ist relativ zum aktuellen Arbeitsverzeichnis, d.h. relativ zum Ort, in der sich das Notebook, mit dem wir arbeiten befindet.^[Sofern sich die Datei in einer Cloud befindet, kann auch der Link zur Datei angegeben werden, d.h. die Datei muss nicht lokal abgespeichert sein]. Die Funktion gibt ein sogenanntes `DataFrame` zurück, das wir in der Variable `df` speichern. Ein `DataFrame` ist eine Datenstruktur, die in der Regel Tabellen repräsentiert. In unserem Fall enthält das `DataFrame` die Daten aus der CSV-Datei. Prinzipiell können wir nahezu jedes gängige Format einlesen (z.B. txt, html, csv, excel, parquet etc.). Eine vollständige Liste der unterstützten Formate finden Sie in der Dokumentation von Pandas.^[siehe [hier](https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html)]
 
  
 
@@ -51,7 +51,7 @@ Die Variable `df` enthält nun die Daten aus der CSV-Datei. Wenn das Einlesen de
 df.head()
 ```
 
-Die Funktion ist sehr hilfreich, um zu überprüfen, ob die Daten (zumindest scheinbar) korrekt eingelesen wurden. Außderm können wir so den Aufbau des Datensatzes erkennen. 
+Die Funktion ist sehr hilfreich, um zu überprüfen, ob die Daten (zumindest augenscheinlich) korrekt eingelesen wurden. Außderm können wir so den Aufbau des Datensatzes erkennen. 
 
 ::: {.callout-tip collapse="true"}
 
@@ -74,7 +74,7 @@ Die Funktion `info()` gibt an, wieviele Zeilen (`RangeIndex`) und Spalten `Data 
 - `Non-Null Count` Anzahl der nicht leeren Werte je Spalte
 - `Dtype` Datentyp der Spalte
 
-Wir können mit der Funkton also einige wichtige Dinge im Rahmen der Datenaufbereitung erkennen. In unserem Fall sind z.B. nicht alle Spalten mit Werten gefüllt. Wir werden im nächsten Abschnitt detaillierter darauf eingehen. Die Spalten haben außerdem einen von zwei Datentypen: `object` und `float`. Der Datentyp `float` repräsentiert Gleitkommazahlen. Der Datentyp `object` repräsentiert Zeichenketten (d.h. Python interpretiert die Daten als Text). Da wir beim Einlesen der Daten keine Angabe über die Datentypen gemacht haben, hat Pandas die Datentypen automatisch ermittelt. In der Regel ist dies auch eine guter erster Ansatz. Wir sollten jedoch in einem nächsten Schritt die Datentypen überprüfen und ggf. anpassen. Denn je besser der Datentyp zum Inhalt der Spalte passt, desto besser können wir mit den Daten arbeiten. Außerdem können wir bereits jetzt erkennen, dass die Spaltenbezeichungen inkonsistent und teilweise unglücklich gewählt sind. Wir werden im nächsten Abschnitt detaillierter darauf eingehen.
+Wir können mit der Funkton also einige wichtige Dinge im Rahmen der Datenaufbereitung erkennen. In unserem Fall sind z.B. nicht alle Spalten mit Werten gefüllt. Wir werden im nächsten Abschnitt detaillierter darauf eingehen. Die Spalten haben außerdem einen von zwei Datentypen: `object` und `float`. Der Datentyp `float` repräsentiert Gleitkommazahlen (z.B. $3.23$). Der Datentyp `object` repräsentiert Zeichenketten (d.h. Python interpretiert die Daten als Text). Da wir beim Einlesen der Daten keine Angabe über die Datentypen gemacht haben, hat Pandas die Datentypen automatisch ermittelt. In der Regel ist dies auch ein guter erster Ansatz. Wir sollten jedoch in einem nächsten Schritt die Datentypen überprüfen und ggf. anpassen. Denn je besser der Datentyp zum Inhalt der Spalte passt, desto besser können wir mit den Daten arbeiten. Wenn wir also z.B. Spalten mit ausschließlich Zahlen haben, sollten diese auch nicht als Datentyp `object` gespeichert werden, da wir dann mit dieser Spalte z.B. nicht rechnen können. Außerdem können wir bereits jetzt erkennen, dass die Spaltenbezeichungen inkonsistent und teilweise unglücklich gewählt sind. Wir werden im nächsten Abschnitt detaillierter darauf eingehen.
 
 ::: {.callout-tip collapse="true"}
 
@@ -82,19 +82,19 @@ Wir können mit der Funkton also einige wichtige Dinge im Rahmen der Datenaufber
 
 Die erste Position in Python ist immer `0`. Das ist ein Konzept, das wir uns merken sollten. Wir werden es in den kommenden Kapiteln immer wieder verwenden. Die erste Zeile eines DataFrames hat die Position `0`. Die erste Spalte hat die Position `0`.
 
-Dies ist zunächst etwas verwirrend und ungewohnt. Jedoch ist Python hier sehr konsistent, so dass wir uns schnell daran gewöhnen werden. Grundsätzlich gilt: die erste Position in Python ist immer `0`.
+Dies ist zunächst etwas verwirrend und ungewohnt. Jedoch ist Python hier sehr konsistent, so dass wir uns schnell daran gewöhnen werden. Grundsätzlich gilt: die erste Position in Python hat immer den Index (d.h Zeile oder Spalte) `0`.
 
 :::
 
 ## Aufbereitung der Daten
 
-Beginnen wir mit der Aufbereitung der Daten. Natürlich gibt es nicht _den_ richtigen Weg, um Daten aufzubereiten. Jeder Datensatz ist unterschiedlich und nicht alle Daten sind gleich. Dennoch gibt es typische Aufgaben, die wir bei der Aufbereitung von Daten immer wieder vorfinden. Wir werden uns im Folgenden einige dieser Aufgaben ansehen und die entsprechenden Lösungen diskutieren.
+Beginnen wir mit der Aufbereitung der Daten. Natürlich gibt es nicht _den_ richtigen Weg, um Daten aufzubereiten. Jeder Datensatz ist unterschiedlich und nicht jede Analyse hat dieselben Anforderungen. Dennoch gibt es typische Aufgaben, die wir bei der Aufbereitung von Daten immer wieder vorfinden. Wir werden uns im Folgenden einige dieser Aufgaben ansehen und die entsprechenden Lösungen diskutieren.
 
 ### Variablennamen anpassen
 
 Es ist nicht zwingend notwendig Variablen neu zu benennen. Im vorliegenden Datensatz hat jede Variable zumindest eine den Inhalt beschreibende Bezeichnung. Jedoch ist die Bezeichnung von Spalten oft nicht intuitiv, inkonsistent oder unklar. Daher ist es sinnvoll, die Spalten so zu bennen, dass wir im Rahmen der Analyse (i) schnell erkennen, was in der Spalte steht und (ii) die Auswahl der Spalten intuitiv ist. Die Umbenennung von Variablen hat dabei natürlich immer eine subjektive Komponente, da jeder andere Vorstellungen hat, wie die Spalten benannt sein sollten. 
 
-In unserem Datensatz sind die Spaltennamen jedoch insbesondere auch nicht einheitlich benannt. So beginnen einige Spalten mit einem Großbuchstaben, andere mit einem Kleinbuchstaben. Bei einigen Spalten ist der englische Begriff `project`, bei anderen der deutsche Begriff `projekt` verwendet. Einige Spalten beinhalten Leerzeichen, andere sind mit `_` verbunden. Dies sind alles Dinge, die die weitere Analyse ein Stück weit erschweren, da wir Spalten nicht intuitiv auswählen können.
+In unserem Datensatz sind die Spaltennamen jedoch insbesondere auch nicht einheitlich benannt. So beginnen einige Spalten mit einem Großbuchstaben, andere mit einem Kleinbuchstaben. Bei einigen Spalten ist der englische Begriff `project`, bei anderen der deutsche Begriff `projekt` verwendet. Einige Spalten beinhalten Leerzeichen, andere sind mit `_` verbunden. Dies sind alles Dinge, die die weitere Analyse ein Stück weit erschweren, da wir Spalten nicht intuitiv auswählen können. 
 
 Lassen Sie uns die Spalten deshalb vereinheitlichen, in dem wir:
 
@@ -104,7 +104,7 @@ Lassen Sie uns die Spalten deshalb vereinheitlichen, in dem wir:
 - wo sinnvoll kürzere Begriffe verwenden
 - Begriffe wie `Plan` und `Ist` einheitlich verwenden
 
-Wir können die Spalten mit der Funktion `rename()` umbenennen. Die Funktion `rename()` erwartet als Parameter ein Dictionary, in dem wir die alten Spaltennamen als Schlüssel und die neuen Spaltennamen als Werte angeben. 
+Wir können die Spalten mit der Funktion `rename()` umbenennen. Die Funktion `rename()` erwartet als Parameter ein sog. `Dictionary`, in dem wir die alten Spaltennamen als Schlüssel und die neuen Spaltennamen als Werte angeben. Unser angepasster DataFrame sieht dann wie folgt aus: 
 
 ```{python}
 df = df.rename(columns={'Project_ID': 'id', # Spalte "Projekt_ID" wird umbenannt in "id"
@@ -140,7 +140,7 @@ df['ende_ist'] = pd.to_datetime(df['ende_ist'])
 df.head()
 ```
 
-Das Ergebnis ist für uns nicht ersichtlich. Wir können uns die Datentypen der einzelnen Spalten jedoch mit der Funktion `dtypes` anzeigen lassen und überprüfen, ob die Datentypen nun passend sind. 
+Das Ergebnis ist für uns nicht ersichtlich. Wir können uns die Datentypen der einzelnen Spalten jedoch mit dem Attribut `dtypes` (oder aber mit `.info()`) anzeigen lassen und überprüfen, ob die Datentypen nun passend sind. 
 
 ```{python}
 df.dtypes
@@ -183,10 +183,12 @@ Dies können wir mit der Funktion `any()` erreichen. Die Funktion `any()` gibt f
 df.isna().any(axis=1)
 ```
 
-Wir können dieses Ergebnis nun zum Filtern der Zeilen verwenden. Wir erstellen einen Boolean-Index, der nur die Zeilen enthält, die fehlende Werte enthalten^[Hinweis: dieser wird oft als `mask` bezeichnet. Da es sich aber um eine einfache Variable handelt, können wir diese theoretisch benennen, wie wir möchten.]. Diesen Index können wir dann verwenden, um nur die Zeilen auszuwählen, die fehlende Werte enthalten.
+Wir können dieses Ergebnis nun zum Filtern der Zeilen verwenden. Wir erstellen einen Boolean-Index, der die gleiche Länge hat, wie der Datensatz und an den Stellen, an denen Werte fehlen, den Wert `True` hat^[Hinweis: dieser wird oft als `mask` bezeichnet. Da es sich aber um eine einfache Variable handelt, können wir diese theoretisch benennen, wie wir möchten.]. Diesen Index können wir dann verwenden, um nur die Zeilen auszuwählen, die fehlende Werte enthalten.
 
 ```{python}
-mask = df.isna().any(axis=1)
+# Index mit True (= Wert fehlt) oder False (= Wert vorhanden)
+mask = df.isna().any(axis=1) 
+# Datensatz beinhaltet nur Zeilen mit True 
 df[mask]
 ```
 
@@ -299,13 +301,13 @@ Im vorliegenden Datensatz können wir z.B. folgende Plausibilitätsprüfungen du
 
 1. Ist der Wert der Spalte `id` eindeutig?
 
-2. Sind die Werte für Kosten (`kosten_plan` und `kosten_ist`) plaubibel, d.h. sind die Kosten positiv (bzw. haben alle das gleiche Vorzeichen)?
+2. Sind die Werte für Kosten (`kosten_plan` und `kosten_ist`) plausibel, d.h. sind die Kosten positiv (bzw. haben alle das gleiche Vorzeichen)?
 
 3. Sind die Werte für die Datumsspalten (`beginn`, `ende_plan` und `ende_ist`) plausibel, d.h. (i) liegen die Werte in der Vergangenheit und (ii) ist das Enddatum nach dem Startdatum? 
 
 __Plausibilitätsprüfung 1:__ Ist der Wert der Spalte `id` eindeutig?
 
-Eine `id` sollte immer eindeutig sein. Im vorliegenden Fall sollte die Anzahl an eindeutigen Werten der Anzahl an Zeilen entsprechen. Ist dies der Fall, so ist die `id` eindeutig, falls nicht, wurde die `id` mehrfach vergeben. Nicht-eindeutige `id`s müssen nicht problematisch sein, jedoch können dann Fehler bei z.B. der Zusammenführung von Datensätzen oder bei der Aggregation von Daten auftreten. Wir können mit der Funktion `unique()` überprüfen, ob die `id` eindeutig ist.
+Eine `id` sollte immer eindeutig sein. Im vorliegenden Fall sollte die Anzahl an eindeutigen Werten der Anzahl an Zeilen entsprechen. Ist dies der Fall, so ist die `id` eindeutig. Falls nicht, wurde die `id` mehrfach vergeben. Nicht-eindeutige `id`s müssen nicht problematisch sein, jedoch können dann Fehler bei z.B. der Zusammenführung von Datensätzen oder bei der Aggregation von Daten auftreten. Wir können mit der Funktion `unique()` überprüfen, ob die `id` eindeutig ist.
 
 ```{python}
 unique_ids = df['id'].unique()
@@ -319,7 +321,7 @@ len(unique_ids) == len(df)
 
 Da der Wert `True` zurückgegeben wird, ist die `id` eindeutig und wir können uns sicher sein, dass keine Projekt-ID mehrfach vergeben wurde.
 
-__Plausibilitätsprüfung 2:__ Sind die Werte für Kosten (`kosten_plan` und `kosten_ist`) plaubibel, d.h. sind die Kosten positiv (bzw. haben alle das gleiche Vorzeichen)?
+__Plausibilitätsprüfung 2:__ Sind die Werte für Kosten (`kosten_plan` und `kosten_ist`) plausibel, d.h. sind die Kosten positiv (bzw. haben alle das gleiche Vorzeichen)?
 
 Lassen Sie uns zunächst die Kostenwerte für die Spalte `kosten_plan` betrachten und überprüfen, ob es Werte gibt, die negativ sind. Dazu müssen wir überprüfen, ob es Werte gibt, die kleiner als 0 sind. Die können wir mit dem Operator `<` überprüfen. 
 
@@ -327,7 +329,7 @@ Lassen Sie uns zunächst die Kostenwerte für die Spalte `kosten_plan` betrachte
 df['kosten_plan'] < 0
 ```
 
-Wir erhalten eine `Series` mit `True` und `False` Werten. `True` bedeutet, dass der Wert kleiner als 0 ist, `False` bedeutet, dass der Wert größer oder gleich 0 ist. Wir können nun überprüfen, ob es überhaupt Werte gibt, die kleiner als 0 sind, in dem wir z.B. die bereits bekannte Funktion `any()` nutzen.
+Wir erhalten eine `Series` mit `True` und `False` Werten. `True` bedeutet, dass die Bedingung erfüllt ist, d.h. dass der Wert kleiner als 0 ist. `False` bedeutet, dass die Bedingung nicht erfüllt ist, d.h. dass der Wert größer oder gleich 0 ist. Wir können nun überprüfen, ob es überhaupt Werte gibt, die kleiner als 0 sind, in dem wir z.B. die bereits bekannte Funktion `any()` nutzen.
 
 ```{python}
 (df['kosten_plan'] < 0).any()
@@ -353,7 +355,8 @@ Wir können die Funktion `query` nutzen, um unseren Datensatz nach Bedingungen z
 df.query('kosten_plan < 0')
 ```
 
-Eine nicht unerhebliche Anzahl an Projekten hat Kosten mit negativen Werten. Auch wird deutlich, dass die Kostenwerte für die Spalte `kosten_ist` dann ebenfalls negativ sind. Dies kann verschiedene Ursachen haben, z.B. dass die Kosten beim erfassen der Daten falsch eingegeben wurden. In Realität würde man hier mit dem Kunden oder der Projektleitung sprechen und versuchen die Daten zu korrigieren. In unserem Fall werden wir die Daten eliminieren, um keinen Fehler in der weiteren Analyse zu erzeugen. 
+
+Eine nicht unerhebliche Anzahl an Projekten hat Kosten mit negativen Werten. Auch wird deutlich, dass die Kostenwerte für die Spalte `kosten_ist` dann ebenfalls negativ sind. Dies kann verschiedene Ursachen haben, z.B. dass die Kosten beim erfassen der Daten falsch eingegeben wurden. In Realität würde man hier weitere Informationen zu den Daten einholen (d.h. mit Fachexperten oder der Projektleitung) und Möglichkeiten zur Datenkorrektur zu eruieren. In unserem Fall werden wir die Daten eliminieren, um keinen Fehler in der weiteren Analyse zu erzeugen. 
 
 Der einfachste Weg, die Zeilen mit negativen Vorzeichen zu eliminieren, ist es den Datensatz mit `query` zu filtern. Wir können die Bedingung `kosten_plan >= 0` nutzen, um alle Zeilen auszugeben, die einen positiven Kostenwert haben.
 
@@ -367,10 +370,10 @@ Wir könnten nun die gleiche Überprüfung für die Spalte `kosten_ist` durchfü
 df = df.query('kosten_ist >= 0')
 ```
 
-Wir hätten die beiden letzten Schritte auch in einem Schritt durchführen können, indem wir die Bedingungen mit einem `and` verknüpft hätten. 
+Wir hätten die beiden letzten Schritte auch in einem Schritt durchführen können, indem wir die Bedingungen mit einem `&` verknüpft hätten. 
 
 ```{.python}
-df = df.query('kosten_plan >= 0 and kosten_ist >= 0')
+df = df.query('kosten_plan >= 0 & kosten_ist >= 0')
 ```
 
 __Plausibilitätsprüfung 3:__ Sind die Werte für die Datumsspalten (`beginn`, `ende_plan` und `ende_ist`) plausibel?
@@ -401,6 +404,7 @@ Schauen wir uns die Projekte näher an, so stellt man fest, dass es sich ausschl
 df['dauer'] = df['ende_ist'] - df['beginn']
 ```
 
+Wir haben nun einige wesentliche und offensichtliche Aufbereitugnsschritte durchlaufen und können mit der eigentlichen Analyse der Daten beginnen. 
 
 ## Übersicht genutzter Methoden
 
@@ -421,4 +425,4 @@ Es wurden folgende Funktionen und Methoden genutzt:
 - `query()`: Filtern von Zeilen nach Bedingung
 - `max()`: Ermitteln des höchsten Wertes
 
-
+Dies ist ein Test

@@ -173,7 +173,7 @@ Der Index eines Dataframes ist standardmäßig numerisch und beginnt bei 0. Der 
 
 ![Beispiel: Index in Excel](../../_assets/index_xlsx.gif)
 
-Wir greifen auf Index und Spalten wiefolgt zu:
+Wir greifen auf Index und Spalten wie folgt zu:
 
 ```{python}
 idx = df.index

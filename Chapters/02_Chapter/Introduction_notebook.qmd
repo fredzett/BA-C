@@ -73,7 +73,7 @@ Eine Liste:
 
 ```
 
-Nach dem Ausführen der Zelle sehen Sie den Text, der in der Zelle steht. Dieser sieht dann wiefolgt aus:
+Nach dem Ausführen der Zelle sehen Sie den Text, der in der Zelle steht. Dieser sieht dann wie folgt aus:
 
 ### Eine Überschrift der Ebene 3
 

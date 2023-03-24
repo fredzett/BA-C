@@ -128,6 +128,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -324,7 +325,7 @@ Modul Pandas
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<p>Wir werden im Rahmen unserer Analyse(n) verschiedene Module / Bibliotheken und Funktionalitäten Pythons kennenlernen. Eine der wichtigsten Bibliotheken ist <code>pandas</code>. Wir bezeichnen <code>pandas</code> als das Schweizer Taschenmesser der Datenanalyse, weil es ein mächtiges und vielseitiges Werkzeug für Datenanalyse und -verarbeitung in Python ist. Pandas bietet für nahezu alle gängigen Anforderungen - sei es Datenimport, Datenbereinigung, Datentransformation und -analyse oder sogar Visualisierung - nützliche Funktionalitäten. Die Palette an Funktionalitäten ist so umfangreich, dass wir diese unmöglich alle vorstellen können. Wir glauben auch nicht, dass dies didaktisch sinnvoll ist. Stattdessen werden wir geeignete Funktionen immer dann vorstellen, wenn wir sie für unsere Analyse benötigen. Viele der vorgestellten Funktionen bieten Funktionalitäten an, die wir nicht nutzen. Es ist deshalb sinnvoll, dass Sie sich die Dokumentation der Funktionen anschauen, wenn Sie diese für Ihre Analyse benötigen. Die Dokumentation finden Sie <a href="https://pandas.pydata.org/pandas-docs/stable/reference/index.html">hier</a>.</p>
+<p>Wir werden im Rahmen unserer Analyse(n) verschiedene Module / Bibliotheken und Funktionalitäten Pythons kennenlernen. Eine der wichtigsten Bibliotheken ist <code>pandas</code>. Wir bezeichnen <code>pandas</code> als das Schweizer Taschenmesser der Datenanalyse, weil es ein mächtiges und vielseitiges Werkzeug für die Datenanalyse und -verarbeitung in Python ist. Pandas bietet für nahezu alle gängigen Anforderungen - sei es Datenimport, Datenbereinigung, Datentransformation und -analyse oder sogar Visualisierung - nützliche Funktionalitäten. Die Palette an Funktionalitäten ist so umfangreich, dass wir diese unmöglich alle vorstellen können. Wir glauben auch nicht, dass dies didaktisch sinnvoll ist. Stattdessen werden wir geeignete Funktionen immer dann vorstellen, wenn wir sie für unsere Analyse benötigen. Viele der vorgestellten Module bieten Funktionalitäten an, die wir nicht nutzen. Es ist deshalb sinnvoll, dass Sie sich die Dokumentation der Funktionen anschauen, wenn Sie diese für Ihre Analyse benötigen. Die Dokumentation finden Sie <a href="https://pandas.pydata.org/pandas-docs/stable/reference/index.html">hier</a>.</p>
 <p>Für einen ersten kurzen und durchaus unvollständigen Überblick über die Funktionalitäten von Pandas verweisen wir auf den Anhang <a href="../../Appendices/Modules/Pandas.html#sec-pandas"><span>Kapitel&nbsp;1</span></a>.</p>
 </div>
 </div>
@@ -344,25 +345,25 @@ Was sind Funktionen?
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Eine Funktion ist ein Teil eines Programms, der eine bestimmte Aufgabe erfüllt. Wir können Funktionen einsetzen, um Teile des Codes wiederverwendbar zu machen bzw. um bereits geschriebenen Code von anderen wiederzuverwenden. Das Konstrukt ist sehr mächtig und wir werden sowohl bereits implementierte Funktionen nutzen (wie alle Funktionen, die <code>pandas</code> bereitstellt), als auch eigene Funktionen schreiben lernen.</p>
+<p>Eine Funktion ist ein Teil eines Programms, der eine bestimmte Aufgabe erfüllt. Wir können Funktionen einsetzen, um Teile des Codes wiederverwendbar zu machen oder um bereits geschriebenen Code von anderen wiederzuverwenden. Das Konstrukt ist sehr mächtig und wir werden sowohl bereits implementierte Funktionen nutzen (wie alle Funktionen, die <code>pandas</code> bereitstellt), als auch eigene Funktionen schreiben lernen.</p>
 <p>Lassen Sie uns eine Analogie aus Excel nutzen. Stellen Sie sich vor, wir haben eine Spalte mit vielen Werten und wir wollen wissen, um wieviele Werte es sich handelt, d.h. wir wollen die Anzahl an Werten bestimmen. Wir könnten diese Information z.B. benötigen, um einen Durchschnitt zu berechnen.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../../_assets/RndNumbers.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
-<p>Natürlich könnten wir die Anzahl an Werten selber und manuell zählen (es sind 10 Werte). Diese Lösung ist aber wenig sinnvoll, da wir so einen manuellen Schritt in unser “Programm” einbauen. Besser wäre es, wenn wir die Anzahl an Werten automatisiert bestimmen. Wir könnten uns über diese eigentlich triviale Aufgabe nun Gedanken machen. Jedoch müssen wir dies nicht, da es für diese spezielle Frage bereits eine Lösung in Excel gibt. Wir können die Funktion <code>Anzahl()</code> nutzen, die Excel bzw. Microsoft bereits für den Anwender zur Verfügung gestellt hat. Die Funktion berechnet, wie viele Zellen in einem Bereich Zahlen enthalten.</p>
+<p>Natürlich könnten wir die Anzahl an Werten selber und manuell zählen (es sind 10 Werte). Diese Lösung ist aber wenig sinnvoll, da wir so einen manuellen Schritt in unser “Programm” einbauen. Besser wäre es, wenn wir die Anzahl an Werten automatisiert bestimmen. Wir könnten uns über diese eigentlich triviale Aufgabe nun Gedanken machen. Jedoch müssen wir dies nicht, da es für diese spezielle Frage bereits eine Lösung in Excel gibt. Wir können die Funktion <code>ANZAHL()</code> nutzen, die Excel bzw. Microsoft bereits für den Anwender zur Verfügung gestellt hat. Die Funktion berechnet, wie viele Zellen in einem Bereich Zahlen enthalten.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../../_assets/RndNumbers_Solution.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 <p>Ein Großteil der Funktionalität von Excel geht auf die breite Palette an bereits verfügbaren Funktionen zurück. Gleiches gilt für Python. Wir können uns die Arbeit von anderen Anwendern zu Nutze machen und die bereits implementierten Funktionen nutzen.</p>
-<p>Eine Funktion in Python ist prinzipiell sehr ähnlich zu einer Funktion in Excel. Eine Funktion hat einen Namen, der sie eindeutig identifiziert. Außerdem hat sie Parameter, die sie benötigt, um ihre Aufgabe zu erfüllen. Die Funktion <code>Anzahl()</code> in Excel hat einen Parameter, der den Bereich angibt, in dem die Anzahl an Zahlen bestimmt werden soll. Die Funktion <code>read_csv()</code> in Python hat einen Parameter, der den Pfad zur Datei angibt, die eingelesen werden soll. Sowohl in Excel, als auch in Python gibt es Funktionen mit optionalen Parametern, die nicht zwingend angegeben werden müssen. Die Funktion <code>Anzahl()</code> in Excel hat einen optionalen Parameter, der angibt, ob auch leere Zellen gezählt werden sollen. Die Funktion <code>read_csv()</code> in Python hat eine Vielzahl von optionalen Parameter, die der Anwender beim Einlesen von Daten ggf. nutzen möchte oder muss (z.B. welche Spalten wir einlesen möchten, welches Datenformat wir verwenden, welches Dezimalkomma wir verwenden, etc.).</p>
+<p>Eine Funktion in Python ist prinzipiell sehr ähnlich zu einer Funktion in Excel. Eine Funktion hat einen Namen, der sie eindeutig identifiziert. Außerdem hat sie Parameter, die sie benötigt, um ihre Aufgabe zu erfüllen. Die Funktion <code>ANZAHL()</code> in Excel hat einen Parameter, der den Bereich angibt, in dem die Anzahl an Zahlen bestimmt werden soll. Die Funktion <code>read_csv()</code> in Python hat einen Parameter, der den Pfad zur Datei angibt, die eingelesen werden soll. Sowohl in Excel, als auch in Python gibt es Funktionen mit optionalen Parametern, die nicht zwingend angegeben werden müssen. Die Funktion <code>Anzahl()</code> in Excel hat einen optionalen Parameter, der angibt, ob auch leere Zellen gezählt werden sollen. Die Funktion <code>read_csv()</code> in Python hat eine Vielzahl von optionalen Parameter, die der Anwender beim Einlesen von Daten ggf. nutzen möchte oder muss (z.B. welche Spalten wir einlesen möchten, welches Datenformat wir verwenden, welches Dezimalkomma wir verwenden, etc.).</p>
 </div>
 </div>
 </div>
-<div class="page-columns page-full"><p>Der wichtigste (und einzige zwingend notwendige) Paramerter ist der <strong>Pfad zur Datei</strong>, die eingelesen werden soll. In unserem Fall ist der Pfad <code>../../_data/Construction.csv</code>. Der Pfad ist relativ zum aktuellen Arbeitsverzeichnis, d.h. relativ zum Ort, in der sich das Notebook, mit dem wir arbeiten befindet.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Die Funktion gibt ein sogenanntes <code>DataFrame</code> zurück, das wir in der Variable <code>df</code> speichern. Ein <code>DataFrame</code> ist eine Datenstruktur, die in der Regel Tabellen repräsentiert. In unserem Fall enthält das <code>DataFrame</code> die Daten aus der CSV-Datei. Prinzipiell können wir nahezu jedes gängige Format einlesen, das Pandas unterstützt. Eine vollständige Liste der unterstützten Formate finden Sie in der Dokumentation von Pandas.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;Sofern sich die Datei in einer Cloud befindet, kann auch der Link zur Datei angegeben werden, d.h. die Datei muss nicht lokal abgespeichert sein</p></li><li id="fn3"><p><sup>3</sup>&nbsp;siehe <a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html">hier</a></p></li></div></div>
+<div class="page-columns page-full"><p>Der wichtigste (und einzige zwingend notwendige) Parameter ist der <strong>Pfad zur Datei</strong>, die eingelesen werden soll. In unserem Fall ist der Pfad <code>../../_data/Construction.csv</code>. Der Pfad ist relativ zum aktuellen Arbeitsverzeichnis, d.h. relativ zum Ort, in der sich das Notebook, mit dem wir arbeiten befindet.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Die Funktion gibt ein sogenanntes <code>DataFrame</code> zurück, das wir in der Variable <code>df</code> speichern. Ein <code>DataFrame</code> ist eine Datenstruktur, die in der Regel Tabellen repräsentiert. In unserem Fall enthält das <code>DataFrame</code> die Daten aus der CSV-Datei. Prinzipiell können wir nahezu jedes gängige Format einlesen (z.B. txt, html, csv, excel, parquet etc.). Eine vollständige Liste der unterstützten Formate finden Sie in der Dokumentation von Pandas.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;Sofern sich die Datei in einer Cloud befindet, kann auch der Link zur Datei angegeben werden, d.h. die Datei muss nicht lokal abgespeichert sein</p></li><li id="fn3"><p><sup>3</sup>&nbsp;siehe <a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html">hier</a></p></li></div></div>
 <div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -450,7 +451,7 @@ Was sind Funktionen?
 </div>
 </div>
 </div>
-<p>Die Funktion ist sehr hilfreich, um zu überprüfen, ob die Daten (zumindest scheinbar) korrekt eingelesen wurden. Außderm können wir so den Aufbau des Datensatzes erkennen.</p>
+<p>Die Funktion ist sehr hilfreich, um zu überprüfen, ob die Daten (zumindest augenscheinlich) korrekt eingelesen wurden. Außderm können wir so den Aufbau des Datensatzes erkennen.</p>
 <div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -495,7 +496,7 @@ memory usage: 626.3+ KB</code></pre>
 <li><code>Non-Null Count</code> Anzahl der nicht leeren Werte je Spalte</li>
 <li><code>Dtype</code> Datentyp der Spalte</li>
 </ul>
-<p>Wir können mit der Funkton also einige wichtige Dinge im Rahmen der Datenaufbereitung erkennen. In unserem Fall sind z.B. nicht alle Spalten mit Werten gefüllt. Wir werden im nächsten Abschnitt detaillierter darauf eingehen. Die Spalten haben außerdem einen von zwei Datentypen: <code>object</code> und <code>float</code>. Der Datentyp <code>float</code> repräsentiert Gleitkommazahlen. Der Datentyp <code>object</code> repräsentiert Zeichenketten (d.h. Python interpretiert die Daten als Text). Da wir beim Einlesen der Daten keine Angabe über die Datentypen gemacht haben, hat Pandas die Datentypen automatisch ermittelt. In der Regel ist dies auch eine guter erster Ansatz. Wir sollten jedoch in einem nächsten Schritt die Datentypen überprüfen und ggf. anpassen. Denn je besser der Datentyp zum Inhalt der Spalte passt, desto besser können wir mit den Daten arbeiten. Außerdem können wir bereits jetzt erkennen, dass die Spaltenbezeichungen inkonsistent und teilweise unglücklich gewählt sind. Wir werden im nächsten Abschnitt detaillierter darauf eingehen.</p>
+<p>Wir können mit der Funkton also einige wichtige Dinge im Rahmen der Datenaufbereitung erkennen. In unserem Fall sind z.B. nicht alle Spalten mit Werten gefüllt. Wir werden im nächsten Abschnitt detaillierter darauf eingehen. Die Spalten haben außerdem einen von zwei Datentypen: <code>object</code> und <code>float</code>. Der Datentyp <code>float</code> repräsentiert Gleitkommazahlen (z.B. <span class="math inline">\(3.23\)</span>). Der Datentyp <code>object</code> repräsentiert Zeichenketten (d.h. Python interpretiert die Daten als Text). Da wir beim Einlesen der Daten keine Angabe über die Datentypen gemacht haben, hat Pandas die Datentypen automatisch ermittelt. In der Regel ist dies auch ein guter erster Ansatz. Wir sollten jedoch in einem nächsten Schritt die Datentypen überprüfen und ggf. anpassen. Denn je besser der Datentyp zum Inhalt der Spalte passt, desto besser können wir mit den Daten arbeiten. Wenn wir also z.B. Spalten mit ausschließlich Zahlen haben, sollten diese auch nicht als Datentyp <code>object</code> gespeichert werden, da wir dann mit dieser Spalte z.B. nicht rechnen können. Außerdem können wir bereits jetzt erkennen, dass die Spaltenbezeichungen inkonsistent und teilweise unglücklich gewählt sind. Wir werden im nächsten Abschnitt detaillierter darauf eingehen.</p>
 <div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -509,14 +510,14 @@ Position <code>0</code> in Python
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Die erste Position in Python ist immer <code>0</code>. Das ist ein Konzept, das wir uns merken sollten. Wir werden es in den kommenden Kapiteln immer wieder verwenden. Die erste Zeile eines DataFrames hat die Position <code>0</code>. Die erste Spalte hat die Position <code>0</code>.</p>
-<p>Dies ist zunächst etwas verwirrend und ungewohnt. Jedoch ist Python hier sehr konsistent, so dass wir uns schnell daran gewöhnen werden. Grundsätzlich gilt: die erste Position in Python ist immer <code>0</code>.</p>
+<p>Dies ist zunächst etwas verwirrend und ungewohnt. Jedoch ist Python hier sehr konsistent, so dass wir uns schnell daran gewöhnen werden. Grundsätzlich gilt: die erste Position in Python hat immer den Index (d.h Zeile oder Spalte) <code>0</code>.</p>
 </div>
 </div>
 </div>
 </section>
 <section id="aufbereitung-der-daten" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="aufbereitung-der-daten">Aufbereitung der Daten</h2>
-<p>Beginnen wir mit der Aufbereitung der Daten. Natürlich gibt es nicht <em>den</em> richtigen Weg, um Daten aufzubereiten. Jeder Datensatz ist unterschiedlich und nicht alle Daten sind gleich. Dennoch gibt es typische Aufgaben, die wir bei der Aufbereitung von Daten immer wieder vorfinden. Wir werden uns im Folgenden einige dieser Aufgaben ansehen und die entsprechenden Lösungen diskutieren.</p>
+<p>Beginnen wir mit der Aufbereitung der Daten. Natürlich gibt es nicht <em>den</em> richtigen Weg, um Daten aufzubereiten. Jeder Datensatz ist unterschiedlich und nicht jede Analyse hat dieselben Anforderungen. Dennoch gibt es typische Aufgaben, die wir bei der Aufbereitung von Daten immer wieder vorfinden. Wir werden uns im Folgenden einige dieser Aufgaben ansehen und die entsprechenden Lösungen diskutieren.</p>
 <section id="variablennamen-anpassen" class="level3">
 <h3 class="anchored" data-anchor-id="variablennamen-anpassen">Variablennamen anpassen</h3>
 <p>Es ist nicht zwingend notwendig Variablen neu zu benennen. Im vorliegenden Datensatz hat jede Variable zumindest eine den Inhalt beschreibende Bezeichnung. Jedoch ist die Bezeichnung von Spalten oft nicht intuitiv, inkonsistent oder unklar. Daher ist es sinnvoll, die Spalten so zu bennen, dass wir im Rahmen der Analyse (i) schnell erkennen, was in der Spalte steht und (ii) die Auswahl der Spalten intuitiv ist. Die Umbenennung von Variablen hat dabei natürlich immer eine subjektive Komponente, da jeder andere Vorstellungen hat, wie die Spalten benannt sein sollten.</p>
@@ -529,7 +530,7 @@ Position <code>0</code> in Python
 <li>wo sinnvoll kürzere Begriffe verwenden</li>
 <li>Begriffe wie <code>Plan</code> und <code>Ist</code> einheitlich verwenden</li>
 </ul>
-<p>Wir können die Spalten mit der Funktion <code>rename()</code> umbenennen. Die Funktion <code>rename()</code> erwartet als Parameter ein Dictionary, in dem wir die alten Spaltennamen als Schlüssel und die neuen Spaltennamen als Werte angeben.</p>
+<p>Wir können die Spalten mit der Funktion <code>rename()</code> umbenennen. Die Funktion <code>rename()</code> erwartet als Parameter ein sog. <code>Dictionary</code>, in dem wir die alten Spaltennamen als Schlüssel und die neuen Spaltennamen als Werte angeben. Unser angepasster DataFrame sieht dann wie folgt aus:</p>
 <div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.rename(columns<span class="op">=</span>{<span class="st">'Project_ID'</span>: <span class="st">'id'</span>, <span class="co"># Spalte "Projekt_ID" wird umbenannt in "id"</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                        <span class="st">'Name Projekt'</span>: <span class="st">'name'</span>,</span>
@@ -718,7 +719,7 @@ Position <code>0</code> in Python
 </div>
 </div>
 </div>
-<p>Das Ergebnis ist für uns nicht ersichtlich. Wir können uns die Datentypen der einzelnen Spalten jedoch mit der Funktion <code>dtypes</code> anzeigen lassen und überprüfen, ob die Datentypen nun passend sind.</p>
+<p>Das Ergebnis ist für uns nicht ersichtlich. Wir können uns die Datentypen der einzelnen Spalten jedoch mit dem Attribut <code>dtypes</code> (oder aber mit <code>.info()</code>) anzeigen lassen und überprüfen, ob die Datentypen nun passend sind.</p>
 <div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df.dtypes</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
@@ -942,10 +943,12 @@ Name: beginn, Length: 10019, dtype: int64</code></pre>
 Length: 10019, dtype: bool</code></pre>
 </div>
 </div>
-<div class="page-columns page-full"><p>Wir können dieses Ergebnis nun zum Filtern der Zeilen verwenden. Wir erstellen einen Boolean-Index, der nur die Zeilen enthält, die fehlende Werte enthalten<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. Diesen Index können wir dann verwenden, um nur die Zeilen auszuwählen, die fehlende Werte enthalten.</p><div class="no-row-height column-margin column-container"><li id="fn4"><p><sup>4</sup>&nbsp;Hinweis: dieser wird oft als <code>mask</code> bezeichnet. Da es sich aber um eine einfache Variable handelt, können wir diese theoretisch benennen, wie wir möchten.</p></li></div></div>
+<div class="page-columns page-full"><p>Wir können dieses Ergebnis nun zum Filtern der Zeilen verwenden. Wir erstellen einen Boolean-Index, der die gleiche Länge hat, wie der Datensatz und an den Stellen, an denen Werte fehlen, den Wert <code>True</code> hat<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. Diesen Index können wir dann verwenden, um nur die Zeilen auszuwählen, die fehlende Werte enthalten.</p><div class="no-row-height column-margin column-container"><li id="fn4"><p><sup>4</sup>&nbsp;Hinweis: dieser wird oft als <code>mask</code> bezeichnet. Da es sich aber um eine einfache Variable handelt, können wir diese theoretisch benennen, wie wir möchten.</p></li></div></div>
 <div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>mask <span class="op">=</span> df.isna().<span class="bu">any</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>df[mask]</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Index mit True (= Wert fehlt) oder False (= Wert vorhanden)</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>mask <span class="op">=</span> df.isna().<span class="bu">any</span>(axis<span class="op">=</span><span class="dv">1</span>) </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Datensatz beinhaltet nur Zeilen mit True </span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>df[mask]</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 
 <div>
@@ -1694,11 +1697,11 @@ dtype: bool</code></pre>
 <p>Im vorliegenden Datensatz können wir z.B. folgende Plausibilitätsprüfungen durchführen:</p>
 <ol type="1">
 <li><p>Ist der Wert der Spalte <code>id</code> eindeutig?</p></li>
-<li><p>Sind die Werte für Kosten (<code>kosten_plan</code> und <code>kosten_ist</code>) plaubibel, d.h. sind die Kosten positiv (bzw. haben alle das gleiche Vorzeichen)?</p></li>
+<li><p>Sind die Werte für Kosten (<code>kosten_plan</code> und <code>kosten_ist</code>) plausibel, d.h. sind die Kosten positiv (bzw. haben alle das gleiche Vorzeichen)?</p></li>
 <li><p>Sind die Werte für die Datumsspalten (<code>beginn</code>, <code>ende_plan</code> und <code>ende_ist</code>) plausibel, d.h. (i) liegen die Werte in der Vergangenheit und (ii) ist das Enddatum nach dem Startdatum?</p></li>
 </ol>
 <p><strong>Plausibilitätsprüfung 1:</strong> Ist der Wert der Spalte <code>id</code> eindeutig?</p>
-<p>Eine <code>id</code> sollte immer eindeutig sein. Im vorliegenden Fall sollte die Anzahl an eindeutigen Werten der Anzahl an Zeilen entsprechen. Ist dies der Fall, so ist die <code>id</code> eindeutig, falls nicht, wurde die <code>id</code> mehrfach vergeben. Nicht-eindeutige <code>id</code>s müssen nicht problematisch sein, jedoch können dann Fehler bei z.B. der Zusammenführung von Datensätzen oder bei der Aggregation von Daten auftreten. Wir können mit der Funktion <code>unique()</code> überprüfen, ob die <code>id</code> eindeutig ist.</p>
+<p>Eine <code>id</code> sollte immer eindeutig sein. Im vorliegenden Fall sollte die Anzahl an eindeutigen Werten der Anzahl an Zeilen entsprechen. Ist dies der Fall, so ist die <code>id</code> eindeutig. Falls nicht, wurde die <code>id</code> mehrfach vergeben. Nicht-eindeutige <code>id</code>s müssen nicht problematisch sein, jedoch können dann Fehler bei z.B. der Zusammenführung von Datensätzen oder bei der Aggregation von Daten auftreten. Wir können mit der Funktion <code>unique()</code> überprüfen, ob die <code>id</code> eindeutig ist.</p>
 <div class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>unique_ids <span class="op">=</span> df[<span class="st">'id'</span>].unique()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1710,7 +1713,7 @@ dtype: bool</code></pre>
 </div>
 </div>
 <p>Da der Wert <code>True</code> zurückgegeben wird, ist die <code>id</code> eindeutig und wir können uns sicher sein, dass keine Projekt-ID mehrfach vergeben wurde.</p>
-<p><strong>Plausibilitätsprüfung 2:</strong> Sind die Werte für Kosten (<code>kosten_plan</code> und <code>kosten_ist</code>) plaubibel, d.h. sind die Kosten positiv (bzw. haben alle das gleiche Vorzeichen)?</p>
+<p><strong>Plausibilitätsprüfung 2:</strong> Sind die Werte für Kosten (<code>kosten_plan</code> und <code>kosten_ist</code>) plausibel, d.h. sind die Kosten positiv (bzw. haben alle das gleiche Vorzeichen)?</p>
 <p>Lassen Sie uns zunächst die Kostenwerte für die Spalte <code>kosten_plan</code> betrachten und überprüfen, ob es Werte gibt, die negativ sind. Dazu müssen wir überprüfen, ob es Werte gibt, die kleiner als 0 sind. Die können wir mit dem Operator <code>&lt;</code> überprüfen.</p>
 <div class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'kosten_plan'</span>] <span class="op">&lt;</span> <span class="dv">0</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1729,7 +1732,7 @@ dtype: bool</code></pre>
 Name: kosten_plan, Length: 9979, dtype: bool</code></pre>
 </div>
 </div>
-<p>Wir erhalten eine <code>Series</code> mit <code>True</code> und <code>False</code> Werten. <code>True</code> bedeutet, dass der Wert kleiner als 0 ist, <code>False</code> bedeutet, dass der Wert größer oder gleich 0 ist. Wir können nun überprüfen, ob es überhaupt Werte gibt, die kleiner als 0 sind, in dem wir z.B. die bereits bekannte Funktion <code>any()</code> nutzen.</p>
+<p>Wir erhalten eine <code>Series</code> mit <code>True</code> und <code>False</code> Werten. <code>True</code> bedeutet, dass die Bedingung erfüllt ist, d.h. dass der Wert kleiner als 0 ist. <code>False</code> bedeutet, dass die Bedingung nicht erfüllt ist, d.h. dass der Wert größer oder gleich 0 ist. Wir können nun überprüfen, ob es überhaupt Werte gibt, die kleiner als 0 sind, in dem wir z.B. die bereits bekannte Funktion <code>any()</code> nutzen.</p>
 <div class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>(df[<span class="st">'kosten_plan'</span>] <span class="op">&lt;</span> <span class="dv">0</span>).<span class="bu">any</span>()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="26">
@@ -1894,7 +1897,7 @@ Name: kosten_plan, Length: 9979, dtype: bool</code></pre>
 </div>
 </div>
 </div>
-<p>Eine nicht unerhebliche Anzahl an Projekten hat Kosten mit negativen Werten. Auch wird deutlich, dass die Kostenwerte für die Spalte <code>kosten_ist</code> dann ebenfalls negativ sind. Dies kann verschiedene Ursachen haben, z.B. dass die Kosten beim erfassen der Daten falsch eingegeben wurden. In Realität würde man hier mit dem Kunden oder der Projektleitung sprechen und versuchen die Daten zu korrigieren. In unserem Fall werden wir die Daten eliminieren, um keinen Fehler in der weiteren Analyse zu erzeugen.</p>
+<p>Eine nicht unerhebliche Anzahl an Projekten hat Kosten mit negativen Werten. Auch wird deutlich, dass die Kostenwerte für die Spalte <code>kosten_ist</code> dann ebenfalls negativ sind. Dies kann verschiedene Ursachen haben, z.B. dass die Kosten beim erfassen der Daten falsch eingegeben wurden. In Realität würde man hier weitere Informationen zu den Daten einholen (d.h. mit Fachexperten oder der Projektleitung) und Möglichkeiten zur Datenkorrektur zu eruieren. In unserem Fall werden wir die Daten eliminieren, um keinen Fehler in der weiteren Analyse zu erzeugen.</p>
 <p>Der einfachste Weg, die Zeilen mit negativen Vorzeichen zu eliminieren, ist es den Datensatz mit <code>query</code> zu filtern. Wir können die Bedingung <code>kosten_plan &gt;= 0</code> nutzen, um alle Zeilen auszugeben, die einen positiven Kostenwert haben.</p>
 <div class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.query(<span class="st">'kosten_plan &gt;= 0'</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1903,8 +1906,8 @@ Name: kosten_plan, Length: 9979, dtype: bool</code></pre>
 <div class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.query(<span class="st">'kosten_ist &gt;= 0'</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Wir hätten die beiden letzten Schritte auch in einem Schritt durchführen können, indem wir die Bedingungen mit einem <code>and</code> verknüpft hätten.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.query(<span class="st">'kosten_plan &gt;= 0 and kosten_ist &gt;= 0'</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Wir hätten die beiden letzten Schritte auch in einem Schritt durchführen können, indem wir die Bedingungen mit einem <code>&amp;</code> verknüpft hätten.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.query(<span class="st">'kosten_plan &gt;= 0 &amp; kosten_ist &gt;= 0'</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Plausibilitätsprüfung 3:</strong> Sind die Werte für die Datumsspalten (<code>beginn</code>, <code>ende_plan</code> und <code>ende_ist</code>) plausibel?</p>
 <p>Bei der nun folgenden Überprüfung kommt uns zugute, dass wir die Spalten bereits in den Datentyp <code>datetime</code> konvertiert haben. Wir können nun die Werte für die Spalten <code>beginn</code>, <code>ende_plan</code> und <code>ende_ist</code> miteinander vergleichen.</p>
 <p>Wir können zwei Überprüfungen durchführen:</p>
@@ -2192,6 +2195,7 @@ Name: kosten_plan, Length: 9979, dtype: bool</code></pre>
 <div class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'dauer'</span>] <span class="op">=</span> df[<span class="st">'ende_ist'</span>] <span class="op">-</span> df[<span class="st">'beginn'</span>]</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Wir haben nun einige wesentliche und offensichtliche Aufbereitugnsschritte durchlaufen und können mit der eigentlichen Analyse der Daten beginnen.</p>
 </section>
 </section>
 </section>
