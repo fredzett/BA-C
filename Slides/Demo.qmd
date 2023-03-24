@@ -1,0 +1,510 @@
+---
+title: "Research Method and Quantitative Analysis" 
+subtitle:  "~~03a~~ | Lineare Regression"
+author: "Prof. Dr. Felix Zeidler | FH Bielefeld | WiSe 2023"
+lang: "De"
+format: 
+    revealjs: 
+        theme: [simple, custom.scss]
+        toc: true
+        toc-title: "Inhaltsverzeichnis"
+        toc-depth: 1
+        number-sections: true
+        number-depth: 1
+        preview-links: true
+        reference-location: document
+from: markdown+emoji 
+slide-number: c/t
+jupyter: py39
+---
+
+## Learning goals and objective of chapter
+### Preliminaries
+
+Goal of this chapter is three fold:
+
+1. (Review of) basic statistical concepts 
+
+2. (Review of) statistical distributions
+
+3. (Review of) hypothesis testing
+
+4. Learning how to do statistics in Python
+
+
+# Introduction
+
+## Idee: Tabs...
+### Introduction
+
+::: {.panel-tabset}
+
+### Python
+
+Content for `Tab A`
+
+### Julia
+
+Content for `Tab B`
+
+:::
+
+
+
+## Example of Gradio App
+### Introduction
+
+```{python}
+import plotly.express as px
+import plotly.graph_objects as go
+import numpy as np
+np.random.seed(42)
+# Create some x and y data
+x = np.arange(-10, 10, 0.1)
+y = 4 + 3*x + np.random.normal(0, 1, len(x))
+
+# Define a function that takes in b0 and b1 and returns a new y value based on these coefficients
+def line_eqn(x, b0, b1):
+  return b0 + b1 * x
+
+# Create the figure
+fig = px.scatter(x=x, y=y, width=1000, height=700)
+
+# Add the line to the figure
+fig.add_scatter(x=x, y=line_eqn(x, b0=4, b1=3,))
+
+# Add two sliders to the figure
+fig.update_layout(
+  xaxis={
+    "title": "b0",
+    "range": [-100, 100],
+    "autorange": False
+  },
+  yaxis={
+    "title": "b1",
+    "range": [-100, 100],
+    "autorange": False
+  },
+  
+  sliders=[
+    dict(
+      active=0,
+      currentvalue={"prefix": "b0: "},
+      pad={"t": 50},
+      steps=[
+        dict(
+          method="restyle",
+          args=["y", line_eqn(x, b0=i, b1=1)],
+          label=f"b0={i}"
+        ) for i in range(-10, 11)
+      ]
+    ),
+    dict(
+      active=0,
+      currentvalue={"prefix": "b1: "},
+      pad={"t": 200},
+      steps=[
+        dict(
+          method="restyle",
+          args=["y", line_eqn(x, b0=0, b1=i)],
+          label=f"b1={i}"
+        ) for i in range(-10, 11)
+      ]
+    )
+  ]
+)
+
+# Show the figure
+fig.show()
+
+```
+
+## Test iFrames
+### Introduction
+
+<iframe width="100%" height="500" src="https://streamlit-example-app-bug-report-streamlit-app-lrm3fx.streamlit.app/?embedded=true" title="Quarto Documentation"></iframe>
+
+## Altair Chart
+### Introduction
+
+```{python}
+import plotly.express as px
+import numpy as np
+
+# Create some x and y data
+x = np.arange(0, 10, 0.1)
+y = x
+
+# Define a function that takes in a slope value and returns a new y value based on this slope
+def line_eqn(x, slope):
+  return x * slope
+
+# Create the figure
+fig = px.line(x=x, y=y)
+
+# Add a dropdown menu to the figure
+fig.update_layout(
+  updatemenus=[
+    {
+      "buttons": [
+        {
+          "args": [{"y": [line_eqn(x, slope=1)], "line.color": "red"}, {"y": [line_eqn(x, slope=2)], "line.color": "blue"}, {"y": [line_eqn(x, slope=3)], "line.color": "green"}],
+          "label": "Slope",
+          "method": "restyle"
+        }
+      ],
+      "direction": "down",
+      "pad": {"r": 10, "t": 10},
+      "showactive": True,
+      "type": "buttons",
+      "x": 0.1,
+      "xanchor": "left",
+      "y": 1.1,
+      "yanchor": "top"
+    }
+  ]
+)
+
+# Show the figure
+fig.show()
+```
+
+## Why do we need math and statistics for analytics?
+### Introduction 
+<br></br>
+
+__Math and statistics have three important roles^[just kidding]__
+
+#### Math and statistics have three important roles^[just kidding]
+
+1. Linear algebra and probability distributions are the building block for good models 
+<br></br>
+2. Understanding core concept of inference is required before discussing details of a specific analytical model
+<br></br>
+3. Construction of quick estimates and comparisions for a small part or subset of the problem in practice is often useful before building a complex model or in understanding the output of such model
+  - e.g. in the context of a decision tree, we can use a simple linear regression to understand the impact of a single variable on the outcome
+  - e.g. in the context of a neural network, we can use a simple linear regression to understand the impact of a single variable on the outcome
+
+## Code-Beispiel zum Plotten von Daten 
+### Introduction 
+<br></br>
+__Hier ein paar Beispiele:__
+<br></br>
+
+
+
+```{python}
+#| echo: true
+#| output: false
+#| code-fold: true
+import matplotlib.pyplot as plt
+from scipy.stats import norm
+import numpy as np
+
+plt.figure(figsize=(5,3))
+# Generate x-values for the plot
+x = np.linspace(-3, 3, 100)
+
+# Compute the cumulative normal distribution
+y = norm.cdf(x)
+
+# Plot the cumulative distribution
+plt.plot(x, y)
+
+# Add a grid
+plt.grid(False)
+plt.xlabel("Dies ist ein Test")
+```
+
+## Noch ein Beispiel
+### Introduction
+
+```{.python}
+#| layout-align: center
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+
+# Generate x-values for the plot
+x = np.linspace(-3, 3, 100)
+
+# Use seaborn to create the plot
+sns.distplot(x, kde_kws={'cumulative': True})
+
+# Add a grid
+plt.grid(True)
+plt.title('Cumulative Distribution Function')
+
+# Show the plot
+plt.show()
+```
+
+
+## 
+
+![](https://media.giphy.com/media/QYY4cJp6EzEIbMUtIn/giphy.gif) 
+
+
+## Wichtige Punkte
+### Introduction
+
+1. Math and statistics are the building blocks for good models
+2. Understanding core concept of inference is required before discussing details of a specific analytical model
+3. Construction of quick estimates and comparisions for a small part or subset of the problem in practice is often useful before building a complex model or in understanding the output of such model
+
+__Wichtige Nachricht__:
+
+- e.g. in the context of a decision tree, we can use a simple linear regression to understand the impact of a single variable on the outcome
+- e.g. in the context of a neural network, we can use a simple linear regression to understand the impact of a single variable on the outcome
+- e.g. in the context of a neural network, we can use a simple linear regression to understand the impact of a single variable on the outcome
+  - e.g. in the context of a decision tree, we can use a simple linear regression to understand the impact of a single variable on the outcome
+  - e.g. in the context of a neural network, we can use a simple linear regression to understand the impact of a single variable on the outcome
+
+## Math and coding: everyone is able to learn it!
+### Introduction 
+
+#### Before you even start considering that this class maybe too much math or code for you, please bear in mind the following:
+
+1. all of you can learn math/stats required for this class
+
+2. no such thing as a "math brain" or "math person": this has been proven to be a social construct and it is not based on inherent characteristics^[https://www.gse.harvard.edu/news/uk/16/01/becoming-math-person]
+<br></br>
+
+> ❗ **Advice!** :
+> - Don't let this myth stop you from learning new and (potentially) interesting concepts ("mindset for growth"<sup>[2]</sup>)
+> - Accept that you may struggle, ask questions, collaborate with your fellow students!
+
+## Notation: Vector & Matricss
+###  Introduction 
+
+`Vector`: is a list of numbers which you may think of as a column in Excel
+
+$$\begin{align}
+    y &= \begin{bmatrix}
+           y_{1}  \\
+           y_{2} \\
+           \vdots \\
+           y_{n}
+         \end{bmatrix}
+  \end{align}$$
+
+
+`Matrix`: a rectangular array of numbers which you may think of as a table in Excel
+
+$$\begin{align}
+    X &= \begin{bmatrix}
+           x_{11} & x_{12} & \cdots & x_{1p} \\
+           x_{21} & x_{22} & \cdots & x_{2p} \\
+           \vdots & \vdots & \ddots & \vdots \\
+           x_{n1} & x_{n2} & \cdots & x_{np} \\
+         \end{bmatrix} 
+\end{align}$$
+  <br></br>
+  
+
+**Note**: $x_{ij}$ represents the value for the $j$th variable for the $i$th observation, where $i=1,2,\cdots ,n$ and $j=1,2,\cdots, p$
+
+
+## Excercise
+### Introduction 
+
+Define the following in **python** using `numpy`
+
+1. v1 containing elements 2, 3, 7
+2. v2 containing elements -3, 5, 9
+3. m1 containing  
+   - elements 1, 4 in column 1
+   - elements 2, 3 in column 2
+   - elements 12, 9 in column 3
+4. m2 containing v1 as row 1 and v2 as row 2
+5. m3 being m1 + m2
+
+
+## Notation: why is this useful?
+### Introduction 
+
+Let's say we have the following model to predict the price of a used (luxury) watch:
+<br></br>
+
+> $$\text{Predicted Price} = 869 + 100 \times \text{Diameter of watch in mm}$$
+
+<br></br>
+__we will write this as:__
+
+. . .
+
+$$\hat{y} = 869 + 100x$$
+
+...or even more abstract as:
+
+$$\hat{y} = \hat{\beta}_0 + \hat{\beta}_1x$$
+
+- the `^` denotes that we estimated these values from data when building this model
+
+
+- $y$ in our case is an actual price for a watch in our data set and $\hat{y}$ the prediction of our model
+
+
+## Notation: why is this useful? (cont'd)
+### Introduction 
+
+  Let's apply a few specific cases
+
+  > $x = 35$ $\qquad$ ➡️  A diameter of $35$mm translates into a predicted price of $\hat{y} = 869 + 100\times35 = 4369$ 
+  >
+  > $x = 45$ $\qquad$ ➡️  A diameter of $45$mm translates into a predicted price of $\hat{y} = 869 + 100\times45 = 5369$ 
+  >
+  > $x = 65$ $\qquad$ ➡️  A diameter of $65$mm translates into a predicted price of $\hat{y} = 869 + 100\times65 = 7369$ 
+
+  - we can represent x as a vector , i.e. $x = \begin{pmatrix}
+35 \\
+45 \\
+65
+\end{pmatrix}$ and we can represent $\hat{y} = \begin{pmatrix}
+4369 \\
+5369\\
+7369
+\end{pmatrix} = \begin{pmatrix}
+869 + 100\times 35 \\
+869 + 100\times 45 \\
+869 + 100\times 65
+\end{pmatrix}$
+
+- in matrix notation we can represent this very concisely as 
+
+
+$$\hat{y} = \begin{pmatrix}
+1 & 35 \\
+1 &45\\
+1 &65
+\end{pmatrix} \begin{pmatrix}
+869 \\
+100 \\
+\end{pmatrix}$$
+
+- or even more abstract as 
+  
+$$\hat{y} = X\hat{\beta}$$
+
+
+# Probability Distributions
+
+## Why we need concept of probabilty
+### Probability distributions 
+
+**Probability is logic of uncertainty:**
+
+
+> "mathematics is the logic of certainty; probablity is the logic of uncertainty" *(Blitzstein/Hwang, 2019)*
+
+ - building a model to predict $y$ from $X$ mathematically tranlates into estimating a function 
+
+$$\hat{y} = \hat{f}(x)$$
+
+~~Example~~: $\hat{y} = 1007 - 0.39x$^[this is just on example. $f(x)$ could be defined completely differnt, e.g. $\hat{y} = \frac{1}{1+e^{z(x)}}, \text{where} \ z(x) = \beta_0 + \beta_1x^2$]
+
+- here our example function is `deterministic`, i.e. it will always produce the same output and no randomness is involved
+
+- **Problem**: 
+  - our models are not deterministic, because they include uncertainty (i.e. they are `stochastic`)
+  - we need randomness and probability and probability distributions to accout for this uncertainty
+
+
+
+## Continuous random variables
+### Probability distribution 
+
+A `continuous random variable` assumes an uncountably infinite number of values
+
+Examples of **continous** random variables:
+
+
+| Experiment                  | Random variable ($x$)                             | Possible values for r.v. |
+|-----------------------------|---------------------------------------------------|-------------------------------------|
+| Operate a McDonald's        | Time between customer arrivals in minutes         | $x \geq 0$                          |
+| Fill a coffee mug           | Number of ml                                      | $0 \leq x \leq 500ml$               |
+| Construct a new library     | Percentage of project complete after six months   | $0 \leq x \leq 100$                 |
+| Test a new chemical process | Temperature when the desired reaction takes place | $-3 C^{\circ} \leq 120 C^{\circ}$   |
+
+
+
+## Variance
+### Probability distributions 
+
+The variance of a random variable $X$, often denoted $Var(X)$ or $\sigma^2$, is a measure of the spread, or dispersion, of the distribution of $X$
+
+Two different definitions:
+
+~~Population~~ variance:
+
+$$\sigma^2 = \frac{1}{n}\sum_{i=1}(x_i - \mu)^2$$
+
+where $\mu$ is the population mean and $\bar{x}$ is the sample mean.
+
+~~Sample~~ variance:
+
+$$s^2 = \frac{1}{n-1}\sum_{i=1}(x_i - \bar{x})^2$$
+
+
+~~Standard deviation~~ 
+- is given by taking the square root (e.g. $\sqrt{\frac{1}{n-1}\sum_{i=1}(x_i - \bar{x})^2}$) of the variance
+- is usually prefered over variance , because it is on the original scale of the distribution
+
+
+## Code-Beispiel
+### Probability distribution 
+
+Can you calculate **mean** and **standard deviation** for the following data:
+
+```{python}
+#| echo: false
+#| code-fold: true
+import numpy as np
+
+data = np.array([10,15,-5,20,13,7])
+
+mu = np.mean(data)
+sigma = np.std(data)
+print("MU: ", mu, end="\n\n")
+print("SIGMA: ", sigma)
+```
+
+# Named distributions
+
+## Binomial distribution
+### Named distributions  
+
+> **Why important?** 
+> 
+> - Can be used to model *binomial* outcomes such as stay/switch, buy/don't buy, yes/no, success/failure
+> - $X$ is a binomial random variable that represents the number of outcomes $y$ in $n$ binomial experiments
+
+<br></br>
+
+. . .
+
+Binomial experiment:
+
+1. The experiment consists of a sequence of $n$ identical trials
+2. Two outcomes are possible on each trial (success, failure)
+3. The probablity of a success, denoted by $p$, does not change from trial to trial (also the probability of failure - $1-p$ - does not change)
+4. The trials are independent
+
+## Binomial distribution: probability mass function & cumulative distribution function
+### Named distributions  
+
+The ~~probabilty mass function~~ of a binomial random variable $x$ with probability $p$ and $n$ trials is given by:
+
+$$f(x) = P(X = x) = \binom{n}{x}p^x(1-p)^{n-x}$$
+
+
+
+The ~~cumulative distribution function~~ of a binomial random variable $x$ with probability $p$ and $n$ trials can be written as:
+
+$$F(x) = P(X \leq x) = \sum_{k=0}^{x}\binom{n}{k}p^k(1 - p)^{n-k}$$
+
+<br></br>
+
+Recall that the binominal coefficient is defined as: 
+
+$$\binom{n}{x} = \frac{n!}{x!(n-x)!}$$

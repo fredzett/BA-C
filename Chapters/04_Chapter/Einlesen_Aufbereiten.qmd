@@ -425,4 +425,3 @@ Es wurden folgende Funktionen und Methoden genutzt:
 - `query()`: Filtern von Zeilen nach Bedingung
 - `max()`: Ermitteln des höchsten Wertes
 
-Dies ist ein Test

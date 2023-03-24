@@ -17,17 +17,17 @@ book:
       - Chapters/02_Chapter/Installation.qmd
       - Chapters/02_Chapter/Introduction_notebook.qmd
       - Chapters/02_Chapter/Python_Basics.qmd
-    - Chapters/03_Chapter/Fallstudie_1.qmd
-    - part: Chapters/04_Chapter/Deskriptive_Analyse.qmd
-      chapters:
-      - Chapters/04_Chapter/Deskriptive_Problemstellung.qmd
-      - Chapters/04_Chapter/Einlesen_Aufbereiten.qmd
+    #- Chapters/03_Chapter/Fallstudie_1.qmd
+    #- part: Chapters/04_Chapter/Deskriptive_Analyse.qmd
+    #  chapters:
+    #  - Chapters/04_Chapter/Deskriptive_Problemstellung.qmd
+    #  - Chapters/04_Chapter/Einlesen_Aufbereiten.qmd
       #- Chapters/03_Chapter/Predictive_Analytics.qmd
       #- Chapters/03_Chapter/Prescriptive_Analytics.qmd
     - references.qmd
-    - part: Appendices/Anhang.qmd
-      chapters:
-      - Appendices/Modules/Pandas.qmd
+    #- part: Appendices/Anhang.qmd
+    #  chapters:
+    #  - Appendices/Modules/Pandas.qmd
 
   page-navigation: true
   sidebar: 
