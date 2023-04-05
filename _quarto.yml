@@ -17,7 +17,7 @@ book:
       - Chapters/02_Chapter/Installation.qmd
       - Chapters/02_Chapter/Introduction_notebook.qmd
       - Chapters/02_Chapter/Python_Basics.qmd
-      - Chapters/03_Chapter/Fallstudie_1.qmd
+    - Chapters/03_Chapter/Fallstudie_1.qmd
     #- part: Chapters/04_Chapter/Deskriptive_Analyse.qmd
     #  chapters:
     #  - Chapters/04_Chapter/Deskriptive_Problemstellung.qmd
