@@ -26,9 +26,9 @@ p, del, th, td, li, caption, div.slide-number, summary {
   // Colors
 $bg-color: white;
 $font-color: black;
-$highlight-color:#003d5b;
-$lowlight-color: #30638e;// 
-$code-color: #d1495b;
+$highlight-color:#003d5b;//#003d5b;
+$lowlight-color: #30638e;//#30638e;// 
+$code-color: #d1495b;//#d1495b;
 $link-color: black; // #00798c;
 $highlight-color2: #edae49;
 $grey: rgb(245, 245, 245);
@@ -229,8 +229,11 @@ del {
 code {
   color: $code-color !important;
   font-family: 'Dank Mono', monospace !important;
+  font-size: $font-size-normal !important;
   //background-color: $grey !important;
 }
+
+
 
 .sourceCode, .sourceCode.cell-code,  {
     text-align: left;
@@ -248,6 +251,10 @@ code {
     border-radius: 0px !important;
 
   }
+
+.cell-output {
+  padding-top: 15px !important;
+}
 
 code.sourceCode.python {
   background-color: $grey !important;
@@ -388,6 +395,7 @@ section {
   blockquote {
     padding: 2px !important;
     padding-left: 20px !important;
+    padding-right: 20px !important;
     border-left: 3px solid $highlight-color !important;
     background-color: $grey !important;
     margin: 0px !important;

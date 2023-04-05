@@ -15,6 +15,7 @@ format:
         reference-location: block
         tbl-colwidths: auto
         tbl-cap-location: bottom
+        code-copy: hover
 from: markdown+emoji 
 slide-number: c/t
 jupyter: py39
@@ -394,7 +395,6 @@ Stellen Sie sich vor, wir möchten das arithmetische Mittel einer Zahlenreihe be
 __Beispiel:__
 
 - Zahlenreihe: 2.0, 3.0, 5.0, 7.0, 13.0, 21.0, 33.0, 54.0
-- arithmetisches Mittel: 
 
 . . .
 
@@ -405,12 +405,18 @@ $$
 \end{align}
 $$
 
+. . .
+
+> __Vorgehen:__ 
+>
+> - in Rust programmieren (schwer)
+> - in Python programmieren (einfach(er))
+
 ## Python ist einfach(er)
 ### Warum Python?
 
-::: {.panel-tabset}
 
-## Rust
+__Schwere Syntax (hier: Rust)__
 
 ```{.Rust}
 fn sum(arr: &[f64]) -> f64 {
@@ -430,7 +436,10 @@ fn main() {
 }
 ```
 
-## Python
+## Python ist einfach(er) 
+### Warum Python?
+
+__Einfache Syntax (hier: Python)__
 
 
 ```{python}
@@ -440,7 +449,6 @@ m = mean([2.0, 3.0, 5.0, 7.0, 13.0, 21.0, 33.0, 54.0])
 print(m)
 ```
 
-:::
 
 ## Quellen
 ### 

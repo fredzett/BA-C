@@ -47,7 +47,7 @@ Der Analyseprozess besteht aus folgenden Schritten, die wir im Folgenden durchla
 4. Transformation der Daten
 5. Visualisierung der Daten
 6. Modellierung der Daten
-7. Kommunikation der Ergebnisse  (TODO: bedingt Interpretation der Ergebnisse)
+7. Kommunikation der Ergebnisse  
 
 In @sec-analyseprozess haben wir diesen graphisch wie folgt zusammengefasst:
 

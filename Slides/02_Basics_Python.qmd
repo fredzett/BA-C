@@ -1,0 +1,1519 @@
+---
+title: "Business Analytics" 
+subtitle:  "~~02~~ | Einführung in Python & Ausblick"
+author: "Prof. Dr. Felix Zeidler | FH Bielefeld | SoSe 2023"
+lang: "De"
+format: 
+    revealjs: 
+        theme: [simple, custom.scss]
+        toc: true
+        toc-title: "Inhaltsverzeichnis"
+        toc-depth: 1
+        number-sections: true
+        number-depth: 1
+        preview-links: true
+        reference-location: block
+        tbl-colwidths: auto
+        tbl-cap-location: bottom
+        code-copy: hover
+from: markdown+emoji 
+execute: 
+  echo: true
+  output: true
+slide-number: c/t
+jupyter: py39
+---
+
+
+## Lernziele der heutigen Veranstaltung
+### Vorwort
+
+Nach der heutigen Veranstaltung sollten Sie in der Lage sein
+
+- erste Schritte in Python zu machen, d.h. kleine Code-Beispiele selber zu programmieren
+
+- einen ersten Überblick über die Möglichkeiten von Python zu bekommen
+
+- erste Schritte in der Datenanalyse mit Python zu machen
+
+
+
+
+# Kurze Einführung in Python
+
+## Grundlagen der Programmierung
+### Kurze Einführung in Python
+
+<br>
+
+Einige der wichtigsten Grundlagen der Programmierung werden in diesem Kapitel **wiederholt**.
+
+- Einfache Arithmetik
+
+- Variablen und Zuweisung
+
+- Datentypen
+
+- Fehlermeldungen
+
+- Importieren von Modulen und Bibliotheken
+
+> **Warum:** notwendige Grundlagen, um mit Python arbeiten zu können
+
+
+
+## Einfache Arithmetik
+### Kurze Einführung in Python
+
+**Python als Taschenrechner:**
+
+- einfache Berechnungen können mit Python durchgeführt werden
+- bekannte arithmetische Operatoren können verwendet werden
+
+`+` = Addition 
+
+`-` = Subtraktion
+
+`*` = Multiplikation
+
+`/` = Division
+
+`**` =  Potenzieren (❗ die Schreibweise für $3^4$ in Python lautet `3**4`)
+
+
+## Einfache Arithmetik (cont'd)
+### Kurze Einführung in Python 
+
+**Beispiel**
+
+```{python}
+#| echo: true
+#| output: true
+# Beispiel für Berechnung in Python
+1 + (5 * 12) / 3 - 12
+```
+
+__Wie?__:
+
+- Eingabe des Ausdrucks in eine Jupyter-Zelle
+- Zelle ausführen via 
+  - `STRG` + `ENTER` (führt Zelle aus) oder 
+  - `SHIFT` + `ENTER` (führt Zelle aus und springt in nächste Zelle) ausführen
+
+
+## Variablen und Zuweisungen: Warum?
+### Kurze Einführung in Python
+
+**Warum Variablen?**
+
+- Wiederverwendbarkeit: Variablen ermöglichen effizientes und modulares Programmieren.
+
+- Lesbarkeit: Variablen verbessern die Verständlichkeit des Codes.
+
+<br>
+
+**Analogie Excel**
+
+
+:::: {.columns}
+
+::: {.column width=50%}
+
+#### Schlechtes Beispiel
+
+![](_assets/Excel_bad.png)
+
+:::
+
+::: {.column width=50%}
+
+#### Besseres Beispiel
+
+![](_assets/Excel_good.png)
+
+:::
+
+::::
+
+
+## Variablen und Zuweisungen: Wie?
+### Kurze Einführung in Python
+
+Wir können uns Variablen wie Schubladen vorstellen. Diese Schubladen beinhalten folgende Informationen:
+
+- Name der Schublade (Variablenname)
+- Inhalt der Schublade (Wert)
+- Art der Schublade (Datentyp)
+
+In Python werden Variablen mit dem `=`-Operator zugewiesen.
+
+```
+<variable> = <wert>
+```
+
+
+## Variablen und Zuweisungen: wie? (cont'd)
+### Kurze Einführung in Python
+
+
+**Beispiele in Python:**
+
+```{python}
+#| echo: true
+#| output: true
+zahl1 = 42
+zahl2 = 3.2
+satz = "Deutscher Meister wird nur der BVB"
+```
+
+<br> 
+
+<div class="fragment"> 
+
+**Variablenhnamen und Werte**
+
+- müssen explizit angegeben (oder berechnet werden)
+- `zahl1`, `zahl2` und `satz` sind die Variablennamen
+- `42`, `3.2` und `"Deutscher Meister wird nur der BVB"` sind die Werte
+
+## Variablen und Zuweisungen: Datentyp(en)
+### Kurze Einführung in Python
+
+**Datentypen**
+
+- geben an, welche Art von Informationen in einer Variablen gespeichert wurde oder werden kann 
+- werden automatisch erkannt und müssen nicht explizit angegeben werden
+
+<br>
+
+| Datentyp | Beispiel | Beschreibung |
+|----------|----------|--------------|
+| `int` | `42` | Ganze Zahl |
+| `float` | `3.2` | Gleitkommazahl |
+| `str` | `"Deutscher Meister wird nur der BVB"` | Text |
+
+
+## Variablen und Zuweisungen: Datentyp(en)
+### Kurze Einführung in Python
+
+- Wir können den Typ einer Variablen  mit dem Befehl `type()` herausfinden. 
+
+- Wir können also z.B. den Typ der Variablen `zahl1` mit dem Befehl `type(zahl1)` herausfinden. 
+
+```{python}
+zahl1 = 42
+type(zahl1)
+```
+
+## Variablen und Zuweisungen: Datentyp(en)
+### Kurze Einführung in Python
+
+**Beispiele weiterer Datentypen in Python**
+
+```{python}
+#| echo: true
+#| output: true
+
+# Boolean
+wahr = True
+falsch = False
+
+# Liste
+liste = [1, 2, 3, 4, 5]
+
+# Dictionary
+dictionary = {"a": 1, "b": 2, "c": 3}
+```
+
+
+## Variablen und Zuweisungen: arbeiten mit Variablen
+### Kurze Einführung in Python
+
+Wir können nun das Konzept der Variablenzuweisung verwenden, um Berechnungen durchzuführen. 
+
+```{python}
+#| echo: true
+#| output: true
+cash_flow = 100
+zinssatz = 0.05
+kapitalwert = cash_flow / (1 + zinssatz)
+kapitalwert
+```
+
+## Aufgabe 1
+### Kurze Einführung in Python
+
+Ein Unternehmen hat ein Kapital von 10.000 Euro auf einem Sparkonto angelegt. Die Bank zahlt einen jährlichen Zinssatz von 3,5%. Berechne den Zinsertrag nach einem Jahr und das Endguthaben nach einem Jahr.
+
+Anweisungen:
+
+- Erstelle Variablen für das Startkapital, den Zinssatz und die Anzahl der Jahre.
+- Berechne den Zinsertrag nach einem Jahr.
+- Berechne das Endguthaben nach einem Jahr.
+- Gib die Ergebnisse mit aussagekräftigen Texten aus (z.B. "Der Zinsertrag nach einem Jahr beträgt 350 Euro.")  
+(Hinweis: nutzen Sie die Funktion `print()`)
+
+
+
+## Aufgabe 1: Lösung 
+### Kurze Einführung in Python
+
+<br>
+
+
+```{python}
+#| code-fold: true
+#| output: false
+# Variablen erstellen
+startkapital = 10000
+zinssatz = 0.035
+jahre = 1
+
+# Endguthaben unter Berücksichtigung des Zinseszinses berechnen
+endguthaben = startkapital * (1 + zinssatz) ** jahre
+
+# Zinsertrag berechnen
+zinsertrag = endguthaben - startkapital
+
+# Ergebnisse ausgeben
+print(f"Der Zinsertrag nach Jahr {jahre} beträgt: {zinsertrag:.2f} Euro")
+print(f"Das Endguthaben nach Jahr {jahre} beträgt: {endguthaben:.2f} Euro")
+```
+
+
+
+## Fähigkeiten von Variablen abhängig von Datentyp
+### Kurze Einführung in Python
+
+__Warum ist Datentyp wichtig?__ 
+
+- jeder Datentyp hat unterschiedliche Fähigkeiten
+  
+- zwei Gründe, weshalb wir  Fähigkeiten einer Variable kennen sollten:
+
+  1. Wir sollten die Fähigkeiten einer Variable kennen, um __Fehler zu vermeiden__.
+
+  2. Wir können die Fähigkeiten einer Variable nutzen, __um  Aufgaben zu lösen__.
+
+
+## Beispiel: Fehler vermeiden
+### Kurze Einführung in Python
+
+::: {.columns}
+
+::: {.column width=50%}
+
+#### Berechnung mit Zahlen
+<br>
+
+
+```{python}
+zahl1 = 2
+zahl2 = 3
+zahl1 + zahl2
+```
+
+:::
+
+::: {.column width=50%}
+
+#### Berechnung mit Text
+<br>
+```{python}
+text1 = "2"
+text2 = "3"
+text1 + text2
+```
+
+:::
+
+::::
+
+<br>
+
+<div class="fragment">
+
+> __Wichtig:__ Wissen über Datentypen ist wichtig, um fehlerhafte Berechnungen/Programme zu vermeiden
+
+
+## Beispiel: Fähigkeiten nutzen
+### Kurze Einführung in Python
+
+- Datentyp `str` kann  Operation `+` nutzen
+
+- Aber: nicht im mathematischen Sinne, sondern um Texte zu verbinden
+
+<div class="fragment">
+
+```{python}
+vorname = "Max"
+nachname = "Mustermann"
+anrede = "Lieber Herr " + vorname + " " + nachname
+anrede
+``` 
+
+<br>
+
+<div class="fragment">
+
+> __Wichtig:__ Wissen über Datentypen ist wichtig, um spezifische Fähigkeiten der Datentypen nutzen zu können  
+> - `help()`-Funktion kann helfen, die Fähigkeiten einer Variable herauszufinden  
+> - `dir()`-Funktion kann helfen, die Fähigkeiten einer Variable herauszufinden  
+
+## Fehlermeldungen
+### Kurze Einführung in Python
+
+<br> 
+
+- Fehlermeldungen werden automatisch generiert, wenn der Code nicht ausgeführt werden kann
+
+- Fehlermeldungen sind eine wichtige Quelle von Informationen, um Fehler zu finden und zu beheben
+
+<div class="fragment"> 
+
+**Beispiel:**
+
+```{python}
+#| error: true
+#| output: false
+vorname = "Max"
+nachname = "Mustermann"
+anrede = "Lieber Herr " vorname + " " + nachname
+anrede
+```
+
+<div class="fragment">
+
+![](../../_assets/error1.png)
+
+
+## Fehlermeldungen: typische Fehlermeldungen
+### Kurze Einführung in Python
+
+| Fehlermeldung                                                 | Beschreibung der Art des Fehlers                                                  | kurzes Beispiel       |
+|----|----|--|
+| SyntaxError: EOL while scanning string literal                | Fehler bei der Syntax, in dem ein String nicht richtig abgeschlossen wurde.       | "Max Muster |
+| NameError: name 'y' is not defined                            | Fehler bei der Verwendung einer Variable, die nicht definiert wurde.              | x = y + 2             |
+| TypeError: unsupported operand type(s) for +: 'int' and 'str' | Fehler beim Verwenden eines Operators mit ungültigen Typen.                       | 2 + "Text"           |
+| IndexError: list index out of range                           | Fehler beim Zugriff auf ein Element einer Liste, das nicht existiert.             | meine_liste[5]            |
+| KeyError: 'key'                                               | Fehler beim Zugriff auf einen Schlüssel in einem Dictionary, der nicht existiert.  | mein_dictionary['alter']        |
+
+
+## Module und Bibliotheken: warum?
+### Kurze Einführung in Python
+
+<br>
+
+__Warum brauchen wir Module und Bibliotheken?__
+
+- Umfang von Python ist begrenzt
+
+- Umfang von Python kann durch __Module__ und __Bibliotheken__ erweitert werden
+
+- Module und Bibliotheken sind __Python-Dateien__ mit zusätzlichen Funktionen
+
+- wir können uns diese wie Add-ins vorstellen, die wir in Excel installieren können
+
+
+## Importieren von Modulen und Bibliotheken
+### Kurze Einführung in Python
+
+<br>
+
+__Wie können wir Module und Bibliotheken nutzen?__
+
+- Module und Bibliotheken müssen zunächst __installiert__ werden  
+(Hinweis: die von uns genutzten Module sollten bereits via Anaconda installiert sein)
+
+- sind die Module und Bibliotheken installiert, können wir sie __importieren__
+
+<div class="fragment">
+
+__Der Import von Modulen erfolgt typischerweise über drei Varianten:__
+
+1. Importieren des gesamten Moduls
+
+2. Importieren einer Funktion aus einem Modul
+
+3. Importieren des gesamten Moduls unter einem anderen Namen
+
+
+## Importieren des gesamten Moduls
+### Kurze Einführung in Python
+
+<br>
+
+__Beispiel 1:__ Importieren des gesamten Moduls
+
+```{python}
+#| output: false
+import statistics
+
+daten = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+avg = statistics.mean(daten)
+avg
+```
+
+<div class="fragment"> 
+
+<br>
+
+> Wir haben hier das gesamte Modul importiert und können nun __alle__ Fähigkeiten, die dieses Modul zur Verfügung stellt, nutzen. In diesem Fall haben wir die Funktion `mean()` aus dem Modul `statistics` genutzt, um den Mittelwert der Daten zu berechnen. 
+
+
+## Importieren einzelner Fähigkeiten aus einem Modul
+### Kurze Einführung in Python
+
+<br>
+
+__Beispiel 2:__ Importieren einer Funktion aus einem Modul
+
+```{python}
+#| output: false
+from statistics import mean
+
+daten = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+avg = mean(daten)
+avg
+```
+
+<div class="fragment"> 
+
+<br>
+
+> Wir haben hier nur die Funktion `mean()` aus dem Modul `statistics` importiert. Dies hat den Vorteil, dass wir nicht mehr den Namen des Moduls angeben müssen, wenn wir die Funktion nutzen wollen. Jedoch können wir auch __nur__ die Funktion `mean()` aus dem Modul `statistics` nutzen, alle anderen Funktionen sind nicht verfügbar.
+
+
+## Importieren eines gesamten Moduls unter einem anderen Namen
+### Kurze Einführung in Python
+
+<br> 
+
+__Beispiel 3:__ Importieren des gesamten Moduls unter einem anderen Namen
+
+```{python}
+#| output: false
+import statistics as stat
+
+daten = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+avg = stat.mean(daten)
+avg
+```
+
+<div class="fragment"> 
+
+<br>
+
+> Wir haben hier das gesamte Modul `statistics` importiert und ihm den Namen `stat` gegeben. Dies hat den Vorteil, dass wir nicht mehr den Namen des Moduls angeben müssen, wenn wir die Funktion nutzen wollen. Jedoch können wir auch __alle__ Funktionen aus dem Modul `statistics` nutzen, auch wenn wir diese nicht explizit importiert haben.
+
+## Aufgabe
+### Kurze Einführung in Python
+
+
+
+- Importieren Sie die `pandas`-Bibliothek
+  
+- Lesen Sie die Datei `sales.xlsx` ein und zeigen Sie das daraus resultierende Dataframe an (Hinweis: `.read_...`-Funktionen sind in der `pandas`-Bibliothek enthalten)
+  
+- Ermitteln Sie die Anzahl der Zeilen im Dataframe (Hinweis: checken Sie die Fähigkeiten des Datentypen `DataFrame`)
+
+
+## Aufgabe
+### Kurze Einführung in Python
+
+<br>
+
+__Lösung - Einlesen und anzeigen:__
+
+```{python}
+#| code-fold: true
+#| output: false
+
+# Importieren der Bibliothek
+import pandas as pd
+
+# Einlesen der Daten (Hinweis: die Datei sales.xlsx befindet sich bei mir im Ordner _data)
+df = pd.read_excel("_data/sales.xlsx")
+
+# Anzeigen des Dataframes z.B. via .head()  
+df.head()
+```
+
+
+__Lösung - Anzahl der Zeilen:__
+
+```{python}
+#| code-fold: true
+#| output: false
+
+# Anzeigen der Anzahl der Zeilen
+len(df)
+```
+
+
+# Fallstudie: Fashion Avenue GmbH
+
+## Zweck der Fallstudie
+### Fallstudie
+
+<br>
+
+Die Fallstudie soll Ihnen einen Eindruck davon vermitteln, was Sie in diesem Kurs erwartet. Diese Fallstudie verfolgt somit zwei Ziele:
+
+1. Anwendungsbeispiele für die einzelnen Schritte des Analyseprozesses geben und
+
+2. Programmierbeispiele für die einzelnen Schritte des Analyseprozesses vorzustellen.
+
+<br>
+
+> __Hinweis__ 
+>  
+> - In dieser Fallstudie werden Dinge vorgegriffen, die Sie noch nicht gelernt haben. 
+> 
+> - Ziel der Fallstudie ist es ausdrücklich __nicht__, dass Sie jede Code-Zeile nachvollziehen können.
+>    
+> - Vielmehr sollen Sie einen Eindruck davon vermittelt bekommen, was Sie in diesem Kurs erwartet bzw. was Sie am Ende in der Lage sind selber umzusetzen. 
+
+## Ausgangssituation
+### Fallstudie
+
+__Situationsbeschreibung:__
+
+- Fashion Avenue GmbH: Einzelhandelsunternehmen in Bielefeld, spezialisiert auf Bekleidung und Accessoires für Frauen, Männer und Kinder.
+
+- Gründerin Anna Meyer: Erfahrene Einzelhändlerin, die hochwertige und modische Produkte zu erschwinglichen Preisen anbietet.
+
+- Engagiertes Verkaufsteam: Kombination aus erfahrenen Verkäufern und motivierten, jungen Mitarbeitern, bekannt für hohe Kundenorientierung und ausgezeichneten Service.
+
+- Aktuelle Herausforderung: Rückläufige Verkäufe
+
+> __Aufgabe:__ 
+> 
+> Datensammlung, -aufbereitung und -analyse zur Ermittlung der Ursachen und Entwicklung von Lösungsansätzen.
+
+
+## Strukturierung der Analyse entlang des Analyseprozesses
+### Fallstudie
+
+Der Analyseprozess besteht aus folgenden Schritten, die wir im Folgenden durchlaufen werden:
+
+1. Problemstellung
+2. Einlesen der Daten 
+3. Aufbereitung der Daten
+4. Transformation der Daten
+5. Visualisierung der Daten
+6. Modellierung der Daten
+7. Kommunikation der Ergebnisse  
+
+
+## Schritt 1: Problemstellung
+### Fallstudie
+
+<br> 
+
+Was ist die konkrete Problemstellung?
+
+<div class="fragment"> 
+
+<br> 
+
+> __Was ist der Grund für den Rückgang des Umsatzes?__
+
+## Schritt 2: Einlesen der Daten
+### Fallstudie
+
+__Grundsätzlich:__
+
+- Datenbedarfsanalyse: Identifizierung relevanter Variablen.
+
+- Datenverfügbarkeit prüfen: Intern, extern, generieren oder erheben.
+
+- Voranalysen für effiziente und zielführende Datenanalyse.
+
+
+<div class="fragment"> 
+
+__Unsere Fallstudie:__ 
+
+- Transaktionsdaten aus ERP-System, CSV-Datei (`transactions_fashion_avenue.csv`)
+
+- Nutzung von Pandas: Einlesen, Verarbeiten, Manipulieren von Daten in Python.
+
+
+## Schritt 2: Einlesen der Daten (cont'd)
+### Fallstudie
+
+
+__Ablauf:__
+
+- importieren der Bibliothek `pandas` mit dem Namen `pd`
+
+- Wir lesen die Daten nun mit der Funktion `read_csv()`^[Hinweis: die Datei ist in unserem Fall im Ordner `_data`] ein und weisen die Daten der Variable `df` zu. 
+  
+- Danach geben wir - mit der Funktion `head()`- die ersten fünf Zeilen der Tabelle aus, um einen ersten Überblick über die Daten zu erhalten.
+
+```{.python code-line-numbers="2|5|8"}
+# Importieren der Bibliothek pandas
+import pandas as pd 
+
+# Einlesen der Daten (hier: csv-Datei)
+df = pd.read_csv("_data/transactions_fashion_avenue.csv")
+
+# Ausgabe der ersten fünf Zeilen der Tabelle
+df.head()
+```
+
+
+## Schritt 2: Einlesen der Daten (cont'd)
+### Fallstudie
+
+__Auszug aus den Daten:__
+
+<br>
+
+```{python}
+#| echo: false
+#| fig-align: center
+# Importieren der Bibliothek pandas
+import pandas as pd 
+
+# Einlesen der Daten (hier: csv-Datei)
+df = pd.read_csv("_data/transactions_fashion_avenue.csv")
+
+# Ausgabe der ersten fünf Zeilen der Tabelle
+df
+```
+
+
+## Schritt 3: Aufbereitung der Daten
+### Fallstudie
+
+__Grundsätzlich:__
+
+- das Entfernen von fehlenden Werten, 
+
+- das Korrigieren von offensichtlich fehlerhaften Werte, 
+  
+- das Umwandeln von Datentypen, 
+  
+- das Umbennen von Spalten etc.
+
+<div class="fragment">
+
+__Unsere Fallstudie:__ 
+
+- Was fällt ihnen auf?
+
+- Was müsste man noch tun, um die Daten für die weitere Analyse aufzubereiten?
+
+## Schritt 3: Feststellen, ob etwas fehlt
+### Fallstudie
+
+- wir verwenden die Funktion `info()`
+
+- Funktion gibt Information über z.B. 
+  
+  - die Anzahl der Zeilen,
+    
+  - die Anzahl der Spalten, 
+  
+  - den Datentyp der Spalten, 
+  
+  - die Anzahl der nicht-leeren Werte etc.
+
+
+## Schritt 3: Feststellen, ob etwas fehlt
+### Fallstudie
+
+<br>
+
+```{python}
+# Ausgabe von Informationen über die Tabelle
+df.info()
+```
+
+
+## Schritt 3: Aufbereitung der Daten 
+### Fallstudie
+
+__Was ändern wir?__
+
+<div class="fragment">
+
+- Umbenennen der Spalte `ø Preis`
+
+<div class="fragment">
+
+- Ändern des Datentyps der Spalte `Datum` 
+
+<br>
+
+<div class="fragment"> 
+
+
+__Python-Code:__
+
+```{.python code-line-numbers="2|5"}
+# Umbenennen der Spalte "ø Preis" in "Preis"
+df = df.rename(columns={"ø Preis": "Preis"})
+
+# Ändern des Datentyps der Spalten "Datum" und "Uhrzeit"
+df = df.astype({"Datum": "datetime64[ns]"})
+```
+
+```{python}
+#| echo: false
+#| output: false
+# Umbenennen der Spalte "ø Preis" in "Preis"
+df = df.rename(columns={"ø Preis": "Preis"})
+
+# Ändern des Datentyps der Spalten "Datum" und "Uhrzeit"
+df = df.astype({"Datum": "datetime64[ns]"})
+```
+
+
+## Schritt 3: Aufbereitung der Daten (cont'd)
+### Fallstudie
+
+<br>
+
+Wir können nun nochmals die Funktion `info()` verwenden, um zu überprüfen, ob die Änderungen korrekt durchgeführt wurden.
+
+```{python}
+# Ausgabe von Informationen über die Tabelle
+df.info()
+```
+
+
+
+## Schritt 4 und 5: Aufbereiteter Datensatz
+### Fallstudie
+
+
+```{python}
+# Ausgabe der ersten 5 Zeilen
+df.head()
+```
+
+
+
+
+
+## Schritt 4 und 5: Erkenntnisse aus den Daten gewinnen
+### Fallstudie
+
+__Explorative Analyse:__
+
+- Die Schritte 4 (Transformieren) und 5 (Visualisieren) bezeichnet man auch als explorative Analyse.^[Hinweis: den Schritt der Modellierung lassen wir an dieser Stelle noch aus]
+
+- Hypothesen-basiertes Vorgehen, welches mittels __einfacher statistischer Methoden__ (z.B. Durchschnitte über Gruppen bilden) überprüft wird
+
+- Vorgehen ist oft iterativ 
+  
+<div class="fragment">
+
+__konkrete Nächste Schritte:__ was sollten ihrer Meinung nach nächsten Schritte sein?
+
+<div class="fragment">
+
+- Ausgangslage validieren / überprüfen: gibt es überhaupt einen Rückgang des Umsatzes? 
+
+<div class="fragment"> 
+
+- die Ursache für den Umsatzrückgang  finden. 
+
+## Schritt 4 und 5: Transformieren der Daten
+### Fallstudie
+
+__Transformieren der Daten:__
+
+- Spalte `Umsatz` erzeugen, da Umsatz nicht explizit im Datensatz.
+  
+- Datumsinformationen (Woche, Monat, Tag etc.) generieren
+
+<div class="fragment">
+
+__Python-Code:__
+
+```{python}
+#| output: false
+# Hinzufügen einer neuen Spalte "Umsatz", "Wochentag" und "Monat"
+df = df.assign(Umsatz = df["Menge"] * df["Preis"], 
+               Monat = df["Datum"].dt.month, 
+               Woche = df["Datum"].dt.week,
+               Wochentag = df["Datum"].dt.day_name())
+
+```
+
+
+## Schritt 4 und 5: Transformierter Datensatz
+### Fallstudie
+
+
+```{python}
+#| echo: false
+# Ausgabe der ersten 5 Zeilen
+df.head()
+```
+
+
+## Schritt 4 und 5: Umsatzentwicklung pro Tag
+### Fallstudie
+
+```{python}
+#| echo: false
+#### INTERNAL
+import matplotlib.pyplot as plt
+plt.rcParams["axes.spines.top"] = False
+plt.rcParams["axes.spines.right"] = False
+```
+
+::: {.panel-tabset}
+
+
+## Plot
+
+```{python}
+#| echo: false
+#| fig-align: center
+# Laden der Bibliothek seaborn
+import seaborn as sns
+
+# Erstellen eines Liniendiagramms
+line = sns.lineplot(data=df, x="Datum", y="Umsatz", ci=None)
+# Titel hinzufügen
+line.set_title("Umsatzentwicklung Fashion Avenue\n(pro Tag)");
+```
+
+## Code
+
+```{.python}
+# Laden der Bibliothek seaborn
+import seaborn as sns
+
+# Erstellen eines Liniendiagramms
+line = sns.lineplot(data=df, x="Datum", y="Umsatz", ci=None)
+line.set_title("Umsatzentwicklung Fashion Avenue");
+```
+
+:::
+
+## Schritt 4 und 5: Umsatzentwicklung pro Woche
+### Fallstudie
+
+::: {.panel-tabset}
+
+
+## Plot
+
+```{python}
+#| fig-align: center
+#| echo: false
+# Aggregieren der Umsätze pro Woche
+umsatz_pro_woche = df.groupby("Woche").agg({"Umsatz": "sum"})
+line = sns.lineplot(data=umsatz_pro_woche, x=umsatz_pro_woche.index, y="Umsatz")
+line.set_title("Umsatzentwicklung Fashion Avenue\n(pro Woche)");
+```
+
+## Code
+
+```{.python code-line-numbers="5"}
+# Laden der Bibliothek seaborn
+import seaborn as sns
+
+# Aggregieren der Umsätze pro Woche
+umsatz_pro_woche = df.groupby("Woche").agg({"Umsatz": "sum"})
+
+# Erstellen eines Liniendiagramms
+line = sns.lineplot(data=umsatz_pro_woche, x=umsatz_pro_woche.index, y="Umsatz")
+line.set_title("Umsatzentwicklung Fashion Avenue\n(pro Woche)");
+```
+
+:::
+
+## Schritt 4 und 5: Umsatzentwicklung pro Monat
+### Fallstudie
+
+::: {.panel-tabset}
+
+
+## Plot
+
+```{python}
+#| fig-align: center
+#| echo: false
+# Aggregieren der Umsätze pro Woche
+umsatz_pro_monat = df.groupby("Monat").agg({"Umsatz": "sum"})
+line = sns.lineplot(data=umsatz_pro_monat, x=umsatz_pro_monat.index, y="Umsatz")
+line.set_title("Umsatzentwicklung Fashion Avenue\n(pro Monat)");
+```
+
+## Code
+
+```{.python code-line-numbers="5"}
+# Laden der Bibliothek seaborn
+import seaborn as sns
+
+# Aggregieren der Umsätze pro Woche
+umsatz_pro_monat = df.groupby("Monat").agg({"Umsatz": "sum"})
+
+# Erstellen eines Liniendiagramms
+line = sns.lineplot(data=umsatz_pro_monat, x=umsatz_pro_monat.index, y="Umsatz")
+line.set_title("Umsatzentwicklung Fashion Avenue\n(pro Monat)");
+```
+
+:::
+
+
+## Schritt 4 und 5: Hypothesenbildung
+### Fallstudie
+
+
+Nachdem wir die Problembeschreibung validiert haben, können wir nun mit der Analyse der Ursachen beginnen. 
+
+Lassen Sie uns dafür zunächst überlegen, was mögliche Ursachen für den Umsatzrückgang sein könnten. 
+
+<div class="fragment">
+
+__Was könnten mögliche Ursachen für den Umsatzrückgang sein?__
+
+
+## Schritt 4 und 5: Hypothesenbildung 
+### Fallstudie
+
+Hier ein paar Beispiele die uns spontan in den Sinn kommen könnten^[Hinweis: an dieser Stelle ist es wichtig, dass Sie sich nicht auf eine einzige Ursache festlegen. Es können auch mehrere oder andere Ursachen für den Umsatzrückgang verantwortlich sein. Wichtig ist, dass Sie sich auf die Ursachen konzentrieren, die Sie im Rahmen der Analyse überprüfen können.]:
+
+<div class="fragment">
+
+1. die Preise sind gesunken
+
+<div class="fragment">
+
+1. die Nachfrage ist gesunken
+
+<div class="fragment">
+
+3. das Zahlungsverhalten der Kunden hat sich verändert
+
+<div class="fragment">
+
+4. die Kundenstruktur hat sich verändert
+
+
+
+## Hypothese 1: Vorbereitung
+### Fallstudie
+
+__Ursache 1:__ Preise sind gesunken
+
+- Eine mögliche Ursache für den Umsatzrückgang ist, dass die Kunden je Kauf (d.h. in unserem Fall je Transaktion bzw. je Zeile im Datensatz) weniger Geld ausgeben. 
+
+<div class='fragment'>
+
+__Wie können wir dies überprüfen?__
+
+<div class='fragment'>
+
+<div class='fragment'>
+
+<br>
+
+> __Vorgehen__
+>
+> - Daten (z.B. monatlich) aggregieren
+> - je Monat durchschnittlichen Preis berechnen
+> - Preisentwicklung über die Zeit analysieren
+
+## Hypothese 1: Analyse
+### Fallstudie 
+
+
+```{.python code-line-numbers="1|2|3"}
+preis_pro_monat = df.groupby("Monat").agg({"Preis": "mean"})
+line = sns.lineplot(data=preis_pro_monat, x=preis_pro_monat.index, y="Preis")
+line.set_title("Entwicklung durchsch. Transaktionspreis\n(pro Monat)");
+```
+
+<div class='fragment'>
+
+```{python}
+#| fig-align: center
+#| echo: false
+preis_pro_monat = df.groupby("Monat").agg({"Preis": "mean"})
+line = sns.lineplot(data=preis_pro_monat, x=preis_pro_monat.index, y="Preis")
+line.set_title("Entwicklung durchsch. Transaktionspreis\n(pro Monat)");
+```
+
+
+<div class='fragment'>
+
+## Hypothese 2: Vorbereitung
+### Fallstudie
+
+__Ursache 2:__ Nachfrage ist gesunken
+
+- Nachfrage nach  Produkten des Unternehmens ist gesunken
+
+<div class='fragment'>
+
+__Wie können wir dies überprüfen?__
+
+<div class='fragment'>
+
+<div class='fragment'>
+
+
+<br>
+
+> __Vorgehen__
+>
+> - Daten (z.B. monatlich) aggregieren
+> - je Monat durchschnittlichen Menge berechnen
+> - Mengenentwicklung über die Zeit analysieren
+
+## Hypothese 2: Analyse
+### Fallstudie 
+
+
+```{.python code-line-numbers="1|2|3"}
+preis_pro_monat = df.groupby("Monat").agg({"Menge": "mean"})
+line = sns.lineplot(data=preis_pro_monat, x=preis_pro_monat.index, y="Menge")
+line.set_title("Entwicklung durchsch. Transaktionsmenge\n(pro Monat)");
+```
+
+<div class='fragment'>
+
+```{python}
+#| fig-align: center
+#| echo: false
+preis_pro_monat = df.groupby("Monat").agg({"Menge": "mean"})
+line = sns.lineplot(data=preis_pro_monat, x=preis_pro_monat.index, y="Menge")
+line.set_title("Entwicklung durchsch. Transaktionsmenge\n(pro Monat)");
+```
+
+
+## Hypothese 1 & 2: Zwischenfazit
+### Fallstudie
+
+__Was wir bisher wissen__
+
+::: {.incremental}
+
+- Analyse zeigt: durchschnittliche Preise und Menge je Transaktion gesunken
+
+- anders formuliert: Kunden kaufen günstigere, kleinere Mengen
+
+- Warum Kunden weniger und günstiger kaufen nicht bekannt
+
+- Ursachen 3 und 4 noch zu untersuchen
+
+:::
+
+
+## Hypothese 3: Vorbereitung
+### Fallstudie
+
+__Ursache 2:__ Zahlungsverhalten der Kunden hat sich verändert
+
+- Datensatz enthält kaum Informationen über das Zahlungsverhalten der Kunden
+  
+- nur Information über die Zahlungsmethode verfügbar
+  
+
+<div class='fragment'>
+
+__Wie können wir dies überprüfen?__
+
+<div class='fragment'>
+
+<div class='fragment'>
+
+
+<br>
+
+> __Vorgehen__
+>
+> - Gesamtumsätze und Anzahl der Transaktionen pro Zahlungsmethode aggregieren
+
+
+## Hypothese 3: Analyse
+### Fallstudie 
+
+```{python}
+# Berechnen der Gesamtumsätze und Anzahl an Transaktionen je Zahlungsmethode
+umsatz_je_zahlungsmethode = df.groupby("Zahlungsmethode").agg({"Umsatz": ["sum", "count"]})
+umsatz_je_zahlungsmethode
+```
+
+<div class='fragment'>
+
+<br>
+
+
+## Hypothese 3: Analyse (cont'd)
+### Fallstudie 
+
+- Zahlungsmethoden unterscheiden sich scheinbar nicht
+
+- __aber:__ wir wissen nicht, ob Zahlungsmethoden über die Zeit gleichmäßig verteilt waren
+
+
+<div class='fragment'>
+
+__Wie können wir dies überprüfen?__
+
+<div class='fragment'>
+
+<div class='fragment'>
+
+<br>
+
+> __Vorgehen__
+>
+> - Umsätze je Monat und je Zahlungsmethode berechnen
+> - Visualisierung der Ergebnisse zur Überprüfung der Annahme
+
+## Hypothese 3: Analyse (cont'd)
+### Fallstudie 
+
+<div class='fragment'>
+
+::: {.panel-tabset}
+
+## Plot
+
+```{python}
+#| fig-align: center
+#| echo: false
+sns.catplot(data=df, x="Monat", y="Umsatz", kind="point", hue="Zahlungsmethode", ci=None);
+```
+
+
+## Code
+
+```{python}
+#| fig-align: center
+#| output: false
+sns.catplot(data=df, x="Monat", y="Umsatz", kind="point", hue="Zahlungsmethode", ci=None);
+```
+
+:::
+
+
+## Hypothese 4: Vorbereitung
+### Fallstudie
+
+__Ursache 4:__ Kundenstruktur hat sich verändert
+
+- Datensatz enthält kaum Informationen zur Kundenstruktur
+  
+  
+
+<div class='fragment'>
+
+__Wie können wir dies überprüfen?__
+
+<div class='fragment'>
+
+<div class='fragment'>
+
+
+<br>
+
+> __Vorgehen__
+>
+> - Verteilung des Kundenalters visualisieren (um Alterstruktur zu verstehen)
+> - Verteilung des Kundenalters über die Zeit visualisieren (um Veränderungen zu erkennen)
+
+
+
+## Hypothese 4: Analyse
+### Fallstudie
+
+<div class='fragment'>
+
+::: {.panel-tabset}
+
+## Plot
+
+
+```{python}
+#| echo: false
+#| fig-align: center
+sns.histplot(data=df, x="Alter");
+```
+
+## Code
+
+```{.python}
+sns.histplot(data=df, x="Alter");
+```
+
+:::
+
+
+## Hypothese 4: Analyse (cont'd)
+### Fallstudie
+
+
+__Beobachtung:__ Kundenalter ist nicht gleichmäßig verteilt
+
+<div class='fragment'>
+
+- Verteilung mit zwei Spitzen 
+
+<div class='fragment'>
+
+- erste Spitze: ca. __25 Jahre__
+
+<div class='fragment'>
+
+- zweite Spite: ca. __55 Jahre__
+
+<div class='fragment'>
+
+- weitere Analyse sinnvoll
+
+
+<div class='fragment'>
+
+__Was wäre eine sinnvolle Folgeanalyse?__
+
+
+
+## Hypothese 4: Analyse (cont'd)
+### Fallstudie
+
+<br>
+
+> __Vorgehen__
+>
+> - Erstellen einer neuen Spalte `Altersgruppe` (z.B. 0-20, 21-30, 31-40, 41-50, 51-60, 61-70, 71-80, 81-90, 91-100)
+> - Analyse des Umsatzes je `Altersgruppe` 
+
+## Hypothese 4: Analyse (cont'd)
+### Fallstudie
+
+<div class='fragment'>
+
+::: {.panel-tabset}
+
+## Plot
+
+
+```{python}
+#| echo: false
+# Berechnen der Altersgruppen
+df["Altergruppe"] = pd.cut(df["Alter"], 
+                            bins=[0, 20, 30, 40, 50, 60, 70, 80, 90, 100], 
+                            labels=["0-20", "21-30", "31-40", "41-50", "51-60", "61-70", "71-80", "81-90", "91-100"])
+strip = sns.stripplot(data=df, x="Altergruppe", y="Umsatz", jitter=0.1);
+strip.set_title("Umsatz je Altersgruppe");
+```
+
+## Code
+
+```{.python}
+df["Altergruppe"] = pd.cut(df["Alter"], 
+                            bins=[0, 20, 30, 40, 50, 60, 70, 80, 90, 100], 
+                            labels=["0-20", "21-30", "31-40", "41-50", "51-60", "61-70", "71-80", "81-90", "91-100"])
+sns.stripplot(data=df, x="Altergruppe", y="Umsatz", jitter=0.1);
+```
+
+:::
+
+
+
+## Hypothese 1 bis 4: Zwischenfazit
+### Fallstudie
+
+__Zwischenfazit:__
+
+- Umsatz und Anzahl der Transaktionen sind rückläufig
+
+- Kunden kaufen weniger und günstiger
+
+- Ältere Kunden haben höheren Umsatz als jüngere Kunden
+
+
+<div class='fragment'>
+
+__Was für Folgeanalyse wäre sinnvoll?__
+
+<div class='fragment'>
+
+<div class='fragment'>
+
+<br>
+
+> __Analyse__
+>
+> - Entwicklung des Umsatzes je Altersgruppe über die Zeit
+> - Zur Vereinfachung: zwei Kundengruppen (ältere und jüngere Kunden) untersuchen
+> - alte Kunden: > 40 Jahre
+> - junge Kunden: < 40 Jahre
+
+
+## Hypothese 4: Kundenstruktur über die Zeit
+### Fallstudie
+
+<div class='fragment'>
+
+```{python}
+#| echo: false
+#| output: false
+# Berechnen der Kundengruppe
+import numpy as np 
+df["Kundengruppe"] = np.where(df["Alter"] <= 40, "jung", "alt")
+df.head()
+```
+
+::: {.panel-tabset}
+
+## Plot
+
+```{python}
+#| echo: false
+#| fig-align: center
+# Berechnen des Anteils an jungen Kunden je Monat
+df.groupby(["Monat"]).agg({"Kundengruppe": [lambda group: sum(group == "jung")/len(group)]}).plot(legend=False, title="Anteil an jungen Kunden je Monat");
+```
+
+## Data 
+
+```{python}
+#| echo: false
+# Berechnen der Kundengruppe
+import numpy as np 
+df["Kundengruppe"] = np.where(df["Alter"] <= 40, "jung", "alt")
+df.head()
+```
+
+## Code
+
+```{.python code-line-numbers="1|3|5"}
+import numpy as np 
+
+df["Kundengruppe"] = np.where(df["Alter"] <= 40, "jung", "alt")
+
+df.groupby(["Monat"]).agg({"Kundengruppe": [lambda group: sum(group == "jung")/len(group)]}).plot(legend=False);
+```
+
+:::
+
+## Hypothese 4: Kaufverhalten unverändert
+### Fallstudie
+
+<div class='fragment'>
+
+::: {.panel-tabset}
+
+## Preis
+
+```{python}
+#| fig-align: center
+#| echo: false
+sns.catplot(x="Monat", y="Preis", 
+            data=df,  kind="point", 
+            palette={"jung": "blue", "alt": "orange"}, hue="Kundengruppe");
+```
+
+
+
+## Menge
+
+```{python}
+#| fig-align: center
+#| echo: false
+sns.catplot(x="Monat", y="Menge", 
+            data=df,  kind="point", 
+            palette={"jung": "blue", "alt": "orange"}, hue="Kundengruppe");
+```
+
+## Code
+
+```{.python code-line-numbers="1"}
+sns.catplot(x="Monat", y="Preis",  # oder y="Menge"
+            data=df,  kind="point", 
+            palette={"jung": "blue", "alt": "orange"}, hue="Kundengruppe");
+```
+
+:::
+
+
+## Fazit
+### Fallstudie
+
+
+Lassen Sie uns ein Zwischenfazit ziehen und bisherige Erkenntnisse zusammenfassen:
+
+- Problem definiert: "Grund für Umsatzrückgang"
+- Daten geladen, bereinigt (bereits sauber)
+- Problembeschreibung bestätigt (Umsatzrückgang)
+- Vier Hypothesen aufgestellt, überprüft:
+  - Preise gesunken
+  - Nachfrage gesunken
+  - Zahlungsverhalten verändert
+  - Kundenstruktur verändert
+- Hypothesen mit Transformationen, Visualisierungen geprüft
+- Preise, Mengen gesunken (Hypothesen 1 und 2)
+- Kundenstruktur verändert: mehr "unter 40" Kunden, weniger/günstiger kaufen
+- Zahlungsverhalten keinen Einfluss
+
+
+> __Fazit:__
+>
+> Umsatzrückgang durch veränderte Kundenstruktur (mehr "unter 40" Kunden, weniger/günstiger kaufen).
+
+## Ausblick: Diagnostische Analyse {.scrollable}
+### Fallstudie
+
+<div class='fragment'>
+
+::: {.panel-tabset}
+
+## Plot
+
+```{python}
+#| fig-align: center
+#| echo: false
+umsatz_by_alter = df.groupby("Datum").agg({"Umsatz": "median", 
+                                           "Alter": "median"})
+reg = sns.regplot(x="Alter", y="Umsatz", data=umsatz_by_alter, ci=True, 
+            line_kws={"color": "red"}, scatter_kws={"alpha": 0.5});
+reg.set(xlabel="Alter", ylabel="Umsatz", title="Zusammenhang Alter und Umsatz");
+```
+
+## Auswertung
+
+```{python}
+#| output: true 
+#| echo: false
+import statsmodels.formula.api as smf
+model = smf.ols(formula="Umsatz ~ Alter", data=umsatz_by_alter)
+results = model.fit()
+results.summary()
+```
+
+## Code
+
+```{.python}
+# Plot
+umsatz_by_alter = df.groupby("Datum").agg({"Umsatz": "median", 
+                                           "Alter": "median"})
+sns.regplot(x="Alter", y="Umsatz", data=umsatz_by_alter, ci=True, 
+            line_kws={"color": "red"}, scatter_kws={"alpha": 0.5});
+```
+
+<br>
+
+
+```{.python}
+# Auswertung
+import statsmodels.formula.api as smf
+model = smf.ols(formula="Umsatz ~ Alter", data=umsatz_by_alter)
+results = model.fit()
+results.summary()
+```
+
+:::

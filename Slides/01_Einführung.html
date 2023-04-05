@@ -800,7 +800,6 @@ Sprechstunde:<br>
 <p><strong>Beispiel:</strong></p>
 <ul>
 <li>Zahlenreihe: 2.0, 3.0, 5.0, 7.0, 13.0, 21.0, 33.0, 54.0</li>
-<li>arithmetisches Mittel:</li>
 </ul>
 <div class="fragment">
 <p><span class="math display">\[
@@ -810,14 +809,20 @@ Sprechstunde:<br>
 \end{align}
 \]</span></p>
 </div>
+<div class="fragment">
+<blockquote>
+<p><strong>Vorgehen:</strong></p>
+<ul>
+<li>in Rust programmieren (schwer)</li>
+<li>in Python programmieren (einfach(er))</li>
+</ul>
+</blockquote>
+</div>
 </section>
 <section id="python-ist-einfacher-1" class="slide level2">
 <h2>Python ist einfach(er)</h2>
 <h3 id="warum-python-4">Warum Python?</h3>
-<div class="panel-tabset">
-<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Rust</a></li><li><a href="#tabset-1-2">Python</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1">
+<p><strong>Schwere Syntax (hier: Rust)</strong></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource Rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">fn</span> sum(arr<span class="op">:</span> <span class="op">&amp;</span>[<span class="dt">f64</span>]) <span class="op">-&gt;</span> <span class="dt">f64</span> <span class="op">{</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a>    arr<span class="op">.</span>iter()<span class="op">.</span>fold(<span class="dv">0.0</span><span class="op">,</span> <span class="op">|</span>p<span class="op">,&amp;</span>q<span class="op">|</span> p <span class="op">+</span> q)</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="op">}</span></span>
@@ -833,17 +838,17 @@ Sprechstunde:<br>
 <span id="cb1-13"><a href="#cb1-13"></a>    <span class="kw">let</span> w <span class="op">=</span> <span class="op">&amp;</span>[]<span class="op">;</span></span>
 <span id="cb1-14"><a href="#cb1-14"></a>    <span class="pp">println!</span>(<span class="st">"mean of {:?}: {:?}"</span><span class="op">,</span> w<span class="op">,</span> mean(w))<span class="op">;</span></span>
 <span id="cb1-15"><a href="#cb1-15"></a><span class="op">}</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="tabset-1-2">
+</section>
+<section id="python-ist-einfacher-2" class="slide level2">
+<h2>Python ist einfach(er)</h2>
+<h3 id="warum-python-5">Warum Python?</h3>
+<p><strong>Einfache Syntax (hier: Python)</strong></p>
 <div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="im">from</span> statistics <span class="im">import</span> mean</span>
 <span id="cb2-2"><a href="#cb2-2"></a>m <span class="op">=</span> mean([<span class="fl">2.0</span>, <span class="fl">3.0</span>, <span class="fl">5.0</span>, <span class="fl">7.0</span>, <span class="fl">13.0</span>, <span class="fl">21.0</span>, <span class="fl">33.0</span>, <span class="fl">54.0</span>])</span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="bu">print</span>(m)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>17.25</code></pre>
-</div>
-</div>
-</div>
 </div>
 </div>
 </section>
