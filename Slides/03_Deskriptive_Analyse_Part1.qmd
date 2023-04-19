@@ -1,0 +1,1236 @@
+---
+title: "Business Analytics" 
+subtitle:  "~~03~~ | Deskriptive Analyse - Part 1"
+author: "Prof. Dr. Felix Zeidler | FH Bielefeld | SoSe 2023"
+lang: "De"
+format: 
+    revealjs: 
+        theme: [simple, custom.scss]
+        toc: true
+        toc-title: "Inhaltsverzeichnis"
+        toc-depth: 1
+        number-sections: true
+        number-depth: 1
+        preview-links: true
+        reference-location: block
+        tbl-colwidths: auto
+        tbl-cap-location: bottom
+        code-copy: hover
+from: markdown+emoji 
+execute: 
+  echo: true
+  output: true
+slide-number: c/t
+jupyter: py39
+---
+
+## Lernziele 
+### Deskriptive Analyse
+
+<br>
+
+
+<div class='fragment'>
+
+:one: Programmierkonzept: __"Funktionen"__
+
+<div class='fragment'>
+
+:two: Einlesen und Aufbereiten von Daten
+
+<div class='fragment'>
+
+:three: Arbeiten mit Python-Modul `pandas`
+
+
+# Programmierkonzept: "Funktionen"
+
+## Ausgangssituation
+### Funktionen
+
+<br>
+
+- Wir haben bereits erste Python-Programme geschrieben
+
+- Einführende Fallstudie griff auf Module `pandas` (Dataframes) und `seaborn` (Visualisierungen) zurück
+
+- Um Fallstudie zu bearbeiten haben wir Funktionen^[Hinweis: teilweise muss es präziser heißen: Klassen und Methoden. Für unsere Zwecke ist dies aber zunächst nicht weiter relevant.] aus diesen Modulen verwendet 
+
+<div class='fragment'>
+
+> __Frage__: Was sind eigentlich Funktion?
+
+
+## Was sind Funktionen: Analogie "Toaster"
+### Funktionen
+
+![](https://cdn.discordapp.com/attachments/976997386436104202/1095231496933097552/fzett_drawing_of_a_toaster._Minimalistic_picture_in_a_cartoon_s_7e01452e-7732-4357-b7c3-0bb610fa1d6e.png){fig-align="center"}
+
+## Was sind Funktionen: Analogie "Toaster"
+### Funktionen
+
+<div class='fragment'>
+
+- Funktionen in der Programmierung sind wie Toaster: klar definierte Aufgabe (d.h. Funktion)
+
+<div class='fragment'>
+
+- Sie nehmen Eingabewerte entgegen, verarbeiten sie und geben Ergebnisse zurück.
+
+<div class='fragment'>
+
+- Analogie: Brot (Eingabewerte) -> Rösten (Verarbeitung) -> geröstetes Brot (Ergebnis).
+
+## Was sind Funktionen: Analogie "Excel"
+### Funktionen
+
+<br>
+
+![](_assets/RndNumbers.png){fig-align="center"}
+
+## Was sind Funktionen: Analogie "Excel"
+### Funktionen
+
+<br>
+
+![](_assets/RndNumbers_Solution.png){fig-align="center"}
+
+
+## Was sind Funktionen: Analogie "Excel"
+### Funktionen
+
+<br>
+
+<div class='fragment'>
+
+- `ANZAHL()` ist eine Excel-Funktion, die die Anzahl der Elemente in einer Spalte zählt
+
+<div class='fragment'>
+
+
+- `B3:B12` sind die Eingabewerte
+
+<div class='fragment'>
+
+- `=ANZAHL(B3:B12)` verarbeitet die Eingabewerte und zählt die Elemente 
+
+<div class='fragment'>
+
+- `10` ist der Rückgabewert, d.h. das Ergebnis der Funktion
+
+
+## Wofür benötige ich Funktionen?
+### Funktionen
+
+<br>
+
+<div class='fragment'>
+
+- __Wiederverwendbarkeit__: Funktionen ermöglichen die Wiederverwendung von Code, wodurch redundante Codestellen reduziert und die Effizienz verbessert wird.
+
+<div class='fragment'>
+
+- __Modularität__: Funktionen fördern die Aufteilung eines Programms in kleinere, unabhängige Bausteine, die leichter zu verstehen und zu warten sind.
+
+<div class='fragment'>
+
+- __Lesbarkeit__: Funktionen mit aussagekräftigen Namen verbessern die Lesbarkeit des Codes, da sie die Absicht und Funktionalität des Codeblocks klar kommunizieren.
+
+<div class='fragment'>
+
+- __Fehlerbehebung__: Durch die Verwendung von Funktionen können Fehler leichter identifiziert und isoliert werden, da der Code in überschaubaren Einheiten organisiert ist.
+
+
+## Schreiben von Funktionen in Python
+### Funktionen
+
+<br>
+
+__Syntax:__
+
+- In Python werden Funktionen mit dem Schlüsselwort `def` definiert, gefolgt vom Funktionsnamen und Klammern `()`, die die Parameter enthalten.
+  
+- Jeder Funktionsname sollte aussagekräftig sein und die Aktion oder Berechnung, die sie ausführt, beschreiben.
+  
+- Die Parameter sind die Eingabewerte, mit denen die Funktion arbeitet.
+  
+- Nach der Parameterliste folgt ein Doppelpunkt `:`, der den Beginn des Funktionskörpers markiert.
+  
+- Der Funktionskörper sollte eingerückt sein, um den Code innerhalb der Funktion vom restlichen Code abzugrenzen.
+  
+- Eine Funktion kann Werte mit dem Schlüsselwort `return` zurückgeben, gefolgt vom Wert oder Ausdruck, der zurückgegeben werden soll.
+
+<div class='fragment'>
+
+__Beispiel:__
+
+```{.python code-line-numbers=1|2|3}
+def berechne_gewinn(umsatz, kosten):    # Definition der Funktion
+    gewinn = umsatz - kosten            # Verarbeitung / Funktionskörper
+    return gewinn                       # Rückgabe des Ergebnisses
+```
+
+## Ausführen von Funktionen in Python
+### Funktionen
+
+```{python}
+#| echo: false
+def berechne_gewinn(umsatz, kosten):    # Definition der Funktion
+    gewinn = umsatz - kosten            # Verarbeitung / Funktionskörper
+    return gewinn                       # Rückgabe des Ergebnisses
+```
+
+- Um eine Funktion in Python aufzurufen, verwenden Sie den Funktionsnamen, gefolgt von Klammern `()` und den Argumenten, die an die Parameter der Funktion weitergegeben werden.
+  
+- Argumente sind die konkreten Werte, die an die Parameter einer Funktion übergeben werden, wenn sie aufgerufen wird.
+  
+- Die Reihenfolge der Argumente sollte der Reihenfolge der Parameter in der Funktionsdefinition entsprechen.
+  
+- Wenn die Funktion einen Wert zurückgibt, kann dieser Wert in einer Variable gespeichert oder direkt verwendet werden.
+
+<div class='fragment'>
+
+__Beispiel:__ Funktion ausführen und Ergebnis direkt verwenden
+
+<div class='fragment'>
+
+```{.python code-line-numbers=1,2|3|4}
+umsatz = 10000
+kosten = 5000
+gewinn = berechne_gewinn(umsatz, kosten)
+gewinn
+```
+
+## Aufgabe 1
+### Funktionen
+
+__Aufgabenstellung:__
+
+Erstellen Sie eine Funktion, die den __Break-Even-Punkt__ berechnet, an dem die Gesamtkosten eines Unternehmens gleich den Gesamteinnahmen sind. Die Funktion soll den Break-Even-Punkt in Form der Anzahl der verkauften Einheiten zurückgeben.
+
+<div class='fragment'>
+
+__Anforderungen:__
+
+- Definieren Sie eine Funktion mit einem sinnvollen Namen, die drei Parameter akzeptiert:   
+fixkosten, variable_kosten_pro_einheit und preis_pro_einheit.
+
+- Geben Sie das Ergebnis als Ganzzahl zurück, da es sich um eine Anzahl von Einheiten handelt. Verwenden Sie die Funktion round() oder int() in Python, um das Ergebnis auf die nächste ganze Zahl zu runden bzw. die Nachkommastellen abzuschneiden.
+
+- Rufen Sie die Funktion mit Werten Ihrer Wahl auf und speichern Sie das Ergebnis in einer Variable.
+
+
+
+
+## Lösung Aufgabe 1
+### Funktionen
+
+
+<br>
+
+<div class='fragment'>
+
+__Definition:__
+
+```{python}
+#| output: false
+def berechne_break_even_punkt(fixkosten, variable_kosten_pro_einheit, preis_pro_einheit):
+    break_even_punkt = fixkosten / (preis_pro_einheit - variable_kosten_pro_einheit)
+    return round(break_even_punkt)
+```
+
+
+<div class='fragment'>
+
+<br>
+
+__Aufruf:__
+
+```{python}
+fixkosten = 10000
+variable_kosten_pro_einheit = 2
+preis_pro_einheit = 10
+break_even_punkt = berechne_break_even_punkt(fixkosten, variable_kosten_pro_einheit, preis_pro_einheit)
+break_even_punkt    
+```
+
+
+
+## Aufgabe 2
+### Funktionen
+
+<br>
+
+
+__Aufgabenstellung:__
+
+Erstellen Sie eine Funktion, die einen Betrag in einer Ausgangswährung in einen Betrag in einer Zielwährung umrechnet, basierend auf dem gegebenen Wechselkurs.
+
+<div class='fragment'>
+
+<br> 
+
+__Anforderungen:__
+
+- Definieren Sie eine Funktion mit dem Namen `umrechnung_waehrung`, die zwei Parameter akzeptiert: `betrag`, `wechselkurs`
+
+
+- Geben Sie das Ergebnis als Fließkommazahl mit zwei Nachkommastellen zurück. Verwenden Sie die Funktion `round()` in Python, um das Ergebnis auf zwei Nachkommastellen zu runden.
+
+- Rufen Sie die Funktion mit einem Betrag und einem Wechselkurs Ihrer Wahl auf und speichern Sie das Ergebnis in einer Variable.
+
+- Geben Sie das Ergebnis mithilfe einer print-Anweisung aus, gefolgt von der Zielwährung.
+
+
+## Lösung Aufgabe 2
+### Funktionen
+
+
+<br>
+
+<div class='fragment'>
+
+__Definition:__
+
+```{python}
+def umrechnung_waehrung(betrag, wechselkurs):
+    umgerechneter_betrag = betrag * wechselkurs
+    return round(umgerechneter_betrag, 2)
+```
+
+<div class='fragment'>
+
+<br>
+
+__Aufruf:__
+
+```{python}
+# Funktion mit Beispielwerten aufrufen
+betrag_in_euro = 100
+wechselkurs_euro_usd = 1.12
+zielwaehrung = "USD"
+betrag_in_usd = umrechnung_waehrung(betrag_in_euro, wechselkurs_euro_usd)
+
+# Ergebnis ausgeben
+print("Betrag in", zielwaehrung + ":", betrag_in_usd)
+```
+
+
+
+
+# BA-Prozess: Einlesen und Aufbereiten von Daten
+
+## Business Analytics Prozess   
+### Deskriptive Analyse
+
+<div class='fragment'>
+
+<br>
+
+![](_assets/Analyse_Prozess_Descriptive.svg){fig-align="center"}
+
+
+## Großteil der Datenanalyse besteht aus der Aufbereitung der Daten
+### Deskriptive Analyse
+
+
+__Warum Aufbereitung?__
+
+- erheblicher Teil der Arbeit bei der Datenanalyse entfällt auf die Vorverarbeitung und Bereinigung der Daten. 
+
+- Einige Schätzungen gehen davon aus, dass 50% bis 80% der Zeit, die für ein Datenanalyseprojekt aufgewendet wird, der Datenvorverarbeitung gewidmet ist.^[siehe z.B. @dasu_exploratory_2003]
+
+<div class='fragment'>
+
+__Einige Gründe für den hohen Zeitaufwand bei der Vorverarbeitung sind:__
+
+- __Datenqualität__: Daten aus der realen Welt sind oft "dreckig" bzw. enthalten fehlende Werte, Inkonsistenzen und Fehler.
+
+- __Datenintegration__: Das Zusammenführe   n von Daten aus mehreren Quellen erfordert häufig das Lösen von Konflikten bei Formaten, Einheiten oder Datenstrukturen.
+
+- __Datentransformation__: Daten müssen oft transformiert, normalisiert oder aggregiert werden, um für die Analyse oder Modellierung geeignet zu sein.
+
+- __Merkmalsbildung__: Das Erstellen neuer Merkmale aus den Rohdaten kann ein zeitaufwändiger Prozess sein, der Fachwissen und Kreativität erfordert.
+
+## Werkzeug: Pandas
+### Deskriptive Analyse
+
+
+![](https://cdn.discordapp.com/attachments/976997386436104202/1095259718982836345/fzett_Imaginary_picture_of_a_hybrid_between_a_panda_and_a_swiss_6ca39c93-b6a3-448a-be81-59f41688071e.png){fig-align="center"}
+
+## Werkzeug: Pandas
+### Deskriptive Analyse
+
+<br>
+
+<div class='fragment'>
+
+- Wir werden im Rahmen unserer Analyse(n) verschiedene Module / Bibliotheken und Funktionalitäten Pythons kennenlernen. 
+
+<div class='fragment'>
+
+- Eine der wichtigsten Bibliotheken ist `pandas`. Wir bezeichnen `pandas` als das Schweizer Taschenmesser der Datenanalyse, weil es ein mächtiges und vielseitiges Werkzeug für die Datenanalyse und -verarbeitung in Python ist. 
+
+<div class='fragment'>
+
+- Pandas bietet für nahezu alle gängigen Anforderungen - sei es Datenimport, Datenbereinigung, Datentransformation und -analyse oder sogar Visualisierung - nützliche Funktionalitäten. 
+
+<div class='fragment'>
+
+- Die Palette an Funktionalitäten ist so umfangreich, dass wir diese unmöglich alle vorstellen können. Wir glauben auch nicht, dass dies didaktisch sinnvoll ist. Stattdessen werden wir geeignete Funktionen immer dann vorstellen, wenn wir sie für unsere Analyse benötigen. Viele der vorgestellten Module bieten Funktionalitäten an, die wir nicht nutzen. Es ist deshalb sinnvoll, dass Sie sich die Dokumentation der Funktionen anschauen, wenn Sie diese für Ihre Analyse benötigen. 
+
+<div class='fragment'>
+
+- Die Dokumentation finden Sie [hier](https://pandas.pydata.org/pandas-docs/stable/reference/index.html).
+
+
+
+## Einleitung: Fallstudie
+### Deskriptive Analyse
+
+<br>
+
+Die __Bau und Werken GmbH__ wurde 1967 in Recklinghausen gegründet und hat dort bis heute ihren Sitz. Ursprünglich konzentrierte sich das Unternehmen auf kleinere kommunale Bauprojekte, entwickelte sich aber im Laufe der Zeit zu einem wichtigen Akteur in der kommunalen Bau- und Instandhaltungsbranche. Mit einem starken Netzwerk an Geschäftspartnern und Lieferanten führt das Unternehmen eine breite Palette von Projekten durch, vom Tiefbau bis hin zu städtischen U-Bahnen. Dabei legt es Wert auf Qualität und Kundenzufriedenheit, um einen ausgezeichneten Ruf in der Branche zu sichern.
+
+Allerdings kämpft auch die Bau und Werken GmbH mit Projekten, die länger dauern und mehr kosten als geplant, was die Profitabilität beeinträchtigt. Geschäftsführer Maximilian Müller ist sich dieser Herausforderung bewusst und möchte das Problem lösen. Er erkennt, dass Bauverzögerungen und Kostenüberschreitungen die Profitabilität mindern, obwohl das Unternehmen grundsätzlich profitabel wirtschaftet. Müller plant, vergangene Projekte zu analysieren, um wiederkehrende Muster oder Faktoren zu identifizieren, die Verzögerungen und Kostenüberschreitungen verursachen.
+
+Die Lösung dieser Herausforderung ist entscheidend für die Zukunft des Unternehmens, und Maximilian ist entschlossen, die Bau und Werken GmbH noch erfolgreicher und profitabler zu gestalten.
+
+
+## Einleitung: Datensatz
+### Deskriptive Analyse
+
+Der Datensatz beinhaltet Informationen zu den Projekten, die das Unternehmen in den letzten Jahren durchgeführt hat. Die Daten wurden von einem Mitarbeiter der Bau und Werken GmbH in einer Excel-Tabelle erfasst und anschließend in das CSV-Format exportiert. Der Datensatz beinhaltet folgende Informationen:
+
+- `Project_ID`: eindeutige Identifikationsnummer des Projekts
+- `Name Projekt`: Art des Projektes // Ort des Projektes (z.B. "Stadtpark // Eberhardtallee")
+- `projekt_Beginn`: Baubeginn bzw. Beginn der Instandhaltungsarbeiten
+- `Plan Bau fertig`: geplantes Bauende bzw. Instandhaltungsende
+- `Fertig_IST`: tatsächliches Bauende bzw. Instandhaltungsende
+- `Kosten Plan`: budgetierte Gesamtkosten des Projektes
+- `Ist_Kosten`: tatsächliche Gesamtkosten des Projektes
+- `Project_team`: internes Team, welches das Projekt bearbeitet hat
+
+Link zum Datensatz: [Construction.csv](https://www.dropbox.com/s/ov6mnmgzrydquie/Construction.csv?dl=1)
+
+
+
+## Schritt 1: Problemstellung
+### Deskriptive Analyse
+
+<br>
+
+
+- Was sollte Ziel unserer Analyse sein?
+
+- Welche Fragestellungen wollen wir beantworten?
+
+
+> __Wichtig__: 
+> 
+> - Formulieren der Problemstellung hilft, den Überblick zu behalten und die Analyse zu strukturieren.
+>
+> - Problemstellung sollte immer der erste Schritt der Analyse sein.
+
+## Daten Einlesen und Überblick verschaffen
+### Deskriptive Analyse
+
+- Beginnen wir mit der Analyse, in dem wir die Daten zunächst einlesen und aufbereiten. Dazu verwenden wir  `read_csv()`. Bei `read_csv()` handelt es sich um eine __Funktion__, der verschiedene Parameter übergeben werden können. 
+
+- Der wichtigste (und einzige zwingend notwendige) Parameter ist der __Pfad zur Datei__, die eingelesen werden soll. 
+  
+- Der Pfad der Datei kann als Link oder als lokaler Dateipfad übergeben werden 
+
+## Einlesen: CSV-Datein können via `read_csv()` eingelesen werden
+### Deskriptive Analyse
+
+__Einlesen via Link:__
+
+
+```{python} 
+import pandas as pd
+
+path = "https://www.dropbox.com/s/ov6mnmgzrydquie/Construction.csv?dl=1"
+df = pd.read_csv(path)
+```
+
+## Einlesen: CSV-Datein können via `read_csv()` eingelesen werden
+### Deskriptive Analyse
+
+__Einlesen via lokalem Pfad:__
+
+
+```{python} 
+import pandas as pd
+
+path = "_data/Construction.csv"
+df = pd.read_csv(path)
+```
+
+<br> 
+
+<div class='fragment'>
+
+__Wichtig:__ 
+
+- Der Dateipfad ist relativ zum Ordner, in dem sich die Jupyter-Notebook-Datei befindet.
+
+<div class='fragment'>
+
+- Datei liegt im Beispiel im Ordner `_data`
+
+<div class='fragment'>
+  
+- Ordner `_data` liegt im gleichen Ordner wie die Jupyter-Notebook-Datei
+
+
+
+## Daten Einlesen und Überblick verschaffen: grundsätzliches Vorgehen
+### Deskriptive Analyse
+
+- Pandas-Bibliothek importieren: Um Dateien mit Pandas einzulesen, muss zunächst die Pandas-Bibliothek in Python importiert werden: import pandas as pd
+
+- Einlesefunktion verwenden: Verwenden Sie eine der spezifischen Einlesefunktionen `read_...()` von Pandas, um Dateien unterschiedlicher Formate einzulesen.
+
+__Funktionen für verschiedene Dateiformate: __
+
+- CSV-Dateien: `pd.read_csv('dateiname.csv')` - Liest eine CSV-Datei ein und gibt sie als DataFrame zurück.
+
+- Excel-Dateien: `pd.read_excel('dateiname.xlsx')` - Liest eine Excel-Datei ein und gibt sie als DataFrame zurück. Benötigt die zusätzlichen Bibliotheken openpyxl und xlrd.
+
+- JSON-Dateien: `pd.read_json('dateiname.json')` - Liest eine JSON-Datei ein und gibt sie als DataFrame zurück.
+
+- HTML-Dateien: `pd.read_html('dateiname.html')` - Liest eine HTML-Datei ein, extrahiert Tabellen aus dem HTML und gibt sie als Liste von DataFrames zurück. Benötigt die zusätzliche Bibliothek lxml.
+
+- SQL-Datenbanken: `pd.read_sql('sql_query', connection_object)` - Führt eine SQL-Abfrage auf einer Datenbank aus und gibt das Ergebnis als DataFrame zurück.
+
+- ...
+
+
+## Ersten Überblick verschaffen
+### Deskriptive Analyse
+
+<br>
+
+
+__Vier Funktionen für den ersten Überblick:__
+
+<div class='fragment'>
+
+- `head()`: Zeigt die ersten Zeilen des DataFrames an.
+
+- `tail()`: Zeigt die letzten Zeilen des DataFrames an.
+
+- Anzahl Zeilen anpassen: z.B. `df.head(10)` für die ersten zehn Zeilen
+
+
+- `info()`: Zeigt Informationen zum DataFrame an, z.B. Anzahl Zeilen, Anzahl Spalten, Datentypen, ...
+
+
+- `describe()`: Zeigt eine Zusammenfassung der numerischen Spalten an, z.B. Mittelwert, Standardabweichung, Minimum, Maximum, ...
+  
+
+## Aufgabe 1: Ersten Überblick verschaffen
+### Deskriptive Analyse
+
+- Lese die Datei `Construction.csv` ein und speichere sie in der Variable `df`.
+
+- Zeige die ersten 10 Zeilen des DataFrames an.
+
+- Zeige die letzten 3 Zeilen des DataFrames an.
+
+- Führen Sie die Funktion `info()` auf den DataFrame `df` aus. Was stellen Sie fest?
+
+- bestimmen Sie die durschnittlichen Kosten über alle Projekte
+
+
+## Lösung Aufgabe 1: Ersten Überblick verschaffen
+### Deskriptive Analyse
+
+<br>
+<br> 
+
+<center>
+Siehe Jupyter Notebook in der Veranstaltung.
+</center>
+
+
+## Aufbereitung der Daten
+### Deskriptive Analyse
+
+<br>
+
+Natürlich gibt es nicht _den_ richtigen Weg, um Daten aufzubereiten. Jeder Datensatz ist unterschiedlich und nicht jede Analyse hat dieselben Anforderungen. Dennoch gibt es typische Aufgaben, die wir bei der Aufbereitung von Daten immer wieder vorfinden. 
+
+<div class='fragment'>
+
+Wir werden uns im Folgenden einige dieser Aufgaben ansehen und die entsprechenden Lösungen diskutieren.
+
+
+1. Variablennamen anpassen
+
+
+2. Datentypen anpassen
+
+
+
+3. Daten bereinigen
+
+    - Fehlende Werte 
+
+    - Duplikate
+
+    - Falsche Werte
+
+
+## Variablennamen anpassen
+### Deskriptive Analyse
+
+<br>
+
+__Warum?__
+
+- Nicht zwingend notwendig, Variablen umzubenennen
+
+- Vorhandene Bezeichnungen: nicht intuitiv, inkonsistent, unklar
+
+- Sinnvolle Umbenennung: schnellere Erkennung, intuitive Auswahl
+
+- Subjektive Komponente bei Umbenennung
+
+- Uneinheitliche Spaltennamen: Groß-/Kleinbuchstaben, Deutsch/Englisch, Leerzeichen/Unterstrich
+
+- Erschwert intuitive Auswahl und Analyse
+
+<br>
+
+<div class='fragment'>
+
+> __Datensatz:__  
+> Welche Veränderungen könnten wir vornhemen, um die Spaltennamen zu vereinheitlichen?
+
+
+## Variablennamen anpassen
+### Deskriptive Analyse
+
+
+__Beispielhafte Anpassungen:__
+
+- alle Spalten in Kleinbuchstaben umwandeln
+- alle Leerzeichen durch `_` ersetzen
+- alle Begriffe `project` durch `projekt` ersetzen
+- wo sinnvoll kürzere Begriffe verwenden
+- Begriffe wie `Plan` und `Ist` einheitlich verwenden
+
+<div class='fragment'>
+
+__Python:__
+
+Wir können die Spalten mit der Funktion `rename()` umbenennen. Die Funktion `rename()` erwartet als Parameter ein sog. `Dictionary`, in dem wir die alten Spaltennamen als Schlüssel und die neuen Spaltennamen als Werte angeben. 
+
+<div class='fragment'>
+
+
+```{.python}
+df.rename(columns={'alter_spaltenname': 'neuer_spaltenname'})
+```
+
+## Aufgabe 2: Variablennamen anpassen
+### Deskriptive Analyse
+
+<br>
+
+- passen Sie die Spaltennamen des DataFrames `df` an.
+
+- nehmen Sie dabei die Anpassungen auf der vorherigen Folie vor. 
+
+## Lösung Aufgabe 2: Spaltennamen anpassen
+### Deskriptive Analyse
+
+<br>
+
+```{python}
+#| code-fold: true
+df = df.rename(columns={'Project_ID': 'id', 
+                        'Name Projekt': 'name',
+                        'projekt_Beginn': 'beginn',
+                        'Plan Bau fertig': 'ende_plan',
+                        'Fertig_IST': 'ende_ist',
+                        'Kosten Plan': 'kosten_plan',
+                        'Ist_Kosten': 'kosten_ist',
+                        'Project_team': 'team'})
+df.head()
+```
+
+
+
+## Datentypen anpassen
+### Deskriptive Analyse
+
+Wir haben bereits gesehen, dass unser Datensatz nach dem Einlesen zwei Datentypen enthält: `object` und `float64`. __Sind Datentypen für unsere Analyse passend?__
+
+<div class='fragment'>
+
+__Diskussion der Datentypen:__
+
+- `id`: die Spalte beinhaltet Buchstaben, Zeichen und Zahlen (z.B. P-62602). Der Datentyp `object` ist also passend.
+- `name`: die Spalte beinhaltet Text. Der Datentyp `object` ist also passend. 
+- `beginn`: die Spalte beinhaltet Datumswerte. Der Datentyp `object` ist nicht passend. Wir sollten den Datentyp in ein Datumsformat umwandeln.
+- `ende_plan`: die Spalte beinhaltet Datumswerte. Der Datentyp `object` ist nicht passend. Wir sollten den Datentyp in ein Datumsformat umwandeln.
+- `ende_ist`: die Spalte beinhaltet Datumswerte. Der Datentyp `object` ist nicht passend. Wir sollten den Datentyp in ein Datumsformat umwandeln.
+- `kosten_plan`: die Spalte beinhaltet Zahlen. Der Datentyp `float64` erscheint passend.
+- `kosten_ist`: die Spalte beinhaltet Zahlen. Der Datentyp `float64` erscheint passend.
+- `team`: die Spalte beinhaltet Text. Der Datentyp `object` ist also passend.
+
+<div class='fragment'>
+
+> __Fazit:__   
+> Anpassen der Datumspalten in ein Datumsformat erscheint sinnvoll.
+
+
+## Datentypen anpassen: warum Datumsformate?
+### Deskriptive Analyse
+
+- __Zeitreihenanalyse__: Konvertierung in Datumsformat ermöglicht einfache Analysen von Zeitreihendaten.
+
+<div class='fragment'>
+
+<br>
+
+- __Datumsarithmetik__: Berechnungen mit Datums- und Zeitangaben werden erleichtert, z.B.:
+
+```{.python}
+df['differenz'] = df['enddatum'] - df['startdatum']
+```
+<br>
+<div class='fragment'>
+
+- __Zeitbezogene Funktionen__: Zugriff auf spezielle Funktionen, die auf Datums- und Zeitangaben anwendbar sind, z.B.:
+
+```{.python}
+df['spalte'].dt.month
+```
+
+## Datentypen anpassen in Python
+### Deskriptive Analyse
+
+__Wie können wir Datentypen in Python anpassen?__
+
+
+Es gibt verschiedene Wege, z.B.:
+
+<div class='fragment'>
+
+<br>
+
+:one: `astype()`: Verwenden Sie die `astype()` Methode, um den Datentyp einer Spalte zu ändern.
+
+```{.python}
+df['spalte'] = df['spalte'].astype('neuer_datentyp')`
+```
+Für `neuer_datentyp` können Sie z.B. `int64`, `float64`, `datetime64` oder `category` verwenden.
+
+
+<div class='fragment'>
+
+<br>
+
+:two: `to_datetime()`: Konvertieren Sie Spalten, die Datums- und Zeitangaben enthalten, in den `datetime64`-Datentyp.
+
+```{.python}
+df['spalte'] = pd.to_datetime(df['spalte'])
+```
+  
+## Aufgabe 3: Spalten in Datumsformat umwandeln
+### Deskriptive Analyse
+
+Wandeln Sie die Spalten `beginn`, `ende_plan` und `ende_ist` in das Datumsformat um.
+
+## Lösung Aufgabe 3: Spalten in Datumsformat umwandeln
+### Deskriptive Analyse
+
+```{python}
+#| code-fold: true
+
+df['beginn'] = pd.to_datetime(df['beginn'])
+df['ende_plan'] = pd.to_datetime(df['ende_plan'])
+df['ende_ist'] = pd.to_datetime(df['ende_ist'])
+```
+
+<div class='fragment'>
+
+Mit der Funktion `info()` können wir uns die Datentypen der Spalten anzeigen lassen.
+
+```{.python}
+df.info()
+```
+
+<br>
+
+<div class='fragment'>
+
+Alternativ können wir die Datentypen der Spalten mit der Funktion `dtypes` anzeigen lassen.
+
+```{.python}
+df.dtypes
+```
+
+
+## Daten bereinigen
+### Deskriptive Analyse
+
+Wir schauen uns im Folgenden einige Bereinigugnsmaßnahmen an, die wir an unserem Datensatz vornehmen können.
+
+- __Fehlende Werte__ identifizieren und behandeln
+
+- __Duplikate__ identifizieren und behandeln
+
+- __Fehlerhafte Werte__ identifizieren und behandeln
+
+
+## Daten bereinigen: Fehlende Werte
+### Deskriptive Analyse
+
+- wir haben bereits gesehen (siehe `df.info()`), dass nicht alle Spalten mit Werten gefüllt sind. 
+
+- wir wissen wir nicht, wo sich diese fehlenden Werte befinden. 
+
+-  Information ist aber wichtig, um zu entscheiden, wie wir mit den fehlenden Werten umgehen:
+  
+   -  Beobachtungen mit fehlenden Werten entfernen?
+
+   - fehlende Werte durch andere Werte ersetzen?
+
+    - sind fehlende Werte zufällig verteilt oder gibt es einen Zusammenhang mit anderen Variablen?
+
+    - sind fehlende Werte überhaupt relevant für die Analyse?
+
+
+## Daten bereinigen: Fehlende Werte
+### Deskriptive Analyse
+
+<div class='fragment'>
+
+- Mit der Funktion `isna()` können wir herausfinden, wo sich fehlende Werte befinden. Die Funktion können wir auf den gesamten Datensatz anwenden oder auf einzelne Spalten.
+
+- die Funktion `isna()` gibt einen `True` oder `False` Wert zurück, je nachdem, ob der Wert fehlt oder nicht.
+
+
+__Beispiel__
+
+<div class='fragment'>
+
+```{python}
+df.isna()
+```
+
+## Daten bereinigen: Fehlende Werte
+### Deskriptive Analyse
+
+Ein typisches Analysemuster ist es, alle Zeilen (d.h. Beobahtungen) zu selektieren, die fehlende Werte enthalten.
+
+1. Wir identifizieren alle Elemente, die fehlende Werte enthalten, indem wir die Funktion `isna()` auf den gesamten Datensatz anwenden.
+
+2. Wir selektieren alle Zeilen, die fehlende Werte enthalten, indem wir die Funktion `any()` auf die Ergebnisse der Funktion `isna()` anwenden.
+
+<div class='fragment'>
+
+```{python}
+mask = df.isna().any(axis=1)  # mask = True, wenn Zeile fehlende Werte enthält
+mask.head()
+``` 
+
+## Daten bereinigen: Fehlende Werte
+### Deskriptive Analyse
+
+```{python}
+df[mask].head()
+```
+
+## Daten bereinigen: Fehlende Werte
+### Deskriptive Analyse
+
+Da wir keine weiteren Informationen zu den fehlenden Daten haben und auch keinen systematischen Fehler entdecken können, der zu den fehlenden Daten führt, werden wir die fehlenden Werte einfach entfernen. Dies können wir mit der Funktion `dropna()` erreichen. 
+
+```{python}
+df = df.dropna()
+df.info()
+```
+
+## Daten bereinigen: Duplikate
+### Deskriptive Analyse
+
+__Beispieldatensatz mit Duplikaten__
+
+```{python}
+# Erstelle Beispiel-Datensatz
+example = pd.DataFrame({'Spalte A': [1, 2, 3, 2, 4, 5],
+                   'Spalte B': ['Hund', 'Katze', 'Vogel', 'Katze', 'Fisch', 'Vogel'],
+                   'Spalte C': [19, 43, 1, 43, 127, 21]})
+example
+```
+
+## Daten bereinigen: Duplikate
+### Deskriptive Analyse
+
+- können die Methode `duplicated()` nutzen, um Duplikate in Zeilen eines DataFrames zu __identifizieren__. 
+
+- gibt eine Boolesche Reihe (True, False, True etc.) zurück, die angibt, ob eine Zeile ein Duplikat ist oder nicht
+
+- Standardmäßig werden dabei alle Spalten berücksichtigt, jedoch kann auch eine Teilmenge von Spalten angegeben werden, die bei der Suche nach Duplikaten berücksichtigt werden soll (via `subset`)
+
+- `keep` gibt an, welche Duplikate in der Ergebnisreihe enthalten sein sollen. Standardmäßig werden alle Duplikate außer dem ersten entfernt.
+
+::: {.panel-tabset}
+
+## Variante 1
+
+```{python}
+example.duplicated()
+```
+
+## Variante 2
+
+```{python}
+example.duplicated(keep=False)
+```
+
+## Variante 3
+
+```{python}
+example.duplicated(subset=['Spalte A', 'Spalte C'])
+```
+
+## Variante 4
+
+```{python}
+example.duplicated(subset=['Spalte A', 'Spalte C'], keep=False)
+```
+
+:::
+
+
+## Daten bereinigen: Duplikate
+### Deskriptive Analyse
+
+Wir müssen nun entscheiden, ob wir diesen Eintrag entfernen wollen oder nicht. In diesem Fall scheint es sinnvoll, den doppelten Eintrag zu entfernen, da wir in der Regel davon ausgehen, dass die Daten nur einmal erfasst wurden. Wir können dies mit der Methode `drop_duplicates()` tun. Diese entfernt standardmäßig die zweite Zeile einer doppelten Beobachtung. Wir können dies jedoch ebenfalls mit dem Parameter `keep` ändern (d.h. alle Duplikate entfernen oder nur die erste oder letzte Zeile).
+
+
+```{python}
+example.drop_duplicates()
+```
+
+## Daten bereinigen: Duplikate
+### Deskriptive Analyse
+
+<br>
+
+Lassen Sie uns nun analysieren, ob es überhaupt Duplikate in unserem Datensatz gibt uns dafür alle Spalten berücksichtigen. Mit der Funktion `sum()` können wir die Anzahl der Duplikate ermitteln.
+
+<br>
+
+```{python}
+df.duplicated().sum()
+```
+
+<br>
+
+> __Fazit__  
+> Es gibt `19` Duplikate in unserem Datensatz. Schauen wir uns diese an.
+
+
+## Aufgabe 4: Duplikate anzeigen
+### Deskriptive Analyse
+<br>
+
+- Schreiben Sie einen Code, der alle Duplikate in unserem Datensatz anzeigt.
+
+- lassen Sie die ersten 6 Zeilen ausgeben (d.h. die ersten 3 Duplikate)
+
+## Lösung 4: Duplikate anzeigen
+### Deskriptive Analyse
+<br>
+
+
+::: {.panel-tabset}
+
+## Unsortiert
+
+```{python}
+#| code-fold: true
+
+mask = df.duplicated(keep=False)
+df[mask].head(6)
+```
+
+## Sortiert
+```{python}
+#| code-fold: true
+
+mask = df.duplicated(keep=False)
+df[mask].sort_values('id').head(6)
+``` 
+
+
+:::
+
+
+
+## Daten bereinigen: Duplikate
+### Deskriptive Analyse
+
+
+In unserem Falle erscheint es sinnvoll, die Duplikate zu entfernen. Wir können dies mit der Funktion `drop_duplicates()` tun. Diese Funktion entfernt standardmäßig die zweite Zeile einer doppelten Beobachtung. Wir können dies jedoch ebenfalls mit dem Parameter `keep` ändern (d.h. alle Duplikate entfernen oder nur die erste oder letzte Zeile).
+
+<div class='fragment'>
+
+<br>
+
+```{python}
+df = df.drop_duplicates()
+```
+
+<div class='fragment'>
+<br>
+
+Wir können nun nochmals überprüfen, ob es noch Duplikate gibt und stellen fest, dass unsere Daten nun auf Dopplungen bereinigt sind.
+
+```{python}
+df.duplicated().any()
+```
+
+
+## Falsche Werte
+### Deskriptive Analyse
+
+Ein wichtiger Schritt bei der Datenbereinigung ist die Überprüfung der Daten auf (offensichtlich) falsche Werte. Nicht immer ist bereits bei der Aufbereitung der Daten erkennbar, ob ein Wert plausibel ist oder nicht. Häufig werden falsche Werte erst bei der Analyse der Daten sichtbar. Jedoch können und sollten einige Plausibilitätsprüfungen bereits bei der Aufbereitung der Daten durchgeführt werden. 
+
+Im vorliegenden Datensatz können wir z.B. folgende __Plausibilitätsprüfungen__ durchführen:
+
+<div class='fragment'>
+
+:one: Ist der Wert der Spalte `id` eindeutig?
+
+<div class='fragment'>
+
+:two: Sind die Werte für Kosten (`kosten_plan` und `kosten_ist`) plausibel, d.h. sind die Kosten positiv (bzw. haben alle das gleiche Vorzeichen)?
+
+<div class='fragment'>
+
+:three: Sind die Werte für die Datumsspalten (`beginn`, `ende_plan` und `ende_ist`) plausibel, d.h. (i) liegen die Werte in der Vergangenheit und (ii) ist das Enddatum nach dem Startdatum? 
+
+## Falsche Werte: Eindeutigkeit der ID
+### Deskriptive Analyse
+
+<br>
+
+<br>
+
+<center>
+Wie können wir überprüfen, ob die `id` eindeutig ist?
+</center>
+
+
+## Falsche Werte: Eindeutigkeit der ID
+### Deskriptive Analyse
+
+__Vorgehen:__
+
+- gib die Anzahl der eindeutigen Werte der Spalte `id` aus
+
+- vergleiche die Anzahl der eindeutigen Werte mit der Anzahl der Zeilen des Datensatzes
+
+<div class='fragment'>
+
+__In Python:__
+
+
+```{python}
+unique_ids = df['id'].unique()
+```
+
+<div class='fragment'>
+
+<br>
+
+Wir können nun überprüfen, ob die Anzahl der eindeutigen Werte der Anzahl der Zeilen entspricht.
+
+```{python}
+len(unique_ids) == len(df)
+```
+
+Da der Wert `True` zurückgegeben wird, ist die `id` eindeutig und wir können uns sicher sein, dass keine Projekt-ID mehrfach vergeben wurde.
+
+
+## Falsche Werte: Kosten
+### Deskriptive Analyse
+
+
+Sind die Werte für Kosten (`kosten_plan` und `kosten_ist`) plausibel, d.h. sind die __Kosten positiv__ (bzw. haben alle das gleiche Vorzeichen)?
+
+__Variante 1__
+
+
+```{.python}
+# Mit "mask" arbeiten
+mask = df['kosten_plan'] < 0
+df[mask]
+
+# Ohne "mask" arbeiten
+df[df['kosten_plan'] < 0]
+```
+
+<br> 
+
+__Variante 2__
+
+```{.python}
+# Datensatz nach Bedingung filtern
+df.query('kosten_plan < 0')
+```
+
+## Falsche Werte: Kosten
+### Deskriptive Analyse
+
+Der einfachste Weg, die Zeilen mit negativen Vorzeichen zu eliminieren, ist es den Datensatz mit `query` zu filtern. Wir können die Bedingung `kosten_plan >= 0` nutzen, um alle Zeilen auszugeben, die einen positiven Kostenwert haben.
+
+```{python}
+df = df.query('kosten_plan >= 0')
+```
+
+<div class='fragment'>
+
+<br>
+
+Wir könnten nun die gleiche Überprüfung für die Spalte `kosten_ist` durchführen. Stattdessen filtern wir aber alle Zeilen, die einen negativen Kostenwert haben, aus dem Datensatz heraus. 
+
+```{python}
+df = df.query('kosten_ist >= 0')
+```
+
+<div class='fragment'>
+
+<br>
+
+Wir hätten die beiden letzten Schritte auch in einem Schritt durchführen können, indem wir die Bedingungen mit einem `&` verknüpft hätten. 
+
+```{.python}
+df = df.query('kosten_plan >= 0 & kosten_ist >= 0')
+```
+
+## Falsche Werte: Datum
+### Deskriptive Analyse
+
+Bei der nun folgenden Überprüfung kommt uns zugute, dass wir die Spalten bereits in den Datentyp `datetime` konvertiert haben. Wir können nun die Werte für die Spalten `beginn`, `ende_plan` und `ende_ist` miteinander vergleichen. 
+
+Wir können zwei Überprüfungen durchführen:
+
+1. Sind alle Projekte bereits beendet?
+
+2. Liegt das Datum für `ende_ist` nach dem Datum für `beginn`?
+
+
+## Falsche Werte: Datum
+### Deskriptive Analyse
+
+__1. Sind alle Projekte bereits beendet?__
+
+```{python}
+df['ende_ist'].max()
+```
+
+Das letzte Projekt wurde in der Vergangeheit beendet, d.h. wir können sicher sein, dass alle Projekte bereits beendet sind (und somit annehmen, dass auch alle Kosten bereits berücksichtigt wurden). 
+
+## Falsche Werte: Datum
+### Deskriptive Analyse
+
+__2. Liegt das Datum für `ende_ist` nach dem Datum für `beginn`?__
+
+```{python}
+df.query('ende_ist <= beginn').head()
+```
+
+## Falsche Werte: Datum
+### Deskriptive Analyse
+
+__Findings__
+
+- es handelt sich ausschließlich um Projekte, die am gleichen Tag begonnen und beendet wurden. 
+
+- prinzipiell nicht ausgeschlossen, jedoch erscheint dies - zumindest für einige Projekte - sehr unwahrscheinlich, da gleichzeitig hohe Kosten veranschlagt wurden, was auf eine längere Projektlaufzeit schließen lässt. 
+
+<div class='fragment'>
+
+__Was tun?__
+
+- da wir uns in diesem Fall nicht sicher sind, ob die Daten korrekt sind, werden wir die Projekte nicht eliminieren. 
+
+- aber: fügeneine neue Spalte hinzu, die die Dauer des Projektes in Tagen angibt. Wir können dann im Rahmen unserer Analyse die Projekte mit einer Projektdauer von 0 Tagen herausfiltern und analysieren, ob dies unsere Ergebnisse beeinflusst. 
+
+```{python}
+df['dauer'] = df['ende_ist'] - df['beginn']
+```
+
+## One more thing: Index zurücksetzen
+### Deskriptive Analyse
+
+__Index des Datensatzes via `reset_index()` zurücksetzen__
+
+- Saubere Indizierung: reset_index() stellt eine fortlaufende und eindeutige Indizierung sicher, insbesondere nach Sortierung, Filterung oder Gruppierung.
+
+- Vermeidung von Fehlern: Durch das Zurücksetzen des Index werden mögliche Fehler vermieden, die durch inkonsistente oder fehlende Indexwerte entstehen können.
+
+<br>
+
+<div class='fragment'>
+
+__In Python:__
+
+```{python}
+df = df.reset_index(drop=True)
+```
+
+- `drop=True` sorgt dafür, dass die alte Index-Spalte nicht mit in den Datensatz übernommen wird.
+
+
+## Bereinigter Datensatz
+### Deskriptive Analyse
+
+```{python}
+df.head()
+```
+
+
+
+
+
+## Übersicht genutzter Funktionen
+### Deskriptive Analyse
+
+Wir haben nun einige wesentliche und offensichtliche Aufbereitugnsschritte durchlaufen und können mit der eigentlichen Analyse der Daten beginnen. 
+
+Es wurden folgende Funktionen und Methoden genutzt:
+
+- `read_csv()`: Einlesen der Daten
+- `head()`: Anzeigen der ersten Zeilen
+- `tail()`: Anzeigen der letzten Zeilen
+- `info()`: Anzeigen der Datentypen und der Anzahl der nicht fehlenden Werte
+- `rename()`: Umbenennen der Spalten
+- `to_datetime()`: Konvertieren der Spalten in den Datentyp `datetime`
+- `isna()`: Überprüfen, ob Werte fehlen
+- `any()`: Überprüfen, ob Spalte oder Zeile `False` enthält
+- `dropna()`: Eliminieren von Zeilen mit fehlenden Werten
+- `duplicated()`: Überprüfen, ob es Duplikate gibt
+- `drop_duplicates()`: Eliminieren von Duplikaten
+- `unique()`: Ermitteln der einzigartigen Werte
+- `query()`: Filtern von Zeilen nach Bedingung
+- `max()`: Ermitteln des höchsten Wertes
+
+
+## Quellen
+### 
+
+<br>
+
+::: {#refs}
+:::

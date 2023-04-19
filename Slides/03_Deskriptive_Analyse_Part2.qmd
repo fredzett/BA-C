@@ -1,0 +1,1210 @@
+---
+title: "Business Analytics" 
+subtitle:  "~~03~~ | Deskriptive Analyse - Part 2"
+author: "Prof. Dr. Felix Zeidler | FH Bielefeld | SoSe 2023"
+lang: "De"
+format: 
+    revealjs: 
+        theme: [simple, custom.scss]
+        toc: true
+        toc-title: "Inhaltsverzeichnis"
+        toc-depth: 1
+        number-sections: true
+        number-depth: 1
+        preview-links: true
+        reference-location: block
+        tbl-colwidths: auto
+        tbl-cap-location: bottom
+        code-copy: hover
+from: markdown+emoji 
+execute: 
+  echo: true
+  output: true
+  code-fold: show
+slide-number: c/t
+jupyter: py39
+---
+
+## Lernziele 
+### Deskriptive Analyse
+
+<br>
+
+
+<div class='fragment'>
+
+:one: Programmierkonzept: __"Bedingte Anweisungen"__
+
+<div class='fragment'>
+
+:two: BA-Prozess: Transformieren von Daten
+
+<div class='fragment'>
+
+:three: BA-Prozess: Visualisierung von Daten
+
+
+# Programmierkonzept: "Bedingte Anweisungen"
+
+## Wofür benötigen wir bedingte Anweisungen?
+### Bedingte Anweisungen
+
+
+__Wieso benötigen wir bedingte Anweisungen?__
+
+- __Entscheidungen treffen:__ Bedingte Anweisungen (If-Statements) helfen uns, in einem Programm unterschiedliche Aktionen auszuwählen, je nachdem, ob bestimmte Bedingungen erfüllt sind oder nicht.
+
+- __Anpassung an Situationen:__ If-Statements ermöglichen es, Programme zu erstellen, die flexibel auf verschiedene Situationen reagieren und sich an unterschiedliche Bedingungen anpassen können.
+
+- __Einfache Logik:__ Bedingte Anweisungen bieten eine leicht verständliche Möglichkeit, um in Programmen logische Zusammenhänge und Abhängigkeiten zwischen Daten und Aktionen abzubilden, was für die Entwicklung von vielfältigen und nützlichen Anwendungen erforderlich ist.
+
+> __Hinweis:__ bedingte Anweisungen werden auch als __if-Statements__ bezeichnet.
+
+## Wie funktionieren bedingte Anweisungen?
+### Bedingte Anweisungen
+
+__Wie funktionieren bedingte Anweisungen?__
+
+- __Bedingung:__ Wenn eine Bedingung erfüllt ist, wird ein bestimmter Codeblock ausgeführt. Wenn die Bedingung nicht erfüllt ist, wird ein anderer Codeblock ausgeführt.
+
+
+<div class='fragment'>
+
+<br>
+
+:::{.column width='45%'}
+
+
+#### __Syntax:__
+
+```{.python}
+if Bedingung_1:
+    Aktion_A
+
+elif Bedingung_2:
+    Aktion_B
+...
+else:
+    Aktion_Z
+
+```
+:::
+
+::: {.column width='8%'}
+
+:::
+::: {.column width='45%'}
+
+#### Kommentar
+
+- `if`: Startet die If-Anweisung und prüft die erste Bedingung.
+- Bedingung: Ein Ausdruck, der entweder `True` oder `False` ergibt.
+- Codeblock: Eingerückter Abschnitt, der bei erfüllter Bedingung ausgeführt wird.
+- `elif`: Prüft (optional) zusätzliche Bedingungen, falls vorherige nicht erfüllt sind. 
+- `else`: Definiert Aktionen, wenn keine der Bedingungen erfüllt ist.
+
+:::
+
+
+## Beispiel: Bedingte Anweisungen
+### Bedingte Anweisungen
+
+__Beispiel: Bedingte Anweisungen__
+
+Wir wollen auf Basis der Einnahmen und Ausgaben eines Unternehmens den Gewinnstatus des Unternehmens bestimmen und automatisiert ausgeben.
+
+In diesem Szenario könnten Sie eine bedingte Anweisung verwenden, um den Gewinnstatus des Unternehmens basierend auf den Einnahmen und Ausgaben zu ermitteln:
+
+<div class='fragment'>
+
+<br>
+
+```{.python}
+einnahmen = 50_000  # Die Einnahmen des Unternehmens in diesem Quartal
+ausgaben = 55_000   # Die Ausgaben des Unternehmens in diesem Quartal
+
+if einnahmen > ausgaben:
+    print("Das Unternehmen hat in diesem Quartal Gewinn gemacht.")
+elif einnahmen == ausgaben:
+    print("Das Unternehmen hat in diesem Quartal weder Gewinn noch Verlust gemacht.")
+else:
+    print("Das Unternehmen hat in diesem Quartal Verlust gemacht.")
+```
+
+## Arten von Bedingungen 
+### Bedingte Anweisungen
+
+In Python können __verschiedene Arten von Bedingungen__ geprüft werden, dazu gehören:
+
+
+::: {.column width='45%'}
+
+__:one: Vergleichsoperatoren:__
+
+- Gleichheit: `a == b`
+- Ungleichheit: `a != b`
+- Größer als: `a > b`
+- Kleiner als: `a < b`
+- Größer oder gleich: `a >= b`
+- Kleiner oder gleich: `a <= b`
+
+__:three: Logische Operatoren:__
+
+- Logisches UND (AND): `a and b`
+- Logisches ODER (OR): `a or b`
+- Logisches NICHT (NOT): `not a`
+
+:::
+
+::: {.column width='8%'}
+
+:::
+
+::: {.column width='45%'}
+
+
+
+__:two: Prüfung auf Mitgliedschaft:__
+
+- Element in einer Liste oder einem anderen Container: `x in container`
+- Element nicht in einer Liste oder einem anderen Container: `x not in container`
+
+<br>
+<br>
+
+__:four: Prüfung auf Identität:__
+
+- Identität: `a is b`
+- Nicht identisch: `a is not b`
+
+:::
+
+
+## Aufgabe 1: Bedingte Anweisungen
+### Bedingte Anweisungen
+
+Schreiben Sie eine Funktion, die basierend auf dem jährlichen Einkommen einer Person den entsprechenden Steuersatz berechnet und die zu zahlende Steuer zurückgibt. Dabei sollen Sie bedingte Anweisungen verwenden, um unterschiedliche Steuersätze für verschiedene Einkommensstufen zu berücksichtigen.
+
+__Anforderungen:__
+
+1. Erstellen Sie eine Funktion namens `berechne_steuern`, die das jährliche Einkommen als Parameter akzeptiert.
+
+2. Verwenden Sie bedingte Anweisungen, um den Steuersatz basierend auf dem Einkommen zu bestimmen:
+   - Einkommen bis 14.000 Euro: Steuersatz von 12%
+   - Einkommen zwischen 14.001 und 55.000 Euro: Steuersatz von 24%
+   - Einkommen zwischen 55.001 und 200.000 Euro: Steuersatz von 42%
+   - Einkommen über 200.000 Euro: Steuersatz von 45%
+
+3. Der Steuersatz gilt für das gesamte Einkommen. 
+
+4. Geben Sie die berechnete Steuer zurück.
+
+__Beispiel:__
+
+```{.python}
+steuer = berechne_steuern(100_000)
+print(steuer) # Sollte 42% * 100_000 = 42_000 zurückgeben
+```
+
+## Lösung 1: Bedingte Anweisungen
+### Bedingte Anweisungen
+
+__Lösung:__
+
+```{python}
+#| code-fold: true
+#| output: false
+def berechne_steuern(einkommen):
+    if einkommen <= 14000:
+        steuersatz = 0.12
+    elif einkommen <= 55000:
+        steuersatz = 0.24
+    elif einkommen <= 200000:
+        steuersatz = 0.42
+    else:
+        steuersatz = 0.45
+
+    steuer = einkommen * steuersatz
+    return steuer
+
+# Beispiel: Berechnung der Steuer für ein Einkommen von 60.000 Euro
+steuer = berechne_steuern(60000)
+```
+
+
+## Aufgabe 2: Bedingte Anweisungen
+### Bedingte Anweisungen
+
+__Aufgabe:__
+
+1. Erstellen Sie eine Funktion namens `bestimme_kundenbindung`, die den jährlichen Umsatz eines Kunden und die Anzahl der Transaktionen in den letzten drei Jahren als Parameter akzeptiert.
+
+2. Überprüfen Sie, ob der übergebene Umsatz ein numerischer Wert größer oder gleich 0 und die Anzahl der Transaktionen ein numerischer Wert größer oder gleich 1 ist. Ist dies nicht der Fall, geben Sie die Nachricht "Ungültige Eingabe! Bitte geben Sie gültige Werte für Umsatz und Transaktionsanzahl ein." zurück.
+
+3. Verwenden Sie bedingte Anweisungen, um die Kundenbindungskategorie basierend auf dem Umsatz und der Transaktionsanzahl zu bestimmen:  
+      - Umsatz bis 1.000 Euro und weniger als 10 Transaktionen: "Bronze"
+      - Umsatz zwischen 1.001 und 5.000 Euro oder 10 bis 29 Transaktionen: "Silber"
+      - Umsatz zwischen 5.001 und 10.000 Euro oder 30 bis 59 Transaktionen: "Gold"
+      - Umsatz über 10.000 Euro oder 60 oder mehr Transaktionen: "Platin"
+
+4. Geben Sie die ermittelte Kundenbindungskategorie zurück.
+
+__Beispiel:__
+
+```{.python}
+bestimme_kundenbindung(7000, 40) # Sollte "Gold" ausgeben
+bestimee_kundenbindung(7000, 3) # Sollte "Gold" ausgeben
+bestimme_kundenbindung(-100, 0) # Sollte "Ungültige Eingabe!..." ausgeben 
+```
+
+## Lösung 2: Bedingte Anweisungen
+### Bedingte Anweisungen
+
+```{python}
+#| code-fold: true
+#| output: false
+
+def bestimme_kundenbindung(umsatz, transaktionen):
+
+    if umsatz < 0 or transaktionen < 1:
+        return "Ungültige Eingabe! Bitte geben Sie gültige Werte für Umsatz und Transaktionsanzahl ein."
+
+    if umsatz <= 1000 and transaktionen < 10:
+        kategorie = "Bronze"
+    elif (umsatz > 1000 and umsatz <= 5000) or (transaktionen >= 10 and transaktionen < 30):
+        kategorie = "Silber"
+    elif (umsatz > 5000 and umsatz <= 10000) or (transaktionen >= 30 and transaktionen < 60):
+        kategorie = "Gold"
+    else:
+        kategorie = "Platin"
+
+    return kategorie
+
+# Beispiel: Berechnung der Kundenbindungskategorie für 7.000 Euro Umsatz und 40 Transaktionen
+kategorie = bestimme_kundenbindung(7000, 40)
+print(kategorie)  # Sollte "Gold" ausgeben
+```
+
+::: {.notes}
+
+- `or` sorgt dafür, dass eine der beiden Bedingungen erfüllt sein muss, damit die gesamte Bedingung erfüllt ist.
+
+Beispiel:
+
+False or True = True
+
+
+:::
+
+
+# BA-Prozess: Transformieren und Visualisieren 
+
+## Business Analytics Prozess: Transformieren und Visualisieren   
+### Deskriptive Analyse
+
+<div class='fragment'>
+
+<br>
+<br>
+
+![](_assets/Analyse_Prozess_Descriptive.svg){fig-align="center"}
+
+
+## Datensatz nach Aufbereitung: Code
+### Deskriptive Analyse
+
+__Recap: Aufbereitung des Datensates__
+
+```{python}
+#| output: false
+import pandas as pd 
+link = "https://www.dropbox.com/s/ov6mnmgzrydquie/Construction.csv?dl=1"
+df = (pd.read_csv(link)
+      .rename(columns={'Project_ID': 'id', 
+                        'Name Projekt': 'name',
+                        'projekt_Beginn': 'beginn',
+                        'Plan Bau fertig': 'ende_plan',
+                        'Fertig_IST': 'ende_ist',
+                        'Kosten Plan': 'kosten_plan',
+                        'Ist_Kosten': 'kosten_ist',
+                        'Project_team': 'team'})
+      .astype({"beginn": "datetime64", "ende_plan": "datetime64", "ende_ist": "datetime64"})
+      .dropna()
+      .drop_duplicates()
+      .query('kosten_ist >= 0 & kosten_plan >= 0')
+      .reset_index(drop=True))
+```
+
+## Datensatz nach Aufbereitung: Auszug der Daten
+### Deskriptive Analyse
+
+|   | id        | name                                 | beginn     | ende_plan  | ende_ist   | kosten_plan | kosten_ist | team   | dauer   |
+|---|-----------|--------------------------------------|------------|------------|------------|-------------|------------|--------|---------|
+| 0 | HN-399443 | Straßenbau // Jennifer-Buchholz-Ring | 2014-09-01 | 2014-10-03 | 2014-10-02 | 219817.40   | 246192.34  | Team 3 | 31 days |
+| 1 | UD-626094 | Elektroarbeiten // Langernstraße     | 2021-06-12 | 2021-08-16 | 2021-09-18 | 105683.14   | 144657.38  | Team 3 | 98 days |
+| 2 | IO-468103 | Spielplatz // Dussen vanweg          | 2016-05-20 | 2016-06-29 | 2016-06-27 | 129851.26   | 136753.06  | Team 1 | 38 days |
+| 3 | OG-758899 | Stadtpark // Lübsstr.                | 2014-11-11 | 2014-12-30 | 2015-01-28 | 181236.83   | 273996.91  | Team 2 | 78 days |
+| 4 | CZ-107835 | Elektroarbeiten // Försterweg        | 2017-07-25 | 2017-10-08 | 2017-10-08 | 75205.92    | 77519.27   | Team 4 | 75 days |
+
+## Schritte Transformation und Visualisierung
+### Deskriptive Analyse
+
+
+
+## Transformation des Datensatzes
+### Deskriptive Analyse
+
+Die Transformation der Daten ist der Schritt im Business-Analytics-Prozess, bei dem bestehende Daten analysiert, neue Informationen generiert und der Datensatz so bearbeitet wird, dass er zur Beantwortung der Problemstellung hilfreich ist. Dies kann durch Aggregation, Gruppierung und Filterung von Daten sowie durch das Berechnen neuer Daten aus bestehenden Informationen erfolgen.
+
+__Wichtigkeit der Transformation:__
+
+- __Erkenntnisgewinn__: Die Transformation von Daten ermöglicht es, neue Erkenntnisse aus den vorhandenen Daten zu gewinnen und hilft bei der Beantwortung der ursprünglichen Problemstellung.
+
+- __Informationsverdichtung__: Durch Aggregation und Gruppierung von Daten können komplexe Datensätze auf übersichtliche und relevante Informationen reduziert werden.
+Bessere Analyse: Die Transformation von Daten verbessert die Qualität der Analyse, da sie sicherstellt, dass nur relevante Informationen und Zusammenhänge untersucht werden.
+Basis für Visualisierung und Modellierung: Die Transformation von Daten bildet die Grundlage für anschließende Schritte, wie die Visualisierung und das Modellieren, indem sie die benötigten Daten in einer geeigneten Form bereitstellt.
+
+- __Entscheidungsunterstützung__: Durch die Transformation von Daten können Entscheidungsträger fundierte Entscheidungen auf Basis der gewonnenen Erkenntnisse treffen.
+
+## Neue Daten aus bestehenden Informationen berechnen
+### Deskriptive Analyse
+
+> __Zur Erinnerung__ :bulb:
+> 
+> Problemstellung: Projekte dauern länger als geplant und kosten mehr als geplant. 
+
+<br>
+
+<div class='fragment'>
+
+__Neue Informationen werden benötigt__
+
+<div class='fragment'>
+
+- Verzögerung: z.B. zeitliche Überschreitung der Projekte ggü. dem Plan in Tagen
+
+<div class='fragment'>
+
+- Kostenüberschreitung: z.B. finanzielle Überschreitung der Projekte ggü. dem Plan in Euro
+
+<div class='fragment'>
+
+- Verzögerung in Prozent: z.B. zeitliche Überschreitung der Projekte ggü. dem Plan in Prozent
+
+<div class='fragment'>
+
+- Kostenüberschreitung in Prozent: z.B. finanzielle Überschreitung der Projekte ggü. dem Plan in Prozent
+
+
+## Neue Spalten einem Dataframe hinzufügen
+### Deskriptive Analyse
+
+Neue Spalten können auf verschiedene Arten erstellt werden. Zwei typische Vorgehen sind:
+
+<div class='fragment'>
+
+<br>
+
+__Neue Spalte mit `[]`__
+
+```{.python}
+df["Spalte_neu"] = df["Spalte_alt"] + 1
+```
+
+
+<div class='fragment'>
+<br>
+
+__Neue Spalte mit `assign()`__
+
+```{.python}
+df = df.assign(Spalte_neu = df["Spalte_alt"] + 1)
+```
+
+## Neue Spalten einem Dataframe hinzufügen: `.assign()`
+### Deskriptive Analyse
+
+Die Funktion `.assign()` hat gegenüber der Verwendung von `[]` insbesondere den Vorteil, dass sie 
+
+1. mehrere Spalten gleichzeitig erstellen kann.
+   
+2. im Rahmen einer Kette von Operationen verwendet werden kann.
+
+<div class='fragment'>
+
+__Beispiel__
+
+```{.python}
+df = df.assign(Spalte_neu_1 = df["Spalte_alt_1"] + 1,
+               Spalte_neu_2 = df["Spalte_alt_2"] + 1, 
+               Spalte_neu_3 = df["Spalte_alt_3"] + df["Spalte_alt_4"])
+```
+
+<div class='fragment'>
+
+<br>
+
+__vs. __
+
+<br>
+
+```{.python}
+df["Spalte_neu_1"] = df["Spalte_alt_1"] + 1
+df["Spalte_neu_2"] = df["Spalte_alt_2"] + 1
+df["Spalte_neu_3"] = df["Spalte_alt_3"] + df["Spalte_alt_4"]
+```
+
+
+
+## Aufgabe 1: Neue Spalten erstellen
+### Deskriptive Analyse
+
+
+__Fügen Sie dem Datensatz folgende Informationen hinzu:__
+
+
+- geplante Dauer 
+- tatsächliche Dauer
+- absolute Verzögerung 
+- relative Verzögerung in Prozent
+- absolute Kostenüberschreitung
+- relative Kostenüberschreitung in Prozent
+
+<br>
+
+> __Hinweis:__ 
+>
+> - Achten Sie auf sinnvolle und aussagekräftige Bezeichnungen der neuen Spalten.
+> - wandeln Sie die Ergebnisse via `dt.days` in ganze Tage um (für weitere Berechnungen hilfreich).
+> - nutzen Sie die `[ ]`-Notation 
+
+## Lösung 1: Neue Spalten erstellen
+### Deskriptive Analyse
+
+<div class='fragment'>
+
+<br>
+
+__Lösung__
+
+```{python}
+df["dauer_plan"] = (df["ende_plan"] - df["beginn"]).dt.days
+df["dauer_ist"] = (df["ende_ist"] - df["beginn"]).dt.days
+df["verzögerung_abs"] = (df["ende_ist"] - df["ende_plan"]).dt.days
+df["verzögerung_rel"] = df["verzögerung_abs"] / (df["dauer_plan"] + 1) * 100
+df["kostenüberschreitung_abs"] = df["kosten_ist"] - df["kosten_plan"]
+df["kostenüberschreitung_rel"] = df["kostenüberschreitung_abs"] / (df["kosten_plan"]) * 100
+
+```
+
+<div class='fragment'>
+
+<br>
+
+__Hinweis__
+
+- `dt.days` wandelt die Differenz in ganze Tage um und konvertiert den Datentyp in `int`
+
+- `+ 1` wird addiert, um den Fall zu berücksichtigen, dass ein Projekt am selben Tag beginnt und endet (Dauer = 0 Tage)
+
+
+## Fortgeschrittenere Lösung 1: Neue Spalten erstellen (via `.assign()`)
+### Deskriptive Analyse
+
+<div class='fragment'>
+
+<br>
+
+__Lösung mit `assign()`__
+
+```{.python code-line-numbers="4|6"}
+df = df.assign(dauer_plan = (df["ende_plan"] - df["beginn"]).dt.days,
+               dauer_ist = (df["ende_ist"] - df["beginn"]).dt.days,
+               verzögerung_abs = (df["ende_ist"] - df["ende_plan"]).dt.days,
+               verzögerung_rel = lambda _df: _df["verzögerung_abs"] / (_df["dauer_plan"] + 1) * 100,
+               kostenüberschreitung_abs = df["kosten_ist"] - df["kosten_plan"],
+               kostenüberschreitung_rel = lambda _df: _df["kostenüberschreitung_abs"] / (_df["kosten_plan"]) * 100)
+```
+
+<div class='fragment'>
+
+<br>
+
+__Hinweis zu `lambda`__
+
+- `verzögerung_rel` und `kostenüberschreitung_rel` werden mit `lambda` berechnet, da sie auf Spalten basieren, die erst innerhalb des `assign()`-Aufrufs erstellt werden und somit im Dataframe `df` noch nicht existieren.
+
+- Grundkonzept von `lambda`: Anonyme, inline-definierte Funktionen, die für kurze, einmalige Berechnungen verwendet werden.
+
+- Verzögerte Berechnung: `lambda` ermöglicht den Zugriff auf neu erstellte Spalten im assign-Aufruf.
+
+- `df`: ist ein temporärer DataFrame innerhalb der lambda-Funktion, wobei jede andere Bezeichnung auch verwendet werden könnte.
+
+
+## Neue Spalten aus Text extrahieren
+### Deskriptive Analyse
+
+Eine häufige Aufgabe ist es, Text-Spalten zu transformieren, z.B. um Informationen aus dem Text zu extrahieren.
+
+<div class='fragment'>
+
+__Beispiel:__ Der Name des Projektes setzt sich zusammen aus der Art des Projektes und dem Ort des Projektes (Straßenname). Die Art des Projektes könnte uns interessieren und für weitere Analyse nützlich sein.
+
+<div class='fragment'>
+
+<br>
+
+__Lösung:__ Wir extrahieren die Art des Projektes aus dem Namen des Projektes.
+
+<div class='fragment'>
+
+```{python}
+df["art"] = df["name"].str.split("//").str[0]
+```
+
+- `df["name"].str.split("//")`: Wir teilen den Text in der Spalte `name` anhand des Zeichens `//` in zwei Teile auf.
+
+- `.str[0]`: Wir wählen den ersten Teil aus.
+
+- `df["art"] = ...`: Wir speichern den ersten Teil in der Spalte `art`.
+
+
+
+
+## Umgang mit Ausreißern
+### Deskriptive Analyse
+
+
+> __Ausreißer__ 
+> 
+> Werden auch als Outlier bezeichnet und sind Beobachtungen oder Datenpunkte, die sich deutlich von anderen Werten in einer Datensammlung unterscheiden. Sie können auf Messfehler, Zufallsvariationen oder tatsächliche Abweichungen in der zugrunde liegenden Verteilung zurückzuführen sein und können die statistische Analyse beeinflussen, wenn sie nicht angemessen berücksichtigt werden.
+
+<div class='fragment'>
+
+<br>
+
+__Identifikation von Ausreißern:__ unter andem z.B. durch
+
+- __Deskriptive Statistiken:__ Berechnung von Maßen wie Mittelwert, Median, Quartile, um erste Anzeichen von Ausreißern zu erkennen.
+
+- __Visualisierung:__ Erstellen von Boxplots, Histogrammen oder Streudiagrammen, um Verteilungen und mögliche Ausreißer visuell zu erfassen.
+
+- __Z-Scores:__ Berechnung von Z-Scores (Standardabweichungen vom Mittelwert), um extreme Werte in Bezug auf die Streuung der Daten zu identifizieren.
+
+
+## Identifikation von Ausreißern: deskriptive Statistiken
+### Deskriptive Analyse
+
+```{python}
+#| output: false
+cols = ["verzögerung_abs", "verzögerung_rel", 
+        "kostenüberschreitung_abs", "kostenüberschreitung_rel"]
+df[cols].describe()
+```
+
+<br>
+
+<div class='fragment'>
+
+```{python}
+#| echo: false
+
+from IPython.display import Markdown
+from tabulate import tabulate
+cols = ["verzögerung_abs", "verzögerung_rel", "kostenüberschreitung_abs", "kostenüberschreitung_rel"]
+tbl = df[cols].describe()#.to_markdown()
+Markdown(tabulate(tbl, headers="keys", tablefmt="pipe", floatfmt=",.2f"))
+```
+
+<div class='fragment'>
+
+<br>
+
+> __Finding:__
+> Hohe Mittelwerte (im Vergleich zum Median) und Standardabweichungen deuten auf mögliche Ausreißer hin.
+
+## Identifikation von Ausreißern: deskriptive Statistiken
+### Deskriptive Analyse
+
+__Beispiel:__ Beobachtung mit den drei größten absoluten Kostenüberschreitung
+
+```{.python code-line-numbers="1"}
+rows = df["kostenüberschreitung_abs"].nlargest(3).index
+cols = ["id", "name", "kosten_plan", 
+        "kosten_ist", "kostenüberschreitung_abs", "kostenüberschreitung_rel"]
+df.loc[rows, cols]
+```
+
+<br>
+
+```{python}
+#| echo: false
+rows = df["kostenüberschreitung_abs"].nlargest(3).index
+cols = ["id", "name", "kosten_plan", "kosten_ist", "kostenüberschreitung_abs", "kostenüberschreitung_rel"]
+tbl = df.loc[rows, cols]
+Markdown(tabulate(tbl, headers="keys", tablefmt="pipe", floatfmt=",.2f"))
+```
+
+<br>
+
+> __Finding:__
+> Kostenüberschreitungen von über 1 Mrd. EUR erscheinen unplausibel.
+
+
+## Aufgabe: Beobachtungen mit den drei größten absoluten Verzögerungen
+### Deskriptive Analyse
+
+Extrahieren Sie die Beobachtungen mit den `drei größten relativen Verzögerungen` und geben Sie die folgenden Spalten aus:
+
+- `id`
+-  `name`
+-  `dauer_plan`
+-  `dauer_ist`
+- `verzögerung_abs`
+-  `verzögerung_rel`
+
+## Lösung: Beobachtungen mit den drei größten relativen Verzögerungen
+### Deskriptive Analyse
+
+__Beispiel:__ Beobachtung mit den `drei größten relativen Verzögerungen`
+
+```{.python code-line-numbers="1"}
+rows = df["verzögerung_rel"].nlargest(3).index
+cols = ["id", "name", "dauer_plan", 
+        "dauer_ist", "verzögerung_abs", "verzögerung_rel"]
+df.loc[rows, cols]
+```
+
+<br>
+
+```{python}
+#| echo: false
+rows = df["verzögerung_rel"].nlargest(3).index
+cols = ["id", "name", "dauer_plan", 
+        "dauer_ist", "verzögerung_abs", "verzögerung_rel"]
+tbl = df.loc[rows, cols]
+Markdown(tabulate(tbl, headers="keys", tablefmt="pipe", floatfmt=",.2f"))
+```
+
+<div class='fragment'>
+
+<br>
+
+> __Finding:__
+> Die größten relativen Verzögerungen betreffen Projekte mit einer relativ kurzen Dauer und sind somit durchaus plausibel.
+
+
+
+## Behandlung von Ausreißern
+### Deskriptive Analyse
+
+__Behandlung von Ausreißern:__ unter anderem z.B. durch
+
+- __Ausreißer entfernen:__ Entfernen von Ausreißern, wenn sie auf Messfehler zurückzuführen sind.
+
+- __Ausreißer ersetzen:__ Ersetzen von Ausreißern durch andere Werte, z.B. durch den Median oder den Mittelwert.
+
+- __Ausreißer ignorieren:__ Ignorieren von Ausreißern, wenn sie auf tatsächliche Abweichungen in der zugrunde liegenden Verteilung zurückzuführen sind.
+
+## Behandlung von Ausreißern
+### Deskriptive Analyse
+
+In unserem Falle ist teilweise nicht klar, ob die Ausreißer auf Messfehler oder tatsächliche Abweichungen in der zugrunde liegenden Verteilung zurückzuführen sind. Beispiel:
+
+- __Kostenüberschreitung:__ Die Kostenüberschreitung von über 1 Mrd. EUR erscheint auf den ersten Blick als Eingabe- bzw. Messfehler. 
+
+- __Verzögerung:__ Die größten relativen Verzögerungen betreffen Projekte mit einer relativ kurzen Dauer und sind durchaus plausibel. Allerdings gibt es auch Projekte, bei denen die Dauer signifikant unterschritten wird (dauer_ist = 0)
+
+<div class='fragment'>
+
+:arrow_right: In unserem Beispieldatensatz werden wir die Ausreißer deshalb entfernen.
+
+<br>
+
+<div class='fragment'>
+
+> __Wichtig__:  
+> Entscheidung über die Behandlung von Ausreißern sollte immer im Kontext der zugrunde liegenden Daten und der Fragestellung getroffen werden. Der Umgang mit Ausreißern sollte auch immer transparent dokumentiert werden, da wir den Datensatz damit verändern.
+
+## Entfernen von Ausreißern via Quantile
+### Deskriptive Analyse
+
+__Quantile:__
+
+- Quantile: Teilen Daten in gleiche Abschnitte
+
+- Arten von Quantilen: Quartile (4 Teile), Quintile (5 Teile), Dezile (10 Teile), Perzentile (100 Teile)
+
+- Perzentile: Spezialfall von Quantilen, teilen Daten in 100 Teile
+
+- Beispiel: 99. Perzentil: Wert, unterhalb dessen 99 % der Daten liegen; zeigt einen sehr hohen Wert im Vergleich zur Gesamtverteilung (z. B. Einkommen, Testergebnisse)
+
+<br> 
+
+<div class='fragment'>
+
+__Quantile in Pandas:__ `quantile()`
+
+```{python}
+df["kostenüberschreitung_abs"].quantile([0.01, 0.99])
+```
+
+## Entfernen von Ausreißern via Quantile
+### Deskriptive Analyse
+
+__Beispiel:__ Entfernen der Ausreißer der __relativen Verzögerung__ unterhalb des 1. Perzentils und oberhalb des 99. Perzentils
+
+```{.python}
+q1 = df["verzögerung_rel"].quantile(0.01)
+q99 = df["verzögerung_rel"].quantile(0.99)
+
+# Entfernen der Ausreißer
+df_neu = df.query("verzögerung_rel > @q1 and verzögerung_rel < @q99")
+```
+
+<br>
+
+- `q1` und `q99`: 1. und 99. Perzentil der relativen Kostenüberschreitungen
+
+- `@`: Pandas-Syntax für Variablen in der Query-Syntax
+
+
+
+## Entfernen von Ausreißern via Quantile: Vergleich der Verteilungen
+### Deskriptive Analyse
+
+__Vergleich der Verteilungen:__ Wir vergleichen die Verteilungen der __relativen Verzögerung__ vor und nach der Entfernung der Ausreißer (1. und 99. Perzentil) via `Histogramm`
+
+```{python}
+#| echo: false
+import matplotlib.pyplot as plt
+import seaborn as sns
+fig, ax = plt.subplots(1, 2, figsize=(12, 4), sharey=True)
+
+sns.histplot(df["verzögerung_rel"], ax=ax[0])
+ax[0].set_title("Vor der Entfernung der Ausreißer")
+ax[0].set_ylabel("Anzahl der Beobachtungen")
+
+q1 = df["verzögerung_rel"].quantile(0.01)
+q99 = df["verzögerung_rel"].quantile(0.99)
+sns.histplot(df.query("verzögerung_rel > @q1 and verzögerung_rel < @q99")["verzögerung_rel"], ax=ax[1])
+ax[1].set_title("Nach der Entfernung der Ausreißer")
+sns.despine();
+
+```
+
+## Entfernen von Ausreißern via Quantile: Vergleich der Verteilungen
+### Deskriptive Analyse
+
+__Vergleich der Verteilungen:__ Wir vergleichen die Verteilungen der __relativen Kostenüberschreitung__ vor und nach der Entfernung der Ausreißer (1. und 99. Perzentil) via `Boxplot`
+
+```{python}
+#| echo: false
+
+fig, ax = plt.subplots(1, 2, figsize=(12, 4), sharey=False)
+
+sns.boxplot(data=df, y="kostenüberschreitung_rel", ax=ax[0])
+ax[0].set_title("Vor der Entfernung der Ausreißer")
+
+q1 = df["kostenüberschreitung_rel"].quantile(0.01)
+q99 = df["kostenüberschreitung_rel"].quantile(0.99)
+sns.boxplot(data=df.query("kostenüberschreitung_rel > @q1 and kostenüberschreitung_rel < @q99"), y="kostenüberschreitung_rel", ax=ax[1])
+ax[1].set_title("Nach der Entfernung der Ausreißer")
+sns.despine();
+
+```
+
+
+
+
+## Aufgabe: Entfernen von Ausreißern
+### Deskriptive Analyse
+
+Für die Spalten `kostenüberchreitung_abs`, `kostenüberschreitung_rel`, `verzögerung_abs` und `verzögerung_rel` sollen die Ausreißer unterhalb des 1. Perzentils und oberhalb des 99. Perzentils entfernt werden.
+
+Ergebnis sollte ein bereinigter Dataframe `df` sein.
+
+## Lösung: Entfernen von Ausreißern
+### Deskriptive Analyse
+
+```{python}
+#| echo: True 
+#| output: false
+
+# Kostenüberschreitung
+q1 = df["kostenüberschreitung_abs"].quantile(0.01)
+q99 = df["kostenüberschreitung_abs"].quantile(0.99)
+df = df.query("kostenüberschreitung_abs > @q1 and kostenüberschreitung_abs < @q99")
+
+# Kostenüberschreitung relativ
+q1 = df["kostenüberschreitung_rel"].quantile(0.01)
+q99 = df["kostenüberschreitung_rel"].quantile(0.99)
+df = df.query("kostenüberschreitung_rel > @q1 and kostenüberschreitung_rel < @q99")
+
+# Verzögerung absolut
+q1 = df["verzögerung_abs"].quantile(0.01)
+q99 = df["verzögerung_abs"].quantile(0.99)
+df = df.query("verzögerung_abs > @q1 and verzögerung_abs < @q99")
+
+# Verzögerung relativ
+q1 = df["verzögerung_rel"].quantile(0.01)
+q99 = df["verzögerung_rel"].quantile(0.99)
+df = df.query("verzögerung_rel > @q1 and verzögerung_rel < @q99")
+```
+
+
+## Exkurs: Funktion schreiben für Entfernen von Ausreißern
+### Deskriptive Analyse
+
+<div class='fragment'>
+
+__Funktion schreiben:__ Wir schreiben eine Funktion, die die Entfernung von Ausreißern für eine beliebige Spalte ermöglicht.
+
+```{python}
+def remove_outliers(df, col, q1=0.01, q99=0.99):
+    q1 = df[col].quantile(q1)
+    q99 = df[col].quantile(q99)
+    df = df.query(f"{col} > @q1 and {col} < @q99")
+    return df
+```
+
+<br> 
+
+<div class='fragment'>
+
+__Funktion anwenden:__ Wir wenden die Funktion auf die vier Spalten an.
+
+```{.python}
+df = remove_outliers(df, "kostenüberschreitung_abs")
+df = remove_outliers(df, "kostenüberschreitung_rel")
+df = remove_outliers(df, "verzögerung_abs")
+df = remove_outliers(df, "verzögerung_rel")
+```
+
+## Analyse der Daten 
+### Deskriptive Analyse
+
+Nachdem wir nun (i) relevante Daten hinzugefügt und (ii) Ausreißer entfernt haben, können wir uns nun mit der Analyse der Daten beschäftigen.
+
+__Wir könnten folgenden Fragen nachgehen:__
+
+<div class='fragment'>
+
+1. Ausgangssituation bestätigen: gibt es tatsächlich Verzögerungen und Kostenüberschreitungen?
+
+<div class='fragment'>
+
+2. Hypothesen zur Erklärung der Verzögerungen und Kostenüberschreitungen aufstellen und prüfen
+
+    - Haben sich die Verzögerungen und Kostenüberschreitungen im Laufe der Zeit verändert?
+
+    - Gibt es einen Zusammenhang zwischen den Verzögerungen und den Kostenüberschreitungen? 
+
+    - Sind die Verzögerungen und Kostenüberschreitungen abhängig vom Team?
+  
+    - Sind die Verzögerungen und Kostenüberschreitungen abhängig von der Art des Projekts? 
+
+    - Sind die Verzögerungen und Kostenüberschreitungen abhängig von der Größe des Projekts? 
+
+
+## Gruppieren und Aggregieren
+### Deskriptive Analyse
+
+
+__Warum?__
+
+- Gruppieren und Aggregieren von Daten ist eine leistungsfähige Methode zur Analyse und Zusammenfassung großer Datenmengen. 
+
+- Sie ist nützlich für die deskriptive Statistik, da sie es ermöglicht, Muster, Trends und Zusammenhänge in den Daten zu erkennen. 
+
+- Der Ansatz funktioniert, indem man die Daten zunächst nach bestimmten Kriterien in Gruppen einteilt (gruppieren) und dann innerhalb dieser Gruppen verschiedene statistische Funktionen anwendet (aggregieren), wie zum Beispiel Mittelwert, Median, Summe oder Anzahl. 
+
+## Gruppieren und Aggregieren (cont'd)
+### Deskriptive Analyse
+
+__In Python__
+
+
+```{.python}
+df.groupby("spalte_1").agg({"spalte_2": "<Aggregationsfunktion>"})
+```
+
+<div class='fragment'>
+
+<br>
+
+- `df.groupby("spalte_1")`: Teilt den DataFrame df in Gruppen basierend auf den einzigartigen Werten in der Spalte `"spalte_1"`.
+
+- `.agg()`: Wendet eine Aggregationsfunktion auf die Gruppen an.
+
+- `{"spalte_2": "<Aggregationsfunktion>"}`: Gibt an, dass für die Spalte "spalte_2" die `<aggregationsfunktion>` angewendet werden soll.
+
+- `<Aggregationsfunktion>`: Eine Aggregationsfunktion, die auf die Gruppen angewendet werden soll. Zum Beispiel: `mean`, `sum`, `count`, `median`, `min`, `max`, `std`, `var`, `quantile`.
+
+__Beispiel__
+
+```{.python}
+df.groupby("spalte_1").agg({"spalte_2": "mean"})
+```
+
+## Gruppieren und Aggregieren (cont'd)
+### Deskriptive Analyse
+
+__Beispiel:__ durchschnittliche absolute Verzögerung je Projektteam
+
+- Gruppieren: Wir gruppieren die Daten nach `team`
+
+- Aggregieren: wir nehmen die Spalte `verzögerung_abs` und berechnen den Mittelwert
+
+<div class='fragment'>
+
+```{python}
+#| echo: True
+
+df.groupby("team").agg({"verzögerung_abs": "mean"})
+
+```
+
+
+## Aufgabe: Gruppieren und Aggregieren
+### Deskriptive Analyse
+
+<div class='fragment'>
+
+__Aufgabe:__ 
+
+1. Berechne den Median der relative Verzögerung je Projektteam.
+
+2. Berechnen Sie die Anzahl der Projekte je Projektteam.
+
+
+<!--
+
+## Lösung: Gruppieren und Aggregieren
+### Deskriptive Analyse
+
+<div class='fragment'>
+
+__Lösung 1:__
+
+```{python}
+df.groupby("team").agg({"verzögerung_rel": "median"})
+```
+
+<div class='fragment'>
+
+<br>
+
+__Lösung 2:__
+
+```{python}
+df.groupby("team").agg({"id": "count"})
+```
+
+
+-->
+
+## Gruppieren und Aggregieren: Datum
+### Deskriptive Analyse
+
+`pd.Grouper` ermöglicht es, Daten nach Zeitintervallen zu gruppieren
+
+<div class='fragment'>
+
+__Beispiel:__ Wir gruppieren die Daten für jeweils 9 Monate und berechnen den Mittelwert der absoluten Verzögerung.
+
+```{python}
+df.groupby(pd.Grouper(key="beginn", freq="9M")).agg({"verzögerung_abs": "mean"})
+```
+
+
+## Aufgabe: Gruppieren und Aggregieren mit Datum
+### Deskriptive Analyse
+
+Analysen Sie, ob sich die absolute Kostenüberschreitung im Laufe der Zeit verändert hat.
+
+<!--
+
+## Lösungsskizze: Gruppieren und Aggregieren mit Datum
+### Deskriptive Analyse
+
+<div class='fragment'>
+
+__Lösungsskizze:__
+
+- Wir gruppieren die Daten nach Zeitintervallen von z.B. 3 Monaten. 
+
+- Basis könnte der Projektbeginn sein
+
+- Wir berechnen den Median der absoluten Kostenüberschreitung, weil wir die Ergebnisse nicht durch noch verbliebene Extreme verfälschen wollen.
+
+<div class='fragment'>
+
+<br>
+
+```{python}
+data = df.groupby(pd.Grouper(key="beginn", freq="3M")).agg({"kostenüberschreitung_abs": "median"})
+data.head() # Zeige Auszug der Daten
+```
+
+-->
+
+## Visualisierung
+### Deskriptive Analyse
+
+__Warum?__
+
+- Visualisierung ist eine sehr effektive Methode, um Daten zu verstehen und zu analysieren.
+
+- Visualisierungen können Muster, Trends und Zusammenhänge in den Daten aufzeigen, die mit deskriptiven Statistiken nicht so leicht zu erkennen sind, da durch die Aggregation der Daten Informationen verloren gehen.
+
+<div class='fragment'>
+
+<br>
+
+__In Python__
+
+- Wir werden die Bibliothek `seaborn` verwenden, um die Daten zu visualisieren. 
+
+- `seaborn` ist eine Bibliothek, die auf `matplotlib` aufbaut und die Visualisierung von Daten mit `pandas`-DataFrames vereinfacht.
+
+- Dokumentation: [https://seaborn.pydata.org/index.html](https://seaborn.pydata.org/index.html)
+
+## Visualisierung: Arten
+### Deskriptive Analyse
+
+__Typische Arten von Visualisierungen:__
+
+1. __Beziehungen:__ Scatterplots, Liniendiagramme, Streudiagramme ([Tutorial](https://seaborn.pydata.org/tutorial/relational.html))
+
+2. __Verteilungen:__ Histogramme, Boxplots ([Tutorial](https://seaborn.pydata.org/tutorial/distributions.html))
+
+3. __Kategorien:__ Balkendiagramme, obige Diagramme nach Kategorien ([Tutorial](https://seaborn.pydata.org/tutorial/categorical.html))
+
+
+<br> 
+
+<div class='fragment'>
+
+> __Seaborn__ bietet eine Vielzahl von Funktionen, um diese Diagramme zu erstellen.
+
+## Visualisierung von Beziehungen: Beispiel "Liniendiagramm"
+### Deskriptive Analyse
+
+```{python} 
+#| echo: False
+# Remove right and top spines from all plots 
+import matplotlib.pyplot as plt
+plt.rcParams['axes.spines.right'] = False
+plt.rcParams['axes.spines.top'] = False
+```
+
+
+
+
+
+```{python}
+import seaborn as sns 
+
+data = df.groupby(pd.Grouper(key="beginn", freq="3M")).agg({"kostenüberschreitung_abs": "median"})
+sns.lineplot(data=data, x="beginn", y="kostenüberschreitung_abs");
+```
+
+## Visualisierung von Verteilungen: Beispiel "Histogramm"
+### Deskriptive Analyse
+
+```{python}
+sns.displot(data=df, x="kostenüberschreitung_abs", kind="hist");
+```
+
+## Visualisierung von Kategorien: Beispiel "Balkendiagramm"
+### Deskriptive Analyse
+
+```{python}
+sns.catplot(data=df, x="team", y="kostenüberschreitung_abs", kind="bar");
+```
+
+## Visualisierung von Kategorien: Beispiel "Boxplot" je Projektteam
+### Deskriptive Analyse
+
+```{python}
+sns.catplot(data=df, x="team", y="kostenüberschreitung_rel", kind="box");
+```
+
+## Visualisierung von Kategorien: Beispiel "Boxplot" je Projektteam und Projektart 
+### Deskriptive Analyse
+
+```{python}
+
+sns.catplot(data=df, x="team", y="kostenüberschreitung_rel", col="art", 
+            col_wrap=3, kind="box", 
+            height=2, aspect=1.5); # nur für Darstellung
+```
+
+
+## Visualisierung: Formatieren von Diagrammen
+### Deskriptive Analyse
+
+__Formatierung von Diagrammen:__
+
+- Titel, Achsenbeschriftungen, Legende, Farben, Größe, etc.
+
+- prinzipiell etwas _komplizierter_ als in z.B. in Excel, dafür aber in Summe _flexibler_ und _mehr Möglichkeiten_.
+
+- nicht Fokus dieses Kurses!
+
+- `matplotlib` ist Basis für `seaborn` und bietet viele Möglichkeiten zur Formatierung von Diagrammen.
+
+
+## Visualisierung: Formatieren von Diagrammen
+### Deskriptive Analyse
+
+::: {.panel-tabset}
+
+
+### Plot
+
+```{python}
+#| echo: false
+from matplotlib import pyplot as plt
+sns.displot(data=df, x="kostenüberschreitung_abs", kind="hist", height=4, aspect=1.5)
+plt.title("Verteilung der\nabsoluten Kostenüberschreitung")
+plt.xlabel("Kostenüberschreitung in €")
+plt.ylabel("Anzahl der Projekte")
+mu = df["kostenüberschreitung_abs"].mean()
+median = df["kostenüberschreitung_abs"].median()
+plt.axvline(median, color="black", linestyle="--");
+plt.annotate(f"median: {round(median,2):,.2f}", xy=(45000, 750), color="black")
+plt.axvline(mu, color="red", linestyle="--");
+plt.annotate(f"mean: {round(mu,2):,.2f}", xy=(45000, 800), color="red");
+
+```
+
+### Code
+
+```{python}
+#| output: false
+
+from matplotlib import pyplot as plt
+sns.displot(data=df, x="kostenüberschreitung_abs", kind="hist", height=4, aspect=1.5)
+plt.title("Verteilung der\nabsoluten Kostenüberschreitung")
+plt.xlabel("Kostenüberschreitung in €")
+plt.ylabel("Anzahl der Projekte")
+mu = df["kostenüberschreitung_abs"].mean()
+median = df["kostenüberschreitung_abs"].median()
+plt.axvline(median, color="black", linestyle="--");
+plt.annotate(f"median: {round(median,2):,.2f}", xy=(45000, 750), color="black")
+plt.axvline(mu, color="red", linestyle="--");
+plt.annotate(f"mean: {round(mu,2):,.2f}", xy=(45000, 800), color="red");
+```
+
+:::
+
+
+## Quellen
+### 
+
+<br>
+
+::: {#refs}
+:::

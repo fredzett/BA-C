@@ -1,0 +1,2749 @@
+<!DOCTYPE html>
+<html lang="De"><head>
+<script src="03_Deskriptive_Analyse_Part1_files/libs/clipboard/clipboard.min.js"></script>
+<script src="03_Deskriptive_Analyse_Part1_files/libs/quarto-html/tabby.min.js"></script>
+<script src="03_Deskriptive_Analyse_Part1_files/libs/quarto-html/popper.min.js"></script>
+<script src="03_Deskriptive_Analyse_Part1_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="03_Deskriptive_Analyse_Part1_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="03_Deskriptive_Analyse_Part1_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="03_Deskriptive_Analyse_Part1_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="03_Deskriptive_Analyse_Part1_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.3.299">
+
+  <meta name="author" content="Prof.&nbsp;Dr.&nbsp;Felix Zeidler | FH Bielefeld | SoSe 2023">
+  <title>Business Analytics</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="03_Deskriptive_Analyse_Part1_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="03_Deskriptive_Analyse_Part1_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
+  <link rel="stylesheet" href="03_Deskriptive_Analyse_Part1_files/libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link href="03_Deskriptive_Analyse_Part1_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="03_Deskriptive_Analyse_Part1_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="03_Deskriptive_Analyse_Part1_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="03_Deskriptive_Analyse_Part1_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-titled.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-titled) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-titled .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-titled .callout-title  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-titled.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-titled.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-title {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-title {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-title {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-titled .callout-body > .callout-content > :last-child {
+    margin-bottom: 0.5rem;
+  }
+
+  .callout.callout-titled .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-titled) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-title {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-title {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-title {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-title {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-title {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+  <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Business Analytics</h1>
+  <p class="subtitle"><del>03</del> | Deskriptive Analyse - Part 1</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Prof.&nbsp;Dr.&nbsp;Felix Zeidler | FH Bielefeld | SoSe 2023 
+</div>
+</div>
+</div>
+
+</section><section id="TOC">
+<nav role="doc-toc"> 
+<h2 id="toc-title">Inhaltsverzeichnis</h2>
+<ul>
+<li><a href="#/programmierkonzept-funktionen" id="/toc-programmierkonzept-funktionen"><span class="header-section-number">1</span> Programmierkonzept: “Funktionen”</a></li>
+<li><a href="#/ba-prozess-einlesen-und-aufbereiten-von-daten" id="/toc-ba-prozess-einlesen-und-aufbereiten-von-daten"><span class="header-section-number">2</span> BA-Prozess: Einlesen und Aufbereiten von Daten</a></li>
+</ul>
+</nav>
+</section>
+<section id="lernziele" class="slide level2">
+<h2>Lernziele</h2>
+<h3 id="deskriptive-analyse">Deskriptive Analyse</h3>
+<p><br></p>
+<div class="fragment">
+
+<p><span class="emoji" data-emoji="one">1️⃣</span> Programmierkonzept: <strong>“Funktionen”</strong></p>
+<div class="fragment">
+
+<p><span class="emoji" data-emoji="two">2️⃣</span> Einlesen und Aufbereiten von Daten</p>
+<div class="fragment">
+
+<p><span class="emoji" data-emoji="three">3️⃣</span> Arbeiten mit Python-Modul <code>pandas</code></p>
+</div></div></div></section>
+<section>
+<section id="programmierkonzept-funktionen" class="title-slide slide level1 center" data-number="1">
+<h1><span class="header-section-number">1</span> Programmierkonzept: “Funktionen”</h1>
+
+</section>
+<section id="ausgangssituation" class="slide level2">
+<h2>Ausgangssituation</h2>
+<h3 id="funktionen">Funktionen</h3>
+<p><br></p>
+<ul>
+<li><p>Wir haben bereits erste Python-Programme geschrieben</p></li>
+<li><p>Einführende Fallstudie griff auf Module <code>pandas</code> (Dataframes) und <code>seaborn</code> (Visualisierungen) zurück</p></li>
+<li><p>Um Fallstudie zu bearbeiten haben wir Funktionen<sup>1</sup> aus diesen Modulen verwendet</p></li>
+</ul>
+
+<div class="fragment">
+
+<blockquote>
+<p><strong>Frage</strong>: Was sind eigentlich Funktion?</p>
+</blockquote>
+</div><aside><ol class="aside-footnotes"><li id="fn1"><p>Hinweis: teilweise muss es präziser heißen: Klassen und Methoden. Für unsere Zwecke ist dies aber zunächst nicht weiter relevant.</p></li></ol></aside></section>
+<section id="was-sind-funktionen-analogie-toaster" class="slide level2">
+<h2>Was sind Funktionen: Analogie “Toaster”</h2>
+<h3 id="funktionen-1">Funktionen</h3>
+
+<img data-src="https://cdn.discordapp.com/attachments/976997386436104202/1095231496933097552/fzett_drawing_of_a_toaster._Minimalistic_picture_in_a_cartoon_s_7e01452e-7732-4357-b7c3-0bb610fa1d6e.png" class="r-stretch quarto-figure-center"></section>
+<section id="was-sind-funktionen-analogie-toaster-1" class="slide level2">
+<h2>Was sind Funktionen: Analogie “Toaster”</h2>
+<h3 id="funktionen-2">Funktionen</h3>
+<div class="fragment">
+
+<ul>
+<li>Funktionen in der Programmierung sind wie Toaster: klar definierte Aufgabe (d.h. Funktion)</li>
+</ul>
+<div class="fragment">
+
+<ul>
+<li>Sie nehmen Eingabewerte entgegen, verarbeiten sie und geben Ergebnisse zurück.</li>
+</ul>
+<div class="fragment">
+
+<ul>
+<li>Analogie: Brot (Eingabewerte) -&gt; Rösten (Verarbeitung) -&gt; geröstetes Brot (Ergebnis).</li>
+</ul>
+</div></div></div></section>
+<section id="was-sind-funktionen-analogie-excel" class="slide level2">
+<h2>Was sind Funktionen: Analogie “Excel”</h2>
+<h3 id="funktionen-3">Funktionen</h3>
+<p><br></p>
+
+<img data-src="_assets/RndNumbers.png" class="r-stretch quarto-figure-center"></section>
+<section id="was-sind-funktionen-analogie-excel-1" class="slide level2">
+<h2>Was sind Funktionen: Analogie “Excel”</h2>
+<h3 id="funktionen-4">Funktionen</h3>
+<p><br></p>
+
+<img data-src="_assets/RndNumbers_Solution.png" class="r-stretch quarto-figure-center"></section>
+<section id="was-sind-funktionen-analogie-excel-2" class="slide level2">
+<h2>Was sind Funktionen: Analogie “Excel”</h2>
+<h3 id="funktionen-5">Funktionen</h3>
+<p><br></p>
+<div class="fragment">
+
+<ul>
+<li><code>ANZAHL()</code> ist eine Excel-Funktion, die die Anzahl der Elemente in einer Spalte zählt</li>
+</ul>
+<div class="fragment">
+
+
+<ul>
+<li><code>B3:B12</code> sind die Eingabewerte</li>
+</ul>
+<div class="fragment">
+
+<ul>
+<li><code>=ANZAHL(B3:B12)</code> verarbeitet die Eingabewerte und zählt die Elemente</li>
+</ul>
+<div class="fragment">
+
+<ul>
+<li><code>10</code> ist der Rückgabewert, d.h. das Ergebnis der Funktion</li>
+</ul>
+</div></div></div></div></section>
+<section id="wofür-benötige-ich-funktionen" class="slide level2">
+<h2>Wofür benötige ich Funktionen?</h2>
+<h3 id="funktionen-6">Funktionen</h3>
+<p><br></p>
+<div class="fragment">
+
+<ul>
+<li><strong>Wiederverwendbarkeit</strong>: Funktionen ermöglichen die Wiederverwendung von Code, wodurch redundante Codestellen reduziert und die Effizienz verbessert wird.</li>
+</ul>
+<div class="fragment">
+
+<ul>
+<li><strong>Modularität</strong>: Funktionen fördern die Aufteilung eines Programms in kleinere, unabhängige Bausteine, die leichter zu verstehen und zu warten sind.</li>
+</ul>
+<div class="fragment">
+
+<ul>
+<li><strong>Lesbarkeit</strong>: Funktionen mit aussagekräftigen Namen verbessern die Lesbarkeit des Codes, da sie die Absicht und Funktionalität des Codeblocks klar kommunizieren.</li>
+</ul>
+<div class="fragment">
+
+<ul>
+<li><strong>Fehlerbehebung</strong>: Durch die Verwendung von Funktionen können Fehler leichter identifiziert und isoliert werden, da der Code in überschaubaren Einheiten organisiert ist.</li>
+</ul>
+</div></div></div></div></section>
+<section id="schreiben-von-funktionen-in-python" class="slide level2">
+<h2>Schreiben von Funktionen in Python</h2>
+<h3 id="funktionen-7">Funktionen</h3>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<ul>
+<li><p>In Python werden Funktionen mit dem Schlüsselwort <code>def</code> definiert, gefolgt vom Funktionsnamen und Klammern <code>()</code>, die die Parameter enthalten.</p></li>
+<li><p>Jeder Funktionsname sollte aussagekräftig sein und die Aktion oder Berechnung, die sie ausführt, beschreiben.</p></li>
+<li><p>Die Parameter sind die Eingabewerte, mit denen die Funktion arbeitet.</p></li>
+<li><p>Nach der Parameterliste folgt ein Doppelpunkt <code>:</code>, der den Beginn des Funktionskörpers markiert.</p></li>
+<li><p>Der Funktionskörper sollte eingerückt sein, um den Code innerhalb der Funktion vom restlichen Code abzugrenzen.</p></li>
+<li><p>Eine Funktion kann Werte mit dem Schlüsselwort <code>return</code> zurückgeben, gefolgt vom Wert oder Ausdruck, der zurückgegeben werden soll.</p></li>
+</ul>
+<div class="fragment">
+
+<p><strong>Beispiel:</strong></p>
+<div class="sourceCode" id="cb1" data-code-line-numbers="1|2|3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">def</span> berechne_gewinn(umsatz, kosten):    <span class="co"># Definition der Funktion</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>    gewinn <span class="op">=</span> umsatz <span class="op">-</span> kosten            <span class="co"># Verarbeitung / Funktionskörper</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>    <span class="cf">return</span> gewinn                       <span class="co"># Rückgabe des Ergebnisses</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></section>
+<section id="ausführen-von-funktionen-in-python" class="slide level2">
+<h2>Ausführen von Funktionen in Python</h2>
+<h3 id="funktionen-8">Funktionen</h3>
+<ul>
+<li><p>Um eine Funktion in Python aufzurufen, verwenden Sie den Funktionsnamen, gefolgt von Klammern <code>()</code> und den Argumenten, die an die Parameter der Funktion weitergegeben werden.</p></li>
+<li><p>Argumente sind die konkreten Werte, die an die Parameter einer Funktion übergeben werden, wenn sie aufgerufen wird.</p></li>
+<li><p>Die Reihenfolge der Argumente sollte der Reihenfolge der Parameter in der Funktionsdefinition entsprechen.</p></li>
+<li><p>Wenn die Funktion einen Wert zurückgibt, kann dieser Wert in einer Variable gespeichert oder direkt verwendet werden.</p></li>
+</ul>
+<div class="fragment">
+
+<p><strong>Beispiel:</strong> Funktion ausführen und Ergebnis direkt verwenden</p>
+<div class="fragment">
+
+<div class="sourceCode" id="cb2" data-code-line-numbers="1,2|3|4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>umsatz <span class="op">=</span> <span class="dv">10000</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>kosten <span class="op">=</span> <span class="dv">5000</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>gewinn <span class="op">=</span> berechne_gewinn(umsatz, kosten)</span>
+<span id="cb2-4"><a href="#cb2-4"></a>gewinn</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></section>
+<section id="aufgabe-1" class="slide level2">
+<h2>Aufgabe 1</h2>
+<h3 id="funktionen-9">Funktionen</h3>
+<p><strong>Aufgabenstellung:</strong></p>
+<p>Erstellen Sie eine Funktion, die den <strong>Break-Even-Punkt</strong> berechnet, an dem die Gesamtkosten eines Unternehmens gleich den Gesamteinnahmen sind. Die Funktion soll den Break-Even-Punkt in Form der Anzahl der verkauften Einheiten zurückgeben.</p>
+<div class="fragment">
+
+<p><strong>Anforderungen:</strong></p>
+<ul>
+<li><p>Definieren Sie eine Funktion mit einem sinnvollen Namen, die drei Parameter akzeptiert:<br>
+fixkosten, variable_kosten_pro_einheit und preis_pro_einheit.</p></li>
+<li><p>Geben Sie das Ergebnis als Ganzzahl zurück, da es sich um eine Anzahl von Einheiten handelt. Verwenden Sie die Funktion round() oder int() in Python, um das Ergebnis auf die nächste ganze Zahl zu runden bzw. die Nachkommastellen abzuschneiden.</p></li>
+<li><p>Rufen Sie die Funktion mit Werten Ihrer Wahl auf und speichern Sie das Ergebnis in einer Variable.</p></li>
+</ul>
+</div></section>
+<section id="lösung-aufgabe-1" class="slide level2">
+<h2>Lösung Aufgabe 1</h2>
+<h3 id="funktionen-10">Funktionen</h3>
+<p><br></p>
+<div class="fragment">
+
+<p><strong>Definition:</strong></p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">def</span> berechne_break_even_punkt(fixkosten, variable_kosten_pro_einheit, preis_pro_einheit):</span>
+<span id="cb3-2"><a href="#cb3-2"></a>    break_even_punkt <span class="op">=</span> fixkosten <span class="op">/</span> (preis_pro_einheit <span class="op">-</span> variable_kosten_pro_einheit)</span>
+<span id="cb3-3"><a href="#cb3-3"></a>    <span class="cf">return</span> <span class="bu">round</span>(break_even_punkt)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+
+<p><br></p>
+<p><strong>Aufruf:</strong></p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>fixkosten <span class="op">=</span> <span class="dv">10000</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>variable_kosten_pro_einheit <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>preis_pro_einheit <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>break_even_punkt <span class="op">=</span> berechne_break_even_punkt(fixkosten, variable_kosten_pro_einheit, preis_pro_einheit)</span>
+<span id="cb4-5"><a href="#cb4-5"></a>break_even_punkt    </span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>1250</code></pre>
+</div>
+</div>
+</div></div></section>
+<section id="aufgabe-2" class="slide level2">
+<h2>Aufgabe 2</h2>
+<h3 id="funktionen-11">Funktionen</h3>
+<p><br></p>
+<p><strong>Aufgabenstellung:</strong></p>
+<p>Erstellen Sie eine Funktion, die einen Betrag in einer Ausgangswährung in einen Betrag in einer Zielwährung umrechnet, basierend auf dem gegebenen Wechselkurs.</p>
+<div class="fragment">
+
+<p><br></p>
+<p><strong>Anforderungen:</strong></p>
+<ul>
+<li><p>Definieren Sie eine Funktion mit dem Namen <code>umrechnung_waehrung</code>, die zwei Parameter akzeptiert: <code>betrag</code>, <code>wechselkurs</code></p></li>
+<li><p>Geben Sie das Ergebnis als Fließkommazahl mit zwei Nachkommastellen zurück. Verwenden Sie die Funktion <code>round()</code> in Python, um das Ergebnis auf zwei Nachkommastellen zu runden.</p></li>
+<li><p>Rufen Sie die Funktion mit einem Betrag und einem Wechselkurs Ihrer Wahl auf und speichern Sie das Ergebnis in einer Variable.</p></li>
+<li><p>Geben Sie das Ergebnis mithilfe einer print-Anweisung aus, gefolgt von der Zielwährung.</p></li>
+</ul>
+</div></section>
+<section id="lösung-aufgabe-2" class="slide level2">
+<h2>Lösung Aufgabe 2</h2>
+<h3 id="funktionen-12">Funktionen</h3>
+<p><br></p>
+<div class="fragment">
+
+<p><strong>Definition:</strong></p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">def</span> umrechnung_waehrung(betrag, wechselkurs):</span>
+<span id="cb6-2"><a href="#cb6-2"></a>    umgerechneter_betrag <span class="op">=</span> betrag <span class="op">*</span> wechselkurs</span>
+<span id="cb6-3"><a href="#cb6-3"></a>    <span class="cf">return</span> <span class="bu">round</span>(umgerechneter_betrag, <span class="dv">2</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+
+<p><br></p>
+<p><strong>Aufruf:</strong></p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Funktion mit Beispielwerten aufrufen</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>betrag_in_euro <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>wechselkurs_euro_usd <span class="op">=</span> <span class="fl">1.12</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>zielwaehrung <span class="op">=</span> <span class="st">"USD"</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a>betrag_in_usd <span class="op">=</span> umrechnung_waehrung(betrag_in_euro, wechselkurs_euro_usd)</span>
+<span id="cb7-6"><a href="#cb7-6"></a></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="co"># Ergebnis ausgeben</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="bu">print</span>(<span class="st">"Betrag in"</span>, zielwaehrung <span class="op">+</span> <span class="st">":"</span>, betrag_in_usd)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Betrag in USD: 112.0</code></pre>
+</div>
+</div>
+</div></div></section></section>
+<section>
+<section id="ba-prozess-einlesen-und-aufbereiten-von-daten" class="title-slide slide level1 center" data-number="2">
+<h1><span class="header-section-number">2</span> BA-Prozess: Einlesen und Aufbereiten von Daten</h1>
+
+</section>
+<section id="business-analytics-prozess" class="slide level2">
+<h2>Business Analytics Prozess</h2>
+<h3 id="deskriptive-analyse-1">Deskriptive Analyse</h3>
+<div class="fragment">
+
+<p><br></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="_assets/Analyse_Prozess_Descriptive.svg"></p>
+</figure>
+</div>
+</div></section>
+<section id="großteil-der-datenanalyse-besteht-aus-der-aufbereitung-der-daten" class="slide level2">
+<h2>Großteil der Datenanalyse besteht aus der Aufbereitung der Daten</h2>
+<h3 id="deskriptive-analyse-2">Deskriptive Analyse</h3>
+<p><strong>Warum Aufbereitung?</strong></p>
+<ul>
+<li><p>erheblicher Teil der Arbeit bei der Datenanalyse entfällt auf die Vorverarbeitung und Bereinigung der Daten.</p></li>
+<li><p>Einige Schätzungen gehen davon aus, dass 50% bis 80% der Zeit, die für ein Datenanalyseprojekt aufgewendet wird, der Datenvorverarbeitung gewidmet ist.<sup>1</sup></p></li>
+</ul>
+
+<div class="fragment">
+
+<p><strong>Einige Gründe für den hohen Zeitaufwand bei der Vorverarbeitung sind:</strong></p>
+<ul>
+<li><p><strong>Datenqualität</strong>: Daten aus der realen Welt sind oft “dreckig” bzw. enthalten fehlende Werte, Inkonsistenzen und Fehler.</p></li>
+<li><p><strong>Datenintegration</strong>: Das Zusammenführe n von Daten aus mehreren Quellen erfordert häufig das Lösen von Konflikten bei Formaten, Einheiten oder Datenstrukturen.</p></li>
+<li><p><strong>Datentransformation</strong>: Daten müssen oft transformiert, normalisiert oder aggregiert werden, um für die Analyse oder Modellierung geeignet zu sein.</p></li>
+<li><p><strong>Merkmalsbildung</strong>: Das Erstellen neuer Merkmale aus den Rohdaten kann ein zeitaufwändiger Prozess sein, der Fachwissen und Kreativität erfordert.</p></li>
+</ul>
+</div><aside><ol class="aside-footnotes"><li id="fn2"><p>siehe z.B. <span class="citation" data-cites="dasu_exploratory_2003">Dasu und Johnson (<a href="#/quellen" role="doc-biblioref" onclick="">2003</a>)</span></p></li></ol></aside></section>
+<section id="werkzeug-pandas" class="slide level2">
+<h2>Werkzeug: Pandas</h2>
+<h3 id="deskriptive-analyse-3">Deskriptive Analyse</h3>
+
+<img data-src="https://cdn.discordapp.com/attachments/976997386436104202/1095259718982836345/fzett_Imaginary_picture_of_a_hybrid_between_a_panda_and_a_swiss_6ca39c93-b6a3-448a-be81-59f41688071e.png" class="r-stretch quarto-figure-center"></section>
+<section id="werkzeug-pandas-1" class="slide level2">
+<h2>Werkzeug: Pandas</h2>
+<h3 id="deskriptive-analyse-4">Deskriptive Analyse</h3>
+<p><br></p>
+<div class="fragment">
+
+<ul>
+<li>Wir werden im Rahmen unserer Analyse(n) verschiedene Module / Bibliotheken und Funktionalitäten Pythons kennenlernen.</li>
+</ul>
+<div class="fragment">
+
+<ul>
+<li>Eine der wichtigsten Bibliotheken ist <code>pandas</code>. Wir bezeichnen <code>pandas</code> als das Schweizer Taschenmesser der Datenanalyse, weil es ein mächtiges und vielseitiges Werkzeug für die Datenanalyse und -verarbeitung in Python ist.</li>
+</ul>
+<div class="fragment">
+
+<ul>
+<li>Pandas bietet für nahezu alle gängigen Anforderungen - sei es Datenimport, Datenbereinigung, Datentransformation und -analyse oder sogar Visualisierung - nützliche Funktionalitäten.</li>
+</ul>
+<div class="fragment">
+
+<ul>
+<li>Die Palette an Funktionalitäten ist so umfangreich, dass wir diese unmöglich alle vorstellen können. Wir glauben auch nicht, dass dies didaktisch sinnvoll ist. Stattdessen werden wir geeignete Funktionen immer dann vorstellen, wenn wir sie für unsere Analyse benötigen. Viele der vorgestellten Module bieten Funktionalitäten an, die wir nicht nutzen. Es ist deshalb sinnvoll, dass Sie sich die Dokumentation der Funktionen anschauen, wenn Sie diese für Ihre Analyse benötigen.</li>
+</ul>
+<div class="fragment">
+
+<ul>
+<li>Die Dokumentation finden Sie <a href="https://pandas.pydata.org/pandas-docs/stable/reference/index.html">hier</a>.</li>
+</ul>
+</div></div></div></div></div></section>
+<section id="einleitung-fallstudie" class="slide level2">
+<h2>Einleitung: Fallstudie</h2>
+<h3 id="deskriptive-analyse-5">Deskriptive Analyse</h3>
+<p><br></p>
+<p>Die <strong>Bau und Werken GmbH</strong> wurde 1967 in Recklinghausen gegründet und hat dort bis heute ihren Sitz. Ursprünglich konzentrierte sich das Unternehmen auf kleinere kommunale Bauprojekte, entwickelte sich aber im Laufe der Zeit zu einem wichtigen Akteur in der kommunalen Bau- und Instandhaltungsbranche. Mit einem starken Netzwerk an Geschäftspartnern und Lieferanten führt das Unternehmen eine breite Palette von Projekten durch, vom Tiefbau bis hin zu städtischen U-Bahnen. Dabei legt es Wert auf Qualität und Kundenzufriedenheit, um einen ausgezeichneten Ruf in der Branche zu sichern.</p>
+<p>Allerdings kämpft auch die Bau und Werken GmbH mit Projekten, die länger dauern und mehr kosten als geplant, was die Profitabilität beeinträchtigt. Geschäftsführer Maximilian Müller ist sich dieser Herausforderung bewusst und möchte das Problem lösen. Er erkennt, dass Bauverzögerungen und Kostenüberschreitungen die Profitabilität mindern, obwohl das Unternehmen grundsätzlich profitabel wirtschaftet. Müller plant, vergangene Projekte zu analysieren, um wiederkehrende Muster oder Faktoren zu identifizieren, die Verzögerungen und Kostenüberschreitungen verursachen.</p>
+<p>Die Lösung dieser Herausforderung ist entscheidend für die Zukunft des Unternehmens, und Maximilian ist entschlossen, die Bau und Werken GmbH noch erfolgreicher und profitabler zu gestalten.</p>
+</section>
+<section id="einleitung-datensatz" class="slide level2">
+<h2>Einleitung: Datensatz</h2>
+<h3 id="deskriptive-analyse-6">Deskriptive Analyse</h3>
+<p>Der Datensatz beinhaltet Informationen zu den Projekten, die das Unternehmen in den letzten Jahren durchgeführt hat. Die Daten wurden von einem Mitarbeiter der Bau und Werken GmbH in einer Excel-Tabelle erfasst und anschließend in das CSV-Format exportiert. Der Datensatz beinhaltet folgende Informationen:</p>
+<ul>
+<li><code>Project_ID</code>: eindeutige Identifikationsnummer des Projekts</li>
+<li><code>Name Projekt</code>: Art des Projektes // Ort des Projektes (z.B. “Stadtpark // Eberhardtallee”)</li>
+<li><code>projekt_Beginn</code>: Baubeginn bzw. Beginn der Instandhaltungsarbeiten</li>
+<li><code>Plan Bau fertig</code>: geplantes Bauende bzw. Instandhaltungsende</li>
+<li><code>Fertig_IST</code>: tatsächliches Bauende bzw. Instandhaltungsende</li>
+<li><code>Kosten Plan</code>: budgetierte Gesamtkosten des Projektes</li>
+<li><code>Ist_Kosten</code>: tatsächliche Gesamtkosten des Projektes</li>
+<li><code>Project_team</code>: internes Team, welches das Projekt bearbeitet hat</li>
+</ul>
+<p>Link zum Datensatz: <a href="https://www.dropbox.com/s/ov6mnmgzrydquie/Construction.csv?dl=1">Construction.csv</a></p>
+</section>
+<section id="schritt-1-problemstellung" class="slide level2">
+<h2>Schritt 1: Problemstellung</h2>
+<h3 id="deskriptive-analyse-7">Deskriptive Analyse</h3>
+<p><br></p>
+<ul>
+<li><p>Was sollte Ziel unserer Analyse sein?</p></li>
+<li><p>Welche Fragestellungen wollen wir beantworten?</p></li>
+</ul>
+<blockquote>
+<p><strong>Wichtig</strong>:</p>
+<ul>
+<li><p>Formulieren der Problemstellung hilft, den Überblick zu behalten und die Analyse zu strukturieren.</p></li>
+<li><p>Problemstellung sollte immer der erste Schritt der Analyse sein.</p></li>
+</ul>
+</blockquote>
+</section>
+<section id="daten-einlesen-und-überblick-verschaffen" class="slide level2">
+<h2>Daten Einlesen und Überblick verschaffen</h2>
+<h3 id="deskriptive-analyse-8">Deskriptive Analyse</h3>
+<ul>
+<li><p>Beginnen wir mit der Analyse, in dem wir die Daten zunächst einlesen und aufbereiten. Dazu verwenden wir <code>read_csv()</code>. Bei <code>read_csv()</code> handelt es sich um eine <strong>Funktion</strong>, der verschiedene Parameter übergeben werden können.</p></li>
+<li><p>Der wichtigste (und einzige zwingend notwendige) Parameter ist der <strong>Pfad zur Datei</strong>, die eingelesen werden soll.</p></li>
+<li><p>Der Pfad der Datei kann als Link oder als lokaler Dateipfad übergeben werden</p></li>
+</ul>
+</section>
+<section id="einlesen-csv-datein-können-via-read_csv-eingelesen-werden" class="slide level2">
+<h2>Einlesen: CSV-Datein können via <code>read_csv()</code> eingelesen werden</h2>
+<h3 id="deskriptive-analyse-9">Deskriptive Analyse</h3>
+<p><strong>Einlesen via Link:</strong></p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb9-2"><a href="#cb9-2"></a></span>
+<span id="cb9-3"><a href="#cb9-3"></a>path <span class="op">=</span> <span class="st">"https://www.dropbox.com/s/ov6mnmgzrydquie/Construction.csv?dl=1"</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a>df <span class="op">=</span> pd.read_csv(path)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="einlesen-csv-datein-können-via-read_csv-eingelesen-werden-1" class="slide level2">
+<h2>Einlesen: CSV-Datein können via <code>read_csv()</code> eingelesen werden</h2>
+<h3 id="deskriptive-analyse-10">Deskriptive Analyse</h3>
+<p><strong>Einlesen via lokalem Pfad:</strong></p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb10-2"><a href="#cb10-2"></a></span>
+<span id="cb10-3"><a href="#cb10-3"></a>path <span class="op">=</span> <span class="st">"_data/Construction.csv"</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a>df <span class="op">=</span> pd.read_csv(path)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<div class="fragment">
+
+<p><strong>Wichtig:</strong></p>
+<ul>
+<li>Der Dateipfad ist relativ zum Ordner, in dem sich die Jupyter-Notebook-Datei befindet.</li>
+</ul>
+<div class="fragment">
+
+<ul>
+<li>Datei liegt im Beispiel im Ordner <code>_data</code></li>
+</ul>
+<div class="fragment">
+
+<ul>
+<li>Ordner <code>_data</code> liegt im gleichen Ordner wie die Jupyter-Notebook-Datei</li>
+</ul>
+</div></div></div></section>
+<section id="daten-einlesen-und-überblick-verschaffen-grundsätzliches-vorgehen" class="slide level2">
+<h2>Daten Einlesen und Überblick verschaffen: grundsätzliches Vorgehen</h2>
+<h3 id="deskriptive-analyse-11">Deskriptive Analyse</h3>
+<ul>
+<li><p>Pandas-Bibliothek importieren: Um Dateien mit Pandas einzulesen, muss zunächst die Pandas-Bibliothek in Python importiert werden: import pandas as pd</p></li>
+<li><p>Einlesefunktion verwenden: Verwenden Sie eine der spezifischen Einlesefunktionen <code>read_...()</code> von Pandas, um Dateien unterschiedlicher Formate einzulesen.</p></li>
+</ul>
+<p><strong>Funktionen für verschiedene Dateiformate: </strong></p>
+<ul>
+<li><p>CSV-Dateien: <code>pd.read_csv('dateiname.csv')</code> - Liest eine CSV-Datei ein und gibt sie als DataFrame zurück.</p></li>
+<li><p>Excel-Dateien: <code>pd.read_excel('dateiname.xlsx')</code> - Liest eine Excel-Datei ein und gibt sie als DataFrame zurück. Benötigt die zusätzlichen Bibliotheken openpyxl und xlrd.</p></li>
+<li><p>JSON-Dateien: <code>pd.read_json('dateiname.json')</code> - Liest eine JSON-Datei ein und gibt sie als DataFrame zurück.</p></li>
+<li><p>HTML-Dateien: <code>pd.read_html('dateiname.html')</code> - Liest eine HTML-Datei ein, extrahiert Tabellen aus dem HTML und gibt sie als Liste von DataFrames zurück. Benötigt die zusätzliche Bibliothek lxml.</p></li>
+<li><p>SQL-Datenbanken: <code>pd.read_sql('sql_query', connection_object)</code> - Führt eine SQL-Abfrage auf einer Datenbank aus und gibt das Ergebnis als DataFrame zurück.</p></li>
+<li><p>…</p></li>
+</ul>
+</section>
+<section id="ersten-überblick-verschaffen" class="slide level2">
+<h2>Ersten Überblick verschaffen</h2>
+<h3 id="deskriptive-analyse-12">Deskriptive Analyse</h3>
+<p><br></p>
+<p><strong>Vier Funktionen für den ersten Überblick:</strong></p>
+<div class="fragment">
+
+<ul>
+<li><p><code>head()</code>: Zeigt die ersten Zeilen des DataFrames an.</p></li>
+<li><p><code>tail()</code>: Zeigt die letzten Zeilen des DataFrames an.</p></li>
+<li><p>Anzahl Zeilen anpassen: z.B. <code>df.head(10)</code> für die ersten zehn Zeilen</p></li>
+<li><p><code>info()</code>: Zeigt Informationen zum DataFrame an, z.B. Anzahl Zeilen, Anzahl Spalten, Datentypen, …</p></li>
+<li><p><code>describe()</code>: Zeigt eine Zusammenfassung der numerischen Spalten an, z.B. Mittelwert, Standardabweichung, Minimum, Maximum, …</p></li>
+</ul>
+</div></section>
+<section id="aufgabe-1-ersten-überblick-verschaffen" class="slide level2">
+<h2>Aufgabe 1: Ersten Überblick verschaffen</h2>
+<h3 id="deskriptive-analyse-13">Deskriptive Analyse</h3>
+<ul>
+<li><p>Lese die Datei <code>Construction.csv</code> ein und speichere sie in der Variable <code>df</code>.</p></li>
+<li><p>Zeige die ersten 10 Zeilen des DataFrames an.</p></li>
+<li><p>Zeige die letzten 3 Zeilen des DataFrames an.</p></li>
+<li><p>Führen Sie die Funktion <code>info()</code> auf den DataFrame <code>df</code> aus. Was stellen Sie fest?</p></li>
+<li><p>bestimmen Sie die durschnittlichen Kosten über alle Projekte</p></li>
+</ul>
+</section>
+<section id="lösung-aufgabe-1-ersten-überblick-verschaffen" class="slide level2">
+<h2>Lösung Aufgabe 1: Ersten Überblick verschaffen</h2>
+<h3 id="deskriptive-analyse-14">Deskriptive Analyse</h3>
+<p><br> <br></p>
+<center>
+Siehe Jupyter Notebook in der Veranstaltung.
+</center>
+</section>
+<section id="aufbereitung-der-daten" class="slide level2">
+<h2>Aufbereitung der Daten</h2>
+<h3 id="deskriptive-analyse-15">Deskriptive Analyse</h3>
+<p><br></p>
+<p>Natürlich gibt es nicht <em>den</em> richtigen Weg, um Daten aufzubereiten. Jeder Datensatz ist unterschiedlich und nicht jede Analyse hat dieselben Anforderungen. Dennoch gibt es typische Aufgaben, die wir bei der Aufbereitung von Daten immer wieder vorfinden.</p>
+<div class="fragment">
+
+<p>Wir werden uns im Folgenden einige dieser Aufgaben ansehen und die entsprechenden Lösungen diskutieren.</p>
+<ol type="1">
+<li><p>Variablennamen anpassen</p></li>
+<li><p>Datentypen anpassen</p></li>
+<li><p>Daten bereinigen</p>
+<ul>
+<li><p>Fehlende Werte</p></li>
+<li><p>Duplikate</p></li>
+<li><p>Falsche Werte</p></li>
+</ul></li>
+</ol>
+</div></section>
+<section id="variablennamen-anpassen" class="slide level2">
+<h2>Variablennamen anpassen</h2>
+<h3 id="deskriptive-analyse-16">Deskriptive Analyse</h3>
+<p><br></p>
+<p><strong>Warum?</strong></p>
+<ul>
+<li><p>Nicht zwingend notwendig, Variablen umzubenennen</p></li>
+<li><p>Vorhandene Bezeichnungen: nicht intuitiv, inkonsistent, unklar</p></li>
+<li><p>Sinnvolle Umbenennung: schnellere Erkennung, intuitive Auswahl</p></li>
+<li><p>Subjektive Komponente bei Umbenennung</p></li>
+<li><p>Uneinheitliche Spaltennamen: Groß-/Kleinbuchstaben, Deutsch/Englisch, Leerzeichen/Unterstrich</p></li>
+<li><p>Erschwert intuitive Auswahl und Analyse</p></li>
+</ul>
+<p><br></p>
+<div class="fragment">
+
+<blockquote>
+<p><strong>Datensatz:</strong><br>
+Welche Veränderungen könnten wir vornhemen, um die Spaltennamen zu vereinheitlichen?</p>
+</blockquote>
+</div></section>
+<section id="variablennamen-anpassen-1" class="slide level2">
+<h2>Variablennamen anpassen</h2>
+<h3 id="deskriptive-analyse-17">Deskriptive Analyse</h3>
+<p><strong>Beispielhafte Anpassungen:</strong></p>
+<ul>
+<li>alle Spalten in Kleinbuchstaben umwandeln</li>
+<li>alle Leerzeichen durch <code>_</code> ersetzen</li>
+<li>alle Begriffe <code>project</code> durch <code>projekt</code> ersetzen</li>
+<li>wo sinnvoll kürzere Begriffe verwenden</li>
+<li>Begriffe wie <code>Plan</code> und <code>Ist</code> einheitlich verwenden</li>
+</ul>
+<div class="fragment">
+
+<p><strong>Python:</strong></p>
+<p>Wir können die Spalten mit der Funktion <code>rename()</code> umbenennen. Die Funktion <code>rename()</code> erwartet als Parameter ein sog. <code>Dictionary</code>, in dem wir die alten Spaltennamen als Schlüssel und die neuen Spaltennamen als Werte angeben.</p>
+<div class="fragment">
+
+
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>df.rename(columns<span class="op">=</span>{<span class="st">'alter_spaltenname'</span>: <span class="st">'neuer_spaltenname'</span>})</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></section>
+<section id="aufgabe-2-variablennamen-anpassen" class="slide level2">
+<h2>Aufgabe 2: Variablennamen anpassen</h2>
+<h3 id="deskriptive-analyse-18">Deskriptive Analyse</h3>
+<p><br></p>
+<ul>
+<li><p>passen Sie die Spaltennamen des DataFrames <code>df</code> an.</p></li>
+<li><p>nehmen Sie dabei die Anpassungen auf der vorherigen Folie vor.</p></li>
+</ul>
+</section>
+<section id="lösung-aufgabe-2-spaltennamen-anpassen" class="slide level2">
+<h2>Lösung Aufgabe 2: Spaltennamen anpassen</h2>
+<h3 id="deskriptive-analyse-19">Deskriptive Analyse</h3>
+<p><br></p>
+<div class="cell" data-execution_count="8">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>df <span class="op">=</span> df.rename(columns<span class="op">=</span>{<span class="st">'Project_ID'</span>: <span class="st">'id'</span>, </span>
+<span id="cb12-2"><a href="#cb12-2"></a>                        <span class="st">'Name Projekt'</span>: <span class="st">'name'</span>,</span>
+<span id="cb12-3"><a href="#cb12-3"></a>                        <span class="st">'projekt_Beginn'</span>: <span class="st">'beginn'</span>,</span>
+<span id="cb12-4"><a href="#cb12-4"></a>                        <span class="st">'Plan Bau fertig'</span>: <span class="st">'ende_plan'</span>,</span>
+<span id="cb12-5"><a href="#cb12-5"></a>                        <span class="st">'Fertig_IST'</span>: <span class="st">'ende_ist'</span>,</span>
+<span id="cb12-6"><a href="#cb12-6"></a>                        <span class="st">'Kosten Plan'</span>: <span class="st">'kosten_plan'</span>,</span>
+<span id="cb12-7"><a href="#cb12-7"></a>                        <span class="st">'Ist_Kosten'</span>: <span class="st">'kosten_ist'</span>,</span>
+<span id="cb12-8"><a href="#cb12-8"></a>                        <span class="st">'Project_team'</span>: <span class="st">'team'</span>})</span>
+<span id="cb12-9"><a href="#cb12-9"></a>df.head()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+<table class="dataframe" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header" style="text-align: right;">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">id</th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">beginn</th>
+<th data-quarto-table-cell-role="th">ende_plan</th>
+<th data-quarto-table-cell-role="th">ende_ist</th>
+<th data-quarto-table-cell-role="th">kosten_plan</th>
+<th data-quarto-table-cell-role="th">kosten_ist</th>
+<th data-quarto-table-cell-role="th">team</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>HN-399443</td>
+<td>Straßenbau // Jennifer-Buchholz-Ring</td>
+<td>2014-09-01</td>
+<td>2014-10-03</td>
+<td>2014-10-02</td>
+<td>219817.40</td>
+<td>246192.34</td>
+<td>Team 3</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>UD-626094</td>
+<td>Elektroarbeiten // Langernstraße</td>
+<td>2021-06-12</td>
+<td>2021-08-16</td>
+<td>2021-09-18</td>
+<td>105683.14</td>
+<td>144657.38</td>
+<td>Team 3</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>IO-468103</td>
+<td>Spielplatz // Dussen vanweg</td>
+<td>2016-05-20</td>
+<td>2016-06-29</td>
+<td>2016-06-27</td>
+<td>129851.26</td>
+<td>136753.06</td>
+<td>Team 1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>OG-758899</td>
+<td>Stadtpark // Lübsstr.</td>
+<td>2014-11-11</td>
+<td>2014-12-30</td>
+<td>2015-01-28</td>
+<td>181236.83</td>
+<td>273996.91</td>
+<td>Team 2</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>CZ-107835</td>
+<td>Elektroarbeiten // Försterweg</td>
+<td>2017-07-25</td>
+<td>2017-10-08</td>
+<td>2017-10-08</td>
+<td>75205.92</td>
+<td>77519.27</td>
+<td>Team 4</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="datentypen-anpassen" class="slide level2">
+<h2>Datentypen anpassen</h2>
+<h3 id="deskriptive-analyse-20">Deskriptive Analyse</h3>
+<p>Wir haben bereits gesehen, dass unser Datensatz nach dem Einlesen zwei Datentypen enthält: <code>object</code> und <code>float64</code>. <strong>Sind Datentypen für unsere Analyse passend?</strong></p>
+<div class="fragment">
+
+<p><strong>Diskussion der Datentypen:</strong></p>
+<ul>
+<li><code>id</code>: die Spalte beinhaltet Buchstaben, Zeichen und Zahlen (z.B. P-62602). Der Datentyp <code>object</code> ist also passend.</li>
+<li><code>name</code>: die Spalte beinhaltet Text. Der Datentyp <code>object</code> ist also passend.</li>
+<li><code>beginn</code>: die Spalte beinhaltet Datumswerte. Der Datentyp <code>object</code> ist nicht passend. Wir sollten den Datentyp in ein Datumsformat umwandeln.</li>
+<li><code>ende_plan</code>: die Spalte beinhaltet Datumswerte. Der Datentyp <code>object</code> ist nicht passend. Wir sollten den Datentyp in ein Datumsformat umwandeln.</li>
+<li><code>ende_ist</code>: die Spalte beinhaltet Datumswerte. Der Datentyp <code>object</code> ist nicht passend. Wir sollten den Datentyp in ein Datumsformat umwandeln.</li>
+<li><code>kosten_plan</code>: die Spalte beinhaltet Zahlen. Der Datentyp <code>float64</code> erscheint passend.</li>
+<li><code>kosten_ist</code>: die Spalte beinhaltet Zahlen. Der Datentyp <code>float64</code> erscheint passend.</li>
+<li><code>team</code>: die Spalte beinhaltet Text. Der Datentyp <code>object</code> ist also passend.</li>
+</ul>
+<div class="fragment">
+
+<blockquote>
+<p><strong>Fazit:</strong><br>
+Anpassen der Datumspalten in ein Datumsformat erscheint sinnvoll.</p>
+</blockquote>
+</div></div></section>
+<section id="datentypen-anpassen-warum-datumsformate" class="slide level2">
+<h2>Datentypen anpassen: warum Datumsformate?</h2>
+<h3 id="deskriptive-analyse-21">Deskriptive Analyse</h3>
+<ul>
+<li><strong>Zeitreihenanalyse</strong>: Konvertierung in Datumsformat ermöglicht einfache Analysen von Zeitreihendaten.</li>
+</ul>
+<div class="fragment">
+
+<p><br></p>
+<ul>
+<li><strong>Datumsarithmetik</strong>: Berechnungen mit Datums- und Zeitangaben werden erleichtert, z.B.:</li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>df[<span class="st">'differenz'</span>] <span class="op">=</span> df[<span class="st">'enddatum'</span>] <span class="op">-</span> df[<span class="st">'startdatum'</span>]</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<br>
+<div class="fragment">
+
+<ul>
+<li><strong>Zeitbezogene Funktionen</strong>: Zugriff auf spezielle Funktionen, die auf Datums- und Zeitangaben anwendbar sind, z.B.:</li>
+</ul>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>df[<span class="st">'spalte'</span>].dt.month</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></section>
+<section id="datentypen-anpassen-in-python" class="slide level2">
+<h2>Datentypen anpassen in Python</h2>
+<h3 id="deskriptive-analyse-22">Deskriptive Analyse</h3>
+<p><strong>Wie können wir Datentypen in Python anpassen?</strong></p>
+<p>Es gibt verschiedene Wege, z.B.:</p>
+<div class="fragment">
+
+<p><br></p>
+<p><span class="emoji" data-emoji="one">1️⃣</span> <code>astype()</code>: Verwenden Sie die <code>astype()</code> Methode, um den Datentyp einer Spalte zu ändern.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>df[<span class="st">'spalte'</span>] <span class="op">=</span> df[<span class="st">'spalte'</span>].astype(<span class="st">'neuer_datentyp'</span>)`</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Für <code>neuer_datentyp</code> können Sie z.B. <code>int64</code>, <code>float64</code>, <code>datetime64</code> oder <code>category</code> verwenden.</p>
+<div class="fragment">
+
+<p><br></p>
+<p><span class="emoji" data-emoji="two">2️⃣</span> <code>to_datetime()</code>: Konvertieren Sie Spalten, die Datums- und Zeitangaben enthalten, in den <code>datetime64</code>-Datentyp.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>df[<span class="st">'spalte'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'spalte'</span>])</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></section>
+<section id="aufgabe-3-spalten-in-datumsformat-umwandeln" class="slide level2">
+<h2>Aufgabe 3: Spalten in Datumsformat umwandeln</h2>
+<h3 id="deskriptive-analyse-23">Deskriptive Analyse</h3>
+<p>Wandeln Sie die Spalten <code>beginn</code>, <code>ende_plan</code> und <code>ende_ist</code> in das Datumsformat um.</p>
+</section>
+<section id="lösung-aufgabe-3-spalten-in-datumsformat-umwandeln" class="slide level2">
+<h2>Lösung Aufgabe 3: Spalten in Datumsformat umwandeln</h2>
+<h3 id="deskriptive-analyse-24">Deskriptive Analyse</h3>
+<div class="cell" data-execution_count="9">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>df[<span class="st">'beginn'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'beginn'</span>])</span>
+<span id="cb17-2"><a href="#cb17-2"></a>df[<span class="st">'ende_plan'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'ende_plan'</span>])</span>
+<span id="cb17-3"><a href="#cb17-3"></a>df[<span class="st">'ende_ist'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'ende_ist'</span>])</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="fragment">
+
+<p>Mit der Funktion <code>info()</code> können wir uns die Datentypen der Spalten anzeigen lassen.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>df.info()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
+<div class="fragment">
+
+<p>Alternativ können wir die Datentypen der Spalten mit der Funktion <code>dtypes</code> anzeigen lassen.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a>df.dtypes</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></section>
+<section id="daten-bereinigen" class="slide level2">
+<h2>Daten bereinigen</h2>
+<h3 id="deskriptive-analyse-25">Deskriptive Analyse</h3>
+<p>Wir schauen uns im Folgenden einige Bereinigugnsmaßnahmen an, die wir an unserem Datensatz vornehmen können.</p>
+<ul>
+<li><p><strong>Fehlende Werte</strong> identifizieren und behandeln</p></li>
+<li><p><strong>Duplikate</strong> identifizieren und behandeln</p></li>
+<li><p><strong>Fehlerhafte Werte</strong> identifizieren und behandeln</p></li>
+</ul>
+</section>
+<section id="daten-bereinigen-fehlende-werte" class="slide level2">
+<h2>Daten bereinigen: Fehlende Werte</h2>
+<h3 id="deskriptive-analyse-26">Deskriptive Analyse</h3>
+<ul>
+<li><p>wir haben bereits gesehen (siehe <code>df.info()</code>), dass nicht alle Spalten mit Werten gefüllt sind.</p></li>
+<li><p>wir wissen wir nicht, wo sich diese fehlenden Werte befinden.</p></li>
+<li><p>Information ist aber wichtig, um zu entscheiden, wie wir mit den fehlenden Werten umgehen:</p>
+<ul>
+<li><p>Beobachtungen mit fehlenden Werten entfernen?</p></li>
+<li><p>fehlende Werte durch andere Werte ersetzen?</p></li>
+<li><p>sind fehlende Werte zufällig verteilt oder gibt es einen Zusammenhang mit anderen Variablen?</p></li>
+<li><p>sind fehlende Werte überhaupt relevant für die Analyse?</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="daten-bereinigen-fehlende-werte-1" class="slide level2">
+<h2>Daten bereinigen: Fehlende Werte</h2>
+<h3 id="deskriptive-analyse-27">Deskriptive Analyse</h3>
+<div class="fragment">
+
+<ul>
+<li><p>Mit der Funktion <code>isna()</code> können wir herausfinden, wo sich fehlende Werte befinden. Die Funktion können wir auf den gesamten Datensatz anwenden oder auf einzelne Spalten.</p></li>
+<li><p>die Funktion <code>isna()</code> gibt einen <code>True</code> oder <code>False</code> Wert zurück, je nachdem, ob der Wert fehlt oder nicht.</p></li>
+</ul>
+<p><strong>Beispiel</strong></p>
+<div class="fragment">
+
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>df.isna()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+<table class="dataframe" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header" style="text-align: right;">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">id</th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">beginn</th>
+<th data-quarto-table-cell-role="th">ende_plan</th>
+<th data-quarto-table-cell-role="th">ende_ist</th>
+<th data-quarto-table-cell-role="th">kosten_plan</th>
+<th data-quarto-table-cell-role="th">kosten_ist</th>
+<th data-quarto-table-cell-role="th">team</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10014</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">10015</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10016</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">10017</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10018</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+</tr>
+</tbody>
+</table>
+
+<p>10019 rows × 8 columns</p>
+</div>
+</div>
+</div>
+</div></div></section>
+<section id="daten-bereinigen-fehlende-werte-2" class="slide level2">
+<h2>Daten bereinigen: Fehlende Werte</h2>
+<h3 id="deskriptive-analyse-28">Deskriptive Analyse</h3>
+<p>Ein typisches Analysemuster ist es, alle Zeilen (d.h. Beobahtungen) zu selektieren, die fehlende Werte enthalten.</p>
+<ol type="1">
+<li><p>Wir identifizieren alle Elemente, die fehlende Werte enthalten, indem wir die Funktion <code>isna()</code> auf den gesamten Datensatz anwenden.</p></li>
+<li><p>Wir selektieren alle Zeilen, die fehlende Werte enthalten, indem wir die Funktion <code>any()</code> auf die Ergebnisse der Funktion <code>isna()</code> anwenden.</p></li>
+</ol>
+<div class="fragment">
+
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>mask <span class="op">=</span> df.isna().<span class="bu">any</span>(axis<span class="op">=</span><span class="dv">1</span>)  <span class="co"># mask = True, wenn Zeile fehlende Werte enthält</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>mask.head()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<pre><code>0    False
+1    False
+2    False
+3    False
+4    False
+dtype: bool</code></pre>
+</div>
+</div>
+</div></section>
+<section id="daten-bereinigen-fehlende-werte-3" class="slide level2">
+<h2>Daten bereinigen: Fehlende Werte</h2>
+<h3 id="deskriptive-analyse-29">Deskriptive Analyse</h3>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a>df[mask].head()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+<table class="dataframe" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header" style="text-align: right;">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">id</th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">beginn</th>
+<th data-quarto-table-cell-role="th">ende_plan</th>
+<th data-quarto-table-cell-role="th">ende_ist</th>
+<th data-quarto-table-cell-role="th">kosten_plan</th>
+<th data-quarto-table-cell-role="th">kosten_ist</th>
+<th data-quarto-table-cell-role="th">team</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">103</td>
+<td>TH-593312</td>
+<td>Elektroarbeiten // Börnerplatz</td>
+<td>2018-05-07</td>
+<td>2018-07-11</td>
+<td>2018-07-17</td>
+<td>NaN</td>
+<td>69375.23</td>
+<td>Team 3</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">740</td>
+<td>NL-673150</td>
+<td>Baumbestand // Loosplatz</td>
+<td>2016-12-30</td>
+<td>NaT</td>
+<td>2016-12-31</td>
+<td>16349.93</td>
+<td>17892.16</td>
+<td>Team 3</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">896</td>
+<td>LM-748355</td>
+<td>Baumbestand // Martha-Bohlander-Ring</td>
+<td>2019-10-17</td>
+<td>2019-10-22</td>
+<td>2019-10-24</td>
+<td>NaN</td>
+<td>40637.75</td>
+<td>Team 4</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">996</td>
+<td>AY-257302</td>
+<td>Elektroarbeiten // Eimerstr.</td>
+<td>2014-02-03</td>
+<td>2014-02-28</td>
+<td>2014-03-01</td>
+<td>NaN</td>
+<td>112867.21</td>
+<td>Team 2</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1059</td>
+<td>RR-446242</td>
+<td>Elektroarbeiten // Florentine-Kambs-Allee</td>
+<td>2013-06-16</td>
+<td>2013-07-24</td>
+<td>2013-07-23</td>
+<td>NaN</td>
+<td>164730.94</td>
+<td>Team 1</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="daten-bereinigen-fehlende-werte-4" class="slide level2">
+<h2>Daten bereinigen: Fehlende Werte</h2>
+<h3 id="deskriptive-analyse-30">Deskriptive Analyse</h3>
+<p>Da wir keine weiteren Informationen zu den fehlenden Daten haben und auch keinen systematischen Fehler entdecken können, der zu den fehlenden Daten führt, werden wir die fehlenden Werte einfach entfernen. Dies können wir mit der Funktion <code>dropna()</code> erreichen.</p>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a>df <span class="op">=</span> df.dropna()</span>
+<span id="cb24-2"><a href="#cb24-2"></a>df.info()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+Int64Index: 9998 entries, 0 to 10018
+Data columns (total 8 columns):
+ #   Column       Non-Null Count  Dtype         
+---  ------       --------------  -----         
+ 0   id           9998 non-null   object        
+ 1   name         9998 non-null   object        
+ 2   beginn       9998 non-null   datetime64[ns]
+ 3   ende_plan    9998 non-null   datetime64[ns]
+ 4   ende_ist     9998 non-null   datetime64[ns]
+ 5   kosten_plan  9998 non-null   float64       
+ 6   kosten_ist   9998 non-null   float64       
+ 7   team         9998 non-null   object        
+dtypes: datetime64[ns](3), float64(2), object(3)
+memory usage: 703.0+ KB</code></pre>
+</div>
+</div>
+</section>
+<section id="daten-bereinigen-duplikate" class="slide level2">
+<h2>Daten bereinigen: Duplikate</h2>
+<h3 id="deskriptive-analyse-31">Deskriptive Analyse</h3>
+<p><strong>Beispieldatensatz mit Duplikaten</strong></p>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a><span class="co"># Erstelle Beispiel-Datensatz</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a>example <span class="op">=</span> pd.DataFrame({<span class="st">'Spalte A'</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>],</span>
+<span id="cb26-3"><a href="#cb26-3"></a>                   <span class="st">'Spalte B'</span>: [<span class="st">'Hund'</span>, <span class="st">'Katze'</span>, <span class="st">'Vogel'</span>, <span class="st">'Katze'</span>, <span class="st">'Fisch'</span>, <span class="st">'Vogel'</span>],</span>
+<span id="cb26-4"><a href="#cb26-4"></a>                   <span class="st">'Spalte C'</span>: [<span class="dv">19</span>, <span class="dv">43</span>, <span class="dv">1</span>, <span class="dv">43</span>, <span class="dv">127</span>, <span class="dv">21</span>]})</span>
+<span id="cb26-5"><a href="#cb26-5"></a>example</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+<table class="dataframe" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header" style="text-align: right;">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Spalte A</th>
+<th data-quarto-table-cell-role="th">Spalte B</th>
+<th data-quarto-table-cell-role="th">Spalte C</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1</td>
+<td>Hund</td>
+<td>19</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>2</td>
+<td>Katze</td>
+<td>43</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>3</td>
+<td>Vogel</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>2</td>
+<td>Katze</td>
+<td>43</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>4</td>
+<td>Fisch</td>
+<td>127</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>5</td>
+<td>Vogel</td>
+<td>21</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="daten-bereinigen-duplikate-1" class="slide level2">
+<h2>Daten bereinigen: Duplikate</h2>
+<h3 id="deskriptive-analyse-32">Deskriptive Analyse</h3>
+<ul>
+<li><p>können die Methode <code>duplicated()</code> nutzen, um Duplikate in Zeilen eines DataFrames zu <strong>identifizieren</strong>.</p></li>
+<li><p>gibt eine Boolesche Reihe (True, False, True etc.) zurück, die angibt, ob eine Zeile ein Duplikat ist oder nicht</p></li>
+<li><p>Standardmäßig werden dabei alle Spalten berücksichtigt, jedoch kann auch eine Teilmenge von Spalten angegeben werden, die bei der Suche nach Duplikaten berücksichtigt werden soll (via <code>subset</code>)</p></li>
+<li><p><code>keep</code> gibt an, welche Duplikate in der Ergebnisreihe enthalten sein sollen. Standardmäßig werden alle Duplikate außer dem ersten entfernt.</p></li>
+</ul>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Variante 1</a></li><li><a href="#tabset-1-2">Variante 2</a></li><li><a href="#tabset-1-3">Variante 3</a></li><li><a href="#tabset-1-4">Variante 4</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a>example.duplicated()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<pre><code>0    False
+1    False
+2    False
+3     True
+4    False
+5    False
+dtype: bool</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-2">
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>example.duplicated(keep<span class="op">=</span><span class="va">False</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<pre><code>0    False
+1     True
+2    False
+3     True
+4    False
+5    False
+dtype: bool</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-3">
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a>example.duplicated(subset<span class="op">=</span>[<span class="st">'Spalte A'</span>, <span class="st">'Spalte C'</span>])</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<pre><code>0    False
+1    False
+2    False
+3     True
+4    False
+5    False
+dtype: bool</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-4">
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a>example.duplicated(subset<span class="op">=</span>[<span class="st">'Spalte A'</span>, <span class="st">'Spalte C'</span>], keep<span class="op">=</span><span class="va">False</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<pre><code>0    False
+1     True
+2    False
+3     True
+4    False
+5    False
+dtype: bool</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="daten-bereinigen-duplikate-2" class="slide level2">
+<h2>Daten bereinigen: Duplikate</h2>
+<h3 id="deskriptive-analyse-33">Deskriptive Analyse</h3>
+<p>Wir müssen nun entscheiden, ob wir diesen Eintrag entfernen wollen oder nicht. In diesem Fall scheint es sinnvoll, den doppelten Eintrag zu entfernen, da wir in der Regel davon ausgehen, dass die Daten nur einmal erfasst wurden. Wir können dies mit der Methode <code>drop_duplicates()</code> tun. Diese entfernt standardmäßig die zweite Zeile einer doppelten Beobachtung. Wir können dies jedoch ebenfalls mit dem Parameter <code>keep</code> ändern (d.h. alle Duplikate entfernen oder nur die erste oder letzte Zeile).</p>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a>example.drop_duplicates()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+<table class="dataframe" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header" style="text-align: right;">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Spalte A</th>
+<th data-quarto-table-cell-role="th">Spalte B</th>
+<th data-quarto-table-cell-role="th">Spalte C</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1</td>
+<td>Hund</td>
+<td>19</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>2</td>
+<td>Katze</td>
+<td>43</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>3</td>
+<td>Vogel</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">4</td>
+<td>4</td>
+<td>Fisch</td>
+<td>127</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">5</td>
+<td>5</td>
+<td>Vogel</td>
+<td>21</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="daten-bereinigen-duplikate-3" class="slide level2">
+<h2>Daten bereinigen: Duplikate</h2>
+<h3 id="deskriptive-analyse-34">Deskriptive Analyse</h3>
+<p><br></p>
+<p>Lassen Sie uns nun analysieren, ob es überhaupt Duplikate in unserem Datensatz gibt uns dafür alle Spalten berücksichtigen. Mit der Funktion <code>sum()</code> können wir die Anzahl der Duplikate ermitteln.</p>
+<p><br></p>
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a>df.duplicated().<span class="bu">sum</span>()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<pre><code>19</code></pre>
+</div>
+</div>
+<p><br></p>
+<blockquote>
+<p><strong>Fazit</strong><br>
+Es gibt <code>19</code> Duplikate in unserem Datensatz. Schauen wir uns diese an.</p>
+</blockquote>
+</section>
+<section id="aufgabe-4-duplikate-anzeigen" class="slide level2">
+<h2>Aufgabe 4: Duplikate anzeigen</h2>
+<h3 id="deskriptive-analyse-35">Deskriptive Analyse</h3>
+<p><br></p>
+<ul>
+<li><p>Schreiben Sie einen Code, der alle Duplikate in unserem Datensatz anzeigt.</p></li>
+<li><p>lassen Sie die ersten 6 Zeilen ausgeben (d.h. die ersten 3 Duplikate)</p></li>
+</ul>
+</section>
+<section id="lösung-4-duplikate-anzeigen" class="slide level2">
+<h2>Lösung 4: Duplikate anzeigen</h2>
+<h3 id="deskriptive-analyse-36">Deskriptive Analyse</h3>
+<p><br></p>
+<div class="panel-tabset">
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Unsortiert</a></li><li><a href="#tabset-2-2">Sortiert</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1">
+<div class="cell" data-execution_count="21">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1"></a>mask <span class="op">=</span> df.duplicated(keep<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb38-2"><a href="#cb38-2"></a>df[mask].head(<span class="dv">6</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+<table class="dataframe" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header" style="text-align: right;">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">id</th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">beginn</th>
+<th data-quarto-table-cell-role="th">ende_plan</th>
+<th data-quarto-table-cell-role="th">ende_ist</th>
+<th data-quarto-table-cell-role="th">kosten_plan</th>
+<th data-quarto-table-cell-role="th">kosten_ist</th>
+<th data-quarto-table-cell-role="th">team</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">34</td>
+<td>KN-987191</td>
+<td>Landschaftsbau // Helga-Krause-Allee</td>
+<td>2016-04-01</td>
+<td>2016-04-04</td>
+<td>2016-04-06</td>
+<td>114862.28</td>
+<td>125114.70</td>
+<td>Team 1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">447</td>
+<td>SW-908572</td>
+<td>Elektroarbeiten // Karl-Heinrich-Ring-Allee</td>
+<td>2020-03-26</td>
+<td>2020-06-07</td>
+<td>2020-06-13</td>
+<td>43298.09</td>
+<td>60629.52</td>
+<td>Team 3</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">590</td>
+<td>ZE-101640</td>
+<td>Landschaftsbau // Henry-Steinberg-Gasse</td>
+<td>2013-10-25</td>
+<td>2013-11-20</td>
+<td>2013-11-26</td>
+<td>99605.32</td>
+<td>118141.92</td>
+<td>Team 3</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1337</td>
+<td>DH-600607</td>
+<td>Straßenbau // Tröstplatz</td>
+<td>2015-01-06</td>
+<td>2015-01-25</td>
+<td>2015-01-26</td>
+<td>189536.10</td>
+<td>210407.91</td>
+<td>Team 1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1356</td>
+<td>JI-333627</td>
+<td>Ubahn // Karl-Friedrich-Eigenwillig-Platz</td>
+<td>2014-12-19</td>
+<td>2015-03-18</td>
+<td>2015-08-18</td>
+<td>322147.45</td>
+<td>331683.54</td>
+<td>Team 1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1436</td>
+<td>VV-651307</td>
+<td>Stadtpark // Reza-Cichorius-Straße</td>
+<td>2017-10-18</td>
+<td>2018-01-02</td>
+<td>2018-03-21</td>
+<td>195746.98</td>
+<td>203686.56</td>
+<td>Team 1</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-2-2">
+<div class="cell" data-execution_count="22">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1"></a>mask <span class="op">=</span> df.duplicated(keep<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb39-2"><a href="#cb39-2"></a>df[mask].sort_values(<span class="st">'id'</span>).head(<span class="dv">6</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="22">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+<table class="dataframe" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header" style="text-align: right;">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">id</th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">beginn</th>
+<th data-quarto-table-cell-role="th">ende_plan</th>
+<th data-quarto-table-cell-role="th">ende_ist</th>
+<th data-quarto-table-cell-role="th">kosten_plan</th>
+<th data-quarto-table-cell-role="th">kosten_ist</th>
+<th data-quarto-table-cell-role="th">team</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1438</td>
+<td>AS-665106</td>
+<td>Landschaftsbau // Junckengasse</td>
+<td>2013-03-30</td>
+<td>2013-04-20</td>
+<td>2013-04-20</td>
+<td>112341.63</td>
+<td>171362.50</td>
+<td>Team 4</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5617</td>
+<td>AS-665106</td>
+<td>Landschaftsbau // Junckengasse</td>
+<td>2013-03-30</td>
+<td>2013-04-20</td>
+<td>2013-04-20</td>
+<td>112341.63</td>
+<td>171362.50</td>
+<td>Team 4</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8235</td>
+<td>BD-570752</td>
+<td>Landschaftsbau // Seifertstr.</td>
+<td>2021-10-27</td>
+<td>2021-11-12</td>
+<td>2021-11-14</td>
+<td>83103.02</td>
+<td>125081.94</td>
+<td>Team 4</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2591</td>
+<td>BD-570752</td>
+<td>Landschaftsbau // Seifertstr.</td>
+<td>2021-10-27</td>
+<td>2021-11-12</td>
+<td>2021-11-14</td>
+<td>83103.02</td>
+<td>125081.94</td>
+<td>Team 4</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1337</td>
+<td>DH-600607</td>
+<td>Straßenbau // Tröstplatz</td>
+<td>2015-01-06</td>
+<td>2015-01-25</td>
+<td>2015-01-26</td>
+<td>189536.10</td>
+<td>210407.91</td>
+<td>Team 1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">6452</td>
+<td>DH-600607</td>
+<td>Straßenbau // Tröstplatz</td>
+<td>2015-01-06</td>
+<td>2015-01-25</td>
+<td>2015-01-26</td>
+<td>189536.10</td>
+<td>210407.91</td>
+<td>Team 1</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="daten-bereinigen-duplikate-4" class="slide level2">
+<h2>Daten bereinigen: Duplikate</h2>
+<h3 id="deskriptive-analyse-37">Deskriptive Analyse</h3>
+<p>In unserem Falle erscheint es sinnvoll, die Duplikate zu entfernen. Wir können dies mit der Funktion <code>drop_duplicates()</code> tun. Diese Funktion entfernt standardmäßig die zweite Zeile einer doppelten Beobachtung. Wir können dies jedoch ebenfalls mit dem Parameter <code>keep</code> ändern (d.h. alle Duplikate entfernen oder nur die erste oder letzte Zeile).</p>
+<div class="fragment">
+
+<p><br></p>
+<div class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1"></a>df <span class="op">=</span> df.drop_duplicates()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<p><br></p>
+<p>Wir können nun nochmals überprüfen, ob es noch Duplikate gibt und stellen fest, dass unsere Daten nun auf Dopplungen bereinigt sind.</p>
+<div class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1"></a>df.duplicated().<span class="bu">any</span>()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="24">
+<pre><code>False</code></pre>
+</div>
+</div>
+</div></div></section>
+<section id="falsche-werte" class="slide level2">
+<h2>Falsche Werte</h2>
+<h3 id="deskriptive-analyse-38">Deskriptive Analyse</h3>
+<p>Ein wichtiger Schritt bei der Datenbereinigung ist die Überprüfung der Daten auf (offensichtlich) falsche Werte. Nicht immer ist bereits bei der Aufbereitung der Daten erkennbar, ob ein Wert plausibel ist oder nicht. Häufig werden falsche Werte erst bei der Analyse der Daten sichtbar. Jedoch können und sollten einige Plausibilitätsprüfungen bereits bei der Aufbereitung der Daten durchgeführt werden.</p>
+<p>Im vorliegenden Datensatz können wir z.B. folgende <strong>Plausibilitätsprüfungen</strong> durchführen:</p>
+<div class="fragment">
+
+<p><span class="emoji" data-emoji="one">1️⃣</span> Ist der Wert der Spalte <code>id</code> eindeutig?</p>
+<div class="fragment">
+
+<p><span class="emoji" data-emoji="two">2️⃣</span> Sind die Werte für Kosten (<code>kosten_plan</code> und <code>kosten_ist</code>) plausibel, d.h. sind die Kosten positiv (bzw. haben alle das gleiche Vorzeichen)?</p>
+<div class="fragment">
+
+<p><span class="emoji" data-emoji="three">3️⃣</span> Sind die Werte für die Datumsspalten (<code>beginn</code>, <code>ende_plan</code> und <code>ende_ist</code>) plausibel, d.h. (i) liegen die Werte in der Vergangenheit und (ii) ist das Enddatum nach dem Startdatum?</p>
+</div></div></div></section>
+<section id="falsche-werte-eindeutigkeit-der-id" class="slide level2">
+<h2>Falsche Werte: Eindeutigkeit der ID</h2>
+<h3 id="deskriptive-analyse-39">Deskriptive Analyse</h3>
+<p><br></p>
+<p><br></p>
+<center>
+Wie können wir überprüfen, ob die <code>id</code> eindeutig ist?
+</center>
+</section>
+<section id="falsche-werte-eindeutigkeit-der-id-1" class="slide level2">
+<h2>Falsche Werte: Eindeutigkeit der ID</h2>
+<h3 id="deskriptive-analyse-40">Deskriptive Analyse</h3>
+<p><strong>Vorgehen:</strong></p>
+<ul>
+<li><p>gib die Anzahl der eindeutigen Werte der Spalte <code>id</code> aus</p></li>
+<li><p>vergleiche die Anzahl der eindeutigen Werte mit der Anzahl der Zeilen des Datensatzes</p></li>
+</ul>
+<div class="fragment">
+
+<p><strong>In Python:</strong></p>
+<div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1"></a>unique_ids <span class="op">=</span> df[<span class="st">'id'</span>].unique()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+
+<p><br></p>
+<p>Wir können nun überprüfen, ob die Anzahl der eindeutigen Werte der Anzahl der Zeilen entspricht.</p>
+<div class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1"></a><span class="bu">len</span>(unique_ids) <span class="op">==</span> <span class="bu">len</span>(df)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="26">
+<pre><code>True</code></pre>
+</div>
+</div>
+<p>Da der Wert <code>True</code> zurückgegeben wird, ist die <code>id</code> eindeutig und wir können uns sicher sein, dass keine Projekt-ID mehrfach vergeben wurde.</p>
+</div></div></section>
+<section id="falsche-werte-kosten" class="slide level2">
+<h2>Falsche Werte: Kosten</h2>
+<h3 id="deskriptive-analyse-41">Deskriptive Analyse</h3>
+<p>Sind die Werte für Kosten (<code>kosten_plan</code> und <code>kosten_ist</code>) plausibel, d.h. sind die <strong>Kosten positiv</strong> (bzw. haben alle das gleiche Vorzeichen)?</p>
+<p><strong>Variante 1</strong></p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1"></a><span class="co"># Mit "mask" arbeiten</span></span>
+<span id="cb46-2"><a href="#cb46-2"></a>mask <span class="op">=</span> df[<span class="st">'kosten_plan'</span>] <span class="op">&lt;</span> <span class="dv">0</span></span>
+<span id="cb46-3"><a href="#cb46-3"></a>df[mask]</span>
+<span id="cb46-4"><a href="#cb46-4"></a></span>
+<span id="cb46-5"><a href="#cb46-5"></a><span class="co"># Ohne "mask" arbeiten</span></span>
+<span id="cb46-6"><a href="#cb46-6"></a>df[df[<span class="st">'kosten_plan'</span>] <span class="op">&lt;</span> <span class="dv">0</span>]</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
+<p><strong>Variante 2</strong></p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1"></a><span class="co"># Datensatz nach Bedingung filtern</span></span>
+<span id="cb47-2"><a href="#cb47-2"></a>df.query(<span class="st">'kosten_plan &lt; 0'</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="falsche-werte-kosten-1" class="slide level2">
+<h2>Falsche Werte: Kosten</h2>
+<h3 id="deskriptive-analyse-42">Deskriptive Analyse</h3>
+<p>Der einfachste Weg, die Zeilen mit negativen Vorzeichen zu eliminieren, ist es den Datensatz mit <code>query</code> zu filtern. Wir können die Bedingung <code>kosten_plan &gt;= 0</code> nutzen, um alle Zeilen auszugeben, die einen positiven Kostenwert haben.</p>
+<div class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1"></a>df <span class="op">=</span> df.query(<span class="st">'kosten_plan &gt;= 0'</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+
+<p><br></p>
+<p>Wir könnten nun die gleiche Überprüfung für die Spalte <code>kosten_ist</code> durchführen. Stattdessen filtern wir aber alle Zeilen, die einen negativen Kostenwert haben, aus dem Datensatz heraus.</p>
+<div class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1"></a>df <span class="op">=</span> df.query(<span class="st">'kosten_ist &gt;= 0'</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+
+<p><br></p>
+<p>Wir hätten die beiden letzten Schritte auch in einem Schritt durchführen können, indem wir die Bedingungen mit einem <code>&amp;</code> verknüpft hätten.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1"></a>df <span class="op">=</span> df.query(<span class="st">'kosten_plan &gt;= 0 &amp; kosten_ist &gt;= 0'</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></section>
+<section id="falsche-werte-datum" class="slide level2">
+<h2>Falsche Werte: Datum</h2>
+<h3 id="deskriptive-analyse-43">Deskriptive Analyse</h3>
+<p>Bei der nun folgenden Überprüfung kommt uns zugute, dass wir die Spalten bereits in den Datentyp <code>datetime</code> konvertiert haben. Wir können nun die Werte für die Spalten <code>beginn</code>, <code>ende_plan</code> und <code>ende_ist</code> miteinander vergleichen.</p>
+<p>Wir können zwei Überprüfungen durchführen:</p>
+<ol type="1">
+<li><p>Sind alle Projekte bereits beendet?</p></li>
+<li><p>Liegt das Datum für <code>ende_ist</code> nach dem Datum für <code>beginn</code>?</p></li>
+</ol>
+</section>
+<section id="falsche-werte-datum-1" class="slide level2">
+<h2>Falsche Werte: Datum</h2>
+<h3 id="deskriptive-analyse-44">Deskriptive Analyse</h3>
+<p><strong>1. Sind alle Projekte bereits beendet?</strong></p>
+<div class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1"></a>df[<span class="st">'ende_ist'</span>].<span class="bu">max</span>()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="29">
+<pre><code>Timestamp('2023-03-09 00:00:00')</code></pre>
+</div>
+</div>
+<p>Das letzte Projekt wurde in der Vergangeheit beendet, d.h. wir können sicher sein, dass alle Projekte bereits beendet sind (und somit annehmen, dass auch alle Kosten bereits berücksichtigt wurden).</p>
+</section>
+<section id="falsche-werte-datum-2" class="slide level2">
+<h2>Falsche Werte: Datum</h2>
+<h3 id="deskriptive-analyse-45">Deskriptive Analyse</h3>
+<p><strong>2. Liegt das Datum für <code>ende_ist</code> nach dem Datum für <code>beginn</code>?</strong></p>
+<div class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1"></a>df.query(<span class="st">'ende_ist &lt;= beginn'</span>).head()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="30">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+<table class="dataframe" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header" style="text-align: right;">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">id</th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">beginn</th>
+<th data-quarto-table-cell-role="th">ende_plan</th>
+<th data-quarto-table-cell-role="th">ende_ist</th>
+<th data-quarto-table-cell-role="th">kosten_plan</th>
+<th data-quarto-table-cell-role="th">kosten_ist</th>
+<th data-quarto-table-cell-role="th">team</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1251</td>
+<td>TG-362669</td>
+<td>Baumbestand // Cornelia-Schönland-Gasse</td>
+<td>2017-08-16</td>
+<td>2017-08-16</td>
+<td>2017-08-16</td>
+<td>55507.48</td>
+<td>69877.32</td>
+<td>Team 2</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1584</td>
+<td>CF-360814</td>
+<td>Baumbestand // Adlerallee</td>
+<td>2014-10-18</td>
+<td>2014-10-19</td>
+<td>2014-10-18</td>
+<td>80258.30</td>
+<td>80779.37</td>
+<td>Team 4</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2456</td>
+<td>JV-632251</td>
+<td>Baumbestand // Gabriel-Gude-Platz</td>
+<td>2014-11-03</td>
+<td>2014-11-03</td>
+<td>2014-11-03</td>
+<td>31973.47</td>
+<td>35215.93</td>
+<td>Team 3</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2764</td>
+<td>WS-799566</td>
+<td>Stadtpark // Hesseplatz</td>
+<td>2014-04-21</td>
+<td>2014-04-22</td>
+<td>2014-04-21</td>
+<td>175422.45</td>
+<td>270521.71</td>
+<td>Team 2</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">3319</td>
+<td>QC-047279</td>
+<td>Stadtpark // Heiko-Pohl-Straße</td>
+<td>2020-06-24</td>
+<td>2020-07-12</td>
+<td>2020-06-24</td>
+<td>92345.10</td>
+<td>117155.99</td>
+<td>Team 3</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="falsche-werte-datum-3" class="slide level2">
+<h2>Falsche Werte: Datum</h2>
+<h3 id="deskriptive-analyse-46">Deskriptive Analyse</h3>
+<p><strong>Findings</strong></p>
+<ul>
+<li><p>es handelt sich ausschließlich um Projekte, die am gleichen Tag begonnen und beendet wurden.</p></li>
+<li><p>prinzipiell nicht ausgeschlossen, jedoch erscheint dies - zumindest für einige Projekte - sehr unwahrscheinlich, da gleichzeitig hohe Kosten veranschlagt wurden, was auf eine längere Projektlaufzeit schließen lässt.</p></li>
+</ul>
+<div class="fragment">
+
+<p><strong>Was tun?</strong></p>
+<ul>
+<li><p>da wir uns in diesem Fall nicht sicher sind, ob die Daten korrekt sind, werden wir die Projekte nicht eliminieren.</p></li>
+<li><p>aber: fügeneine neue Spalte hinzu, die die Dauer des Projektes in Tagen angibt. Wir können dann im Rahmen unserer Analyse die Projekte mit einer Projektdauer von 0 Tagen herausfiltern und analysieren, ob dies unsere Ergebnisse beeinflusst.</p></li>
+</ul>
+<div class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1"></a>df[<span class="st">'dauer'</span>] <span class="op">=</span> df[<span class="st">'ende_ist'</span>] <span class="op">-</span> df[<span class="st">'beginn'</span>]</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div></section>
+<section id="one-more-thing-index-zurücksetzen" class="slide level2">
+<h2>One more thing: Index zurücksetzen</h2>
+<h3 id="deskriptive-analyse-47">Deskriptive Analyse</h3>
+<p><strong>Index des Datensatzes via <code>reset_index()</code> zurücksetzen</strong></p>
+<ul>
+<li><p>Saubere Indizierung: reset_index() stellt eine fortlaufende und eindeutige Indizierung sicher, insbesondere nach Sortierung, Filterung oder Gruppierung.</p></li>
+<li><p>Vermeidung von Fehlern: Durch das Zurücksetzen des Index werden mögliche Fehler vermieden, die durch inkonsistente oder fehlende Indexwerte entstehen können.</p></li>
+</ul>
+<p><br></p>
+<div class="fragment">
+
+<p><strong>In Python:</strong></p>
+<div class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1"></a>df <span class="op">=</span> df.reset_index(drop<span class="op">=</span><span class="va">True</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><code>drop=True</code> sorgt dafür, dass die alte Index-Spalte nicht mit in den Datensatz übernommen wird.</li>
+</ul>
+</div></section>
+<section id="bereinigter-datensatz" class="slide level2">
+<h2>Bereinigter Datensatz</h2>
+<h3 id="deskriptive-analyse-48">Deskriptive Analyse</h3>
+<div class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1"></a>df.head()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="33">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+<table class="dataframe" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header" style="text-align: right;">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">id</th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">beginn</th>
+<th data-quarto-table-cell-role="th">ende_plan</th>
+<th data-quarto-table-cell-role="th">ende_ist</th>
+<th data-quarto-table-cell-role="th">kosten_plan</th>
+<th data-quarto-table-cell-role="th">kosten_ist</th>
+<th data-quarto-table-cell-role="th">team</th>
+<th data-quarto-table-cell-role="th">dauer</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>HN-399443</td>
+<td>Straßenbau // Jennifer-Buchholz-Ring</td>
+<td>2014-09-01</td>
+<td>2014-10-03</td>
+<td>2014-10-02</td>
+<td>219817.40</td>
+<td>246192.34</td>
+<td>Team 3</td>
+<td>31 days</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>UD-626094</td>
+<td>Elektroarbeiten // Langernstraße</td>
+<td>2021-06-12</td>
+<td>2021-08-16</td>
+<td>2021-09-18</td>
+<td>105683.14</td>
+<td>144657.38</td>
+<td>Team 3</td>
+<td>98 days</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>IO-468103</td>
+<td>Spielplatz // Dussen vanweg</td>
+<td>2016-05-20</td>
+<td>2016-06-29</td>
+<td>2016-06-27</td>
+<td>129851.26</td>
+<td>136753.06</td>
+<td>Team 1</td>
+<td>38 days</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>OG-758899</td>
+<td>Stadtpark // Lübsstr.</td>
+<td>2014-11-11</td>
+<td>2014-12-30</td>
+<td>2015-01-28</td>
+<td>181236.83</td>
+<td>273996.91</td>
+<td>Team 2</td>
+<td>78 days</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>CZ-107835</td>
+<td>Elektroarbeiten // Försterweg</td>
+<td>2017-07-25</td>
+<td>2017-10-08</td>
+<td>2017-10-08</td>
+<td>75205.92</td>
+<td>77519.27</td>
+<td>Team 4</td>
+<td>75 days</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="übersicht-genutzter-funktionen" class="slide level2">
+<h2>Übersicht genutzter Funktionen</h2>
+<h3 id="deskriptive-analyse-49">Deskriptive Analyse</h3>
+<p>Wir haben nun einige wesentliche und offensichtliche Aufbereitugnsschritte durchlaufen und können mit der eigentlichen Analyse der Daten beginnen.</p>
+<p>Es wurden folgende Funktionen und Methoden genutzt:</p>
+<ul>
+<li><code>read_csv()</code>: Einlesen der Daten</li>
+<li><code>head()</code>: Anzeigen der ersten Zeilen</li>
+<li><code>tail()</code>: Anzeigen der letzten Zeilen</li>
+<li><code>info()</code>: Anzeigen der Datentypen und der Anzahl der nicht fehlenden Werte</li>
+<li><code>rename()</code>: Umbenennen der Spalten</li>
+<li><code>to_datetime()</code>: Konvertieren der Spalten in den Datentyp <code>datetime</code></li>
+<li><code>isna()</code>: Überprüfen, ob Werte fehlen</li>
+<li><code>any()</code>: Überprüfen, ob Spalte oder Zeile <code>False</code> enthält</li>
+<li><code>dropna()</code>: Eliminieren von Zeilen mit fehlenden Werten</li>
+<li><code>duplicated()</code>: Überprüfen, ob es Duplikate gibt</li>
+<li><code>drop_duplicates()</code>: Eliminieren von Duplikaten</li>
+<li><code>unique()</code>: Ermitteln der einzigartigen Werte</li>
+<li><code>query()</code>: Filtern von Zeilen nach Bedingung</li>
+<li><code>max()</code>: Ermitteln des höchsten Wertes</li>
+</ul>
+</section>
+<section id="quellen" class="slide level2 smaller scrollable">
+<h2>Quellen</h2>
+<h3 id="section"></h3>
+<p><br></p>
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-dasu_exploratory_2003" class="csl-entry" role="listitem">
+Dasu, Tamraparni, und Theodore Johnson. 2003. <em>Exploratory data mining and data cleaning</em>. Wiley series in probability and statistics. New York: Wiley-Interscience.
+</div>
+</div>
+<div class="footer footer-default">
+
+</div>
+</section></section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="03_Deskriptive_Analyse_Part1_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="03_Deskriptive_Analyse_Part1_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="03_Deskriptive_Analyse_Part1_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="03_Deskriptive_Analyse_Part1_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="03_Deskriptive_Analyse_Part1_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="03_Deskriptive_Analyse_Part1_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="03_Deskriptive_Analyse_Part1_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="03_Deskriptive_Analyse_Part1_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="03_Deskriptive_Analyse_Part1_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="03_Deskriptive_Analyse_Part1_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'smaller': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: true,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        text: function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+      });
+      clipboard.on('success', function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Kopiert");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Kopiert");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      });
+      function tippyHover(el, contentFn) {
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start'
+        };
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          return note.innerHTML;
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>
