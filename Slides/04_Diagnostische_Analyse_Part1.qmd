@@ -1,0 +1,954 @@
+---
+title: "Business Analytics" 
+subtitle:  "~~04~~ | Diagnostische Analyse - Part 1"
+author: "Prof. Dr. Felix Zeidler | FH Bielefeld | SoSe 2023"
+lang: "De"
+format: 
+    revealjs: 
+        theme: [simple, custom.scss]
+        toc: true
+        toc-title: "Inhaltsverzeichnis"
+        toc-depth: 1
+        number-sections: true
+        number-depth: 1
+        preview-links: true
+        reference-location: block
+        tbl-colwidths: auto
+        tbl-cap-location: bottom
+        code-copy: hover
+        embed-resources: true
+        self-contained-math: true
+    
+from: markdown+emoji 
+execute: 
+  echo: true
+  output: true
+  code-fold: show
+slide-number: c/t
+jupyter: py39
+---
+
+# Programmierkonzept: For-Schleife
+
+## Importe und Einstellungen
+### Programmierkonzept
+
+```{python}
+#| echo: false 
+#| output: false
+
+import pandas as pd 
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+plt.rcParams["figure.figsize"] = (10, 5)
+plt.rcParams["font.size"] = 12
+plt.rcParams["axes.spines.right"] = False
+plt.rcParams["axes.spines.top"] = False
+```
+
+
+## Was ist eine For-Schleife?
+### Programmierkonzept
+
+__Was ist eine For-Schleife?__ 
+
+Eine For-Schleife ist eine Methode in der Programmierung, um wiederholende Aufgaben zu vereinfachen, indem sie eine bestimmte Aktion mehrmals nacheinander ausführt. Sie geht Schritt für Schritt durch eine Sammlung von Elementen und wendet auf jedes Element den gleichen Vorgang an, wodurch Zeit und Aufwand gespart werden.
+
+<br>
+
+__Gründe für die Verwendung einer For-Schleife__:
+
+- __Automatisierung:__ For-Schleifen ermöglichen es, wiederkehrende Aufgaben oder Berechnungen effizient durchzuführen, ohne redundanten Code zu schreiben.
+- __Lesbarkeit:__ For-Schleifen verbessern die Lesbarkeit und Verständlichkeit des Codes, indem sie klare Strukturen für wiederholende Prozesse bieten.
+- __Flexibilität:__ For-Schleifen können mit verschiedenen iterierbaren Objekten arbeiten, was sie für zahlreiche Anwendungsfälle und Datenstrukturen nützlich macht.
+
+
+## Analogie: Excel
+### Programmierkonzept
+
+::: {.columns}
+
+::: {.column width=50%}
+
+#### Excel: For-Schleife
+
+![](_assets/ExcelForLoop.gif){fig-align="center"}
+
+:::
+
+::: {.column width=50%}
+
+#### Kommentare:
+
+- Funktion `LÄNGE` in jedem Wort
+- __runterkopieren__ der Formel wendet diese auf jedes Wort in den nächsten Zeilen an
+
+> For-Scheifen in Python sind konzeptionell das gleiche wie __runterkopieren__ in Excel
+
+:::
+:::
+
+## Syntax in Python
+### Programmierkonzept
+
+__Syntax in Python__
+
+Die Syntax einer For-Schleife in Python ist wie folgt:
+
+```{.python}
+for element in collection:
+    # do something with element
+```
+
+<br>
+
+- `element`: Der Name der Variablen, die für jedes Element der Sammlung verwendet wird. Kann frei gewählt werden.
+- `in`: Das Schlüsselwort, das die Schleife mit der Sammlung verbindet.
+- `collection`: Die Sammlung, die durchlaufen werden soll. Kann jedes Objekt sein, das iterierbar ist, z. B. eine Liste 
+
+## Beispiel: For-Schleife
+### Programmierkonzept
+
+Bilden wir das Excel-Beispiel aus der vorherigen Folie in Python um.
+
+```{python}
+#| output: false
+namen = ["Herbert", "Norbert", "Pit", "Tim", "Kunigunde"] 
+for name in namen: 
+    anz_buchstaben = len(name)
+    print(anz_buchstaben)
+```
+
+<br>
+
+- `name`: Name der Variablen, die für jedes Element der Sammlung verwendet wird. Kann frei gewählt werden.
+- `anz_buchstaben`: Name der Variablen, die für die Anzahl der Buchstaben verwendet wird. Kann frei gewählt werden.
+- `len(name)`: Die Funktion `len()` gibt die Länge eines Objekts zurück. In diesem Fall die Länge des Strings `name`.
+- `print(anz_buchstaben)`: Die Funktion `print()` gibt den Inhalt der Variablen `anz_buchstaben` aus.
+
+<br>
+
+
+## Beispiel: For-Schleife (cont'd)
+### Programmierkonzept
+
+> __Wichtig:__ im Beispiel werden die Ergebnisse nur ausgegeben, jedoch nicht gespeichert.  
+> 
+> - die Variable `anz_buchstaben` wird für jeden Durchlauf der Schleife neu definiert, d.h. der Inhalt der Variable wird überschrieben  
+> 
+> - die Variable `anz_buchstaben` hat nach dem letzten Durchlauf der Schleife den Wert der letzten Iteration  
+
+
+<br>
+
+__Beispiel:__ Ausgabe der Variable `anz_buchstaben` nach dem letzten Durchlauf der Schleife
+
+```{python}
+#| output: true
+namen = ["Herbert", "Norbert", "Pit", "Tim", "Kunigunde"] 
+for name in namen: 
+    anz_buchstaben = len(name)
+
+anz_buchstaben
+```
+
+
+
+## Beispiel: For-Schleife mit Speicherung
+### Programmierkonzept
+
+Wenn wir die Ergebnisse der Berechnung speichern möchten, können wir eine leere Liste definieren und die Ergebnisse der Berechnung mit der Funktion `append()` hinzufügen.
+
+<br>
+
+__Beispiel:__
+
+```{python}
+#| output: true
+namen = ["Herbert", "Norbert", "Pit", "Tim", "Kunigunde"] 
+länge_namen = []
+for name in namen: 
+    anz_buchstaben = len(name)
+    länge_namen.append(anz_buchstaben)
+
+länge_namen
+```
+
+<br>
+
+- `länge_namen`: Name der Liste, in der die Ergebnisse gespeichert werden sollen. Kann frei gewählt werden.
+- `länge_namen.append(anz_buchstaben)`: Die Funktion `append()` fügt ein Element an das Ende der Liste an. In diesem Fall die Anzahl der Buchstaben `anz_buchstaben`.
+
+
+## Aufgabe: Mehrwertsteuer
+### Programmierkonzept
+
+
+
+::: {.panel-tabset}
+
+## Aufgabe: For-Schleife
+
+Wir haben eine Liste von Preisen (netto) und möchten für jeden Preis, den Preis inkl. Mehrwertsteuer (brutto) berechnen. Die Ergebnisse sollen in einer Liste gespeichert werden.
+
+```{python}
+#| output: false
+# Annahmen
+preise = [10, 20, 30, 40, 50]
+mehrwertsteuer_satz = 0.19
+
+# For-Schleife zur Berechnung der Mehrwertsteuer
+```
+
+## Code 
+
+```{python}
+#| output: true
+
+# Annahmen
+preise = [10, 20, 30, 40, 50]
+mehrwertsteuer_satz = 0.19
+
+# For-Schleife zur Berechnung der Mehrwertsteuer
+preise_brutto = []
+for preis in preise:
+    preis_brutto = preis * (1 + mehrwertsteuer_satz)
+    preise_brutto.append(preis_brutto)
+
+preise_brutto
+```
+
+:::
+
+
+## Drei nützliche Funktionen für For-Schleifen
+### Programmierkonzept
+
+<br>
+
+#### `enumerate()`
+
+Die Funktion `enumerate()` gibt ein Objekt zurück, das die Elemente einer Sammlung enthält und die Nummer des Elements enthält.
+
+```{python}
+#| output: false
+namen = ["Herbert", "Norbert", "Pit", "Tim", "Kunigunde"]
+for i, name in enumerate(namen):
+    print(i, name)
+```
+
+<br>
+
+- `i`: Nummer des Elements (beginnend bei 0)
+- `name`: Element der Sammlung
+
+
+## Drei nützliche Funktionen für For-Schleifen
+### Programmierkonzept
+
+<br>
+
+#### `zip()`
+
+Die Funktion `zip()` gibt ein Objekt zurück, das die Elemente mehrerer Sammlungen enthält.
+
+```{python}
+#| output: false
+vornamen = ["Herbert", "Norbert", "Pit", "Tim", "Kunigunde"]
+nachnamen = ["Müller", "Schmidt", "Meier", "Schulze", "Schmidt"]
+
+for vorname, nachname in zip(vornamen, nachnamen):
+    print(vorname, nachname)
+```
+
+<br>
+
+- `vorname`: Element der Sammlung `vornamen`
+- `nachname`: Element der Sammlung `nachnamen`
+
+## Drei nützliche Funktionen für For-Schleifen
+### Programmierkonzept
+
+<br>
+
+#### `range()`
+
+Die Funktion `range()` gibt ein Objekt zurück, das eine Sequenz von Zahlen enthält.
+
+```{python}
+#| output: false
+for i in range(5):
+    print(i)
+```
+
+<br> 
+
+- `i`: Element der Sequenz von Zahlen, die von `range()` zurückgegeben wird
+- `range` kann mit drei Argumenten aufgerufen werden: `range(start, stop, step)`
+    - `start`: Startwert der Sequenz (Standardwert: 0)
+    - `stop`: Stopwert der Sequenz (Standardwert: 1)
+    - `step`: Schrittweite der Sequenz (Standardwert: 1)
+  - Beispiel: `range(1, 10, 2)` gibt die Sequenz `1, 3, 5, 7, 9` zurück
+
+
+## Aufgabe: rollierende Durchschnitte
+### Programmierkonzept
+
+__Aufgabenstellung:__
+
+In dieser Übungsaufgabe erhaltet ihr eine Liste mit täglichen Aktienkursen eines Unternehmens für einen Monat. Eure Aufgabe besteht darin, die rollierenden Durchschnittskurse für einen Zeitraum von 5 Tagen zu berechnen und auszugeben.
+
+__Anforderungen:__
+
+- Verwende eine For-Schleife, um durch die Liste der Aktienkurse zu iterieren.
+
+- Berechne den 5-Tage-Durchschnitt für jeden Kurs in der Liste, beginnend mit dem fünften Tag.
+
+- Speichere die berechneten Durchschnittskurse in einer neuen Liste.
+
+- Speicher Aktienkurse und Durchschnittskurse in einem DataFrame 
+
+- Plotte die Aktienkurse und die Durchschnittskurse in einem Diagramm.
+
+```{python}
+aktienkurse = [100, 102, 99, 101, 98, 95, 97, 93, 96, 92, 
+                90, 87, 89, 85, 84, 86, 88, 87, 91, 92, 94, 
+                96, 93, 95, 97, 94, 92, 89, 91, 88]
+```
+
+## Lösung: rollierende Durchschnitte
+### Programmierkonzept
+
+::: {.panel-tabset}
+
+## Plot
+```{python}
+#| echo: false
+# Liste der Aktienkurse
+aktienkurse = [100, 102, 99, 101, 98, 95, 97, 93, 96, 92, 90, 87, 89, 85, 84, 86, 88, 87, 91, 92, 94, 96, 93, 95, 97, 94, 92, 89, 91, 88]
+
+# Leere Liste für die rollierenden Durchschnittskurse
+rollierende_durchschnitte = []
+
+# For-Schleife zur Berechnung der rollierenden Durchschnittskurse
+for i in range(len(aktienkurse) - 4):
+    durchschnitt = sum(aktienkurse[i:i + 5]) / 5
+    rollierende_durchschnitte.append(durchschnitt)
+
+# Speichern in DataFrame
+data = pd.DataFrame({"Kurs": aktienkurse})
+data.loc[4:, "MA"] = rollierende_durchschnitte
+
+# Plotte als Liniendiagramm (alternative: data.plot())
+sns.lineplot(data=data, x=data.index, y="Kurs")
+sns.lineplot(data=data, x=data.index, y="MA");
+plt.title("Aktienkurse und rollierende Durchschnitte")
+plt.xlabel("Tag")
+plt.legend(["Kurs", "MA"]);
+```
+
+
+
+## Code
+
+```{.python}
+# Liste der Aktienkurse
+aktienkurse = [100, 102, 99, 101, 98, 95, 97, 93, 96, 92, 90, 87, 89, 85, 84, 86, 88, 87, 91, 92, 94, 96, 93, 95, 97, 94, 92, 89, 91, 88]
+
+# Leere Liste für die rollierenden Durchschnittskurse
+rollierende_durchschnitte = []
+
+# For-Schleife zur Berechnung der rollierenden Durchschnittskurse
+for i in range(len(aktienkurse) - 4):
+    durchschnitt = sum(aktienkurse[i:i + 5]) / 5
+    rollierende_durchschnitte.append(durchschnitt)
+
+# Speichern in DataFrame
+data = pd.DataFrame({"Kurs": aktienkurse})
+data.loc[4:, "MA"] = rollierende_durchschnitte
+
+# Plotte als Liniendiagramm (alternative: data.plot())
+sns.lineplot(data=data, x=data.index, y="Kurs")
+sns.lineplot(data=data, x=data.index, y="MA")
+plt.title("Aktienkurse und rollierende Durchschnitte")
+plt.xlabel("Tag")
+plt.legend(["Kurs", "MA"]);
+```
+
+:::
+
+## Lösung: eigene Funktion
+### Programmierkonzept
+
+Rollierender Durchschnitt sollte - bei obigen Beispiel - im Idealfall mit eigener Funktion berechnet werden.
+
+
+
+__Beispiel:__
+
+```{python}
+#| code-fold: true
+def rollierender_durchschnitt(aktienkurse, fenster):
+    rollierende_durchschnitte = []
+    for i in range(len(aktienkurse) - fenster + 1):
+        durchschnitt = sum(aktienkurse[i:i + fenster]) / fenster
+        rollierende_durchschnitte.append(durchschnitt)
+    return rollierende_durchschnitte
+```
+
+
+
+## Lösung: Pandas
+### Programmierkonzept
+
+Rollierender Durchschnitt kann in Pandas einfach berechnet werden.
+
+__Beispiel:__
+
+```{python}
+#| code-fold: true
+# Liste der Aktienkurse
+aktienkurse = [100, 102, 99, 101, 98, 95, 97, 93, 96, 92, 
+                90, 87, 89, 85, 84, 86, 88, 87, 91, 92, 94, 
+                96, 93, 95, 97, 94, 92, 89, 91, 88]
+
+# Speichern in DataFrame
+data = pd.DataFrame({"Kurs": aktienkurse})
+
+# Berechnung des rollierenden Durchschnitts
+data["MA"] = data["Kurs"].rolling(5).mean()
+```
+
+# Modelle: Lineare Regression
+
+```{python}
+#| echo: false
+
+# Importe für dieses Kapitel
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import statsmodels.formula.api as smf
+from IPython.display import Markdown
+from tabulate import tabulate
+
+
+
+
+colors = plt.cycler(color=["#557A95",   "#957055", "#559570"]) 
+sns.set_context('paper', font_scale=1.4)
+plt.rcParams['figure.figsize'] = [9,6]
+
+plt.rc("legend", frameon=False)
+plt.rc("axes.spines", top=False, right=False)
+plt.rcParams['axes.prop_cycle'] = colors
+mycolors = colors.by_key()["color"]
+```
+
+
+## Lernziele und Ziele des Kapitels
+### Modellierung
+
+Ziele dieses Kapitels
+
+1. (Wiederholung von) Grundlagen "linearer Regression"
+2. Verwendung linearer Regression zur Beurteilung von Zusammenhängen zwischen Variablen
+3. Beurteilung der "Güte" von linearen Regressionsmodellen
+4. Erlernen der Durchführung linearer Regression in Python
+
+
+
+## Konzept: Lineare Regression
+### Modellierung: Einführung
+
+Lineare Regression ist eine der flexibelsten und am häufigsten verwendeten statistischen Methoden in Forschung und betrieblicher Praxis. Sie wird verwendet, um die Beziehung zwischen einer **abhängigen** und einer oder mehreren **unabhängigen** Variablen zu analysieren.
+
+Lineare Regression wird verwendet für
+
+1. **Inferenz**, d.h. zum Testen einer zuvor entwickelten Hypothese über die Beziehung zwischen interessierenden Variablen
+2. **Prognose**, d.h. zur Schätzung des Wertes einer abhängigen Variable anhand der Werte unabhängiger Variablen
+
+Der primäre Anwendungsfall für die lineare Regressionsanalyse ist die Analyse von **kausalen Beziehungen**.
+
+Diese Beziehung kann ausgedrückt werden als
+
+$$y = f(x)$$
+
+## Einfache Lineare Regression
+### Modellierung: Einführung
+
+**Einfache (lineare) Regression:**
+
+Wenn wir ausdrücken möchten, dass wir an eine Beziehung zwischen *Umsatz* und *Preis* glauben, können wir dies wie folgt angeben:
+
+$$\text{Umsatz} = f(\text{Preis})$$
+
+Mit Hilfe der linearen Regression kann diese **Beziehung quantifiziert** werden, d.h. wir können bestimmen, wie stark sich der *Umsatz* ändert, wenn wir den *Preis* ändern.
+
+**Stochastisches Modell:**    
+Es ist sehr unwahrscheinlich, dass die Beziehung zwischen den oben genannten Variablen vollständig deterministisch ist (wie in der obigen Formel angenommen). Daher müssen wir dem Modell Unsicherheit hinzufügen. Das resultierende **stochastische Modell** wird häufig in der Regressionsanalyse verwendet und ist wie folgt beschrieben:
+
+$$\hat{y} = f(x) + \epsilon$$
+
+Hier ist $\epsilon$ eine **Zufallsvariable** (genannt Fehlerterm / Residuum), die nicht beobachtet werden kann und angenommen wird, dass sie einer Standardnormalverteilung folgt (d.h. $\epsilon \sim N(0,1)$).
+
+Das stochastische Modell wird benötigt, um die **Regressionsmodelle mit Hilfe von statistischen Tests zu bewerten**.
+
+## Multiple lineare Regression
+### Modellierung: Einführung
+
+
+In vielen (wenn nicht den meisten) Forschungs- oder Geschäftsfragen können wir keine monokausale Beziehung annehmen.
+
+Stattdessen wird $y$ wahrscheinlich von zahlreichen Faktoren beeinflusst.
+
+In unserem obigen Beispiel können *Umsätze* auch von den Werbeausgaben abhängen, aber auch von anderen Faktoren wie dem Zustand der Wirtschaft, dem Preis, dem Verhalten der Wettbewerber usw.
+
+Für eine solche Beziehung verwenden wir eine **multiple Regressionsanalyse**, die wie folgt ausgedrückt werden kann:
+
+$$
+\begin{aligned}
+\\[10pt]
+&y = f(X) \\[15pt]
+\text{wobei} \
+    &X = \begin{bmatrix}
+           1 & x_{12} & \cdots & x_{1p} \\
+           1 & x_{22} & \cdots & x_{2p} \\
+           \vdots & \vdots & \ddots & \vdots \\
+           1 & x_{n2} & \cdots & x_{np} \\
+         \end{bmatrix}
+\end{aligned}
+$$
+
+
+
+## Kausalität vs. Korrelation
+### Modellierung: Einführung
+
+
+![](_assets/korr_vs_kausal.jpeg)
+
+
+
+https://pbs.twimg.com/media/EzSYVwnVIAUG6v9?format=jpg&name=small
+
+## Kausalität vs. Korrelation (cont'd)
+### Modellierung: Einführung
+
+
+__Wichtig:__
+
+- Während wir versuchen, eine **kausale** Beziehung zwischen $y$ und $X$ zu modellieren, können wir in der Praxis nicht feststellen, ob die Beziehung tatsächlich kausal ist.
+
+- Stattdessen **approximieren** wir Kausalität, indem wir die **Korrelation** bewerten.
+
+
+
+
+## Was kann mit linearer Regression beantwortet werden
+### Modellierung: Einführung
+
+**Typische Hypothesen, die unter anderem mit linearer Regression angesprochen werden können:**
+
+<br>
+
+| # | Hypothese                                                                                               | Abhängige Variable                    | Unabhängige Variable                                     |
+|---|----------------------------------------------------------------------------------------------------------|---------------------------------------|----------------------------------------------------------|
+| 1 | Ist der Umsatz pro Verkäufer abhängig von der Anzahl der Kundenbesuche?                                 | Umsatz pro Verkäufer (pro Zeitraum)   | Anzahl Kundenbesuche pro Verkäufer (pro Zeitraum)        |
+| 2 | Ändert sich der Umsatz, wenn die Werbeausgaben verdoppelt werden?                                       | Umsatz pro Zeitraum                   | Werbeausgaben pro Zeitraum                               |
+| 3 | Wie wirkt sich eine Preiserhöhung von x% auf den Umsatz aus, wenn gleichzeitig die Werbeausgaben um 10% erhöht werden? | Umsatz pro Zeitraum                   | Werbeausgaben, Preis, …                                  |
+| 4 | ...                                                                                                     | ...                                   | ...                                                      |
+
+## Was ist ein Modell?
+### Modellformulierung
+
+
+**Was ist ein Modell?**
+
+- Ein Modell ist eine vereinfachte Darstellung der Realität.
+- Modelle sind sehr nützlich, aber es ist immer ein schmaler Grat zwischen Vereinfachung und Komplexität.
+  - Wenn wir die Realität so genau wie möglich modellieren wollen, kann unser Modell zu komplex werden.
+  - Wenn unser Modell zu einfach ist, beschreibt es die Realität möglicherweise nicht gut genug für unsere Zwecke. Es gibt kein gutes oder schlechtes Modell.
+- Es ist hilfreicher, ein Modell als geeignet oder nicht geeignet für unser aktuelles Problem zu betrachten.
+
+<br>
+
+> Lineare __Regressionsmodelle__ sind recht einfach, aber dennoch für viele Forschungs- und praktische Probleme sehr geeignet
+
+## Was ist ein Modell? (cont'd)
+### Modellformulierung
+
+<br>
+
+![](_assets/Human_Model.png)
+
+## Datensatz für Beispiele
+###  Modelformulierung
+
+> **Datensatz**: 
+> 
+> Im Folgenden verwenden wir den Werbedatensatz aus "Introduction to Statistical Learning^[Quelle: https://www.statlearning.com/resources-first-edition] für die folgenden Beispiele. Der Datensatz enthält
+> 
+> - Verkäufe in Tausend Einheiten
+> 
+> - Werbebudgets in Tausenden von Dollar für TV, Radio und Zeitungen
+>
+> - Link: [https://www.statlearning.com/s/Advertising.csv](https://www.statlearning.com/s/Advertising.csv)
+
+
+<br> 
+
+
+## Datensatz für Beispiele
+###  Modelformulierung
+
+
+```{python}
+#| output: false
+import pandas as pd
+
+link_to_csv = "https://www.statlearning.com/s/Advertising.csv"
+df = pd.read_csv( link_to_csv
+                 ,usecols=["TV", "radio", "newspaper","sales"])
+df.head()
+```
+
+<br>
+
+```{python}
+#| echo: false
+import pandas as pd
+
+link_to_csv = "https://www.statlearning.com/s/Advertising.csv"
+df = pd.read_csv( link_to_csv
+                 ,usecols=["TV", "radio", "newspaper","sales"])
+Markdown(df.head(5).to_html())
+```
+
+<br>
+
+- `usecols` ist eine Liste der Spalten, die wir aus der CSV-Datei auslesen möchten.
+
+
+
+## Einfaches Modell: Verkäufe vs. TV-Werbeausgaben
+### Modelformulierung
+
+
+Nehmen wir an, wir glauben an eine einfache lineare Beziehung zwischen **Verkäufen** und den **TV**-Werbeausgaben. Wir können dies als
+
+$$\text{sales} = f(\text{TV})$$
+
+beschreiben.
+
+Dies impliziert, dass wir an eine kausale Beziehung zwischen beiden Variablen glauben. Konkret glauben wir, dass die *TV*-Werbeausgaben die *Verkäufe* antreiben oder beeinflussen.
+
+**Regressionsfunktion:**
+
+Ein einfaches lineares Regressionsmodell der oben genannten Formulierung könnte sein:
+
+$$\hat{y} = \hat{\beta}_0 + \hat{\beta}_1x $$
+
+wobei $\hat{y}$ die Vorhersage der abhängigen Variable $y$ bei gegebenem $X$ bezeichnet. $\hat{\beta}_0$ und $\hat{\beta}_1$ sind die Koeffizientenschätzungen.
+
+Für unser Beispiel sieht die Regressionsfunktion wie folgt aus:
+
+$$\text{sales} = \hat{\beta}_0 + \hat{\beta}_1\text{TV}$$
+
+Da die mathematische Formulierung eine Linie impliziert, stellt $\beta_0$ den Schnittpunkt der Linie mit der y-Achse dar und $\beta_1$ repräsentiert die Steigung der Linie.
+
+
+## Einfaches Modell: Verkäufe vs. TV-Werbeausgaben
+### Modelformulierung
+
+```{python}
+#| echo: false
+
+sns.regplot(data=df, x="TV", y="sales", ci=None, color=mycolors[0], line_kws={"lw":0} , scatter_kws={"s":50} )
+plt.title("Verkäufe vs. TV-Werbeausgaben");
+```
+
+## Einfaches Modell: Verkäufe vs. TV-Werbeausgaben
+### Modelformulierung
+
+
+Nehmen wir an, dass $\beta_0$ gleich $20$ und $\beta_1$ gleich $5$ ist. Dies würde bedeuten, dass unser Regressionsmodell wie folgt aussieht:
+
+$$\text{Sales} = 20+ 5\cdot\text{TV}$$
+
+Dies würde bedeuten, dass wir $x$ (d.h. die Höhe der Ausgaben für TV-Werbung) einsetzen und $\hat{y}$ (d.h. unsere auf $x$ basierenden Umsatzprognosen) berechnen könnten. 
+
+Wenn wir zum Beispiel annehmen, dass wir 100 $ für TV-Werbung ausgegeben haben, würden wir Sales von 
+
+$$\text{Sales} = 20 + 5\cdot100 = 520$$
+
+Wenn wir $100.000$ USD für TV-Werbung ausgeben, würden wir nach unserem Modell $520.000$ an Sales erzielen.
+
+
+
+## Einfaches Modell: Verkäufe vs. TV-Werbeausgaben
+### Modelformulierung
+
+```{python}
+#| echo: false
+b0 = 20
+b1 = 5
+x = np.arange(0,11)#np.linspace(0,10,100)
+y = b0 + b1*x
+
+ax = sns.lineplot(x=x,y=y)
+
+
+ax.set_xlim((0,max(x)))
+ax.set_ylim(0,max(y))
+ax.set_ylabel("Sales\n($\hat{y}$)")
+ax.set_xlabel("TV-Werbeausgaben\n($x$)")
+ax.hlines(y=y[3],xmin=x[3],xmax=x[4], ls="--", colors=mycolors[1])
+ax.vlines(x=x[4],ymin=y[3],ymax=y[4], ls="--",colors=mycolors[1])
+ax.set_xticks([0,x[3],x[4]])
+ax.set_yticks([y[3],y[4]])
+ax.annotate(r"$\beta_0 = 20$", xy=(0.26,0.95*b0), c=mycolors[2])
+ax.annotate(r"$\beta_1 = \frac{\Delta\hat{y}}{\Delta x} = \frac{45 - 35}{4 - 3} = 5$", xy=(x[4]+0.2,0.9*y[4]), c=mycolors[2])
+ax.hlines(b0,0,0.25)
+ax.set_title(r"$sales = \beta_0 + \beta_1 TV = 20 + 5 \cdot TV$");
+```
+
+
+
+## Einfaches Modell: analytische Lösung
+### Modellschätzung
+
+Wir müssen Koeffizienten finden, die eine Linie angeben, die die wahre Beziehung so gut wie möglich beschreibt. 
+
+Dies wird durch die Minimierung des ~~Kleinste-Quadrate-Kriteriums~~ erreicht, d.h. wir wollen die Residualsumme der Quadrate (RSS; manchmal SSR) minimieren
+
+$$
+\text{RSS} = \sum_{i=1}^n e_i^2
+$$
+
+wobei $e_i$ definiert ist als 
+
+$$
+e_i = y_i - \hat{y}_i
+$$
+
+
+## Einfaches Modell: analytische Lösung (cont'd)
+### Modellschätzung
+
+```{python}
+#| echo: false
+# Create ground truth
+x = np.linspace(0,3,20)
+e = np.random.normal(size=len(x))*1.6
+y = 3 + 4*x + e
+
+paras = [[1,1],[3,4]]
+
+fig, axes = plt.subplots(1,2,sharex=True, sharey=False, figsize=(12,6))
+axes = axes.flatten()
+for i,(para,ax) in enumerate(zip(paras,axes)):
+    b0,b1 = para
+    yhat = b0 + b1*x
+    res = y - yhat
+    rss = np.sum(res**2)
+
+
+    ax.scatter(x,y, s=50)
+    ax.plot(x,yhat,color="red", lw=3)
+    ax.vlines(x,yhat,yhat + res, color="grey", ls="--")
+    ax.annotate(f"RSS: {np.round(rss)}", xy=(1.5,15))
+    if i == 0:
+        ax.set_title("Schlechtes Modell")
+        ax.legend(["Daten",f"yhat = {b0} + {b1}x","Fehler"],)
+        ax.set_xlabel("X"), ax.set_ylabel("y / $\hat{y}$")
+        ax.set_ylim((0,max(y)*1.2))
+    else:
+        ax.legend(["Daten",f"yhat = {b0} + {b1}x","Fehler"],)
+        ax.set_title("Bestes Modell")
+        ax.set_ylim((0,max(y)*1.2))
+        ax.set_xlabel("X")
+        ax.spines["left"].set_visible(False)
+        ax.set_yticks([])
+plt.suptitle("Mögliche Regressionsdaten")
+plt.tight_layout();
+```
+
+
+
+## Einfaches Modell: analytische Lösung (cont'd)
+### Modellschätzung
+
+```{python}
+#| echo: false
+
+model = smf.ols("sales ~ TV", data=df).fit()
+b0,b1 = np.round(model.params,2)
+
+x = df["TV"]
+y = df["sales"]
+yhat = b0 + b1*x
+errors = y - yhat
+mse = 1/len(y) * np.sum(errors**2 )
+
+
+#sns.scatterplot(x=x,y=y, s=50 )
+plt.scatter(x=x,y=y, color=mycolors[0], s=50 )
+plt.plot(x,yhat, color="red", lw=1)
+plt.vlines(x, yhat, yhat+errors, color="gray", ls="--")
+
+plt.title("Sales vs. TV-Werbeausgaben")
+plt.xlabel("TV-Werbeausgaben")
+plt.ylabel("Sales")
+plt.ylim(0,max(y)*1.14)
+plt.legend(["Daten",f"$\hat{'y'} =$ {b0} + {b1}x","Fehler ($y - \hat{y}$)"],)
+plt.annotate(f"MSE: {np.round(mse,2)}", xy=(300,2), ha="right");
+```
+
+## Einfaches Modell: analytische Lösung (cont'd)
+### Modellschätzung
+
+
+Analytisch können wir dann $\beta_0$ und $\beta_1$ so ableiten, dass die RSS minimiert wird:
+
+$$
+\begin{equation}
+\begin{split}
+\hat{\beta}_1 & = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^n (x_i - \bar{x})^2}\\[10pt]
+\hat{\beta}_0 & = \bar{y} - \hat{\beta}_1\bar{x}
+\end{split}
+\end{equation}
+$$
+
+Wir schreiben $\hat{\beta}_i$, um anzuzeigen, dass es sich um einen Schätzer handelt. Wir lassen es weg, wenn es aus dem Kontext klar ist.
+
+## Multiple Regression
+### Modellschätzung
+
+Für die meisten Fragen benötigen wir mehr als eine unabhängige Variabel. Wenn dies der Fall ist, hat das Regressionsmodell die folgende Form:
+
+$$\hat{y} = \beta_0 + \beta_1x_1 + \beta_2x_2 + \ldots + \beta_px_p$$
+
+<br>
+
+**Beispiel:**  
+Wir könnten die Beziehung zwischen *Absatz* und Werbeausgaben unter Verwendung aller drei Medienarten, *Fernsehen*, *Zeitung* und *Radio*, beschreiben. Dies würde dann wie folgt beschrieben werden:
+
+$$\text{Sales} = \beta_0 + \beta_1\text{TV} + \beta_2\text{newspaper} + \beta_3\text{radio}$$
+
+
+## Multiple regression: analytical solution
+### Modellschätzung
+
+<br> 
+
+Um für $\beta_j$ zu lösen, gehen wir im Grunde genommen denselben Weg wie im einfachen Regressionsfall. Das Lösen des Gleichungssystems ist jedoch etwas komplexer. Es beinhaltet das Lösen eines Systems linearer Gleichungen der folgenden Form:
+
+$$y = X\beta + \epsilon$$
+
+wobei:
+
+$$
+\begin{equation}
+y = \begin{pmatrix} y_1 \\ y_2 \\ \vdots \\ y_n \end{pmatrix}, 
+X = \begin{pmatrix} 1 & x_{11} & x_{12} & \ldots & x_{1p} \\ 1 & x_{21} & x_{22} & \ldots & x_{2p} \\ \vdots & \vdots & \vdots & \vdots & \vdots \\ 1 & x_{n1} & x_{n2} & \ldots & x_{np} \end{pmatrix},
+\beta = \begin{pmatrix} \beta_0 \\ \vdots \\ \beta_p \end{pmatrix}, 
+\epsilon = \begin{pmatrix} \epsilon_0 \\ \epsilon_1 \\ \vdots \\ \epsilon_n \end{pmatrix}, 
+\end{equation}
+$$
+
+<br></br>
+
+Ohne auf die Details der Mathematik einzugehen, kann diese Gleichung wie folgt gelöst werden:
+
+$$
+\hat{\beta} = (X^TX)^{-1}X^Ty = X^{-1} \cdot y
+$$
+
+## Beispiel: Sales vs. TV-Werbeausgaben
+### Modellschätzung
+
+~~Ansatz 1:~~ manuelle Implementierung der analytischen Lösung
+
+```{python}
+import numpy as np
+x = df["TV"]
+xbar = np.mean(x)
+y = df["sales"]
+ybar = np.mean(y)
+
+b1 = sum((x-xbar)*(y-ybar)) / sum((x - xbar)**2)
+b0 = ybar - b1*xbar
+
+print("b0:", b0, "und b1: ", b1)
+```
+
+## Beispiel: Sales vs. TV-Werbeausgaben
+### Modellschätzung
+
+~~Ansatz 2:~~ Modul `statsmodels` nutzen
+
+```{python}
+import statsmodels.formula.api as smf
+
+# Modell definieren und Daten übergeben
+model = smf.ols("sales ~ TV", data=df)
+
+# Modellschätzung (engl: "fitting")
+model = model.fit()
+
+paras = model.params # Modellparameter
+
+print(paras)
+```
+
+
+## Beispiel: Sales vs. TV-Werbeausgaben, Newspaper & Radio
+### Modellschätzung
+
+Modul `statsmodels` kann auch für multiple Regressionen genutzt werden:
+
+```{python}
+import statsmodels.formula.api as smf
+
+# Modell definieren und Daten übergeben
+model = smf.ols("sales ~ TV + newspaper + radio", data=df)
+
+# Modellschätzung (engl: "fitting")
+model = model.fit()
+
+paras = model.params # Modellparameter
+
+print(paras)
+```
+
+
+## Was können wir mit einem geschätzten Modell machen?
+### Modellschätzung
+
+
+~~1. Prognose:~~ 
+
+Das endgültige Modell kann verwendet werden, um die Frage zu beantworten
+
+- "Wenn mir $X$ gegeben ist, wie wird dann $y$ sein?"
+- **Beispiel:** Ich beabsichtige, 920.000 USD für TV-Werbung auszugeben. Welchen Umsatz erwarten wir dann?
+
+~~2. Diagnose und Schlussfolgerung:~~
+
+Das endgültige Modell kann verwendet werden, um Fragen wie folgende zu beantworten:
+
+- "Wie können wir die (kausale) Beziehung zwischen $y$ und $X$ quantifizieren?"
+- **Beispiel:** Wenn ich die Ausgaben für TV-Werbung um 100.000 USD erhöhe, um wie viel wird mein Umsatz voraussichtlich steigen?
+
+
+
+## Quellen
+### 
+
+<br>
+
+::: {#refs}
+:::

@@ -16,6 +16,7 @@ format:
         tbl-colwidths: auto
         tbl-cap-location: bottom
         code-copy: hover
+        
 from: markdown+emoji 
 execute: 
   echo: true
@@ -212,7 +213,7 @@ print(steuer) # Sollte 42% * 100_000 = 42_000 zurückgeben
 __Lösung:__
 
 ```{python}
-#| code-fold: true
+#| code-fold: false
 #| output: false
 def berechne_steuern(einkommen):
     if einkommen <= 14000:
@@ -253,7 +254,7 @@ __Beispiel:__
 
 ```{.python}
 bestimme_kundenbindung(7000, 40) # Sollte "Gold" ausgeben
-bestimee_kundenbindung(7000, 3) # Sollte "Gold" ausgeben
+bestimme_kundenbindung(7000, 3) # Sollte "Gold" ausgeben
 bestimme_kundenbindung(-100, 0) # Sollte "Ungültige Eingabe!..." ausgeben 
 ```
 
@@ -261,22 +262,24 @@ bestimme_kundenbindung(-100, 0) # Sollte "Ungültige Eingabe!..." ausgeben
 ### Bedingte Anweisungen
 
 ```{python}
-#| code-fold: true
+#| code-fold: false
 #| output: false
-
 def bestimme_kundenbindung(umsatz, transaktionen):
 
     if umsatz < 0 or transaktionen < 1:
         return "Ungültige Eingabe! Bitte geben Sie gültige Werte für Umsatz und Transaktionsanzahl ein."
 
-    if umsatz <= 1000 and transaktionen < 10:
-        kategorie = "Bronze"
-    elif (umsatz > 1000 and umsatz <= 5000) or (transaktionen >= 10 and transaktionen < 30):
-        kategorie = "Silber"
-    elif (umsatz > 5000 and umsatz <= 10000) or (transaktionen >= 30 and transaktionen < 60):
-        kategorie = "Gold"
-    else:
+    if umsatz > 10_000 or transaktionen >= 60:
         kategorie = "Platin"
+
+    elif (umsatz <= 10_000 and umsatz > 5000) or (transaktionen >= 30 and transaktionen < 60):
+        kategorie = "Gold"
+    
+    elif (umsatz <= 5_000 and umsatz > 1000) or (transaktionen >= 10 and transaktionen < 30):
+        kategorie = "Silber"
+    
+    else:
+        kategorie = "Bronze"
 
     return kategorie
 
@@ -831,25 +834,23 @@ Ergebnis sollte ein bereinigter Dataframe `df` sein.
 #| echo: True 
 #| output: false
 
-# Kostenüberschreitung
-q1 = df["kostenüberschreitung_abs"].quantile(0.01)
-q99 = df["kostenüberschreitung_abs"].quantile(0.99)
-df = df.query("kostenüberschreitung_abs > @q1 and kostenüberschreitung_abs < @q99")
-
+# Kostenüberschreitung absolut
+ka1 = df["kostenüberschreitung_abs"].quantile(0.01)
+ka99 = df["kostenüberschreitung_abs"].quantile(0.99)
 # Kostenüberschreitung relativ
-q1 = df["kostenüberschreitung_rel"].quantile(0.01)
-q99 = df["kostenüberschreitung_rel"].quantile(0.99)
-df = df.query("kostenüberschreitung_rel > @q1 and kostenüberschreitung_rel < @q99")
-
+kr1 = df["kostenüberschreitung_rel"].quantile(0.01)
+kr99 = df["kostenüberschreitung_rel"].quantile(0.99)
 # Verzögerung absolut
-q1 = df["verzögerung_abs"].quantile(0.01)
-q99 = df["verzögerung_abs"].quantile(0.99)
-df = df.query("verzögerung_abs > @q1 and verzögerung_abs < @q99")
-
+va1 = df["verzögerung_abs"].quantile(0.01)
+va99 = df["verzögerung_abs"].quantile(0.99)
 # Verzögerung relativ
-q1 = df["verzögerung_rel"].quantile(0.01)
-q99 = df["verzögerung_rel"].quantile(0.99)
-df = df.query("verzögerung_rel > @q1 and verzögerung_rel < @q99")
+vr1 = df["verzögerung_rel"].quantile(0.01)
+vr99 = df["verzögerung_rel"].quantile(0.99)
+### REMOVE OUTLIERS
+df = df.query("kostenüberschreitung_abs > @ka1 and kostenüberschreitung_abs < @ka99")
+df = df.query("kostenüberschreitung_rel > @kr1 and kostenüberschreitung_rel < @kr99")
+df = df.query("verzögerung_abs > @va1 and verzögerung_abs < @va99")
+df = df.query("verzögerung_rel > @vr1 and verzögerung_rel < @vr99")
 ```
 
 
@@ -872,13 +873,36 @@ def remove_outliers(df, col, q1=0.01, q99=0.99):
 
 <div class='fragment'>
 
-__Funktion anwenden:__ Wir wenden die Funktion auf die vier Spalten an.
+__Funktion anwenden:__ Wir wenden die Funktion auf eine der vier Spalten an.
 
 ```{.python}
 df = remove_outliers(df, "kostenüberschreitung_abs")
-df = remove_outliers(df, "kostenüberschreitung_rel")
-df = remove_outliers(df, "verzögerung_abs")
-df = remove_outliers(df, "verzögerung_rel")
+```
+
+## Exkurs: Funktion schreiben für Entfernen von Ausreißern
+### Deskriptive Analyse
+
+Problem der Funktion: bei mehreren Spalten werden die Perzentile immer auf Basis eines neuen und bereits bereinigtem Datensatz berechnet. Dies kann dazu führen, dass sehr viele Beobachtungen entfernt werden.
+
+<div class='fragment'>
+
+__Lösung:__ Wir schreiben eine Funktion, die die Entfernung von Ausreißern für mehrere, beliebige Spalte ermöglicht. Die Perzentile werden für jede Spalte auf Basis des ursprünglichen Datensatzes berechnet.
+
+```{python}
+#| output: false
+def remove_outliers(df, cols, p_low=0.01, p_high=0.99):
+    
+    # Calculate percentile cutoff values
+    cutoffs = df[cols].quantile([p_low, p_high])
+    
+    # Remove outliers
+    for col in cols:
+        df = df.query(f"{col} > {cutoffs.loc[p_low, col]} and {col} < {cutoffs.loc[p_high,col]}")
+        
+    return df
+
+cols = ["kostenüberschreitung_abs", "kostenüberschreitung_rel", "verzögerung_abs", "verzögerung_rel"]
+df = remove_outliers(df, cols)
 ```
 
 ## Analyse der Daten 
@@ -978,7 +1002,6 @@ __Aufgabe:__
 2. Berechnen Sie die Anzahl der Projekte je Projektteam.
 
 
-<!--
 
 ## Lösung: Gruppieren und Aggregieren
 ### Deskriptive Analyse
@@ -1002,7 +1025,6 @@ df.groupby("team").agg({"id": "count"})
 ```
 
 
--->
 
 ## Gruppieren und Aggregieren: Datum
 ### Deskriptive Analyse
@@ -1023,7 +1045,6 @@ df.groupby(pd.Grouper(key="beginn", freq="9M")).agg({"verzögerung_abs": "mean"}
 
 Analysen Sie, ob sich die absolute Kostenüberschreitung im Laufe der Zeit verändert hat.
 
-<!--
 
 ## Lösungsskizze: Gruppieren und Aggregieren mit Datum
 ### Deskriptive Analyse
@@ -1047,7 +1068,6 @@ data = df.groupby(pd.Grouper(key="beginn", freq="3M")).agg({"kostenüberschreitu
 data.head() # Zeige Auszug der Daten
 ```
 
--->
 
 ## Visualisierung
 ### Deskriptive Analyse
@@ -1199,6 +1219,52 @@ plt.annotate(f"mean: {round(mu,2):,.2f}", xy=(45000, 800), color="red");
 ```
 
 :::
+
+## Aufgabe
+### Deskriptive Analyse
+
+__Analysieren Sie den Datensatz `df`.__ Orientieren Sie sich dabei z.B. an den bereits formulierten Fragestellungen:
+
+1. Ausgangssituation bestätigen: gibt es tatsächlich Verzögerungen und Kostenüberschreitungen?
+ 
+2. Hypothesen zur Erklärung der Verzögerungen und Kostenüberschreitungen aufstellen und prüfen
+ 
+     - Haben sich die Verzögerungen und Kostenüberschreitungen im Laufe der Zeit verändert?
+ 
+     - Gibt es einen Zusammenhang zwischen den Verzögerungen und den Kostenüberschreitungen? 
+ 
+     - Sind die Verzögerungen und Kostenüberschreitungen abhängig vom Team?
+   
+     - Sind die Verzögerungen und Kostenüberschreitungen abhängig von der Art des Projekts? 
+ 
+     - Sind die Verzögerungen und Kostenüberschreitungen abhängig von der Größe des Projekts? 
+
+Verwenden Sie dazu die __bereits vorgestellten Methoden__, d.h. 
+
+- Gruppierungen
+   
+- Aggregationen 
+
+- Visualisierungen
+
+## Genutzte Funktionen
+### Deskriptive Analyse
+
+Die folgenden Liste fasst die in diesem Kapitel genutzten Funktionen zusammen: 
+
+- `df.assign()`: Erstellen neuer Spalten
+
+- `df.groupby().agg()`: Gruppierung und Aggregation von Daten
+
+- `df["spalte"].nlargest()`: Ausgabe der n größten Werte einer Spalte
+
+- `pd.Grouper()`: Gruppierung von Daten nach Zeitintervallen
+
+- `sns.lineplot()`: Liniendiagramm
+
+- `sns.displot()`: Histogramm
+
+- `sns.catplot()`: Diagramme für Kategorien (z.B. Balkendiagramm) 
 
 
 ## Quellen

@@ -1,0 +1,751 @@
+---
+title: "Business Analytics" 
+subtitle:  "~~04~~ | Diagnostische Analyse - Part 2"
+author: "Prof. Dr. Felix Zeidler | FH Bielefeld | SoSe 2023"
+lang: "De"
+format: 
+    revealjs: 
+        theme: [simple, custom.scss]
+        toc: true
+        toc-title: "Inhaltsverzeichnis"
+        toc-depth: 1
+        number-sections: true
+        number-depth: 1
+        preview-links: true
+        reference-location: block
+        tbl-colwidths: auto
+        tbl-cap-location: bottom
+        code-copy: hover
+        #embed-resources: true
+        #self-contained-math: true
+    
+from: markdown+emoji 
+execute: 
+  echo: true
+  output: true
+  code-fold: show
+slide-number: c/t
+jupyter: py39
+---
+
+
+```{python}
+#| echo: false
+#| output: false
+
+# Importe für dieses Kapitel
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import statsmodels.formula.api as smf
+from IPython.display import Markdown
+from tabulate import tabulate
+
+
+
+# Einstellungen für die Darstellung
+colors = plt.cycler(color=["#557A95",   "#957055", "#559570"]) 
+sns.set_context('paper', font_scale=1.4)
+plt.rcParams['figure.figsize'] = [9,6]
+
+plt.rc("legend", frameon=False)
+plt.rc("axes.spines", top=False, right=False)
+plt.rcParams['axes.prop_cycle'] = colors
+mycolors = colors.by_key()["color"]
+
+
+# Datensatz für dieses Kapitel
+link_to_csv = "https://www.statlearning.com/s/Advertising.csv"
+df = pd.read_csv( link_to_csv
+                 ,usecols=["TV", "radio", "newspaper","sales"])
+```
+
+
+
+
+## Plan für heute
+### Diagnostische Analyse  
+
+__Was haben wir bisher gelernt?__
+
+- Programmierkonzept For-Schleife
+- Lineare Regression
+  - Einführung
+  - Modellformulierung 
+  - Modellschätzung
+
+__Was lernen wir heute?__
+
+> __Lineare Regression:__ 
+>
+>  - Beurteilung des Modells
+>
+>  - Interpretation der Koeffizienten
+>
+
+
+# Modellbeurteilung
+
+## Verbleibende Frage: Wie gut ist unser geschätztes Modell?
+### Modellbeurteilung
+
+Wir haben unsere Regressionsfunktion geschätzt. Wir wissen jedoch nicht, wie gut das Modell ist. 
+
+Wir haben ein Modell verwendet, um uns der Realität anzunähern, und wir müssen verstehen, wie gut unser Modell in dieser Hinsicht ist. Daher müssen wir unser Modell bewerten. 
+
+<br>
+
+Dabei gibt es zwei Arten der Beurteilung:
+
+
+1. **Globale Beurteilung**, d.h. wie gut kann $y$ durch $X$ erklärt werden. 
+
+
+1. **Beurteilung der Koeffizienten**, d.h. ob und wie die einzelnen $x$ zur Erklärung von $y$ beitragen.
+
+
+
+## Globale Beurteilung: zwei Ansätze
+### Modellbeurteilung
+
+<br>
+
+Wir haben __zwei Ansätze__, um die globale Beurteilung durchzuführen:
+
+
+1. Bestimmtheitsmaß $R^2$
+
+2. F-Test
+
+
+## Erklärte und unerklärte Abweichung 
+### Modellbeurteilung
+
+Wir haben gesehen, dass wir unser Regressionsmodell optimieren, indem wir Folgendes minimieren
+
+$$
+\text{RSS} = \sum_{i=1}^n e_i^2
+$$
+
+Das RSS (Residual Sum of Squares) ist ein Maß für die __Abweichung__ zwischen den beobachteten Werten $y_i$ und den geschätzten Werten $\hat{y}_i$.
+
+__Problem:__
+
+- wir RSS nicht als Indikator dafür verwenden, wie gut unser Modell ist, da es von der Größe des Datensatzes abhängig ist. 
+- denn: je größer der Datensatz ist, desto höher ist die RSS. 
+
+
+__Lösung:__
+
+Wir können die RSS jedoch zerlegen in 
+
+- erklärte Abweichung und
+- unerklärte Abweichung
+
+
+## Erklärte und unerklärte Abweichung (cont'd)
+### Modellbeurteilung
+
+
+::: {.column width='50%'}
+
+#### Visualisierung
+
+
+```{python}
+#| echo: false 
+
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
+import scipy.stats as stats
+import statsmodels.formula.api as smf
+
+colors = plt.cycler(color=["#557A95",   "#957055", "#559570"]) 
+sns.set_context('paper', font_scale=1.4)
+plt.rcParams['figure.figsize'] = [9,6]
+plt.rcParams['savefig.dpi'] = 300
+plt.rc("legend", frameon=False)
+plt.rc("axes.spines", top=False, right=False)
+plt.rcParams['axes.prop_cycle'] = colors
+mycolors = colors.by_key()["color"]
+
+
+x = np.linspace(0,3,100)
+y = 1 + 3*x
+xi,yi, yhati = 2, 3 + 3.5*2, 1+3*2
+xbar, ybar = np.mean(x),np.mean(y)
+xmin,xmax,ymin,ymax = np.min(x),np.max(x),np.min(y),np.max(y)
+
+
+fig, ax = plt.subplots()
+ax.plot(x,y, lw=3,color=mycolors[0], alpha=0.6)
+
+# Lines
+#ax.vlines(x=xbar,ymin=0,ymax=ymax, ls="--", color=mycolors[1])
+#ax.vlines(x=xi,ymin=0,ymax=ymax, ls="--", color=mycolors[1])
+ax.hlines(y=ybar,xmin=0,xmax=xmax, ls="--", color=mycolors[1])
+ax.hlines(y=yhati,xmin=0,xmax=xmax, ls="--", color=mycolors[1])
+ax.hlines(y=yi,xmin=0,xmax=xmax, ls="--", color=mycolors[1])
+
+ax.vlines(x=xi,ymin=yhati, ymax=yi, ls="--", color=mycolors[2])
+ax.vlines(x=xi,ymin=ybar, ymax=yhati, ls="--", color=mycolors[2])
+ax.vlines(x=xbar,ymin=ybar,ymax=yi, ls="--", color=mycolors[2])
+
+# Points
+ax.scatter(xbar,ybar,s=100, color=mycolors[1])
+ax.scatter(xi,yhati,s=100, color=mycolors[2])
+ax.scatter(xi,yi,s=100, color=mycolors[2])
+
+# Annotations
+ax.annotate(r"($x_i, \hat{y_i}$)", xy=(xi*0.95,yhati),ha="right", va="center", color=mycolors[2])
+ax.annotate(r"$e_i$", xy=(xi*1.05,(yhati+yi)/2),ha="left", va="center", color=mycolors[2])
+ax.annotate(r"$\hat{y_i} - \bar{y}$", xy=(xi*1.05,(yhati+ybar)/2),ha="left", va="center", color=mycolors[2])
+ax.annotate(r"$y_i - \bar{y}$", xy=(xbar*0.95,(yi+ybar)/2),ha="right", va="center", color=mycolors[2])
+
+
+
+# Axis limits
+ax.set_xlim((0,max(x)*1.2))
+ax.set_ylim((0,max(y)*1.2))
+ax.set_xlabel("x")
+ax.set_ylabel("y")
+
+# Axis wording
+ax.set_yticks([ybar,yhati,yi])
+ax.set_yticklabels([r"$\bar{y}$", r"$\hat{y_i}$",r"$y_i$"], color=mycolors[1], fontsize=15)
+ax.set_xticks([xi,xbar])
+ax.set_xticklabels([r"$x_i$",r"$\bar{x}$",], color=mycolors[1], fontsize=15)
+
+ax.set_title("Zerlegung der Fehlerquadrate");
+
+
+```
+
+:::
+::: {.column width='48%'}
+
+#### Erläuterungen
+
+- Der Punkt $(x_i, y_i)$ liegt über dem Mittelwert $\bar{y}$. 
+- Wir behandeln $y_i - \bar{y}$ als die Gesamtabweichung. 
+  
+Diese Abweichung kann aufgeteilt werden in:
+
+- erklärte Abweichung: $\hat{y}_i - \bar{y}$; wenn $x_i$ höher als $\bar{x}$ ist, erwarten wir, dass $\hat{y}_i$ höher als $\bar{y}$ ist
+
+- unerklärte Abweichung: $\epsilon_i$; kann nicht durch das obige Argument erklärt werden
+
+__daher:__
+
+- Gesamtabweichung = erklärte Abweichung + Residuum
+- das kann formuliert werden als: 
+$$y_i - \bar{y} = (\hat{y}_i - \bar{y}) + (y_i - \hat{y}_i)$$
+
+:::
+:::
+
+
+## Definition von $R^2$
+### Modellbeurteilung
+
+Ergibt sich aus der auf der vorherigen Seite beschriebenen Beziehung und ist definiert als 
+
+<br>
+
+
+$$R^2 = \frac{\text{erklärte Abweichung}}{\text{gesamte Abweichung}} = \frac{\sum_{i=1}^n (\hat{y}_i - \bar{y})^2}{\sum_{i=1}^n (y_i - \bar{y})^2}$$
+
+<br>
+
+
+~~Interpretation:~~ Wie viel von der Abweichung in $y$ kann durch das angegebene Modell erklärt werden. 
+
+
+
+
+## Beispiel: $R^2$ für Absatz und Werbeausgaben
+### Modellbeurteilung
+
+<br> 
+
+__:one: Einfache lineare Regression__
+
+```{python}
+model = smf.ols("sales ~ TV ", data=df).fit()
+r2 = model.rsquared
+r2
+```
+
+
+<br>
+
+__:two: Multiple lineare Regression__
+
+
+```{python}
+model = smf.ols("sales ~ TV + radio + newspaper", data=df).fit()
+r2 = model.rsquared
+r2
+```
+
+
+
+## Herausforderungen mit $R^2$
+### Modellbeurteilung
+
+__Obwohl $R^2$ eine gute Metrik ist, hat sie einige Nachteile, vor allem:__
+
+- berücksichtigt nicht die Größe des Datensatzes: z.B. ist das $R^2$ zweier Datenpunkte immer 1, da wir sie immer mit einer Linie verbinden können
+- berücksichtigt nicht die Anzahl der unabhängigen Variablen (Größe von $X$): komplexe Modelle mit vielen Variablen haben immer ein höheres $R^2$ (wenn alle anderen Dinge gleich sind)
+
+<br>
+
+Um diese Nachteile auszugleichen, können wir verwenden 
+
+- adjustiertes $R^2$
+- $F$-Statistik
+
+
+## Adjustiertes $R^2$
+### Modellbeurteilung
+
+
+Berücksichtigt die Anzahl der Variablen und bereinigt sie durch 
+
+$$R^2_{adj} = R^2 - \frac{p \cdot (1 - R^2)}{n- p - 1}$$
+
+wobei:
+
+$n$ = Anzahl der Beobachtungen (d.h. der Elemente im Datensatz)  
+$p$ = Anzahl der Koeffizienten (d.h. Variablen im Datensatz)  
+$n - p - 1$ = Anzahl der Freiheitsgrade
+
+<br>
+
+Vergleich von $R^2$ und $R^2_{adj}$ anhand unseres Werbedatensatzes
+
+```{python}
+model = smf.ols("sales ~ TV + radio + newspaper", data=df).fit()
+r2adj = model.rsquared_adj   
+r2adj
+```
+
+## $F$-Wert
+### Modellbeurteilung
+
+Der $R^2$-Wert misst, wie viel von $y$ durch das Modell erklärt werden kann. 
+
+Da unsere Daten in den meisten Fällen auf einer Stichprobe und nicht auf einer Grundgesamtheit beruhen, müssen wir verstehen, inwieweit das Modell - basierend auf den Stichprobendaten - für die Grundgesamtheit gültig ist. 
+
+Daher müssen wir **die statistische Signifikanz des Modells** verstehen. Hierfür wird die $F$-Statistik verwendet. 
+
+Die $F$-Statistik umfasst
+
+- die oben erläuterten Abweichungen
+- die Anzahl der Beobachtungen
+- die Anzahl der Koeffizienten 
+
+Die geschätzte Regressionsfunktion (einer Stichprobe)
+
+$$\hat{y} = \beta_0 + \beta_1x_1 + \beta_2x_2 + \ldots + \beta_px_p + \epsilon$$
+
+kann als eine "wahre" Funktion mit unbekannten Parametern $\beta_0, \beta_1, \beta_2, \ldots, \beta_p$ interpretiert werden, die die kausale Beziehung der Population beschreibt. 
+
+Diese Funktion enthält einen Fehlerterm ($\epsilon$). Daher kann die Regressionsfunktion als ein **stochastisches Modell** angesehen werden.
+
+## $F$-Wert (cont'd)
+### Modellbeurteilung
+
+Wenn ein kausaler Zusammenhang zwischen $y$ und $X$ besteht, müssen die wahren Regressionskoeffizienten abweichend von Null sein.
+
+Zu diesem Zweck müssen zur Prüfung der Signifikanz des Regressionsmodells die folgenden **Nullhypothesen** getestet werden:
+
+$$H_0 : \beta_0 = \beta_1 = \ldots = \beta_p = 0$$
+
+Um diese Hypothese zu testen, führen wir den $F$-Test unter Verwendung der $F$-Verteilung wie folgt durch:
+
+- Berechnung des empirischen $F$-Wertes aus dem Modell 
+- Angabe des Signifikanzniveaus
+- p-Werte berechnen: d.h. Vergleich des theoretischen $F$-Wertes bei der $F$-Verteilung mit dem empirischen $F$-Wert
+<br>
+
+**Berechnung des empirischen $F$-Wertes**:
+
+$$F_{emp} = \frac{\sum_{i=1}^n(\hat{y}_i - \bar{y})^2/p}{\sum_{i=1}^n(y_i - \hat{y}_i)^2/(n - p - 1)} = \frac{\text{erklärte Abweichung}/p}{\text{unerklärte Abweichung}/(n - p - 1)} = \frac{R^2/p}{(1 - R^2)/(n - p - 1)}$$
+
+wobei:  
+$n$ = Anzahl der Beobachtungen  
+$p$ = Anzahl der Parameter (Koeffizienten)
+
+
+## Beispiel: $F$-Wert für Absatz und Werbeausgaben
+### Modellbeurteilung
+
+<br>
+
+
+```{python}
+model = smf.ols("sales ~ TV + newspaper + radio ", data=df).fit() 
+f_pvalue = model.f_pvalue
+f_pvalue
+```
+
+
+<br>
+
+> **Schlussfolgerung:**   
+> Das Modell ist hochsignifikant (p-value von $\approx0.00$%), was bedeutet, dass es sehr starke Hinweise darauf gibt, dass mindestens einer der drei Koeffizienten von Null verschieden ist.
+
+
+
+## Exkurs: manuelle Berechnung des $F$-Wertes
+### Modellbeurteilung
+
+<br>
+
+```{python}
+import scipy.stats as stats 
+
+# calculate empirical F-value 
+r2 = model.rsquared
+p, n = len(df.columns)-1, len(df) # number of independent variables, number of observations
+Femp = (r2/p) / ((1-r2)/(n-p-1))
+
+# define theoretical F-distribution
+df_p = p  # three independent variables 
+df_n = n - p - 1  
+F = stats.f(df_p,df_n)
+
+# calculate p-value
+f_pvalue = 2*(1-F.cdf(Femp))
+```
+
+## Beurteilung der Regressionskoeffizienten: warum?
+### Modellbeurteilung
+
+Betrachten wir die folgende Funktion:
+$$Y = \beta_0 + \beta_1X + ϵ$$
+
+Bei dieser Funktion handelt es sich um die Regressionslinie für die __Grundgesamtheit__.
+
+- Da die Grundgesamtheit in der Regel nicht bekannt ist, können wir die Regressionslinie nicht berechnen. 
+- stattdessen schätzen wir die Regressionslinie mit Hilfe der __Stichprobendaten__.
+- die beschriebene analytische Lösung zur Bestimmung der Regressionskoeffizienten schätzt die Regressionslinie mit Hilfe der __Stichprobendaten__.
+
+> Wir können die Regressionslinie mit Hilfe der Stichprobendaten schätzen, aber wir können nicht sicher sein, dass die Regressionslinie für die Grundgesamtheit gültig ist.
+
+## Beurteilung der Regressionskoeffizienten: Grundgesamtheit vs. Stichprobe
+### Modellbeurteilung
+
+
+::: {.column width="48%"}
+
+#### Simulation
+
+```{python}
+#| echo: false
+import numpy as np 
+import pandas as pd
+import statsmodels.formula.api as smf
+
+import matplotlib.pyplot as plt
+import seaborn as sns 
+
+# Create population
+size = 100
+x_true = np.random.uniform(-2,2,size=size)
+
+# Create model parameters
+b0, b1 = 2, 3
+e = np.random.normal(loc=0, scale=4, size=size)
+y = b0 + b1*x_true + e
+
+_df = pd.DataFrame({"x_true": x_true, "y": y})
+
+# Calculate regression line
+f_true = lambda x: b0 + b1*x
+
+def estimate_f(_data, smpl=None):
+    if smpl != None:
+        data = _data.copy().sample(smpl)
+    else: 
+        data = _data.copy()
+    
+    model = smf.ols("y ~ x_true", data=data).fit()
+    b0, b1 = model.params.values
+    
+    return b0, b1
+        
+plt.figure(figsize=(10,5))
+
+plt.scatter(x_true,y, color="black", alpha=0.3)
+plt.plot(x_true,f_true(x_true), color="red")
+
+b0_est, b1_est = estimate_f(_df)
+yhat = b0_est + b1_est*x_true
+plt.plot(x_true, yhat, color="blue")
+
+#for i in range(10):
+#    b0_est, b1_est = estimate_f(df, smpl=30)
+#    yhat = b0_est + b1_est*x_true
+#    plt.plot(x_true, yhat, color="grey", linestyle="-", alpha=0.4)
+
+plt.ylim((-10,10))
+plt.xticks(range(-2, 3, 1))
+#plt.title("Regressionslinie der Grundgesamtheit")
+plt.legend(["Daten","Wahre Beziehung", "Geschätzte Beziehung"])
+plt.xlabel("X")
+plt.ylabel("y")
+sns.despine()
+```
+
+:::
+
+::: {.column width="50%"}
+
+#### Erläuterung
+
+- Ein simulierter Datensatz^[in Anlehnung an @james_introduction_2017] 
+  
+- rote Linie stellt die wahre Beziehung dar, f(X)=2+3X, die als Regressionslinie der Grundgesamtheit bezeichnet wird
+  
+- blaue Linie ist geschätzte Regressionslinie; sie ist die Schätzung der kleinsten Quadrate für f(X)
+basierend auf den beobachteten Daten, die in grau dargestellt sind.
+
+
+:::
+## Beurteilung der Regressionskoeffizienten: Grundgesamtheit vs. Stichprobe
+### Modellbeurteilung
+
+
+::: {.column width="48%"}
+
+#### Simulation
+
+```{python}
+#| echo: false
+import numpy as np 
+import pandas as pd
+import statsmodels.formula.api as smf
+
+import matplotlib.pyplot as plt
+import seaborn as sns 
+
+# Create population
+size = 100
+x_true = np.random.uniform(-2,2,size=size)
+
+# Create model parameters
+b0, b1 = 2, 3
+e = np.random.normal(loc=0, scale=4, size=size)
+y = b0 + b1*x_true + e
+
+_df = pd.DataFrame({"x_true": x_true, "y": y})
+
+# Calculate regression line
+f_true = lambda x: b0 + b1*x
+
+def estimate_f(_data, smpl=None):
+    if smpl != None:
+        data = _data.copy().sample(smpl)
+    else: 
+        data = _data.copy()
+    
+    model = smf.ols("y ~ x_true", data=data).fit()
+    b0, b1 = model.params.values
+    
+    return b0, b1
+        
+plt.figure(figsize=(10,5))
+
+#plt.scatter(x_true,y, color="black", alpha=0.3)
+plt.plot(x_true,f_true(x_true), color="red")
+
+b0_est, b1_est = estimate_f(_df)
+yhat = b0_est + b1_est*x_true
+plt.plot(x_true, yhat, color="blue")
+
+for i in range(10):
+    b0_est, b1_est = estimate_f(_df, smpl=30)
+    yhat = b0_est + b1_est*x_true
+    plt.plot(x_true, yhat, color="grey", linestyle="-", alpha=0.4)
+
+plt.ylim((-10,10))
+plt.xticks(range(-2, 3, 1))
+#plt.title("Regressionslinie der Grundgesamtheit")
+plt.legend(["Wahre Beziehung", "Geschätzte Beziehung aus Grundgesamtheit", "Gerade aus Stichproben"])
+plt.xlabel("X")
+plt.ylabel("y")
+sns.despine()
+```
+
+:::
+
+::: {.column width="50%"}
+
+#### Erläuterung
+
+- Die Regressionslinie der Grundgesamtheit ist wieder in rot und die geschätzte Regressionsgerade in dunkelblau dargestellt
+- In hellgrau sind zehn Linien, die jeweils auf Basis einer Stichprobe aus den Daten geschätzt wurde
+- jede geschätzte Linie ist anders, aber im Durchschnitt liegen die Linien recht nahe an der Regressionslinie der Gesamtheit.
+
+
+> __Fazit:__
+>
+> - da wir auf Grundlage von Stichproben Modelle schätzen, wird nur eine von (theoretisch) unendlich vielen möglichen Regressionslinien geschätzt. 
+> - wir müssen uns daher fragen, wie sehr unsere Schätzung sich ändert, wenn wir eine andere Stichprobe ziehen. 
+> - anders formuliert: wie hoch ist die Varianz der Schätzung bzw. der Regressionskoefizienten?
+>
+:::
+
+
+
+
+## Beurteilung der Regressionskoeffizienten: $t$-Wert
+### Modellbeurteilung
+
+Wir haben bisher "nur" die Signifikanz des gesamten Modells getestet. Wir haben jedoch nicht die einzelnen Koeffizienten getestet. 
+
+Die allgemeine Hypothese, die wir bewerten müssen, lautet:
+
+$$H_0 : \beta_j = 0$$
+
+Die Schritte sind die gleichen wie beim $F$-Test.
+
+1. wir berechnen den emprischen $t$-Wert
+2. wir geben das Signifikanzniveau an
+3. Vergleich mit dem theoretischen $t$-Wert aufgrund der $t$-Verteilung / Berechnung der p-Werte
+
+Wenn wir die Nullhypothese wie oben beschrieben testen, kann der emprische $t$-Wert mit Hilfe der folgenden Formel bestimmt werden:
+
+$$t_\text{emp} = \frac{\beta_j - 0}{s_{\beta_j}}$$
+
+wobei: 
+$s_{\beta_j}$ = der Standardfehler^[Hinweis: Die Berechnung des Standardfehlers im Fall der multiplen Regression ist etwas komplexer und wird hier nicht behandelt.] von $\beta_j$.
+
+## Beispiel: $t$-Wert für Absatz und Werbeausgaben {.scrollable}
+### Modellbeurteilung
+
+<br>
+
+Zusammenfassung der Ergebnisse via `summary2()` (oder `summary()`):
+
+
+```{python}
+#| output: false
+model = smf.ols("sales ~ TV + newspaper + radio ", data=df).fit()
+model.summary2()
+```
+
+## Beispiel: $t$-Wert für Absatz und Werbeausgaben {.scrollable}
+### Modellbeurteilung
+
+```{python}
+#| echo: false
+model = smf.ols("sales ~ TV + newspaper + radio ", data=df).fit()
+model.summary2()
+```
+
+
+
+# Interpretation des Modells 
+
+## Aufgabe: Vergleiche von Modellen
+### Modellbeurteilung
+
+<br>
+__Aufgabe:__ berechnen Sie die Modelle für die folgenden drei Fälle:
+
+1. Zusammenhang zwischen Absatz und TV-Werbung
+2. Zusammenhang zwischen Absatz und Radio-Werbung
+3. Zusammenhang zwischen Absatz und TV- und Radio-Werbung
+
+<br> 
+
+__Frage:__ 
+
+- Welches Modell ist das beste? Warum?
+- Welche Variablen hat den größten Einfluss auf den Absatz? Warum?
+  
+## Herausforderungen bei der Interpretation
+### Modellbeurteilung
+
+Im aktuellen Datensatz können wir  $\beta$-Koeffizienten direkt miteinander verglichen, da diese die gleichen Einheiten ('000 USD) haben. 
+
+Dies ermöglichte es, Aussagen zu treffen wie 
+
+_"Der Einfluss von Radiowerbung auf den Umsatz ist fast $4$x höher als der Einfluss von Fernsehwerbung"._
+
+<br>
+
+> **Vorsicht**: Wenn die Maßeinheiten sich unterscheiden, können wir die Regressionskoeffizienten __nicht__ direkt miteinander vergleichen. Wir haben dann zwei Möglichkeiten:
+>
+> 1. Standardisierung der Variablen/Merkmale mit Hilfe eines $z$-Scores 
+> 2. Standardisierung der Koeffizienten (diese Option wird hier nicht behandelt)
+
+
+## Datensatz: Autos 
+### Modellbeurteilung
+
+Im Folgenden verwenden wir den Auto-Datensatz aus "Introduction to Statistical Learning^[Quelle: https://www.statlearning.com/resources-first-edition] für die folgenden Beispiele. 
+
+Datensatz: [https://www.statlearning.com/s/Auto.csv](https://www.statlearning.com/s/Auto.csv)
+
+Der Datensatz beinhaltet die folgenden Informationen:
+
+- `mpg` = Meilen pro Gallone
+- `cylinders` = Anzahl der Zylinder
+- `displacement` = Hubraum; Näherungswert für Gesamtleitung 
+- `horsepower` = PS
+- `weight` = Gewicht in Pfund
+- `acceleration`= Zeit in Sekunden bis 100mph
+- `year` = Jahr, in dem das Modell hergestellt wurde
+- `origin` = Region (1=US, 2=Europa, 3=Asien)
+- `name` = Name des Modells
+
+
+## Datensatz: Autos (cont'd) 
+### Modellbeurteilung
+
+```{python}
+#| output: false
+link = "https://www.statlearning.com/s/Auto.csv"
+df = pd.read_csv(link)
+df.head()
+```
+
+<br>
+
+
+```{python}
+#| echo: false
+link = "https://www.statlearning.com/s/Auto.csv"
+df = pd.read_csv(link)
+Markdown(df.head().to_html())
+```
+
+## Beispiel: Interpretation der Regressionskoeffizienten
+### Modellbeurteilung
+
+Wir wollen analysieren, welche der drei Faktoren den Kraftstoffverbrauch (**mpg**) am stärksten beeinflusst und stellen dafür folgendes Modell auf:
+
+$$
+mpg = \beta_0 + \beta_1\cdot horsepower + \beta_2 \cdot weight + \beta_3 \cdot year
+$$
+
+<br>
+
+```{python}
+model = smf.ols("mpg ~ horsepower + weight + year", data=df).fit()
+model.summary2()
+```
+
+## Quellen 
+
+<br>
+
+::: {#refs}
+:::

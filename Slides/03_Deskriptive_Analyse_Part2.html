@@ -582,8 +582,6 @@ Prof.&nbsp;Dr.&nbsp;Felix Zeidler | FH Bielefeld | SoSe 2023
 <h3 id="bedingte-anweisungen-5">Bedingte Anweisungen</h3>
 <p><strong>Lösung:</strong></p>
 <div class="cell" data-execution_count="1">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">def</span> berechne_steuern(einkommen):</span>
 <span id="cb4-2"><a href="#cb4-2"></a>    <span class="cf">if</span> einkommen <span class="op">&lt;=</span> <span class="dv">14000</span>:</span>
 <span id="cb4-3"><a href="#cb4-3"></a>        steuersatz <span class="op">=</span> <span class="fl">0.12</span></span>
@@ -599,7 +597,6 @@ Prof.&nbsp;Dr.&nbsp;Felix Zeidler | FH Bielefeld | SoSe 2023
 <span id="cb4-13"><a href="#cb4-13"></a></span>
 <span id="cb4-14"><a href="#cb4-14"></a><span class="co"># Beispiel: Berechnung der Steuer für ein Einkommen von 60.000 Euro</span></span>
 <span id="cb4-15"><a href="#cb4-15"></a>steuer <span class="op">=</span> berechne_steuern(<span class="dv">60000</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 </section>
 <section id="aufgabe-2-bedingte-anweisungen" class="slide level2">
@@ -620,35 +617,35 @@ Prof.&nbsp;Dr.&nbsp;Felix Zeidler | FH Bielefeld | SoSe 2023
 </ol>
 <p><strong>Beispiel:</strong></p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>bestimme_kundenbindung(<span class="dv">7000</span>, <span class="dv">40</span>) <span class="co"># Sollte "Gold" ausgeben</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>bestimee_kundenbindung(<span class="dv">7000</span>, <span class="dv">3</span>) <span class="co"># Sollte "Gold" ausgeben</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>bestimme_kundenbindung(<span class="dv">7000</span>, <span class="dv">3</span>) <span class="co"># Sollte "Gold" ausgeben</span></span>
 <span id="cb5-3"><a href="#cb5-3"></a>bestimme_kundenbindung(<span class="op">-</span><span class="dv">100</span>, <span class="dv">0</span>) <span class="co"># Sollte "Ungültige Eingabe!..." ausgeben </span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="lösung-2-bedingte-anweisungen" class="slide level2">
 <h2>Lösung 2: Bedingte Anweisungen</h2>
 <h3 id="bedingte-anweisungen-7">Bedingte Anweisungen</h3>
 <div class="cell" data-execution_count="2">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">def</span> bestimme_kundenbindung(umsatz, transaktionen):</span>
 <span id="cb6-2"><a href="#cb6-2"></a></span>
 <span id="cb6-3"><a href="#cb6-3"></a>    <span class="cf">if</span> umsatz <span class="op">&lt;</span> <span class="dv">0</span> <span class="kw">or</span> transaktionen <span class="op">&lt;</span> <span class="dv">1</span>:</span>
 <span id="cb6-4"><a href="#cb6-4"></a>        <span class="cf">return</span> <span class="st">"Ungültige Eingabe! Bitte geben Sie gültige Werte für Umsatz und Transaktionsanzahl ein."</span></span>
 <span id="cb6-5"><a href="#cb6-5"></a></span>
-<span id="cb6-6"><a href="#cb6-6"></a>    <span class="cf">if</span> umsatz <span class="op">&lt;=</span> <span class="dv">1000</span> <span class="kw">and</span> transaktionen <span class="op">&lt;</span> <span class="dv">10</span>:</span>
-<span id="cb6-7"><a href="#cb6-7"></a>        kategorie <span class="op">=</span> <span class="st">"Bronze"</span></span>
-<span id="cb6-8"><a href="#cb6-8"></a>    <span class="cf">elif</span> (umsatz <span class="op">&gt;</span> <span class="dv">1000</span> <span class="kw">and</span> umsatz <span class="op">&lt;=</span> <span class="dv">5000</span>) <span class="kw">or</span> (transaktionen <span class="op">&gt;=</span> <span class="dv">10</span> <span class="kw">and</span> transaktionen <span class="op">&lt;</span> <span class="dv">30</span>):</span>
-<span id="cb6-9"><a href="#cb6-9"></a>        kategorie <span class="op">=</span> <span class="st">"Silber"</span></span>
-<span id="cb6-10"><a href="#cb6-10"></a>    <span class="cf">elif</span> (umsatz <span class="op">&gt;</span> <span class="dv">5000</span> <span class="kw">and</span> umsatz <span class="op">&lt;=</span> <span class="dv">10000</span>) <span class="kw">or</span> (transaktionen <span class="op">&gt;=</span> <span class="dv">30</span> <span class="kw">and</span> transaktionen <span class="op">&lt;</span> <span class="dv">60</span>):</span>
-<span id="cb6-11"><a href="#cb6-11"></a>        kategorie <span class="op">=</span> <span class="st">"Gold"</span></span>
-<span id="cb6-12"><a href="#cb6-12"></a>    <span class="cf">else</span>:</span>
-<span id="cb6-13"><a href="#cb6-13"></a>        kategorie <span class="op">=</span> <span class="st">"Platin"</span></span>
-<span id="cb6-14"><a href="#cb6-14"></a></span>
-<span id="cb6-15"><a href="#cb6-15"></a>    <span class="cf">return</span> kategorie</span>
-<span id="cb6-16"><a href="#cb6-16"></a></span>
-<span id="cb6-17"><a href="#cb6-17"></a><span class="co"># Beispiel: Berechnung der Kundenbindungskategorie für 7.000 Euro Umsatz und 40 Transaktionen</span></span>
-<span id="cb6-18"><a href="#cb6-18"></a>kategorie <span class="op">=</span> bestimme_kundenbindung(<span class="dv">7000</span>, <span class="dv">40</span>)</span>
-<span id="cb6-19"><a href="#cb6-19"></a><span class="bu">print</span>(kategorie)  <span class="co"># Sollte "Gold" ausgeben</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<span id="cb6-6"><a href="#cb6-6"></a>    <span class="cf">if</span> umsatz <span class="op">&gt;</span> <span class="dv">10_000</span> <span class="kw">or</span> transaktionen <span class="op">&gt;=</span> <span class="dv">60</span>:</span>
+<span id="cb6-7"><a href="#cb6-7"></a>        kategorie <span class="op">=</span> <span class="st">"Platin"</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a></span>
+<span id="cb6-9"><a href="#cb6-9"></a>    <span class="cf">elif</span> (umsatz <span class="op">&lt;=</span> <span class="dv">10_000</span> <span class="kw">and</span> umsatz <span class="op">&gt;</span> <span class="dv">5000</span>) <span class="kw">or</span> (transaktionen <span class="op">&gt;=</span> <span class="dv">30</span> <span class="kw">and</span> transaktionen <span class="op">&lt;</span> <span class="dv">60</span>):</span>
+<span id="cb6-10"><a href="#cb6-10"></a>        kategorie <span class="op">=</span> <span class="st">"Gold"</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a>    </span>
+<span id="cb6-12"><a href="#cb6-12"></a>    <span class="cf">elif</span> (umsatz <span class="op">&lt;=</span> <span class="dv">5_000</span> <span class="kw">and</span> umsatz <span class="op">&gt;</span> <span class="dv">1000</span>) <span class="kw">or</span> (transaktionen <span class="op">&gt;=</span> <span class="dv">10</span> <span class="kw">and</span> transaktionen <span class="op">&lt;</span> <span class="dv">30</span>):</span>
+<span id="cb6-13"><a href="#cb6-13"></a>        kategorie <span class="op">=</span> <span class="st">"Silber"</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a>    </span>
+<span id="cb6-15"><a href="#cb6-15"></a>    <span class="cf">else</span>:</span>
+<span id="cb6-16"><a href="#cb6-16"></a>        kategorie <span class="op">=</span> <span class="st">"Bronze"</span></span>
+<span id="cb6-17"><a href="#cb6-17"></a></span>
+<span id="cb6-18"><a href="#cb6-18"></a>    <span class="cf">return</span> kategorie</span>
+<span id="cb6-19"><a href="#cb6-19"></a></span>
+<span id="cb6-20"><a href="#cb6-20"></a><span class="co"># Beispiel: Berechnung der Kundenbindungskategorie für 7.000 Euro Umsatz und 40 Transaktionen</span></span>
+<span id="cb6-21"><a href="#cb6-21"></a>kategorie <span class="op">=</span> bestimme_kundenbindung(<span class="dv">7000</span>, <span class="dv">40</span>)</span>
+<span id="cb6-22"><a href="#cb6-22"></a><span class="bu">print</span>(kategorie)  <span class="co"># Sollte "Gold" ausgeben</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <aside class="notes">
 <ul>
@@ -1007,7 +1004,7 @@ Prof.&nbsp;Dr.&nbsp;Felix Zeidler | FH Bielefeld | SoSe 2023
 <div class="fragment">
 
 <div class="cell" data-execution_count="7">
-<div class="cell-output cell-output-display" data-execution_count="61">
+<div class="cell-output cell-output-display" data-execution_count="287">
 <table>
 <colgroup>
 <col style="width: 6%">
@@ -1103,7 +1100,7 @@ Prof.&nbsp;Dr.&nbsp;Felix Zeidler | FH Bielefeld | SoSe 2023
 <span id="cb16-4"><a href="#cb16-4"></a>df.loc[rows, cols]</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><br></p>
 <div class="cell" data-execution_count="8">
-<div class="cell-output cell-output-display" data-execution_count="62">
+<div class="cell-output cell-output-display" data-execution_count="288">
 <table>
 <colgroup>
 <col style="width: 4%">
@@ -1185,7 +1182,7 @@ Prof.&nbsp;Dr.&nbsp;Felix Zeidler | FH Bielefeld | SoSe 2023
 <span id="cb17-4"><a href="#cb17-4"></a>df.loc[rows, cols]</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><br></p>
 <div class="cell" data-execution_count="9">
-<div class="cell-output cell-output-display" data-execution_count="63">
+<div class="cell-output cell-output-display" data-execution_count="289">
 <table style="width:100%;">
 <colgroup>
 <col style="width: 5%">
@@ -1291,7 +1288,7 @@ Entscheidung über die Behandlung von Ausreißern sollte immer im Kontext der zu
 <p><strong>Quantile in Pandas:</strong> <code>quantile()</code></p>
 <div class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>df[<span class="st">"kostenüberschreitung_abs"</span>].quantile([<span class="fl">0.01</span>, <span class="fl">0.99</span>])</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="64">
+<div class="cell-output cell-output-display" data-execution_count="290">
 <pre><code>0.01    -10768.9835
 0.99    304094.4865
 Name: kostenüberschreitung_abs, dtype: float64</code></pre>
@@ -1343,25 +1340,23 @@ Name: kostenüberschreitung_abs, dtype: float64</code></pre>
 <h2>Lösung: Entfernen von Ausreißern</h2>
 <h3 id="deskriptive-analyse-25">Deskriptive Analyse</h3>
 <div class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># Kostenüberschreitung</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a>q1 <span class="op">=</span> df[<span class="st">"kostenüberschreitung_abs"</span>].quantile(<span class="fl">0.01</span>)</span>
-<span id="cb21-3"><a href="#cb21-3"></a>q99 <span class="op">=</span> df[<span class="st">"kostenüberschreitung_abs"</span>].quantile(<span class="fl">0.99</span>)</span>
-<span id="cb21-4"><a href="#cb21-4"></a>df <span class="op">=</span> df.query(<span class="st">"kostenüberschreitung_abs &gt; @q1 and kostenüberschreitung_abs &lt; @q99"</span>)</span>
-<span id="cb21-5"><a href="#cb21-5"></a></span>
-<span id="cb21-6"><a href="#cb21-6"></a><span class="co"># Kostenüberschreitung relativ</span></span>
-<span id="cb21-7"><a href="#cb21-7"></a>q1 <span class="op">=</span> df[<span class="st">"kostenüberschreitung_rel"</span>].quantile(<span class="fl">0.01</span>)</span>
-<span id="cb21-8"><a href="#cb21-8"></a>q99 <span class="op">=</span> df[<span class="st">"kostenüberschreitung_rel"</span>].quantile(<span class="fl">0.99</span>)</span>
-<span id="cb21-9"><a href="#cb21-9"></a>df <span class="op">=</span> df.query(<span class="st">"kostenüberschreitung_rel &gt; @q1 and kostenüberschreitung_rel &lt; @q99"</span>)</span>
-<span id="cb21-10"><a href="#cb21-10"></a></span>
-<span id="cb21-11"><a href="#cb21-11"></a><span class="co"># Verzögerung absolut</span></span>
-<span id="cb21-12"><a href="#cb21-12"></a>q1 <span class="op">=</span> df[<span class="st">"verzögerung_abs"</span>].quantile(<span class="fl">0.01</span>)</span>
-<span id="cb21-13"><a href="#cb21-13"></a>q99 <span class="op">=</span> df[<span class="st">"verzögerung_abs"</span>].quantile(<span class="fl">0.99</span>)</span>
-<span id="cb21-14"><a href="#cb21-14"></a>df <span class="op">=</span> df.query(<span class="st">"verzögerung_abs &gt; @q1 and verzögerung_abs &lt; @q99"</span>)</span>
-<span id="cb21-15"><a href="#cb21-15"></a></span>
-<span id="cb21-16"><a href="#cb21-16"></a><span class="co"># Verzögerung relativ</span></span>
-<span id="cb21-17"><a href="#cb21-17"></a>q1 <span class="op">=</span> df[<span class="st">"verzögerung_rel"</span>].quantile(<span class="fl">0.01</span>)</span>
-<span id="cb21-18"><a href="#cb21-18"></a>q99 <span class="op">=</span> df[<span class="st">"verzögerung_rel"</span>].quantile(<span class="fl">0.99</span>)</span>
-<span id="cb21-19"><a href="#cb21-19"></a>df <span class="op">=</span> df.query(<span class="st">"verzögerung_rel &gt; @q1 and verzögerung_rel &lt; @q99"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># Kostenüberschreitung absolut</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>ka1 <span class="op">=</span> df[<span class="st">"kostenüberschreitung_abs"</span>].quantile(<span class="fl">0.01</span>)</span>
+<span id="cb21-3"><a href="#cb21-3"></a>ka99 <span class="op">=</span> df[<span class="st">"kostenüberschreitung_abs"</span>].quantile(<span class="fl">0.99</span>)</span>
+<span id="cb21-4"><a href="#cb21-4"></a><span class="co"># Kostenüberschreitung relativ</span></span>
+<span id="cb21-5"><a href="#cb21-5"></a>kr1 <span class="op">=</span> df[<span class="st">"kostenüberschreitung_rel"</span>].quantile(<span class="fl">0.01</span>)</span>
+<span id="cb21-6"><a href="#cb21-6"></a>kr99 <span class="op">=</span> df[<span class="st">"kostenüberschreitung_rel"</span>].quantile(<span class="fl">0.99</span>)</span>
+<span id="cb21-7"><a href="#cb21-7"></a><span class="co"># Verzögerung absolut</span></span>
+<span id="cb21-8"><a href="#cb21-8"></a>va1 <span class="op">=</span> df[<span class="st">"verzögerung_abs"</span>].quantile(<span class="fl">0.01</span>)</span>
+<span id="cb21-9"><a href="#cb21-9"></a>va99 <span class="op">=</span> df[<span class="st">"verzögerung_abs"</span>].quantile(<span class="fl">0.99</span>)</span>
+<span id="cb21-10"><a href="#cb21-10"></a><span class="co"># Verzögerung relativ</span></span>
+<span id="cb21-11"><a href="#cb21-11"></a>vr1 <span class="op">=</span> df[<span class="st">"verzögerung_rel"</span>].quantile(<span class="fl">0.01</span>)</span>
+<span id="cb21-12"><a href="#cb21-12"></a>vr99 <span class="op">=</span> df[<span class="st">"verzögerung_rel"</span>].quantile(<span class="fl">0.99</span>)</span>
+<span id="cb21-13"><a href="#cb21-13"></a><span class="co">### REMOVE OUTLIERS</span></span>
+<span id="cb21-14"><a href="#cb21-14"></a>df <span class="op">=</span> df.query(<span class="st">"kostenüberschreitung_abs &gt; @ka1 and kostenüberschreitung_abs &lt; @ka99"</span>)</span>
+<span id="cb21-15"><a href="#cb21-15"></a>df <span class="op">=</span> df.query(<span class="st">"kostenüberschreitung_rel &gt; @kr1 and kostenüberschreitung_rel &lt; @kr99"</span>)</span>
+<span id="cb21-16"><a href="#cb21-16"></a>df <span class="op">=</span> df.query(<span class="st">"verzögerung_abs &gt; @va1 and verzögerung_abs &lt; @va99"</span>)</span>
+<span id="cb21-17"><a href="#cb21-17"></a>df <span class="op">=</span> df.query(<span class="st">"verzögerung_rel &gt; @vr1 and verzögerung_rel &lt; @vr99"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="exkurs-funktion-schreiben-für-entfernen-von-ausreißern" class="slide level2">
@@ -1380,15 +1375,35 @@ Name: kostenüberschreitung_abs, dtype: float64</code></pre>
 <p><br></p>
 <div class="fragment">
 
-<p><strong>Funktion anwenden:</strong> Wir wenden die Funktion auf die vier Spalten an.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a>df <span class="op">=</span> remove_outliers(df, <span class="st">"kostenüberschreitung_abs"</span>)</span>
-<span id="cb23-2"><a href="#cb23-2"></a>df <span class="op">=</span> remove_outliers(df, <span class="st">"kostenüberschreitung_rel"</span>)</span>
-<span id="cb23-3"><a href="#cb23-3"></a>df <span class="op">=</span> remove_outliers(df, <span class="st">"verzögerung_abs"</span>)</span>
-<span id="cb23-4"><a href="#cb23-4"></a>df <span class="op">=</span> remove_outliers(df, <span class="st">"verzögerung_rel"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Funktion anwenden:</strong> Wir wenden die Funktion auf eine der vier Spalten an.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a>df <span class="op">=</span> remove_outliers(df, <span class="st">"kostenüberschreitung_abs"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></section>
+<section id="exkurs-funktion-schreiben-für-entfernen-von-ausreißern-1" class="slide level2">
+<h2>Exkurs: Funktion schreiben für Entfernen von Ausreißern</h2>
+<h3 id="deskriptive-analyse-27">Deskriptive Analyse</h3>
+<p>Problem der Funktion: bei mehreren Spalten werden die Perzentile immer auf Basis eines neuen und bereits bereinigtem Datensatz berechnet. Dies kann dazu führen, dass sehr viele Beobachtungen entfernt werden.</p>
+<div class="fragment">
+
+<p><strong>Lösung:</strong> Wir schreiben eine Funktion, die die Entfernung von Ausreißern für mehrere, beliebige Spalte ermöglicht. Die Perzentile werden für jede Spalte auf Basis des ursprünglichen Datensatzes berechnet.</p>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a><span class="kw">def</span> remove_outliers(df, cols, p_low<span class="op">=</span><span class="fl">0.01</span>, p_high<span class="op">=</span><span class="fl">0.99</span>):</span>
+<span id="cb24-2"><a href="#cb24-2"></a>    </span>
+<span id="cb24-3"><a href="#cb24-3"></a>    <span class="co"># Calculate percentile cutoff values</span></span>
+<span id="cb24-4"><a href="#cb24-4"></a>    cutoffs <span class="op">=</span> df[cols].quantile([p_low, p_high])</span>
+<span id="cb24-5"><a href="#cb24-5"></a>    </span>
+<span id="cb24-6"><a href="#cb24-6"></a>    <span class="co"># Remove outliers</span></span>
+<span id="cb24-7"><a href="#cb24-7"></a>    <span class="cf">for</span> col <span class="kw">in</span> cols:</span>
+<span id="cb24-8"><a href="#cb24-8"></a>        df <span class="op">=</span> df.query(<span class="ss">f"</span><span class="sc">{</span>col<span class="sc">}</span><span class="ss"> &gt; </span><span class="sc">{</span>cutoffs<span class="sc">.</span>loc[p_low, col]<span class="sc">}</span><span class="ss"> and </span><span class="sc">{</span>col<span class="sc">}</span><span class="ss"> &lt; </span><span class="sc">{</span>cutoffs<span class="sc">.</span>loc[p_high,col]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb24-9"><a href="#cb24-9"></a>        </span>
+<span id="cb24-10"><a href="#cb24-10"></a>    <span class="cf">return</span> df</span>
+<span id="cb24-11"><a href="#cb24-11"></a></span>
+<span id="cb24-12"><a href="#cb24-12"></a>cols <span class="op">=</span> [<span class="st">"kostenüberschreitung_abs"</span>, <span class="st">"kostenüberschreitung_rel"</span>, <span class="st">"verzögerung_abs"</span>, <span class="st">"verzögerung_rel"</span>]</span>
+<span id="cb24-13"><a href="#cb24-13"></a>df <span class="op">=</span> remove_outliers(df, cols)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div></section>
 <section id="analyse-der-daten" class="slide level2">
 <h2>Analyse der Daten</h2>
-<h3 id="deskriptive-analyse-27">Deskriptive Analyse</h3>
+<h3 id="deskriptive-analyse-28">Deskriptive Analyse</h3>
 <p>Nachdem wir nun (i) relevante Daten hinzugefügt und (ii) Ausreißer entfernt haben, können wir uns nun mit der Analyse der Daten beschäftigen.</p>
 <p><strong>Wir könnten folgenden Fragen nachgehen:</strong></p>
 <div class="fragment">
@@ -1411,7 +1426,7 @@ Name: kostenüberschreitung_abs, dtype: float64</code></pre>
 </div></div></section>
 <section id="gruppieren-und-aggregieren" class="slide level2">
 <h2>Gruppieren und Aggregieren</h2>
-<h3 id="deskriptive-analyse-28">Deskriptive Analyse</h3>
+<h3 id="deskriptive-analyse-29">Deskriptive Analyse</h3>
 <p><strong>Warum?</strong></p>
 <ul>
 <li><p>Gruppieren und Aggregieren von Daten ist eine leistungsfähige Methode zur Analyse und Zusammenfassung großer Datenmengen.</p></li>
@@ -1421,9 +1436,9 @@ Name: kostenüberschreitung_abs, dtype: float64</code></pre>
 </section>
 <section id="gruppieren-und-aggregieren-contd" class="slide level2">
 <h2>Gruppieren und Aggregieren (cont’d)</h2>
-<h3 id="deskriptive-analyse-29">Deskriptive Analyse</h3>
+<h3 id="deskriptive-analyse-30">Deskriptive Analyse</h3>
 <p><strong>In Python</strong></p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a>df.groupby(<span class="st">"spalte_1"</span>).agg({<span class="st">"spalte_2"</span>: <span class="st">"&lt;Aggregationsfunktion&gt;"</span>})</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a>df.groupby(<span class="st">"spalte_1"</span>).agg({<span class="st">"spalte_2"</span>: <span class="st">"&lt;Aggregationsfunktion&gt;"</span>})</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 
 <p><br></p>
@@ -1434,11 +1449,11 @@ Name: kostenüberschreitung_abs, dtype: float64</code></pre>
 <li><p><code>&lt;Aggregationsfunktion&gt;</code>: Eine Aggregationsfunktion, die auf die Gruppen angewendet werden soll. Zum Beispiel: <code>mean</code>, <code>sum</code>, <code>count</code>, <code>median</code>, <code>min</code>, <code>max</code>, <code>std</code>, <code>var</code>, <code>quantile</code>.</p></li>
 </ul>
 <p><strong>Beispiel</strong></p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a>df.groupby(<span class="st">"spalte_1"</span>).agg({<span class="st">"spalte_2"</span>: <span class="st">"mean"</span>})</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a>df.groupby(<span class="st">"spalte_1"</span>).agg({<span class="st">"spalte_2"</span>: <span class="st">"mean"</span>})</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></section>
 <section id="gruppieren-und-aggregieren-contd-1" class="slide level2">
 <h2>Gruppieren und Aggregieren (cont’d)</h2>
-<h3 id="deskriptive-analyse-30">Deskriptive Analyse</h3>
+<h3 id="deskriptive-analyse-31">Deskriptive Analyse</h3>
 <p><strong>Beispiel:</strong> durchschnittliche absolute Verzögerung je Projektteam</p>
 <ul>
 <li><p>Gruppieren: Wir gruppieren die Daten nach <code>team</code></p></li>
@@ -1446,9 +1461,9 @@ Name: kostenüberschreitung_abs, dtype: float64</code></pre>
 </ul>
 <div class="fragment">
 
-<div class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a>df.groupby(<span class="st">"team"</span>).agg({<span class="st">"verzögerung_abs"</span>: <span class="st">"mean"</span>})</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="69">
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a>df.groupby(<span class="st">"team"</span>).agg({<span class="st">"verzögerung_abs"</span>: <span class="st">"mean"</span>})</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="296">
 <div>
 <style scoped="">
     .dataframe tbody tr th:only-of-type {
@@ -1478,19 +1493,19 @@ Name: kostenüberschreitung_abs, dtype: float64</code></pre>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Team 1</td>
-<td>12.551755</td>
+<td>8.580801</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">Team 2</td>
-<td>9.039803</td>
+<td>8.717090</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Team 3</td>
-<td>11.162162</td>
+<td>11.773603</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">Team 4</td>
-<td>5.626205</td>
+<td>6.025735</td>
 </tr>
 </tbody>
 </table>
@@ -1501,7 +1516,7 @@ Name: kostenüberschreitung_abs, dtype: float64</code></pre>
 </div></section>
 <section id="aufgabe-gruppieren-und-aggregieren" class="slide level2">
 <h2>Aufgabe: Gruppieren und Aggregieren</h2>
-<h3 id="deskriptive-analyse-31">Deskriptive Analyse</h3>
+<h3 id="deskriptive-analyse-32">Deskriptive Analyse</h3>
 <div class="fragment">
 
 <p><strong>Aufgabe:</strong></p>
@@ -1509,25 +1524,18 @@ Name: kostenüberschreitung_abs, dtype: float64</code></pre>
 <li><p>Berechne den Median der relative Verzögerung je Projektteam.</p></li>
 <li><p>Berechnen Sie die Anzahl der Projekte je Projektteam.</p></li>
 </ol>
-<!--
+</div></section>
+<section id="lösung-gruppieren-und-aggregieren" class="slide level2">
+<h2>Lösung: Gruppieren und Aggregieren</h2>
+<h3 id="deskriptive-analyse-33">Deskriptive Analyse</h3>
+<div class="fragment">
 
-## Lösung: Gruppieren und Aggregieren
-### Deskriptive Analyse
-
-<div class='fragment'>
-
-__Lösung 1:__
-
-::: {.cell execution_count=16}
-``` {.python .cell-code}
-df.groupby("team").agg({"verzögerung_rel": "median"})
-```
-
-::: {.cell-output .cell-output-display execution_count=70}
-
-```{=html}
+<p><strong>Lösung 1:</strong></p>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a>df.groupby(<span class="st">"team"</span>).agg({<span class="st">"verzögerung_rel"</span>: <span class="st">"median"</span>})</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="297">
 <div>
-<style scoped>
+<style scoped="">
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
@@ -1555,27 +1563,48 @@ df.groupby("team").agg({"verzögerung_rel": "median"})
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Team 1</td>
-<td>3.448276</td>
+<td>2.777778</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">Team 2</td>
-<td>9.090909</td>
+<td>8.888889</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Team 3</td>
-<td>20.074349</td>
+<td>21.637427</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">Team 4</td>
-<td>3.519092</td>
+<td>3.703704</td>
 </tr>
 </tbody>
 </table>
-``` ::: :::
+
+</div>
+</div>
+</div>
 <div class="fragment">
-<br />
-__Lösung 2:__ ::: {.cell execution_count=17} ``` {.python .cell-code} df.groupby("team").agg({"id": "count"}) ``` ::: {.cell-output .cell-output-display execution_count=71} ```{=html}
+
+<p><br></p>
+<p><strong>Lösung 2:</strong></p>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>df.groupby(<span class="st">"team"</span>).agg({<span class="st">"id"</span>: <span class="st">"count"</span>})</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="298">
 <div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
 <table class="dataframe" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header" style="text-align: right;">
@@ -1590,44 +1619,37 @@ __Lösung 2:__ ::: {.cell execution_count=17} ``` {.python .cell-code} df.groupb
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Team 1</td>
-<td>2222</td>
+<td>2073</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">Team 2</td>
-<td>2236</td>
+<td>2089</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Team 3</td>
-<td>2257</td>
+<td>2129</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">Team 4</td>
-<td>2282</td>
+<td>2176</td>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
 
 </div>
-```
-
-:::
-:::
-
-
--->
-</div></section>
+</div>
+</div>
+</div></div></section>
 <section id="gruppieren-und-aggregieren-datum" class="slide level2">
 <h2>Gruppieren und Aggregieren: Datum</h2>
-<h3 id="deskriptive-analyse-32">Deskriptive Analyse</h3>
+<h3 id="deskriptive-analyse-34">Deskriptive Analyse</h3>
 <p><code>pd.Grouper</code> ermöglicht es, Daten nach Zeitintervallen zu gruppieren</p>
 <div class="fragment">
 
 <p><strong>Beispiel:</strong> Wir gruppieren die Daten für jeweils 9 Monate und berechnen den Mittelwert der absoluten Verzögerung.</p>
-<div class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a>df.groupby(pd.Grouper(key<span class="op">=</span><span class="st">"beginn"</span>, freq<span class="op">=</span><span class="st">"9M"</span>)).agg({<span class="st">"verzögerung_abs"</span>: <span class="st">"mean"</span>})</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="72">
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a>df.groupby(pd.Grouper(key<span class="op">=</span><span class="st">"beginn"</span>, freq<span class="op">=</span><span class="st">"9M"</span>)).agg({<span class="st">"verzögerung_abs"</span>: <span class="st">"mean"</span>})</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="299">
 <div>
 <style scoped="">
     .dataframe tbody tr th:only-of-type {
@@ -1657,55 +1679,55 @@ __Lösung 2:__ ::: {.cell execution_count=17} ``` {.python .cell-code} df.groupb
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2013-02-28</td>
-<td>11.852459</td>
+<td>10.508475</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">2013-11-30</td>
-<td>9.606299</td>
+<td>8.353675</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2014-08-31</td>
-<td>8.860892</td>
+<td>8.235784</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">2015-05-31</td>
-<td>9.628173</td>
+<td>9.001344</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2016-02-29</td>
-<td>11.619974</td>
+<td>10.205479</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">2016-11-30</td>
-<td>8.090268</td>
+<td>8.201794</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2017-08-31</td>
-<td>9.417553</td>
+<td>8.638571</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">2018-05-31</td>
-<td>9.796919</td>
+<td>8.739521</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2019-02-28</td>
-<td>10.415365</td>
+<td>9.261773</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">2019-11-30</td>
-<td>8.318123</td>
+<td>7.726008</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2020-08-31</td>
-<td>7.619640</td>
+<td>7.508772</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">2021-05-31</td>
-<td>10.447439</td>
+<td>9.358273</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2022-02-28</td>
-<td>10.827434</td>
+<td>9.754331</td>
 </tr>
 </tbody>
 </table>
@@ -1716,38 +1738,29 @@ __Lösung 2:__ ::: {.cell execution_count=17} ``` {.python .cell-code} df.groupb
 </div></section>
 <section id="aufgabe-gruppieren-und-aggregieren-mit-datum" class="slide level2">
 <h2>Aufgabe: Gruppieren und Aggregieren mit Datum</h2>
-<h3 id="deskriptive-analyse-33">Deskriptive Analyse</h3>
+<h3 id="deskriptive-analyse-35">Deskriptive Analyse</h3>
 <p>Analysen Sie, ob sich die absolute Kostenüberschreitung im Laufe der Zeit verändert hat.</p>
-<!--
+</section>
+<section id="lösungsskizze-gruppieren-und-aggregieren-mit-datum" class="slide level2">
+<h2>Lösungsskizze: Gruppieren und Aggregieren mit Datum</h2>
+<h3 id="deskriptive-analyse-36">Deskriptive Analyse</h3>
+<div class="fragment">
 
-## Lösungsskizze: Gruppieren und Aggregieren mit Datum
-### Deskriptive Analyse
+<p><strong>Lösungsskizze:</strong></p>
+<ul>
+<li><p>Wir gruppieren die Daten nach Zeitintervallen von z.B. 3 Monaten.</p></li>
+<li><p>Basis könnte der Projektbeginn sein</p></li>
+<li><p>Wir berechnen den Median der absoluten Kostenüberschreitung, weil wir die Ergebnisse nicht durch noch verbliebene Extreme verfälschen wollen.</p></li>
+</ul>
+<div class="fragment">
 
-<div class='fragment'>
-
-__Lösungsskizze:__
-
-- Wir gruppieren die Daten nach Zeitintervallen von z.B. 3 Monaten. 
-
-- Basis könnte der Projektbeginn sein
-
-- Wir berechnen den Median der absoluten Kostenüberschreitung, weil wir die Ergebnisse nicht durch noch verbliebene Extreme verfälschen wollen.
-
-<div class='fragment'>
-
-<br>
-
-::: {.cell execution_count=19}
-``` {.python .cell-code}
-data = df.groupby(pd.Grouper(key="beginn", freq="3M")).agg({"kostenüberschreitung_abs": "median"})
-data.head() # Zeige Auszug der Daten
-```
-
-::: {.cell-output .cell-output-display execution_count=73}
-
-```{=html}
+<p><br></p>
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a>data <span class="op">=</span> df.groupby(pd.Grouper(key<span class="op">=</span><span class="st">"beginn"</span>, freq<span class="op">=</span><span class="st">"3M"</span>)).agg({<span class="st">"kostenüberschreitung_abs"</span>: <span class="st">"median"</span>})</span>
+<span id="cb31-2"><a href="#cb31-2"></a>data.head() <span class="co"># Zeige Auszug der Daten</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="300">
 <div>
-<style scoped>
+<style scoped="">
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
@@ -1779,35 +1792,30 @@ data.head() # Zeige Auszug der Daten
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">2013-05-31</td>
-<td>15234.910</td>
+<td>14794.530</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2013-08-31</td>
-<td>14232.260</td>
+<td>13354.175</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">2013-11-30</td>
-<td>16264.945</td>
+<td>15960.120</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2014-02-28</td>
-<td>16639.070</td>
+<td>16450.080</td>
 </tr>
 </tbody>
 </table>
 
 </div>
-```
-
-:::
-:::
-
-
--->
-</section>
+</div>
+</div>
+</div></div></section>
 <section id="visualisierung" class="slide level2">
 <h2>Visualisierung</h2>
-<h3 id="deskriptive-analyse-34">Deskriptive Analyse</h3>
+<h3 id="deskriptive-analyse-37">Deskriptive Analyse</h3>
 <p><strong>Warum?</strong></p>
 <ul>
 <li><p>Visualisierung ist eine sehr effektive Methode, um Daten zu verstehen und zu analysieren.</p></li>
@@ -1825,7 +1833,7 @@ data.head() # Zeige Auszug der Daten
 </div></section>
 <section id="visualisierung-arten" class="slide level2">
 <h2>Visualisierung: Arten</h2>
-<h3 id="deskriptive-analyse-35">Deskriptive Analyse</h3>
+<h3 id="deskriptive-analyse-38">Deskriptive Analyse</h3>
 <p><strong>Typische Arten von Visualisierungen:</strong></p>
 <ol type="1">
 <li><p><strong>Beziehungen:</strong> Scatterplots, Liniendiagramme, Streudiagramme (<a href="https://seaborn.pydata.org/tutorial/relational.html">Tutorial</a>)</p></li>
@@ -1841,62 +1849,62 @@ data.head() # Zeige Auszug der Daten
 </div></section>
 <section id="visualisierung-von-beziehungen-beispiel-liniendiagramm" class="slide level2">
 <h2>Visualisierung von Beziehungen: Beispiel “Liniendiagramm”</h2>
-<h3 id="deskriptive-analyse-36">Deskriptive Analyse</h3>
-<div class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns </span>
-<span id="cb28-2"><a href="#cb28-2"></a></span>
-<span id="cb28-3"><a href="#cb28-3"></a>data <span class="op">=</span> df.groupby(pd.Grouper(key<span class="op">=</span><span class="st">"beginn"</span>, freq<span class="op">=</span><span class="st">"3M"</span>)).agg({<span class="st">"kostenüberschreitung_abs"</span>: <span class="st">"median"</span>})</span>
-<span id="cb28-4"><a href="#cb28-4"></a>sns.lineplot(data<span class="op">=</span>data, x<span class="op">=</span><span class="st">"beginn"</span>, y<span class="op">=</span><span class="st">"kostenüberschreitung_abs"</span>)<span class="op">;</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<h3 id="deskriptive-analyse-39">Deskriptive Analyse</h3>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns </span>
+<span id="cb32-2"><a href="#cb32-2"></a></span>
+<span id="cb32-3"><a href="#cb32-3"></a>data <span class="op">=</span> df.groupby(pd.Grouper(key<span class="op">=</span><span class="st">"beginn"</span>, freq<span class="op">=</span><span class="st">"3M"</span>)).agg({<span class="st">"kostenüberschreitung_abs"</span>: <span class="st">"median"</span>})</span>
+<span id="cb32-4"><a href="#cb32-4"></a>sns.lineplot(data<span class="op">=</span>data, x<span class="op">=</span><span class="st">"beginn"</span>, y<span class="op">=</span><span class="st">"kostenüberschreitung_abs"</span>)<span class="op">;</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img data-src="03_Deskriptive_Analyse_Part2_files/figure-revealjs/cell-22-output-1.png" width="833" height="427"></p>
+<p><img data-src="03_Deskriptive_Analyse_Part2_files/figure-revealjs/cell-23-output-1.png" width="833" height="422"></p>
 </div>
 </div>
 </section>
 <section id="visualisierung-von-verteilungen-beispiel-histogramm" class="slide level2">
 <h2>Visualisierung von Verteilungen: Beispiel “Histogramm”</h2>
-<h3 id="deskriptive-analyse-37">Deskriptive Analyse</h3>
-<div class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>sns.displot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"kostenüberschreitung_abs"</span>, kind<span class="op">=</span><span class="st">"hist"</span>)<span class="op">;</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<p><img data-src="03_Deskriptive_Analyse_Part2_files/figure-revealjs/cell-23-output-1.png" width="470" height="468"></p>
-</div>
-</div>
-</section>
-<section id="visualisierung-von-kategorien-beispiel-balkendiagramm" class="slide level2">
-<h2>Visualisierung von Kategorien: Beispiel “Balkendiagramm”</h2>
-<h3 id="deskriptive-analyse-38">Deskriptive Analyse</h3>
+<h3 id="deskriptive-analyse-40">Deskriptive Analyse</h3>
 <div class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a>sns.catplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"team"</span>, y<span class="op">=</span><span class="st">"kostenüberschreitung_abs"</span>, kind<span class="op">=</span><span class="st">"bar"</span>)<span class="op">;</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a>sns.displot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"kostenüberschreitung_abs"</span>, kind<span class="op">=</span><span class="st">"hist"</span>)<span class="op">;</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img data-src="03_Deskriptive_Analyse_Part2_files/figure-revealjs/cell-24-output-1.png" width="469" height="468"></p>
 </div>
 </div>
 </section>
-<section id="visualisierung-von-kategorien-beispiel-boxplot-je-projektteam" class="slide level2">
-<h2>Visualisierung von Kategorien: Beispiel “Boxplot” je Projektteam</h2>
-<h3 id="deskriptive-analyse-39">Deskriptive Analyse</h3>
+<section id="visualisierung-von-kategorien-beispiel-balkendiagramm" class="slide level2">
+<h2>Visualisierung von Kategorien: Beispiel “Balkendiagramm”</h2>
+<h3 id="deskriptive-analyse-41">Deskriptive Analyse</h3>
 <div class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a>sns.catplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"team"</span>, y<span class="op">=</span><span class="st">"kostenüberschreitung_rel"</span>, kind<span class="op">=</span><span class="st">"box"</span>)<span class="op">;</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a>sns.catplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"team"</span>, y<span class="op">=</span><span class="st">"kostenüberschreitung_abs"</span>, kind<span class="op">=</span><span class="st">"bar"</span>)<span class="op">;</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img data-src="03_Deskriptive_Analyse_Part2_files/figure-revealjs/cell-25-output-1.png" width="469" height="468"></p>
 </div>
 </div>
 </section>
+<section id="visualisierung-von-kategorien-beispiel-boxplot-je-projektteam" class="slide level2">
+<h2>Visualisierung von Kategorien: Beispiel “Boxplot” je Projektteam</h2>
+<h3 id="deskriptive-analyse-42">Deskriptive Analyse</h3>
+<div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a>sns.catplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"team"</span>, y<span class="op">=</span><span class="st">"kostenüberschreitung_rel"</span>, kind<span class="op">=</span><span class="st">"box"</span>)<span class="op">;</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img data-src="03_Deskriptive_Analyse_Part2_files/figure-revealjs/cell-26-output-1.png" width="469" height="468"></p>
+</div>
+</div>
+</section>
 <section id="visualisierung-von-kategorien-beispiel-boxplot-je-projektteam-und-projektart" class="slide level2">
 <h2>Visualisierung von Kategorien: Beispiel “Boxplot” je Projektteam und Projektart</h2>
-<h3 id="deskriptive-analyse-40">Deskriptive Analyse</h3>
-<div class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a>sns.catplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"team"</span>, y<span class="op">=</span><span class="st">"kostenüberschreitung_rel"</span>, col<span class="op">=</span><span class="st">"art"</span>, </span>
-<span id="cb32-2"><a href="#cb32-2"></a>            col_wrap<span class="op">=</span><span class="dv">3</span>, kind<span class="op">=</span><span class="st">"box"</span>, </span>
-<span id="cb32-3"><a href="#cb32-3"></a>            height<span class="op">=</span><span class="dv">2</span>, aspect<span class="op">=</span><span class="fl">1.5</span>)<span class="op">;</span> <span class="co"># nur für Darstellung</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<h3 id="deskriptive-analyse-43">Deskriptive Analyse</h3>
+<div class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a>sns.catplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"team"</span>, y<span class="op">=</span><span class="st">"kostenüberschreitung_rel"</span>, col<span class="op">=</span><span class="st">"art"</span>, </span>
+<span id="cb36-2"><a href="#cb36-2"></a>            col_wrap<span class="op">=</span><span class="dv">3</span>, kind<span class="op">=</span><span class="st">"box"</span>, </span>
+<span id="cb36-3"><a href="#cb36-3"></a>            height<span class="op">=</span><span class="dv">2</span>, aspect<span class="op">=</span><span class="fl">1.5</span>)<span class="op">;</span> <span class="co"># nur für Darstellung</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img data-src="03_Deskriptive_Analyse_Part2_files/figure-revealjs/cell-26-output-1.png" width="853" height="568"></p>
+<p><img data-src="03_Deskriptive_Analyse_Part2_files/figure-revealjs/cell-27-output-1.png" width="853" height="568"></p>
 </div>
 </div>
 </section>
 <section id="visualisierung-formatieren-von-diagrammen" class="slide level2">
 <h2>Visualisierung: Formatieren von Diagrammen</h2>
-<h3 id="deskriptive-analyse-41">Deskriptive Analyse</h3>
+<h3 id="deskriptive-analyse-44">Deskriptive Analyse</h3>
 <p><strong>Formatierung von Diagrammen:</strong></p>
 <ul>
 <li><p>Titel, Achsenbeschriftungen, Legende, Farben, Größe, etc.</p></li>
@@ -1907,34 +1915,70 @@ data.head() # Zeige Auszug der Daten
 </section>
 <section id="visualisierung-formatieren-von-diagrammen-1" class="slide level2">
 <h2>Visualisierung: Formatieren von Diagrammen</h2>
-<h3 id="deskriptive-analyse-42">Deskriptive Analyse</h3>
+<h3 id="deskriptive-analyse-45">Deskriptive Analyse</h3>
 <div class="panel-tabset">
 <ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Plot</a></li><li><a href="#tabset-1-2">Code</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1">
-<div class="cell" data-execution_count="26">
+<div class="cell" data-execution_count="27">
 <div class="cell-output cell-output-display">
-<p><img data-src="03_Deskriptive_Analyse_Part2_files/figure-revealjs/cell-27-output-1.png" width="565" height="410"></p>
+<p><img data-src="03_Deskriptive_Analyse_Part2_files/figure-revealjs/cell-28-output-1.png" width="565" height="410"></p>
 </div>
 </div>
 </div>
 <div id="tabset-1-2">
-<div class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
-<span id="cb33-2"><a href="#cb33-2"></a>sns.displot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"kostenüberschreitung_abs"</span>, kind<span class="op">=</span><span class="st">"hist"</span>, height<span class="op">=</span><span class="dv">4</span>, aspect<span class="op">=</span><span class="fl">1.5</span>)</span>
-<span id="cb33-3"><a href="#cb33-3"></a>plt.title(<span class="st">"Verteilung der</span><span class="ch">\n</span><span class="st">absoluten Kostenüberschreitung"</span>)</span>
-<span id="cb33-4"><a href="#cb33-4"></a>plt.xlabel(<span class="st">"Kostenüberschreitung in €"</span>)</span>
-<span id="cb33-5"><a href="#cb33-5"></a>plt.ylabel(<span class="st">"Anzahl der Projekte"</span>)</span>
-<span id="cb33-6"><a href="#cb33-6"></a>mu <span class="op">=</span> df[<span class="st">"kostenüberschreitung_abs"</span>].mean()</span>
-<span id="cb33-7"><a href="#cb33-7"></a>median <span class="op">=</span> df[<span class="st">"kostenüberschreitung_abs"</span>].median()</span>
-<span id="cb33-8"><a href="#cb33-8"></a>plt.axvline(median, color<span class="op">=</span><span class="st">"black"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>)<span class="op">;</span></span>
-<span id="cb33-9"><a href="#cb33-9"></a>plt.annotate(<span class="ss">f"median: </span><span class="sc">{</span><span class="bu">round</span>(median,<span class="dv">2</span>)<span class="sc">:,</span><span class="fl">.2</span><span class="er">f</span><span class="sc">}</span><span class="ss">"</span>, xy<span class="op">=</span>(<span class="dv">45000</span>, <span class="dv">750</span>), color<span class="op">=</span><span class="st">"black"</span>)</span>
-<span id="cb33-10"><a href="#cb33-10"></a>plt.axvline(mu, color<span class="op">=</span><span class="st">"red"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>)<span class="op">;</span></span>
-<span id="cb33-11"><a href="#cb33-11"></a>plt.annotate(<span class="ss">f"mean: </span><span class="sc">{</span><span class="bu">round</span>(mu,<span class="dv">2</span>)<span class="sc">:,</span><span class="fl">.2</span><span class="er">f</span><span class="sc">}</span><span class="ss">"</span>, xy<span class="op">=</span>(<span class="dv">45000</span>, <span class="dv">800</span>), color<span class="op">=</span><span class="st">"red"</span>)<span class="op">;</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb37-2"><a href="#cb37-2"></a>sns.displot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"kostenüberschreitung_abs"</span>, kind<span class="op">=</span><span class="st">"hist"</span>, height<span class="op">=</span><span class="dv">4</span>, aspect<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb37-3"><a href="#cb37-3"></a>plt.title(<span class="st">"Verteilung der</span><span class="ch">\n</span><span class="st">absoluten Kostenüberschreitung"</span>)</span>
+<span id="cb37-4"><a href="#cb37-4"></a>plt.xlabel(<span class="st">"Kostenüberschreitung in €"</span>)</span>
+<span id="cb37-5"><a href="#cb37-5"></a>plt.ylabel(<span class="st">"Anzahl der Projekte"</span>)</span>
+<span id="cb37-6"><a href="#cb37-6"></a>mu <span class="op">=</span> df[<span class="st">"kostenüberschreitung_abs"</span>].mean()</span>
+<span id="cb37-7"><a href="#cb37-7"></a>median <span class="op">=</span> df[<span class="st">"kostenüberschreitung_abs"</span>].median()</span>
+<span id="cb37-8"><a href="#cb37-8"></a>plt.axvline(median, color<span class="op">=</span><span class="st">"black"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>)<span class="op">;</span></span>
+<span id="cb37-9"><a href="#cb37-9"></a>plt.annotate(<span class="ss">f"median: </span><span class="sc">{</span><span class="bu">round</span>(median,<span class="dv">2</span>)<span class="sc">:,</span><span class="fl">.2</span><span class="er">f</span><span class="sc">}</span><span class="ss">"</span>, xy<span class="op">=</span>(<span class="dv">45000</span>, <span class="dv">750</span>), color<span class="op">=</span><span class="st">"black"</span>)</span>
+<span id="cb37-10"><a href="#cb37-10"></a>plt.axvline(mu, color<span class="op">=</span><span class="st">"red"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>)<span class="op">;</span></span>
+<span id="cb37-11"><a href="#cb37-11"></a>plt.annotate(<span class="ss">f"mean: </span><span class="sc">{</span><span class="bu">round</span>(mu,<span class="dv">2</span>)<span class="sc">:,</span><span class="fl">.2</span><span class="er">f</span><span class="sc">}</span><span class="ss">"</span>, xy<span class="op">=</span>(<span class="dv">45000</span>, <span class="dv">800</span>), color<span class="op">=</span><span class="st">"red"</span>)<span class="op">;</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
+</section>
+<section id="aufgabe" class="slide level2">
+<h2>Aufgabe</h2>
+<h3 id="deskriptive-analyse-46">Deskriptive Analyse</h3>
+<p><strong>Analysieren Sie den Datensatz <code>df</code>.</strong> Orientieren Sie sich dabei z.B. an den bereits formulierten Fragestellungen:</p>
+<ol type="1">
+<li><p>Ausgangssituation bestätigen: gibt es tatsächlich Verzögerungen und Kostenüberschreitungen?</p></li>
+<li><p>Hypothesen zur Erklärung der Verzögerungen und Kostenüberschreitungen aufstellen und prüfen</p>
+<ul>
+<li><p>Haben sich die Verzögerungen und Kostenüberschreitungen im Laufe der Zeit verändert?</p></li>
+<li><p>Gibt es einen Zusammenhang zwischen den Verzögerungen und den Kostenüberschreitungen?</p></li>
+<li><p>Sind die Verzögerungen und Kostenüberschreitungen abhängig vom Team?</p></li>
+<li><p>Sind die Verzögerungen und Kostenüberschreitungen abhängig von der Art des Projekts?</p></li>
+<li><p>Sind die Verzögerungen und Kostenüberschreitungen abhängig von der Größe des Projekts?</p></li>
+</ul></li>
+</ol>
+<p>Verwenden Sie dazu die <strong>bereits vorgestellten Methoden</strong>, d.h.</p>
+<ul>
+<li><p>Gruppierungen</p></li>
+<li><p>Aggregationen</p></li>
+<li><p>Visualisierungen</p></li>
+</ul>
+</section>
+<section id="genutzte-funktionen" class="slide level2">
+<h2>Genutzte Funktionen</h2>
+<h3 id="deskriptive-analyse-47">Deskriptive Analyse</h3>
+<p>Die folgenden Liste fasst die in diesem Kapitel genutzten Funktionen zusammen:</p>
+<ul>
+<li><p><code>df.assign()</code>: Erstellen neuer Spalten</p></li>
+<li><p><code>df.groupby().agg()</code>: Gruppierung und Aggregation von Daten</p></li>
+<li><p><code>df["spalte"].nlargest()</code>: Ausgabe der n größten Werte einer Spalte</p></li>
+<li><p><code>pd.Grouper()</code>: Gruppierung von Daten nach Zeitintervallen</p></li>
+<li><p><code>sns.lineplot()</code>: Liniendiagramm</p></li>
+<li><p><code>sns.displot()</code>: Histogramm</p></li>
+<li><p><code>sns.catplot()</code>: Diagramme für Kategorien (z.B. Balkendiagramm)</p></li>
+</ul>
 </section>
 <section id="quellen" class="slide level2 smaller scrollable">
 <h2>Quellen</h2>

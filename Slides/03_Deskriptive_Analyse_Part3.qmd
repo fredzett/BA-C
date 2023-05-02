@@ -1,0 +1,821 @@
+---
+title: "Business Analytics" 
+subtitle:  "~~03~~ | Deskriptive Analyse - Part 3"
+author: "Prof. Dr. Felix Zeidler | FH Bielefeld | SoSe 2023"
+lang: "De"
+format: 
+    revealjs: 
+        theme: [simple, custom.scss]
+        toc: true
+        toc-title: "Inhaltsverzeichnis"
+        toc-depth: 1
+        number-sections: true
+        number-depth: 1
+        preview-links: true
+        reference-location: block
+        tbl-colwidths: auto
+        tbl-cap-location: bottom
+        code-copy: hover
+        # embed-resources: true
+        #self-contained-math: true
+from: markdown+emoji 
+execute: 
+  echo: true
+  output: true
+  code-fold: show
+slide-number: c/t
+jupyter: py39
+---
+
+## Lösungsvorschlag: Fallstudie 
+### Fallstudie
+
+Im Folgenden finden Sie einige Ansätze zur Beantwortung folgender Fragen (siehe vorheriges Kapitel):
+
+<br>
+
+| Frage / Hypothese | Status |
+|-----------|:-:|
+| __Ausgangssituation bestätigen__  |  |
+| 1a. Gibt es tatsächlich Verzögerungen und Kostenüberschreitungen?| &#9744; |
+| 1b. Haben sich die Verzögerungen und Kostenüberschreitungen im Laufe der Zeit verändert? | &#9744; |
+| &nbsp;   | &nbsp;   |
+| __Hypothese bearbeiten__  |  |
+| 1. Sind die Verzögerungen und Kostenüberschreitungen abhängig vom Team?| &#9744; |
+| 2. Sind die Verzögerungen und Kostenüberschreitungen abhängig von der Art des Projekts? | &#9744; |
+| 3. Sind die Verzögerungen und Kostenüberschreitungen abhängig von der Größe des Projekts?  | &#9744; |
+| 4. Gibt es einen Zusammenhang zwischen den Verzögerungen und den Kostenüberschreitungen? | &#9744; |
+
+<br>
+
+> __Hinweis:__  
+> Es handelt sich dabei um _eine_ mögliche Lösung, die Sie als Anregung für Ihre eigene Lösung nutzen können. 
+
+## Lösungsvorschlag: bereinigter und transformierter Datensatz
+### Fallstudie
+
+```{python}
+#| echo: false
+def remove_outliers(df, cols, p_low=0.01, p_high=0.99):
+    
+    # Calculate percentile cutoff values
+    cutoffs = df[cols].quantile([p_low, p_high])
+    
+    # Remove outliers
+    for col in cols:
+        df = df.query(f"{col} > {cutoffs.loc[p_low, col]} and {col} < {cutoffs.loc[p_high,col]}")
+        
+    return df
+
+cols = ["kostenüberschreitung_abs", "kostenüberschreitung_rel", "verzögerung_abs", "verzögerung_rel"]
+```
+
+
+- Datensatz nach Aufbereitung und Transformation (z.B. ohne Ausreißer, Datentypen angepasst, etc.)
+- Spalten mit den relevanten Variablen (z.B. Kostenüberschreitung, Verzögerung, Projektart etc.) ergänzt 
+
+
+```{python}
+#| echo: false 
+import pandas as pd
+from IPython.display import Markdown
+from tabulate import tabulate
+
+link = "https://www.dropbox.com/s/ov6mnmgzrydquie/Construction.csv?dl=1"
+df = (pd.read_csv(link)
+      .rename(columns={'Project_ID': 'id', 
+                        'Name Projekt': 'name',
+                        'projekt_Beginn': 'beginn',
+                        'Plan Bau fertig': 'ende_plan',
+                        'Fertig_IST': 'ende_ist',
+                        'Kosten Plan': 'kosten_plan',
+                        'Ist_Kosten': 'kosten_ist',
+                        'Project_team': 'team'})
+      .astype({"beginn": "datetime64", 
+                "ende_plan": "datetime64", 
+               "ende_ist": "datetime64"})
+      .dropna()
+      .drop_duplicates()
+      .query('kosten_ist >= 0 & kosten_plan >= 0')
+      .reset_index(drop=True))
+df = (df
+      .assign(dauer_plan = (df["ende_plan"] - df["beginn"]).dt.days,
+               dauer_ist = (df["ende_ist"] - df["beginn"]).dt.days,
+               verzögerung_abs = (df["ende_ist"] - df["ende_plan"]).dt.days,
+               verzögerung_rel = lambda _df: _df["verzögerung_abs"] / (_df["dauer_plan"] + 1) * 100,
+               kostenüberschreitung_abs = df["kosten_ist"] - df["kosten_plan"],
+               kostenüberschreitung_rel = lambda _df: _df["kostenüberschreitung_abs"] / (_df["kosten_plan"]) * 100,
+               projekt_art = df["name"].str.split("//").str[0],)
+      .pipe(remove_outliers, cols=cols)
+      .reset_index(drop=True)
+) 
+tbl = df.info()
+Markdown(tabulate(tbl, headers="keys", tablefmt="pipe", floatfmt=",.2f"))
+```
+
+
+## Standardeinstellungen für die Visualisierung
+### Fallstudie
+
+Bibliothek `matplotlib` ist Basis für die Visualisierung in `seaborn`. Folgende Einstellungen können Sie vornehmen, um die Standardwerte für die Visualisierung zu ändern.
+
+<br>
+
+```{python}
+#| echo: True
+import matplotlib.pyplot as plt
+
+plt.rcParams["figure.figsize"] = (12, 6)
+plt.rcParams["figure.dpi"] = 100
+plt.rcParams["font.size"] = 12
+plt.rcParams["axes.spines.right"] = False
+plt.rcParams["axes.spines.top"] = False
+```
+
+<br>
+
+- mit `plt.rcParams` können Sie die Standardwerte für die Visualisierung festlegen (zu Beginn des Notebooks)
+- `figure.figsize` legt die Größe des Plots fest
+- `font.size` legt die Schriftgröße des Plots fest
+- `axes.spines.right` und `axes.spines.top` legen fest, ob die rechte und obere Achse angezeigt werden sollen
+
+
+## Ausgangssituation bestätigen: Verzögerungen und Kostenüberschreitungen?
+### Fallstudie
+
+
+::: {.panel-tabset}
+
+## Ausgabe
+
+
+```{python}
+#| echo: false
+cols = ["kostenüberschreitung_abs", "kostenüberschreitung_rel", "verzögerung_abs", "verzögerung_rel"]
+tbl = df[cols].describe()
+Markdown(tabulate(tbl, headers="keys", tablefmt="pipe", floatfmt=",.2f"))
+```
+
+## Code
+
+
+```{python}
+#| output: false
+cols = ["kostenüberschreitung_abs", "kostenüberschreitung_rel", 
+        "verzögerung_abs", "verzögerung_rel"]
+df[cols].describe()
+```
+
+:::
+
+<br>
+
+> __Interpretation:__  
+> 
+> - Kostenüberschreitung: sowohl absolut als auch relativ betrachtet, gibt es im Schnitt deutliche Mehrkosten.
+> 
+> - Verzögerung: sowohl absolut als auch relativ betrachtet, gibt es im Schnitt deutliche Verzögerungen.
+
+## Zeitliche Entwicklung der absoluten Kostenüberschreitungen 
+### Fallstudie
+
+::: {.panel-tabset}
+
+## Ausgabe
+
+```{python}
+#| echo: false
+import seaborn as sns 
+import matplotlib.pyplot as plt
+
+cost_by_quarter = (df.groupby(pd.Grouper(key="beginn", freq="3M"))
+                     .agg({"kostenüberschreitung_abs": "mean"}))
+
+sns.lineplot(data=cost_by_quarter, x="beginn", y="kostenüberschreitung_abs")
+
+plt.title("Durchschnittliche Kostenüberschreitung pro Quartal")
+plt.xlabel("Zeit")
+plt.ylabel("Kostenüberschreitung (in EUR)");
+```
+
+## Code 
+
+
+```{python}
+#| output: false
+import seaborn as sns 
+import matplotlib.pyplot as plt
+
+cost_by_quarter = (df.groupby(pd.Grouper(key="beginn", freq="3M"))
+                     .agg({"kostenüberschreitung_abs": "mean"}))
+
+sns.lineplot(data=cost_by_quarter, x="beginn", y="kostenüberschreitung_abs")
+
+plt.title("Durchschnittliche abs. Kostenüberschreitung pro Quartal")
+plt.xlabel("Zeit")
+plt.ylabel("Kostenüberschreitung (in EUR)");
+```
+
+
+- `cost_by_quarter`: gruppierte Daten nach Quartal
+
+:::
+
+
+
+## Exkurs: Funktion für die Visualisierung
+### Fallstudie
+
+- Funktionen sind eine gute Möglichkeit, Code zu strukturieren und zu wiederverwenden
+- gerade bei der Visualisierung ist es sinnvoll, wiederkehrende Aufgaben in Funktionen zu packen
+
+__Beispiel__:
+
+```{python}
+#| echo: true
+#| output: false
+
+def my_lineplot(data, x, y, title, xlabel, ylabel):
+    sns.lineplot(data=data, x=x, y=y)
+    plt.title(title)
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+```
+
+- `sns.lineplot`: Funktion aus der Bibliothek `seaborn` für die Visualisierung eines Liniendiagramms
+- `plt.title`: Titel des Plots
+- `plt.xlabel`: Beschriftung der x-Achse
+- `plt.ylabel`: Beschriftung der y-Achse
+
+
+## Zeitliche Entwicklung der relativen Kostenüberschreitungen 
+### Fallstudie
+
+::: {.panel-tabset}
+
+## Ausgabe
+
+```{python}
+#| echo: false
+
+cost_by_quarter = (df.groupby(pd.Grouper(key="beginn", freq="3M"))
+                     .agg({"kostenüberschreitung_rel": "mean"}))
+my_lineplot(data=cost_by_quarter, x="beginn", y="kostenüberschreitung_rel",
+            title="Durchschnittliche rel. Kostenüberschreitung pro Quartal",
+            xlabel="Zeit", ylabel="Kostenüberschreitung (in %)");
+```
+
+## Code 
+
+
+```{python}
+#| output: false
+cost_by_quarter = (df.groupby(pd.Grouper(key="beginn", freq="3M"))
+                     .agg({"kostenüberschreitung_rel": "mean"}))
+
+                     
+my_lineplot(data=cost_by_quarter, x="beginn", y="kostenüberschreitung_rel",
+            title="Durchschnittliche Kostenüberschreitung pro Quartal",
+            xlabel="Zeit", ylabel="Kostenüberschreitung (in %)");
+```
+
+<br>
+
+- `cost_by_quarter`: gruppierte Daten nach Quartal und berechnet dann je Gruppe (Quartal) den Durchschnitt der Kostenüberschreitung
+- `my_lineplot`: eigene Funktion für die Visualisierung eines Liniendiagramms
+
+:::
+
+## Zeitliche Entwicklung der absoluten Verzögerung
+### Fallstudie
+
+::: {.panel-tabset}
+
+## Ausgabe
+
+```{python}
+#| echo: false
+
+delay_by_quarter = (df.groupby(pd.Grouper(key="beginn", freq="3M"))
+                     .agg({"verzögerung_abs": "mean"}))
+my_lineplot(data=delay_by_quarter, x="beginn", y="verzögerung_abs",
+            title="Durchschnittliche abs. Verzögerung pro Quartal",
+            xlabel="Zeit", ylabel="Verzögerung (in Tagen)");
+```
+
+## Code 
+
+
+```{python}
+#| output: false
+
+delay_by_quarter = (df.groupby(pd.Grouper(key="beginn", freq="3M"))
+                     .agg({"verzögerung_abs": "mean"}))
+my_lineplot(data=delay_by_quarter, x="beginn", y="verzögerung_abs",
+            title="Durchschnittliche abs. Verzögerung pro Quartal",
+            xlabel="Zeit", ylabel="Verzögerung (in Tagen)");
+```
+
+<br>
+
+- `delay_by_quarter`: gruppierte Daten nach Quartal und berechnet dann je Gruppe (Quartal) den Durchschnitt der Verzögerung
+- `my_lineplot`: eigene Funktion für die Visualisierung eines Liniendiagramms
+
+:::
+
+## Zeitliche Entwicklung der relativen Verzögerung
+### Fallstudie
+
+::: {.panel-tabset}
+
+## Ausgabe
+
+```{python}
+#| echo: false
+
+delay_by_quarter = (df.groupby(pd.Grouper(key="beginn", freq="3M"))
+                     .agg({"verzögerung_rel": "mean"}))
+my_lineplot(data=delay_by_quarter, x="beginn", y="verzögerung_rel",
+            title="Durchschnittliche rel. Verzögerung pro Quartal",
+            xlabel="Zeit", ylabel="Verzögerung (in %)");
+```
+
+## Code 
+
+
+```{python}
+#| output: false
+
+delay_by_quarter = (df.groupby(pd.Grouper(key="beginn", freq="3M"))
+                     .agg({"verzögerung_rel": "mean"}))
+my_lineplot(data=delay_by_quarter, x="beginn", y="verzögerung_rel",
+            title="Durchschnittliche rel. Verzögerung pro Quartal",
+            xlabel="Zeit", ylabel="Verzögerung (in %)");
+```
+
+<br>
+
+- `delay_by_quarter`: gruppierte Daten nach Quartal und berechnet dann je Gruppe (Quartal) den Durchschnitt der Verzögerung
+- `my_lineplot`: eigene Funktion für die Visualisierung eines Liniendiagramms
+
+:::
+
+## Zwischenfazit
+### Fallstudie
+
+
+Im Folgenden finden Sie einige Ansätze zur Beantwortung folgender Fragen (siehe vorheriges Kapitel):
+
+<br>
+
+| Frage / Hypothese | Status |
+|-----------|:-:|
+| __Ausgangssituation bestätigen__  |  |
+| 1a. Gibt es tatsächlich Verzögerungen und Kostenüberschreitungen?| :white_check_mark: |
+| 1b. Haben sich die Verzögerungen und Kostenüberschreitungen im Laufe der Zeit verändert? | :white_check_mark: |
+| &nbsp;   | &nbsp;   |
+| __Hypothese bearbeiten__  |  |
+| 1. Sind die Verzögerungen und Kostenüberschreitungen abhängig vom Team?| &#9744; |
+| 2. Sind die Verzögerungen und Kostenüberschreitungen abhängig von der Art des Projekts? | &#9744; |
+| 3. Sind die Verzögerungen und Kostenüberschreitungen abhängig von der Größe des Projekts?  | &#9744; |
+| 4. Gibt es einen Zusammenhang zwischen den Verzögerungen und den Kostenüberschreitungen? | &#9744; |
+
+<br>
+
+## Team: Beispiel relative Kostenüberschreitung
+### Fallstudie
+
+::: {.panel-tabset}
+
+## Ausgabe
+
+```{python}
+#| echo: false
+
+order=sorted(df["team"].unique())
+sns.catplot(data=df, x="team", y="kostenüberschreitung_rel", kind="box",
+            height=5, aspect=2, order=order)
+
+```
+
+## Code
+
+```{python}
+#| output: false
+
+order=sorted(df["team"].unique())
+sns.catplot(data=df, x="team", y="kostenüberschreitung_rel", kind="box",
+            height=5, aspect=2, order=order)
+
+```
+
+:::
+
+## Projektart: Beispiel relative Kostenüberschreitung
+### Fallstudie
+
+::: {.panel-tabset}
+
+## Ausgabe
+
+```{python}
+#| echo: false
+
+order = sorted(df["projekt_art"].unique())
+sns.catplot(data=df, x="kostenüberschreitung_rel", y="projekt_art", kind="box",
+            height=5, aspect=2, order=order)
+
+```
+
+## Code
+
+```{python}
+#| output: false
+
+order = sorted(df["projekt_art"].unique())
+sns.catplot(data=df, x="kostenüberschreitung_rel", y="projekt_art", kind="box",
+            height=5, aspect=2, order=order)
+```
+
+:::
+
+## Team & Projektart: Beispiel relative Kostenüberschreitung
+### Fallstudie
+
+::: {.panel-tabset}
+
+## Ausgabe
+
+```{python}
+#| echo: false
+
+sns.catplot(data=df, x="projekt_art", y="kostenüberschreitung_rel", col="team", col_wrap=2, kind="box",
+            height=5, aspect=2, col_order=sorted(df["team"].unique()), order=sorted(df["projekt_art"].unique()))
+
+```
+
+## Code
+
+```{python}
+#| output: false
+
+sns.catplot(data=df, x="projekt_art", y="kostenüberschreitung_rel", kind="box",
+            height=5, aspect=2)
+
+```
+
+:::
+
+## Team & Projektart: Beispiel relative Kostenüberschreitung
+### Fallstudie
+
+::: {.panel-tabset}
+
+## Ausgabe
+
+```{python}
+#| echo: false
+
+corr = pd.pivot_table(data=df, index="team", columns="projekt_art", values="kostenüberschreitung_rel", aggfunc="mean", sort=True).T
+corr
+```
+
+## Code
+
+```{python}
+#| output: false
+
+corr = pd.pivot_table(data=df, index="team", columns="projekt_art", 
+                      values="kostenüberschreitung_rel", aggfunc="mean", sort=True).T
+corr
+
+```
+
+<br>
+
+- `pd.pivot_table`: erstellt eine Pivot-Tabelle
+- `index`: Spalte, die als Zeilenindex verwendet werden soll
+- `columns`: Spalte, die als Spaltenindex verwendet werden soll
+-  `values`: Spalte, die als Werte verwendet werden soll
+-  `aggfunc`: Aggregationsfunktion, die auf die Werte angewendet werden soll
+-  `.T`: Transponiert die Tabelle, d.h. vertauscht Zeilen und Spalten
+
+:::
+
+## Team & Projektart: Beispiel relative Kostenüberschreitung
+### Fallstudie
+
+::: {.panel-tabset}
+
+## Ausgabe
+
+```{python}
+#| echo: false
+corr = (corr / corr.sum().sum()) * 100
+sns.heatmap(corr, annot=True, cmap="YlGnBu", fmt=".2f")
+plt.title("Anteil an relativer Kostenüberschreitung pro Team und Projektart");
+```
+
+## Code
+
+```{python}
+#| output: false
+corr = (corr / corr.sum().sum()) * 100
+sns.heatmap(corr, annot=True, cmap="YlGnBu")
+plt.title("Anteil an relativer Kostenüberschreitung pro Team und Projektart");
+```
+
+<br>
+
+
+:::
+
+## Exkurs: interaktive Visualisierungen 
+### Fallstudie
+
+::: {.panel-tabset}
+
+## Beispiel
+
+
+
+```{python}
+#| echo: false
+#| output: false
+# Erstellt eine HTML-Datei mit interaktiver Visualisierung
+import hiplot as hip
+cols = ["team", "projekt_art", "kostenüberschreitung_rel"]
+data = df[cols].to_dict(orient='records')
+hip.Experiment.from_iterable(data).to_html("_assets/hiplot.html")
+```
+
+<iframe src="_assets/hiplot.html" width="100%" height="600px"></iframe>
+
+## Code 
+
+<br>
+
+- `hiplot`: Python-Bibliothek für interaktive Visualisierungen
+- nicht in Anaconda enthalten, müsste installiert werden: (z.B. via `pip install hiplot`)
+- kann via Google Colab verwendet werden
+
+<br>
+
+```{.python}
+import hiplot as hip
+cols = ["team", "projekt_art", "verzögerung_abs"]
+data = df[cols].to_dict(orient='records')
+hip.Experiment.from_iterable(data).display()
+```
+
+:::
+
+
+## Zwischenfazit
+### Fallstudie
+
+
+Im Folgenden finden Sie einige Ansätze zur Beantwortung folgender Fragen (siehe vorheriges Kapitel):
+
+<br>
+
+| Frage / Hypothese | Status |
+|-----------|:-:|
+| __Ausgangssituation bestätigen__  |  |
+| 1a. Gibt es tatsächlich Verzögerungen und Kostenüberschreitungen?| :white_check_mark: |
+| 1b. Haben sich die Verzögerungen und Kostenüberschreitungen im Laufe der Zeit verändert? | :white_check_mark: |
+| &nbsp;   | &nbsp;   |
+| __Hypothese bearbeiten__  |  |
+| 1. Sind die Verzögerungen und Kostenüberschreitungen abhängig vom Team?| :white_check_mark: |
+| 2. Sind die Verzögerungen und Kostenüberschreitungen abhängig von der Art des Projekts? | :white_check_mark: |
+| 3. Sind die Verzögerungen und Kostenüberschreitungen abhängig von der Größe des Projekts?  | &#9744; |
+| 4. Gibt es einen Zusammenhang zwischen den Verzögerungen und den Kostenüberschreitungen? | &#9744; |
+
+<br>
+
+
+## Größe des Projekts: Beispiel rel. Verzögerung
+### Fallstudie
+
+
+::: {.panel-tabset}
+
+## Ausgabe
+
+```{python}
+#| echo: false
+x = "kosten_plan"
+y = "verzögerung_rel"
+plt.rcParams["figure.dpi"] = 50
+sns.relplot(data=df, x=x,  y=y)
+plt.title("Rel. Verzögerung vs. Größe des Projekts");
+plt.rcParams["figure.dpi"] = 100
+```
+
+## Code
+
+```{.python}
+x = "kosten_plan"
+y = "verzögerung_rel"
+sns.relplot(data=df, x=x,  y=y, )
+plt.title("Rel. Verzögerung vs. Größe des Projekts");
+```
+
+<br>
+
+- `sns.relplot`: erstellt eine Scatterplot
+
+
+:::
+
+
+## Größe des Projekts: Beispiel rel. Verzögerung
+### Fallstudie
+
+
+::: {.panel-tabset}
+
+## Ausgabe
+
+```{python}
+#| echo: false
+x = "kosten_plan"
+y = "verzögerung_rel"
+plt.rcParams["figure.dpi"] = 50
+sns.relplot(data=df, x=x, hue="team",  y=y)
+plt.title("Rel. Verzögerung vs. Größe des Projekts");
+plt.rcParams["figure.dpi"] = 100
+```
+
+## Code
+
+```{.python}
+x = "kosten_plan"
+y = "verzögerung_rel"
+sns.relplot(data=df, x=x,  y=y, hue="team")
+plt.title("Rel. Verzögerung vs. Größe des Projekts");
+```
+
+<br>
+
+- `sns.relplot`: erstellt eine Scatterplot
+- `hue`: Spalte, die als Farbvariable verwendet werden soll
+
+
+:::
+
+
+## Größe des Projekts: Beispiel rel. Verzögerung
+### Fallstudie
+
+
+::: {.panel-tabset}
+
+## Ausgabe
+
+```{python}
+#| echo: false
+y = "verzögerung_rel"
+df["kosten_plan_cat"] = pd.qcut(df["kosten_plan"], 5, labels=[1,2,3,4,5])
+x = "kosten_plan_cat"
+sns.regplot(data=df, x=x,  y=y, 
+            scatter_kws={"s": 10, "alpha": 0.5}, 
+            line_kws={"color": "red"});
+plt.title("Rel. Verzögerung vs. Größe des Projekts\n(Kategorisierung in 5 gleich große Kategorien)");
+```
+
+## Code
+
+```{.python}
+y = "verzögerung_rel"
+df["kosten_plan_cat"] = pd.qcut(df["kosten_plan"], 5, labels=[1,2,3,4,5])
+x = "kosten_plan_cat"
+sns.regplot(data=df, x=x,  y=y, 
+            scatter_kws={"s": 10, "alpha": 0.5}, 
+            line_kws={"color": "red"});
+plt.title("Rel. Verzögerung vs. Größe des Projekts\n(Kategorisierung in 5 gleich große Kategorien)");
+```
+
+<br>
+
+- `pd.qcut`: erstellt eine Kategorisierung der Werte in `x` in `n` gleich große Kategorien (hier: fünf gleich große Kategorien, d.h. Quintile)
+- `sns.regplot`: erstellt eine Scatterplot mit Regressionsgerade
+- `scatter_kws`: Parameter für die Punkte
+- `line_kws`: Parameter für die Regressionsgerade
+
+
+:::
+
+
+## Größe des Projekts: Beispiel abs. Verzögerung
+### Fallstudie
+
+
+::: {.panel-tabset}
+
+## Ausgabe
+
+```{python}
+#| echo: false
+y = "verzögerung_abs"
+df["kosten_plan_cat"] = pd.qcut(df["kosten_plan"], 5, labels=[1,2,3,4,5])
+x = "kosten_plan_cat"
+sns.regplot(data=df, x=x,  y=y, 
+            scatter_kws={"s": 10, "alpha": 0.5}, 
+            line_kws={"color": "red"});
+plt.title("Abs. Verzögerung vs. Größe des Projekts\n(Kategorisierung in 5 gleich große Kategorien)");
+```
+
+## Code
+
+```{.python}
+y = "verzögerung_abs"
+df["kosten_plan_cat"] = pd.qcut(df["kosten_plan"], 5, labels=[1,2,3,4,5])
+x = "kosten_plan_cat"
+sns.regplot(data=df, x=x,  y=y, 
+            scatter_kws={"s": 10, "alpha": 0.5}, 
+            line_kws={"color": "red"});
+plt.title("Abs. Verzögerung vs. Größe des Projekts\n(Kategorisierung in 5 gleich große Kategorien)");
+```
+
+<br>
+
+- `pd.qcut`: erstellt eine Kategorisierung der Werte in `x` in `n` gleich große Kategorien (hier: fünf gleich große Kategorien, d.h. Quintile)
+- `sns.regplot`: erstellt eine Scatterplot mit Regressionsgerade
+- `scatter_kws`: Parameter für die Punkte
+- `line_kws`: Parameter für die Regressionsgerade
+
+
+:::
+
+
+## Verzögerungen vs. Kosten: Beispiel relaltive Werte
+### Fallstudie
+
+
+::: {.panel-tabset}
+
+## Ausgabe
+
+```{python}
+#| echo: false
+x = "kostenüberschreitung_rel"
+y = "verzögerung_rel"
+sns.regplot(data=df, x=x,  y=y,  scatter_kws={"s": 10, "alpha": 0.5}, 
+            line_kws={"color": "red"});
+plt.title("Zusammenhang zwischen relativer Verzögerung und relativer Kostenüberschreitung");
+```
+
+## Code
+
+```{.python}
+x = "kostenüberschreitung_rel"
+y = "verzögerung_rel"
+sns.regplot(data=df, x=x,  y=y,  scatter_kws={"s": 10, "alpha": 0.5}, 
+            line_kws={"color": "red"});
+plt.title("Zusammenhang zwischen relativer Verzögerung und relativer Kostenüberschreitung");
+```
+
+<br>
+
+- `sns.regplot`: erstellt eine Scatterplot mit Regressionsgerade
+
+:::
+
+## Zwischenfazit
+### Fallstudie
+
+
+Im Folgenden finden Sie einige Ansätze zur Beantwortung folgender Fragen (siehe vorheriges Kapitel):
+
+<br>
+
+| Frage / Hypothese | Status |
+|-----------|:-:|
+| __Ausgangssituation bestätigen__  |  |
+| 1a. Gibt es tatsächlich Verzögerungen und Kostenüberschreitungen?| :white_check_mark: |
+| 1b. Haben sich die Verzögerungen und Kostenüberschreitungen im Laufe der Zeit verändert? | :white_check_mark: |
+| &nbsp;   | &nbsp;   |
+| __Hypothese bearbeiten__  |  |
+| 1. Sind die Verzögerungen und Kostenüberschreitungen abhängig vom Team?| :white_check_mark: |
+| 2. Sind die Verzögerungen und Kostenüberschreitungen abhängig von der Art des Projekts? | :white_check_mark: |
+| 3. Sind die Verzögerungen und Kostenüberschreitungen abhängig von der Größe des Projekts?  | :white_check_mark:  |
+| 4. Gibt es einen Zusammenhang zwischen den Verzögerungen und den Kostenüberschreitungen? | :white_check_mark:  |
+
+<br>
+
+> __Hinweis:__  
+> - einige Hypothesen benötigen weitere Analysen, um sie zu beantworten  
+> - Modellierung der Zusammenhänge zwischen den Variablen ist ein weiterer Schritt, um die Hypothesen zu beantworten 
+>  
+> :arrow_right: nächstes Kapitel  
+
+
+
+## Quellen
+### 
+
+<br>
+
+::: {#refs}
+:::
